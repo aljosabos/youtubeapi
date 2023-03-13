@@ -1,4 +1,3 @@
-import Home from "../../pages/Home/Home";
 import Sidebar from "../../pages/Home/Sidebar/Sidebar";
 import Videos from "../../pages/Home/Videos/Videos";
 import Header from "../Header/Header";
