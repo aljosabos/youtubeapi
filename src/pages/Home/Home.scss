@@ -1,0 +1,6 @@
+@import "../../scss//mixin";
+
+.Home {
+  background-color: red;
+  @include b;
+}
