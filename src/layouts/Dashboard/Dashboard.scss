@@ -4,10 +4,4 @@
   display: grid;
   grid-template-rows: 50px 1fr;
   grid-template-columns: 200px 1fr;
-
-  &__header {
-    grid-column: 1 / span 2;
-  }
-
-  
 }

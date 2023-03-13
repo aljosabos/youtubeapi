@@ -6,7 +6,7 @@ import "./Dashboard.scss";
 function Dashboard() {
   return (
     <div className="Dashboard">
-      <Header className="Dashboard__header" />
+      <Header />
       <Sidebar />
       <Outlet />
     </div>

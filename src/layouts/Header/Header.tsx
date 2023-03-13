@@ -1,11 +1,7 @@
 import "./Header.scss";
 
-interface IHeaderProps {
-  className?: string;
-}
-
-function Header({ className }: IHeaderProps) {
-  return <div className={` Header ${className && className}`}>Header</div>;
+function Header() {
+  return <div className="Header">Header</div>;
 }
 
 export default Header;
