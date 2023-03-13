@@ -1,5 +1,5 @@
 function Video() {
-  return <div>Video</div>;
+  return <div>Video stream</div>;
 }
 
 export default Video;
