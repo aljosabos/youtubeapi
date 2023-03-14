@@ -1,14 +1,14 @@
 import { Route, Routes } from "react-router-dom";
-import NotFound from "./pages/NotFound/NotFound";
 import Dashboard from "./layouts/Dashboard/Dashboard";
-import VideoPlayback from "./pages/VideoPlayback/VideoPlayback";
 import Home from "./pages/Home/Home";
+import NotFound from "./pages/NotFound/NotFound";
+import VideoPlayback from "./pages/VideoPlayback/VideoPlayback";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />}>
-        <Route path="video:id" element={<VideoPlayback />} />
+        <Route path="video" element={<VideoPlayback />} />
         {["/videos", "/"].map((path, index) => (
           <Route path={path} key={index} element={<Home />} />
         ))}
