@@ -1,13 +1,14 @@
-import Sidebar from "../../pages/Home/Sidebar/Sidebar";
-import Videos from "../../pages/Home/Videos/Videos";
+import { Outlet } from "react-router-dom";
+import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
+import "./Dashboard.scss";
 
 function Dashboard() {
   return (
-    <div>
+    <div className="Dashboard">
       <Header />
       <Sidebar />
-      <Videos />
+      <Outlet />
     </div>
   );
 }
