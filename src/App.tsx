@@ -1,14 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import NotFound from "./pages/NotFound/NotFound";
-import VideoStream from "./components/VideoStream/VideoStream";
 import Dashboard from "./layouts/Dashboard/Dashboard";
-import Home from "./pages/Home/Videos";
+import VideoPlayback from "./pages/VideoPlayback/VideoPlayback";
+import Home from "./pages/Home/Home";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />}>
-        <Route path="video" element={<VideoStream />} />
+        <Route path="video:id" element={<VideoPlayback />} />
         {["/videos", "/"].map((path, index) => (
           <Route path={path} key={index} element={<Home />} />
         ))}
