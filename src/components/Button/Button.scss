@@ -1,0 +1,5 @@
+.Button {
+  &:global(.MuiButton-root) {
+    background-color: yellow;
+  }
+}
