@@ -8,6 +8,7 @@ function Header() {
         endIcon={AccountCircleIcon}
         text="Sign in"
         className="Header_button"
+        color="secondary"
       />
     </div>
   );
