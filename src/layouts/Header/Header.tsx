@@ -5,8 +5,8 @@ function Header() {
   return (
     <div className="Header">
       <Button
-        endIcon={AccountCircleIcon}
-        text="Sign in"
+        startIcon={AccountCircleIcon}
+        // text="Sign in"
         className="Header_button"
         color="secondary"
       />

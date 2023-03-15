@@ -11,7 +11,7 @@ interface IButtonProps {
   startIcon?: OverridableComponent<SvgIconTypeMap<object, "svg">> & {
     muiName: string;
   };
-  text: string;
+  text?: string;
   className?: string;
   wrapperClassName?: string;
   disabled?: false;
@@ -34,13 +34,14 @@ export default function Button({
   disabled,
   color,
 }: IButtonProps) {
+  const centerIconClass = !text ? "centerIcon" : null;
   return (
     <div className={wrapperClassName}>
       <MaterialButton
         variant="contained"
         endIcon={endIcon && <Box component={endIcon} />}
-        startIcon={endIcon && <Box component={startIcon} />}
-        className={`Button ${className}`}
+        startIcon={startIcon && <Box component={startIcon} />}
+        className={`Button ${className} ${centerIconClass}`}
         disabled={disabled}
         color={color}
       >
