@@ -4,7 +4,11 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 function Header() {
   return (
     <div className="Header">
-      <Button icon={AccountCircleIcon} text="Sign in" />
+      <Button
+        endIcon={AccountCircleIcon}
+        text="Sign in"
+        className="Header_button"
+      />
     </div>
   );
 }
