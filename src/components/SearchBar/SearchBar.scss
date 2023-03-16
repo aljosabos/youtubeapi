@@ -1,0 +1,39 @@
+.Searchbar {
+  //   border: 1px solid black;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+
+  &__textfield {
+    &.MuiTextField-root {
+      border-radius: 40px;
+      outline: 1px solid grey;
+      cursor: pointer;
+
+      .MuiOutlinedInput-input {
+        padding: 9px 20px;
+      }
+
+      .MuiInputLabel-root {
+        -webkit-transition: none !important;
+        -moz-transition: none !important;
+        -o-transition: none !important;
+        transition: none !important;
+        transform: none;
+        border: none;
+        position: absolute;
+        top: 50%;
+        left: 30%;
+        transform: translate(-50%, -50%);
+
+        &.Mui-focused {
+          color: black;
+        }
+      }
+
+      .MuiOutlinedInput-notchedOutline {
+        border: none;
+      }
+    }
+  }
+}

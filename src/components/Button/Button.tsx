@@ -23,6 +23,7 @@ interface IButtonProps {
     | "error"
     | "info"
     | "warning";
+  size?: "small" | "medium" | "large";
 }
 
 export default function Button({
@@ -33,6 +34,7 @@ export default function Button({
   wrapperClassName,
   disabled,
   color,
+  size,
 }: IButtonProps) {
   const centerIconClass = !text ? "centerIcon" : null;
   return (
@@ -44,6 +46,7 @@ export default function Button({
         className={`Button ${className} ${centerIconClass}`}
         disabled={disabled}
         color={color}
+        size={size}
       >
         {text}
       </MaterialButton>

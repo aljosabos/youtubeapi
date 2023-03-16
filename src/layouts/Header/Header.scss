@@ -3,4 +3,20 @@
   background-color: green;
   background-color: white;
   border: 1px solid black;
+  display: grid;
+  grid-template-columns: 2fr 4fr 1fr;
+
+  &__logo {
+    width: 100px;
+  }
+
+  &__button {
+    &.MuiButton-root {
+      color: #065fd4;
+
+      &:hover {
+        background-color: #c5cae9;
+      }
+    }
+  }
 }
