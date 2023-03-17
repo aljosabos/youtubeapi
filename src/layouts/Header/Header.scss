@@ -2,8 +2,10 @@
   grid-column: 1 / -1;
   display: grid;
   width: 100%;
-  grid-template-columns: 2fr 4fr 1fr;
+  grid-template-columns: max-content 500px max-content;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
 
   &__logo {
     width: 100px;
