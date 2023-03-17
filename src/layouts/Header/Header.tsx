@@ -4,7 +4,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import YoutubeLogo from "../../images/youtube.png";
 import SearchBar from "../../components/SearchBar/SearchBar";
 
-function Header() {
+export default function Header() {
   return (
     <div className="Header">
       <img src={YoutubeLogo} className="Header__logo" />
@@ -17,5 +17,3 @@ function Header() {
     </div>
   );
 }
-
-export default Header;

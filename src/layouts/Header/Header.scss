@@ -1,19 +1,17 @@
 .Header {
   grid-column: 1 / -1;
-  background-color: green;
-  background-color: white;
-  border: 1px solid black;
   display: grid;
+  width: 100%;
   grid-template-columns: 2fr 4fr 1fr;
+  align-items: center;
 
   &__logo {
     width: 100px;
   }
 
   &__button {
+    display: grid;
     &.MuiButton-root {
-      color: #065fd4;
-
       &:hover {
         background-color: #c5cae9;
       }

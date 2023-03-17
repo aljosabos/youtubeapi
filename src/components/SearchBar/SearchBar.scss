@@ -1,39 +1,42 @@
 .Searchbar {
-  //   border: 1px solid black;
   display: grid;
+  grid-template-columns: 2fr 1fr;
+  //   border: 1px solid black;
   align-items: center;
-  justify-items: center;
 
   &__textfield {
     &.MuiTextField-root {
-      border-radius: 40px;
-      outline: 1px solid grey;
+      border-bottom-left-radius: 40px;
+      border-top-left-radius: 40px;
       cursor: pointer;
+      //   outline: 1px solid grey;
+
+      .MuiOutlinedInput-root {
+        border-bottom-left-radius: 40px;
+        border-top-left-radius: 40px;
+        border: 1px solid #1c62b9;
+      }
 
       .MuiOutlinedInput-input {
         padding: 9px 20px;
-      }
 
-      .MuiInputLabel-root {
-        -webkit-transition: none !important;
-        -moz-transition: none !important;
-        -o-transition: none !important;
-        transition: none !important;
-        transform: none;
-        border: none;
-        position: absolute;
-        top: 50%;
-        left: 30%;
-        transform: translate(-50%, -50%);
-
-        &.Mui-focused {
-          color: black;
-        }
+        // ovde focus radi
+        // &:focus {
+        //   border-top: 1px solid blue;
+        //   border-bottom: 1px solid blue;
+        // }
       }
 
       .MuiOutlinedInput-notchedOutline {
         border: none;
       }
+    }
+  }
+
+  &__button {
+    &.MuiButton-root {
+      margin-left: 0;
+      height: 43px;
     }
   }
 }
