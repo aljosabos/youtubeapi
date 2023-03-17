@@ -7,7 +7,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 export default function Header() {
   return (
     <div className="Header">
-      <img src={YoutubeLogo} className="Header__logo" />
+      <img src={YoutubeLogo} className="Header__logo" alt="youtube_logo" />
       <SearchBar />
       <Button
         startIcon={AccountCircleIcon}

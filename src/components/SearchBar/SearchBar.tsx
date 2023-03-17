@@ -19,7 +19,7 @@ export default function SearchBar() {
     setSearchValue(e.target.value);
   };
 
-  const handleSearchBtnClick = () => {
+  const handleClick = () => {
     setSearchedTerm(searchValue);
     setSearchValue("");
   };
@@ -44,7 +44,7 @@ export default function SearchBar() {
       <Button
         startIcon={SearchIcon}
         className="Searchbar__button"
-        onClick={handleSearchBtnClick}
+        onClick={handleClick}
       />
     </div>
   );
