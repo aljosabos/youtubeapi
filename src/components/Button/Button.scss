@@ -1,0 +1,18 @@
+.Button {
+  &.MuiButton-root {
+    // margin-left: 50px;
+  }
+}
+
+.centerIcon {
+  .MuiButton-endIcon,
+  .MuiButton-startIcon {
+    margin: 0;
+
+    > *:nth-of-type(1) {
+      height: 30px;
+      width: 30px;
+      font-size: 5px;
+    }
+  }
+}

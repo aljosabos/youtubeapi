@@ -1,4 +1,22 @@
 .Header {
   grid-column: 1 / -1;
-  background-color: green;
+  display: grid;
+  width: 100%;
+  grid-template-columns: max-content 500px max-content;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+
+  &__logo {
+    width: 100px;
+  }
+
+  &__button {
+    display: grid;
+    &.MuiButton-root {
+      &:hover {
+        background-color: #c5cae9;
+      }
+    }
+  }
 }
