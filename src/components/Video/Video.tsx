@@ -23,9 +23,6 @@ export default function Video() {
           >
             video
           </Typography>
-          {/* <Typography variant="body2" color="text.secondary">
-            great video just to see
-          </Typography> */}
         </CardContent>
       </Card>
     </div>
