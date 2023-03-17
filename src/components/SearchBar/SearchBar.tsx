@@ -6,7 +6,7 @@ import Button from "../Button/Button";
 
 export default function SearchBar() {
   const [searchValue, setSearchValue] = useState<string>("");
-  const [_searchedTerm, setSearchedTerm] = useState<string>("");
+  const [, setSearchedTerm] = useState<string>("");
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "Enter") {
