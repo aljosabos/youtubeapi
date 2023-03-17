@@ -8,13 +8,17 @@
     &.MuiTextField-root {
       border-bottom-left-radius: 40px;
       border-top-left-radius: 40px;
+      border-right: none;
       cursor: pointer;
       //   outline: 1px solid grey;
 
       .MuiOutlinedInput-root {
         border-bottom-left-radius: 40px;
         border-top-left-radius: 40px;
-        border: 1px solid #1c62b9;
+        border-right: none;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border: 1px solid #1976d2;
       }
 
       .MuiOutlinedInput-input {
@@ -36,7 +40,9 @@
   &__button {
     &.MuiButton-root {
       margin-left: 0;
-      height: 43px;
+      height: 43.5px;
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
     }
   }
 }
