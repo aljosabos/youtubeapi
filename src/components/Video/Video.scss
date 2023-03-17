@@ -1,0 +1,20 @@
+.Video {
+  cursor: pointer;
+  &__image {
+    &.MuiCardMedia-root {
+      border-radius: 10px;
+    }
+  }
+
+  &__content {
+    &.MuiCardContent-root:last-child {
+      padding-bottom: 10px;
+    }
+
+    &-heading {
+      &.MuiTypography-root {
+        font-size: 1rem;
+      }
+    }
+  }
+}
