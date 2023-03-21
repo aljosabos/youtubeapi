@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ReactElement, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Video from "../../components/Video/Video";
 import { IVideoMappedResponse, IVideoResponse } from "../../types/response";
 import { mapResponseToVideos } from "../../utils/responseHelpers";
