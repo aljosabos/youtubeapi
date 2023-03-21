@@ -31,6 +31,20 @@
       font-weight: normal;
       color: grey;
     }
+
+    &-views {
+      font-size: 12px;
+      &::after {
+        content: " \00B7";
+      }
+    }
+
+    &-publish-date {
+      font-size: 12px;
+      &::before {
+        content: " ";
+      }
+    }
   }
 
   &__duration {

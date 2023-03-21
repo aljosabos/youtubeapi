@@ -9,14 +9,21 @@ interface IVideo {
   title: string;
   channel: string;
   duration: string;
+  views: number;
 }
 
-export default function Video({ image, title, channel, duration }: IVideo) {
+export default function Video({
+  image,
+  title,
+  channel,
+  duration,
+  views,
+}: IVideo) {
   return (
     <div className="Video">
       <Card>
         <CardMedia
-          sx={{ height: 100, }}
+          sx={{ height: 100 }}
           image={image}
           title={title}
           className="Video__image"
@@ -31,6 +38,8 @@ export default function Video({ image, title, channel, duration }: IVideo) {
             {title}
           </Typography>
           <h5 className="Video__content-channel">{channel}</h5>
+          <span className="Video__content-views">{views}K views</span>
+          <span className="Video__content-publish-date">4 days ago</span>
         </CardContent>
         <span className="Video__duration">{duration}</span>
       </Card>

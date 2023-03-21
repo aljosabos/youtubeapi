@@ -2,7 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Video from "../../components/Video/Video";
 import { IVideoResponse } from "../../types/response";
-import { formatISOtoHumanReadable } from "../../utils/dateHelpers";
+import {
+  formatISOtoHumanReadable,
+  formatToThousands,
+} from "../../utils/dateHelpers";
 import "./Home.scss";
 
 export default function Home() {
@@ -35,6 +38,7 @@ export default function Home() {
           channel={video.snippet.channelTitle}
           image={video.snippet.thumbnails.high.url}
           duration={formatISOtoHumanReadable(video.contentDetails.duration)}
+          views={formatToThousands(Number(video.statistics.viewCount))}
         />
       ))}
     </div>
