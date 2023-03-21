@@ -4,14 +4,19 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import "./Video.scss";
 
-export default function Video() {
+interface IVideo {
+  image: string;
+  title: string;
+}
+
+export default function Video({ image, title }: IVideo) {
   return (
     <div className="Video">
       <Card>
         <CardMedia
           sx={{ height: 100 }}
-          image="https://i.ytimg.com/vi/wHff7sABAvs/hqdefault.jpg?sRUAAIhCGAE=&rs=AOn4CLDoJkJIqUoNSuMjraytDhEFSWrWVw"
-          title="video"
+          image={image}
+          title={title}
           className="Video__image"
         />
         <CardContent className="Video__content">
@@ -21,7 +26,7 @@ export default function Video() {
             component="div"
             className="Video__content-heading"
           >
-            video
+            {title}
           </Typography>
         </CardContent>
       </Card>
