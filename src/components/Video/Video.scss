@@ -15,11 +15,19 @@
       padding-bottom: 10px;
     }
 
-    &-heading {
+    &-title {
       &.MuiTypography-root {
         font-size: 13px;
+        line-height: 15px;
+        height: 30px;
+        overflow: hidden;
         font-weight: bold;
       }
+    }
+
+    &-channel {
+      font-weight: normal;
+      color: grey;
     }
   }
 }

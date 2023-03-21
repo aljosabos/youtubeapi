@@ -7,9 +7,10 @@ import "./Video.scss";
 interface IVideo {
   image: string;
   title: string;
+  channel: string;
 }
 
-export default function Video({ image, title }: IVideo) {
+export default function Video({ image, title, channel }: IVideo) {
   return (
     <div className="Video">
       <Card>
@@ -24,10 +25,11 @@ export default function Video({ image, title }: IVideo) {
             gutterBottom
             variant="h5"
             component="div"
-            className="Video__content-heading"
+            className="Video__content-title"
           >
             {title}
           </Typography>
+          <h5 className="Video__content-channel">{channel}</h5>
         </CardContent>
       </Card>
     </div>
