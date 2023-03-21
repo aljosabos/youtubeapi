@@ -1,9 +1,11 @@
 .Video {
+  position: relative;
   .MuiCard-root {
     height: 100%;
   }
   height: 100%;
   cursor: pointer;
+
   &__image {
     &.MuiCardMedia-root {
       border-radius: 10px;
@@ -28,6 +30,22 @@
     &-channel {
       font-weight: normal;
       color: grey;
+    }
+  }
+
+  &__duration {
+    color: white;
+    background-color: black;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 5px;
+    position: absolute;
+    top: 40%;
+    right: 2%;
+    transition: all 0.2s;
+
+    &:hover {
+      transform: scale(1.2);
     }
   }
 }

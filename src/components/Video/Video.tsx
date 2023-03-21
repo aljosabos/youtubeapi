@@ -8,14 +8,15 @@ interface IVideo {
   image: string;
   title: string;
   channel: string;
+  duration: string;
 }
 
-export default function Video({ image, title, channel }: IVideo) {
+export default function Video({ image, title, channel, duration }: IVideo) {
   return (
     <div className="Video">
       <Card>
         <CardMedia
-          sx={{ height: 100 }}
+          sx={{ height: 100, }}
           image={image}
           title={title}
           className="Video__image"
@@ -31,6 +32,7 @@ export default function Video({ image, title, channel }: IVideo) {
           </Typography>
           <h5 className="Video__content-channel">{channel}</h5>
         </CardContent>
+        <span className="Video__duration">{duration}</span>
       </Card>
     </div>
   );

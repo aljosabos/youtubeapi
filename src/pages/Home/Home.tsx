@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Video from "../../components/Video/Video";
 import { IVideoResponse } from "../../types/response";
+import { formatISOtoHumanReadable } from "../../utils/dateHelpers";
 import "./Home.scss";
 
 export default function Home() {
@@ -33,6 +34,7 @@ export default function Home() {
           title={video.snippet.title}
           channel={video.snippet.channelTitle}
           image={video.snippet.thumbnails.high.url}
+          duration={formatISOtoHumanReadable(video.contentDetails.duration)}
         />
       ))}
     </div>
