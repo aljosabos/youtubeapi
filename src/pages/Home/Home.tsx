@@ -33,6 +33,7 @@ export default function Home() {
 
   const loadMoreVideos = async () => {
     try {
+      console.log("CALL");
       const response = await axios.get(
         `https://youtube.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&fields=items(id,contentDetails(duration),snippet(title,channelTitle,publishedAt,thumbnails(high(url))),statistics(viewCount)),nextPageToken&maxResults=${maxResults}&pageToken=${nextPageToken}&key=${process.env.REACT_APP_API_KEY}`
       );
@@ -65,7 +66,7 @@ export default function Home() {
     >
       {videos.map((video: IVideoResponse, index) => (
         <Video
-          key={index}
+          key={video.id}
           title={video.snippet.title}
           channel={video.snippet.channelTitle}
           image={video.snippet.thumbnails.high.url}
