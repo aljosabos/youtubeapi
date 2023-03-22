@@ -9,6 +9,7 @@ import {
 import "./Home.scss";
 
 export default function Home() {
+  const maxResults = 50;
   const [videos, setVideos] = useState<IVideoResponse[]>([]);
 
   // `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=50&key=${process.env.REACT_APP_API_KEY}
@@ -16,7 +17,7 @@ export default function Home() {
   const fetchVideos = async () => {
     try {
       const videos = await axios.get(
-        `https://youtube.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&fields=items(id,contentDetails(duration),snippet(title,channelTitle,publishedAt,thumbnails(high(url))),statistics(viewCount))&maxResults=50&key=${process.env.REACT_APP_API_KEY}`
+        `https://youtube.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&fields=items(id,contentDetails(duration),snippet(title,channelTitle,publishedAt,thumbnails(high(url))),statistics(viewCount))&maxResults=${maxResults}&key=${process.env.REACT_APP_API_KEY}`
       );
       console.log(videos);
       if (videos) setVideos(videos.data.items);
