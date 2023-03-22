@@ -24,8 +24,6 @@ export default function Header() {
     setAccessToken(null);
   };
 
-  console.log(accessToken);
-
   return (
     <div className="Header">
       <img src={YoutubeLogo} className="Header__logo" alt="youtube_logo" />
