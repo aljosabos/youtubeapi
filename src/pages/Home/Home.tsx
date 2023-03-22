@@ -38,12 +38,14 @@ export default function Home() {
 
   console.log(nextPageToken);
 
+  console.log(videos.length);
+
   return (
     <InfiniteScroll
       scrollableTarget="scrollable"
       dataLength={videos.length}
       next={fetchVideos}
-      hasMore={videos.length < 500}
+      hasMore={videos.length < 500 - 16}
       loader={<h4>Loading...</h4>}
       className="Home"
       endMessage={
