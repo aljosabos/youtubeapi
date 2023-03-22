@@ -34,7 +34,7 @@ export default function Home() {
       {videos.map((video: IVideoResponse) => (
         <Video
           key={video.id}
-          title={video.snippet.title}
+          title={video.contentDetails.duration}
           channel={video.snippet.channelTitle}
           image={video.snippet.thumbnails.high.url}
           duration={formatISOtoHumanReadable(video.contentDetails.duration)}
