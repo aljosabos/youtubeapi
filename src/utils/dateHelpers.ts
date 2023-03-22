@@ -5,7 +5,6 @@ export const formatISOtoHumanReadable = (ISOTime: string) => {
     ?.replace("PT", "")
     .replace("S", "")
     .padStart(2, "0");
-  console.log(formatedSeconds);
 
   const timeWithoutSeconds = ISOTime.replace("PT", "")
     .replace("H", ":")
