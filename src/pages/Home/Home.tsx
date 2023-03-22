@@ -23,8 +23,7 @@ export default function Home() {
       );
       if (response) {
         setVideos((current) => [...current, ...response.data.items]);
-        setNextPageToken(response.data.nextPageToken);
-        // nextPageToken = response.data.nextPageToken;
+        setNextPageToken(response.data.nextPageToken || "");
       }
     } catch (error) {
       console.log(error);
