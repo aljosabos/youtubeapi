@@ -13,17 +13,32 @@ export default function Home() {
   const maxResults = 16;
   const [videos, setVideos] = useState<IVideoResponse[]>([]);
   const [nextPageToken, setNextPageToken] = useState<string>("");
-  // let nextPageToken = "";
-  // `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=50&key=${process.env.REACT_APP_API_KEY}
+  // `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&videosPerPage=50&key=${process.env.REACT_APP_API_KEY}
 
-  const fetchVideos = async () => {
+  const loadInitialVideos = async () => {
+    try {
+      const response = await axios.get(
+        `https://youtube.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&fields=items(id,contentDetails(duration),snippet(title,channelTitle,publishedAt,thumbnails(high(url))),statistics(viewCount)),nextPageToken&maxResults=${maxResults}&key=${process.env.REACT_APP_API_KEY}`
+      );
+      if (response) {
+        setVideos(response.data.items);
+        setNextPageToken(response.data.nextPageToken);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  console.log(videos.length);
+
+  const loadMoreVideos = async () => {
     try {
       const response = await axios.get(
         `https://youtube.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&fields=items(id,contentDetails(duration),snippet(title,channelTitle,publishedAt,thumbnails(high(url))),statistics(viewCount)),nextPageToken&maxResults=${maxResults}&pageToken=${nextPageToken}&key=${process.env.REACT_APP_API_KEY}`
       );
       if (response) {
         setVideos((current) => [...current, ...response.data.items]);
-        setNextPageToken(response.data.nextPageToken || "");
+        setNextPageToken(response.data.nextPageToken);
       }
     } catch (error) {
       console.log(error);
@@ -31,21 +46,15 @@ export default function Home() {
   };
 
   useEffect(() => {
-    fetchVideos();
+    loadInitialVideos();
   }, []);
-
-  console.log(videos);
-
-  console.log(nextPageToken);
-
-  console.log(videos.length);
 
   return (
     <InfiniteScroll
       scrollableTarget="scrollable"
       dataLength={videos.length}
-      next={fetchVideos}
-      hasMore={videos.length < 500 - 16}
+      next={loadMoreVideos}
+      hasMore={!!nextPageToken}
       loader={<h4>Loading...</h4>}
       className="Home"
       endMessage={
@@ -54,7 +63,6 @@ export default function Home() {
         </p>
       }
     >
-      {/* <div className="Home" id="scrollable"> */}
       {videos.map((video: IVideoResponse, index) => (
         <Video
           key={index}
@@ -65,7 +73,6 @@ export default function Home() {
           views={formatToThousands(Number(video.statistics.viewCount))}
         />
       ))}
-      {/* </div> */}
     </InfiniteScroll>
   );
 }
