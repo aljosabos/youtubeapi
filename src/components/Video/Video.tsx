@@ -4,14 +4,28 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import "./Video.scss";
 
-export default function Video() {
+interface IVideo {
+  image: string;
+  title: string;
+  channel: string;
+  duration: string;
+  views: number;
+}
+
+export default function Video({
+  image,
+  title,
+  channel,
+  duration,
+  views,
+}: IVideo) {
   return (
     <div className="Video">
       <Card>
         <CardMedia
           sx={{ height: 100 }}
-          image="https://i.ytimg.com/vi/wHff7sABAvs/hqdefault.jpg?sRUAAIhCGAE=&rs=AOn4CLDoJkJIqUoNSuMjraytDhEFSWrWVw"
-          title="video"
+          image={image}
+          title={title}
           className="Video__image"
         />
         <CardContent className="Video__content">
@@ -19,11 +33,15 @@ export default function Video() {
             gutterBottom
             variant="h5"
             component="div"
-            className="Video__content-heading"
+            className="Video__content-title"
           >
-            video
+            {title}
           </Typography>
+          <h5 className="Video__content-channel">{channel}</h5>
+          <span className="Video__content-views">{views}K views</span>
+          <span className="Video__content-publish-date">4 days ago</span>
         </CardContent>
+        <span className="Video__duration">{duration}</span>
       </Card>
     </div>
   );
