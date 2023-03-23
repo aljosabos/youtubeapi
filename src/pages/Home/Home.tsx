@@ -1,23 +1,20 @@
 import { useEffect } from "react";
-import Video from "../../components/Video/Video";
-import { IVideoResponse } from "../../types/response";
+import "./Home.scss";
 import {
+  Video,
+  IVideoResponse,
   formatISOtoHumanReadable,
   formatNumToThousands,
-} from "../../utils/dateHelpers";
-import "./Home.scss";
-import InfiniteScroll from "react-infinite-scroll-component";
-import moment from "moment";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
-import {
+  InfiniteScroll,
+  moment,
+  useAppDispatch,
+  useAppSelector,
   initialVideosLoadThunk,
   loadMoreVideosThunk,
-} from "../../redux/thunks";
-import {
   nextPageTokenSelector,
   videosSelector,
   videosStatusSelector,
-} from "../../redux/slices/videosSlice";
+} from "../../exports/homeExports";
 
 export default function Home() {
   const dispatch = useAppDispatch();
