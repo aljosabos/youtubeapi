@@ -1,20 +1,11 @@
+import moment from "moment";
+
 export const formatISOtoHumanReadable = (ISOTime: string) => {
-  // adds zero infront of seconds if less then 10 (for eample 09 instead of 9)
-  const formatedSeconds = ISOTime.split("M")
-    .pop()
-    ?.replace("PT", "")
-    .replace("S", "")
-    .padStart(2, "0");
+  const duration = moment.duration(ISOTime);
 
-  const timeWithoutSeconds = ISOTime.replace("PT", "")
-    .replace("H", ":")
-    .split("M")
-    .slice(0, -1)[0];
-
-  // if there are no minutes format as 0 minutes
-  const formatedMinutes = timeWithoutSeconds ? timeWithoutSeconds : "0";
-
-  return formatedMinutes + ":" + formatedSeconds;
+  return moment
+    .utc(duration.asMilliseconds())
+    .format(duration.hours() > 0 ? "HH:mm:ss" : "mm:ss");
 };
 
 export const formatNumToThousands = (num: number) =>

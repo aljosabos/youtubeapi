@@ -70,7 +70,7 @@ export default function Home() {
           image={video.snippet.thumbnails.high.url}
           duration={formatISOtoHumanReadable(video.contentDetails.duration)}
           views={formatNumToThousands(Number(video.statistics.viewCount))}
-          publishDate = {video.snippet.publishedAt}
+          publishDate={video.snippet.publishedAt}
         />
       ))}
     </InfiniteScroll>
