@@ -15,24 +15,6 @@ export const initialVideosLoadThunk = createAsyncThunk(
   }
 );
 
-// export const loadMoreVideosThunk = createAsyncThunk(
-//   "videos/loadMore",
-//   async (nextPageToken: string) => {
-//     const LOAD_MORE_ENDPOINT =
-//       `${INITIAL_LOAD_ENDPOINT}&pageToken=${nextPageToken}`.replace(
-//         `maxResults=${INITIAL_LOAD_SIZE}`,
-//         `maxResults=${LOAD_MORE_SIZE}`
-//       );
-
-//     const response = await axios.get(LOAD_MORE_ENDPOINT);
-
-//     return {
-//       items: response.data.items,
-//       nextPageToken: response.data.nextPageToken,
-//     };
-//   }
-// );
-
 export const loadMoreVideosThunk = createAsyncThunk(
   "videos/loadMore",
   async (nextPageToken: string) => {
