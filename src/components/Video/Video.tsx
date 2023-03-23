@@ -10,6 +10,7 @@ interface IVideo {
   channel: string;
   duration: string;
   views: number;
+  publishDate: string;
 }
 
 export default function Video({
@@ -18,6 +19,7 @@ export default function Video({
   channel,
   duration,
   views,
+  publishDate,
 }: IVideo) {
   return (
     <div className="Video">
@@ -39,7 +41,7 @@ export default function Video({
           </Typography>
           <h5 className="Video__content-channel">{channel}</h5>
           <span className="Video__content-views">{views}K views</span>
-          <span className="Video__content-publish-date">4 days ago</span>
+          <span className="Video__content-publish-date">{publishDate}</span>
         </CardContent>
         <span className="Video__duration">{duration}</span>
       </Card>

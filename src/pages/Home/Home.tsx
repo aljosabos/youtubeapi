@@ -13,6 +13,7 @@ import {
   INITIAL_LOAD_SIZE,
   LOAD_MORE_SIZE,
 } from "../../data/constants";
+import moment from "moment";
 
 export default function Home() {
   const [videos, setVideos] = useState<IVideoResponse[]>([]);
@@ -70,6 +71,7 @@ export default function Home() {
           image={video.snippet.thumbnails.high.url}
           duration={formatISOtoHumanReadable(video.contentDetails.duration)}
           views={formatNumToThousands(Number(video.statistics.viewCount))}
+          publishDate={moment(video.snippet.publishedAt).fromNow()}
         />
       ))}
     </InfiniteScroll>
