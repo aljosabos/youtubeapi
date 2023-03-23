@@ -11,13 +11,13 @@ export const formatISOtoHumanReadable = (ISOTime: string) => {
     .split("M")
     .slice(0, -1)[0];
 
-  // if there are no minutes in ISO format, show 0 minutes
+  // if there are no minutes format as 0 minutes
   const formatedMinutes = timeWithoutSeconds ? timeWithoutSeconds : "0";
 
   return formatedMinutes + ":" + formatedSeconds;
 };
 
-export const formatToThousands = (num: number) =>
+export const formatNumToThousands = (num: number) =>
   Math.abs(num) > 999
     ? Math.sign(num) * Number((Math.abs(num) / 1000).toFixed(1))
     : Math.sign(num) * Math.abs(num);

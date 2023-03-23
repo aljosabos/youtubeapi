@@ -4,7 +4,7 @@ import Video from "../../components/Video/Video";
 import { IVideoResponse } from "../../types/response";
 import {
   formatISOtoHumanReadable,
-  formatToThousands,
+  formatNumToThousands,
 } from "../../utils/dateHelpers";
 import "./Home.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -17,7 +17,6 @@ import {
 export default function Home() {
   const [videos, setVideos] = useState<IVideoResponse[]>([]);
   const [nextPageToken, setNextPageToken] = useState<string>("");
-  // `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&videosPerPage=50&key=${process.env.REACT_APP_API_KEY}
 
   const loadInitialVideos = async () => {
     try {
@@ -29,8 +28,6 @@ export default function Home() {
     }
   };
 
-  console.log(videos.length);
-
   const loadMoreVideos = async () => {
     const LOAD_MORE_ENDPOINT =
       `${INITIAL_LOAD_ENDPOINT}&pageToken=${nextPageToken}`.replace(
@@ -40,7 +37,7 @@ export default function Home() {
 
     try {
       const response = await axios.get(LOAD_MORE_ENDPOINT);
-      setVideos((current) => [...current, ...response.data.items]);
+      setVideos((currentState) => [...currentState, ...response.data.items]);
       setNextPageToken(response.data.nextPageToken);
     } catch (error) {
       console.log(error);
@@ -65,14 +62,14 @@ export default function Home() {
         </p>
       }
     >
-      {videos.map((video: IVideoResponse, index) => (
+      {videos.map((video: IVideoResponse) => (
         <Video
           key={video.id}
           title={video.snippet.title}
           channel={video.snippet.channelTitle}
           image={video.snippet.thumbnails.high.url}
           duration={formatISOtoHumanReadable(video.contentDetails.duration)}
-          views={formatToThousands(Number(video.statistics.viewCount))}
+          views={formatNumToThousands(Number(video.statistics.viewCount))}
         />
       ))}
     </InfiniteScroll>
