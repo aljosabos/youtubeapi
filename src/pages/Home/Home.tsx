@@ -8,22 +8,22 @@ import {
 } from "../../utils/dateHelpers";
 import "./Home.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
+import {
+  INITIAL_LOAD_ENDPOINT,
+  INITIAL_LOAD_SIZE,
+  LOAD_MORE_SIZE,
+} from "../../data/constants";
 
 export default function Home() {
-  const maxResults = 16;
   const [videos, setVideos] = useState<IVideoResponse[]>([]);
   const [nextPageToken, setNextPageToken] = useState<string>("");
   // `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&videosPerPage=50&key=${process.env.REACT_APP_API_KEY}
 
   const loadInitialVideos = async () => {
     try {
-      const response = await axios.get(
-        `https://youtube.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&fields=items(id,contentDetails(duration),snippet(title,channelTitle,publishedAt,thumbnails(high(url))),statistics(viewCount)),nextPageToken&maxResults=${maxResults}&key=${process.env.REACT_APP_API_KEY}`
-      );
-      if (response) {
-        setVideos(response.data.items);
-        setNextPageToken(response.data.nextPageToken);
-      }
+      const response = await axios.get(INITIAL_LOAD_ENDPOINT);
+      setVideos(response.data.items);
+      setNextPageToken(response.data.nextPageToken);
     } catch (error) {
       console.log(error);
     }
@@ -32,15 +32,16 @@ export default function Home() {
   console.log(videos.length);
 
   const loadMoreVideos = async () => {
-    try {
-      console.log("CALL");
-      const response = await axios.get(
-        `https://youtube.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&fields=items(id,contentDetails(duration),snippet(title,channelTitle,publishedAt,thumbnails(high(url))),statistics(viewCount)),nextPageToken&maxResults=${maxResults}&pageToken=${nextPageToken}&key=${process.env.REACT_APP_API_KEY}`
+    const LOAD_MORE_ENDPOINT =
+      `${INITIAL_LOAD_ENDPOINT}&pageToken=${nextPageToken}`.replace(
+        `maxResults=${INITIAL_LOAD_SIZE}`,
+        `maxResults=${LOAD_MORE_SIZE}`
       );
-      if (response) {
-        setVideos((current) => [...current, ...response.data.items]);
-        setNextPageToken(response.data.nextPageToken);
-      }
+
+    try {
+      const response = await axios.get(LOAD_MORE_ENDPOINT);
+      setVideos((current) => [...current, ...response.data.items]);
+      setNextPageToken(response.data.nextPageToken);
     } catch (error) {
       console.log(error);
     }
