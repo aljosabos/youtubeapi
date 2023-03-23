@@ -2,7 +2,6 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import moment from "moment";
 import "./Video.scss";
 
 interface IVideo {
@@ -42,9 +41,7 @@ export default function Video({
           </Typography>
           <h5 className="Video__content-channel">{channel}</h5>
           <span className="Video__content-views">{views}K views</span>
-          <span className="Video__content-publish-date">
-            {moment(publishDate).fromNow()}
-          </span>
+          <span className="Video__content-publish-date">{publishDate}</span>
         </CardContent>
         <span className="Video__duration">{duration}</span>
       </Card>
