@@ -4,34 +4,64 @@ import Video from "../../components/Video/Video";
 import { IVideoResponse } from "../../types/response";
 import {
   formatISOtoHumanReadable,
-  formatToThousands,
+  formatNumToThousands,
 } from "../../utils/dateHelpers";
 import "./Home.scss";
+import InfiniteScroll from "react-infinite-scroll-component";
+import {
+  INITIAL_LOAD_ENDPOINT,
+  INITIAL_LOAD_SIZE,
+  LOAD_MORE_SIZE,
+} from "../../data/constants";
 
 export default function Home() {
-  const maxResults = 50;
   const [videos, setVideos] = useState<IVideoResponse[]>([]);
+  const [nextPageToken, setNextPageToken] = useState<string>("");
 
-  // `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=50&key=${process.env.REACT_APP_API_KEY}
-
-  const fetchVideos = async () => {
+  const loadInitialVideos = async () => {
     try {
-      const videos = await axios.get(
-        `https://youtube.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&fields=items(id,contentDetails(duration),snippet(title,channelTitle,publishedAt,thumbnails(high(url))),statistics(viewCount))&maxResults=${maxResults}&key=${process.env.REACT_APP_API_KEY}`
+      const response = await axios.get(INITIAL_LOAD_ENDPOINT);
+      setVideos(response.data.items);
+      setNextPageToken(response.data.nextPageToken);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const loadMoreVideos = async () => {
+    const LOAD_MORE_ENDPOINT =
+      `${INITIAL_LOAD_ENDPOINT}&pageToken=${nextPageToken}`.replace(
+        `maxResults=${INITIAL_LOAD_SIZE}`,
+        `maxResults=${LOAD_MORE_SIZE}`
       );
-      console.log(videos);
-      if (videos) setVideos(videos.data.items);
+
+    try {
+      const response = await axios.get(LOAD_MORE_ENDPOINT);
+      setVideos((currentState) => [...currentState, ...response.data.items]);
+      setNextPageToken(response.data.nextPageToken);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchVideos();
+    loadInitialVideos();
   }, []);
 
   return (
-    <div className="Home">
+    <InfiniteScroll
+      scrollableTarget="scrollable"
+      dataLength={videos.length}
+      next={loadMoreVideos}
+      hasMore={!!nextPageToken}
+      loader={<h4>Loading...</h4>}
+      className="Home"
+      endMessage={
+        <p style={{ textAlign: "center" }}>
+          <b>Yay! You have seen it all</b>
+        </p>
+      }
+    >
       {videos.map((video: IVideoResponse) => (
         <Video
           key={video.id}
@@ -39,9 +69,9 @@ export default function Home() {
           channel={video.snippet.channelTitle}
           image={video.snippet.thumbnails.high.url}
           duration={formatISOtoHumanReadable(video.contentDetails.duration)}
-          views={formatToThousands(Number(video.statistics.viewCount))}
+          views={formatNumToThousands(Number(video.statistics.viewCount))}
         />
       ))}
-    </div>
+    </InfiniteScroll>
   );
 }
