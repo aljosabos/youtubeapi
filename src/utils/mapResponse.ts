@@ -1,14 +1,14 @@
-import { IVideoResponse } from "../types/response";
 import { formatISOtoHumanReadable, formatNumToThousands } from "./dateHelpers";
 import moment from "moment";
+import { IVideoResponse } from "../types/response";
 
-export const mapResponseToVideo = (response: IVideoResponse) => ({
-  id: response.id,
-  title: response.snippet.title,
-  channel: response.snippet.channelTitle,
-  image: response.snippet.thumbnails.high.url,
-  duration: formatISOtoHumanReadable(response.contentDetails.duration),
-  views: formatNumToThousands(Number(response.statistics.viewCount)),
-  publishDate: moment(response.snippet.publishedAt).fromNow(),
-});
-
+export const mapResponseToVideos = (items: IVideoResponse[]) =>
+  items.map((item: IVideoResponse) => ({
+    id: item.id,
+    title: item.snippet.title,
+    channel: item.snippet.channelTitle,
+    image: item.snippet.thumbnails.high.url,
+    duration: formatISOtoHumanReadable(item.contentDetails.duration),
+    views: formatNumToThousands(Number(item.statistics.viewCount)),
+    publishDate: moment(item.snippet.publishedAt).fromNow(),
+  }));

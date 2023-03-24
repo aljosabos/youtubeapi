@@ -1,20 +1,11 @@
 import { useEffect } from "react";
 import Video from "../../components/Video/Video";
-import { IVideoResponse } from "../../types/response";
-import {
-  formatISOtoHumanReadable,
-  formatNumToThousands,
-} from "../../utils/dateHelpers";
+import { IVideo } from "../../types/response";
 import "./Home.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
-import moment from "moment";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { getInitialVideosThunk, getMoreVideosThunk } from "../../redux/thunks";
-import {
-  nextPageTokenSelector,
-  videosSelector,
-  videosStatusSelector,
-} from "../../redux/slices/videosSlice";
+import { nextPageTokenSelector, videosSelector, videosStatusSelector } from "../../redux/slices/videosSlice";
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -47,16 +38,8 @@ export default function Home() {
         </p>
       }
     >
-      {videos.map((video: IVideoResponse) => (
-        <Video
-          key={video.id}
-          title={video.snippet.title}
-          channel={video.snippet.channelTitle}
-          image={video.snippet.thumbnails.high.url}
-          duration={formatISOtoHumanReadable(video.contentDetails.duration)}
-          views={formatNumToThousands(Number(video.statistics.viewCount))}
-          publishDate={moment(video.snippet.publishedAt).fromNow()}
-        />
+      {videos.map((video: IVideo) => (
+        <Video {...video} key={video.id} />
       ))}
     </InfiniteScroll>
   );

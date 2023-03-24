@@ -1,9 +1,9 @@
 import { SerializedError } from "@reduxjs/toolkit";
-import { IVideoResponse } from "./../types/response";
+import { IVideo } from "./../types/response";
 
 export interface IVideoSliceState {
   data: {
-    items: IVideoResponse[];
+    items: IVideo[];
     nextPageToken: string;
   };
   status: "idle" | "loading" | "succeeded" | "failed";
