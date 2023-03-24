@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Video from "../../components/Video/Video";
 import { IVideoResponse } from "../../types/response";
 import {
@@ -8,46 +7,31 @@ import {
 } from "../../utils/dateHelpers";
 import "./Home.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
-import {
-  INITIAL_LOAD_ENDPOINT,
-  INITIAL_LOAD_SIZE,
-  LOAD_MORE_SIZE,
-} from "../../data/constants";
 import moment from "moment";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
+import { getInitialVideosThunk, getMoreVideosThunk } from "../../redux/thunks";
+import {
+  nextPageTokenSelector,
+  videosSelector,
+  videosStatusSelector,
+} from "../../redux/slices/videosSlice";
 
 export default function Home() {
-  const [videos, setVideos] = useState<IVideoResponse[]>([]);
-  const [nextPageToken, setNextPageToken] = useState<string>("");
-
-  const loadInitialVideos = async () => {
-    try {
-      const response = await axios.get(INITIAL_LOAD_ENDPOINT);
-      setVideos(response.data.items);
-      setNextPageToken(response.data.nextPageToken);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const loadMoreVideos = async () => {
-    const LOAD_MORE_ENDPOINT =
-      `${INITIAL_LOAD_ENDPOINT}&pageToken=${nextPageToken}`.replace(
-        `maxResults=${INITIAL_LOAD_SIZE}`,
-        `maxResults=${LOAD_MORE_SIZE}`
-      );
-
-    try {
-      const response = await axios.get(LOAD_MORE_ENDPOINT);
-      setVideos((currentState) => [...currentState, ...response.data.items]);
-      setNextPageToken(response.data.nextPageToken);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const dispatch = useAppDispatch();
+  const videos = useAppSelector(videosSelector);
+  const videosStatus = useAppSelector(videosStatusSelector);
+  const nextPageToken = useAppSelector(nextPageTokenSelector);
 
   useEffect(() => {
-    loadInitialVideos();
+    if (videosStatus === "idle") {
+      dispatch(getInitialVideosThunk());
+    }
   }, []);
+
+  const loadMoreVideos = () => {
+    const nextPageTokenParam = `&${nextPageToken}`;
+    dispatch(getMoreVideosThunk(nextPageTokenParam));
+  };
 
   return (
     <InfiniteScroll
