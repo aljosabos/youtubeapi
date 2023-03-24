@@ -29,7 +29,7 @@ export default function Home() {
   }, []);
 
   const loadMoreVideos = () => {
-    const nextPageTokenParam = `&${nextPageToken}`;
+    const nextPageTokenParam = `&pageToken=${nextPageToken}`;
     dispatch(getMoreVideosThunk(nextPageTokenParam));
   };
 
