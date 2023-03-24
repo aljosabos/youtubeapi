@@ -9,10 +9,7 @@ import "./Home.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
 import moment from "moment";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
-import {
-  initialVideosLoadThunk,
-  loadMoreVideosThunk,
-} from "../../redux/thunks";
+import { getInitialVideosThunk, getMoreVideosThunk } from "../../redux/thunks";
 import {
   nextPageTokenSelector,
   videosSelector,
@@ -27,12 +24,13 @@ export default function Home() {
 
   useEffect(() => {
     if (videosStatus === "idle") {
-      dispatch(initialVideosLoadThunk());
+      dispatch(getInitialVideosThunk());
     }
   }, []);
 
   const loadMoreVideos = () => {
-    dispatch(loadMoreVideosThunk(nextPageToken));
+    const nextPageTokenParam = `&${nextPageToken}`;
+    dispatch(getMoreVideosThunk(nextPageTokenParam));
   };
 
   return (

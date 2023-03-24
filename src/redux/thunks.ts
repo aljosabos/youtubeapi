@@ -1,13 +1,11 @@
-import { INITIAL_LOAD_SIZE, LOAD_MORE_SIZE } from "./../data/constants";
-
+import { GET_INITIAL_VIDEOS_URL, GET_MORE_VIDEOS_URL } from "./../data/constants";
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { INITIAL_LOAD_ENDPOINT } from "../data/constants";
 
-export const initialVideosLoadThunk = createAsyncThunk(
+export const getInitialVideosThunk = createAsyncThunk(
   "videos/initialLoad",
   async () => {
-    const response = await axios.get(INITIAL_LOAD_ENDPOINT);
+    const response = await axios.get(GET_INITIAL_VIDEOS_URL);
     return {
       items: response.data.items,
       nextPageToken: response.data.nextPageToken,
@@ -15,15 +13,10 @@ export const initialVideosLoadThunk = createAsyncThunk(
   }
 );
 
-export const loadMoreVideosThunk = createAsyncThunk(
+export const getMoreVideosThunk = createAsyncThunk(
   "videos/loadMore",
-  async (nextPageToken: string) => {
-    const LOAD_MORE_ENDPOINT =
-      `${INITIAL_LOAD_ENDPOINT}&pageToken=${nextPageToken}`.replace(
-        `maxResults=${INITIAL_LOAD_SIZE}`,
-        `maxResults=${LOAD_MORE_SIZE}`
-      );
-    const response = await axios.get(LOAD_MORE_ENDPOINT);
+  async (nextPageTokenParam: string) => {
+    const response = await axios.get(`${GET_MORE_VIDEOS_URL}${nextPageTokenParam}`);
 
     return {
       items: response.data.items,

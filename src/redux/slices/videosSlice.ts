@@ -1,7 +1,7 @@
 import { RootState } from "./../store";
 import { createSlice } from "@reduxjs/toolkit";
 import { IVideoSliceState } from "../types";
-import { initialVideosLoadThunk, loadMoreVideosThunk } from "../thunks";
+import { getInitialVideosThunk, getMoreVideosThunk } from "../thunks";
 
 const initialState: IVideoSliceState = {
   data: {
@@ -19,29 +19,29 @@ export const videosSlice = createSlice({
 
   extraReducers(builder) {
     // INITIAL LOAD //
-    builder.addCase(initialVideosLoadThunk.pending, (state, _) => {
+    builder.addCase(getInitialVideosThunk.pending, (state, _) => {
       state.status = "loading";
       state.error = {};
     });
 
-    builder.addCase(initialVideosLoadThunk.fulfilled, (state, action) => {
+    builder.addCase(getInitialVideosThunk.fulfilled, (state, action) => {
       state.status = "succeeded";
       state.error = {};
       state.data = action.payload;
     });
 
-    builder.addCase(initialVideosLoadThunk.rejected, (state, action) => {
+    builder.addCase(getInitialVideosThunk.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error;
     });
 
     // LOAD MORE //
-    builder.addCase(loadMoreVideosThunk.pending, (state, _) => {
+    builder.addCase(getMoreVideosThunk.pending, (state, _) => {
       state.status = "loading";
       state.error = {};
     });
 
-    builder.addCase(loadMoreVideosThunk.fulfilled, (state, action) => {
+    builder.addCase(getMoreVideosThunk.fulfilled, (state, action) => {
       state.status = "succeeded";
       state.error = {};
       state.data = {
@@ -50,7 +50,7 @@ export const videosSlice = createSlice({
       };
     });
 
-    builder.addCase(loadMoreVideosThunk.rejected, (state, action) => {
+    builder.addCase(getMoreVideosThunk.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error;
     });
