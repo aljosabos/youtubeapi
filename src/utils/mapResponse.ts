@@ -12,4 +12,3 @@ export const mapResponseToVideo = (response: IVideoResponse) => ({
   publishDate: moment(response.snippet.publishedAt).fromNow(),
 });
 
-export const mapResponseToVideos = (response: )
