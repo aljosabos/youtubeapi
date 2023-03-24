@@ -26,12 +26,11 @@ export default function Home() {
 
   return (
     <InfiniteScroll
-      scrollableTarget="scrollable"
+      className="Home"
       dataLength={videos.length}
       next={loadMoreVideos}
       hasMore={!!nextPageToken}
       loader={<h4>Loading...</h4>}
-      className="Home"
       endMessage={
         <p style={{ textAlign: "center" }}>
           <b>Yay! You have seen it all</b>
