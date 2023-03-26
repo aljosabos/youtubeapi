@@ -6,17 +6,17 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import { useGoogleLogin } from "@react-oauth/google";
 import { googleLogout } from "@react-oauth/google";
 import { useState } from "react";
+import { AUTH_SCOPE } from "../../data/constants";
 
 export default function Header() {
-  const [accessToken, setAccessToken] = useState<string | null>(
-    localStorage.getItem("access_token")
-  );
+  const [accessToken, setAccessToken] = useState<string | null>(localStorage.getItem("access_token"));
 
   const login = useGoogleLogin({
-    onSuccess: ({ access_token }) => {
-      localStorage.setItem("access_token", access_token);
-      setAccessToken(access_token);
+    onSuccess: (tokenResponse) => {
+      localStorage.setItem("access_token", tokenResponse.access_token);
+      setAccessToken(tokenResponse.access_token);
     },
+    scope: AUTH_SCOPE,
   });
 
   const clearToken = () => {
@@ -30,12 +30,7 @@ export default function Header() {
       <SearchBar />
 
       {!accessToken ? (
-        <Button
-          startIcon={AccountCircleIcon}
-          text="Sign in"
-          className="Header__button"
-          onClick={login}
-        />
+        <Button startIcon={AccountCircleIcon} text="Sign in" className="Header__button" onClick={login} />
       ) : (
         <Button
           startIcon={AccountCircleIcon}

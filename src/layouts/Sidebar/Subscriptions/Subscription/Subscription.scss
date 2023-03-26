@@ -1,0 +1,22 @@
+.Subscription {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &__name {
+    font-size: 14px;
+  }
+
+  &__avatar {
+    &.MuiAvatar-root {
+      margin: 10px 15px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &:hover {
+    background-color: rgb(237, 234, 234);
+    border-radius: 5px;
+  }
+}

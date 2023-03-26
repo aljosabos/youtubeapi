@@ -1,4 +1,3 @@
-import { nextPageTokenSelector } from "./slices/videosSlice";
 import { GET_INITIAL_VIDEOS_URL, GET_MORE_VIDEOS_URL } from "./../data/constants";
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
