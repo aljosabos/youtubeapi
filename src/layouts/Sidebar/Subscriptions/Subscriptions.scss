@@ -1,18 +1,8 @@
 .Subscriptions {
-  // &.MuiList-root {
-  //   position: fixed;
-  //   background-color: blue;
-  //   width: 200px;
-  //   top: 300px;
-  //   left: 0;
-  // }
-  // &__item {
-  //   &.MuiListItem-root {
-  //     background-color: green;
-  //   }
-  // }
   width: 200px;
+  height: 100%;
   position: fixed;
   top: 100px;
   padding: 10px;
+  overflow: scroll;
 }

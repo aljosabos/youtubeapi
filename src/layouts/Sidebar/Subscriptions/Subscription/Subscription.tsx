@@ -1,11 +1,18 @@
 import "./Subscription.scss";
 import { Avatar } from "@mui/material";
 
-export default function Subscription() {
+interface ISubscriptionProps {
+  channelId: string;
+  image: string;
+  title: string;
+}
+
+export default function Subscription({ channelId, image, title }: ISubscriptionProps) {
+  console.log(image);
   return (
     <div className="Subscription">
-      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className="Subscription__avatar" />
-      <span className="Subscription__name">Some subscription</span>
+      <Avatar alt="Remy Sharp" src={image} className="Subscription__avatar" />
+      <span className="Subscription__name">{title}</span>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { RootState } from "./../store";
 import { createSlice } from "@reduxjs/toolkit";
-import { IVideoSliceState } from "../types";
-import { getInitialVideosThunk, getMoreVideosThunk } from "../thunks";
+import { IVideoSliceState } from "../types/videosTypes";
+import { getInitialVideosThunk, getMoreVideosThunk } from "../thunks/videosThunk";
 
 const initialState: IVideoSliceState = {
   data: {
@@ -59,7 +59,6 @@ export const videosSlice = createSlice({
 
 export const videosSelector = (state: RootState) => state.videos.data.items;
 export const videosStatusSelector = (state: RootState) => state.videos.status;
-export const nextPageTokenSelector = (state: RootState) =>
-  state.videos.data.nextPageToken;
+export const nextPageTokenSelector = (state: RootState) => state.videos.data.nextPageToken;
 
 export default videosSlice.reducer;

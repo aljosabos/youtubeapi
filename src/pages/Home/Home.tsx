@@ -4,7 +4,7 @@ import { IVideo } from "../../types/response";
 import "./Home.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
-import { getInitialVideosThunk, getMoreVideosThunk } from "../../redux/thunks";
+import { getInitialVideosThunk, getMoreVideosThunk } from "../../redux/thunks/videosThunk";
 import { nextPageTokenSelector, videosSelector, videosStatusSelector } from "../../redux/slices/videosSlice";
 
 export default function Home() {
