@@ -7,14 +7,18 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { googleLogout } from "@react-oauth/google";
 import { useState } from "react";
 import { AUTH_SCOPE } from "../../data/constants";
+import { useAppDispatch } from "../../redux/hooks/hooks";
+import { userLoggedIn } from "../../redux/slices/userSlice";
 
 export default function Header() {
   const [accessToken, setAccessToken] = useState<string | null>(localStorage.getItem("access_token"));
+  const dispatch = useAppDispatch();
 
   const login = useGoogleLogin({
     onSuccess: (tokenResponse) => {
       localStorage.setItem("access_token", tokenResponse.access_token);
       setAccessToken(tokenResponse.access_token);
+      dispatch(userLoggedIn(true));
     },
     scope: AUTH_SCOPE,
   });
@@ -22,6 +26,7 @@ export default function Header() {
   const clearToken = () => {
     localStorage.removeItem("access_token");
     setAccessToken(null);
+    dispatch(userLoggedIn(false));
   };
 
   return (

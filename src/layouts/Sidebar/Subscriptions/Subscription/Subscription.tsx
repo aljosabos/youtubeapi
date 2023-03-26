@@ -8,7 +8,6 @@ interface ISubscriptionProps {
 }
 
 export default function Subscription({ channelId, image, title }: ISubscriptionProps) {
-  console.log(image);
   return (
     <div className="Subscription">
       <Avatar alt="Remy Sharp" src={image} className="Subscription__avatar" />
