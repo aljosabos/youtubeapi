@@ -46,14 +46,30 @@ export default function Subscriptions() {
   return (
     <div className="Subscriptions">
       <div id={SCROLLABLE_JSX} className={`Subscriptions__list ${shouldExpandSubscriptions && "Subscriptions__list-expanded"}`} ref={listRef}>
-        <InfiniteScroll dataLength={subscriptions.length} next={loadMoreSubscriptions} hasMore={!!nextPageToken} scrollableTarget={SCROLLABLE_JSX} loader={<h4>Loading...</h4>}>
+        <InfiniteScroll
+          dataLength={subscriptions.length}
+          next={loadMoreSubscriptions}
+          hasMore={!!nextPageToken}
+          scrollableTarget={SCROLLABLE_JSX}
+          loader={<h4>Loading...</h4>}
+        >
           {subscriptions.map((subscription, index) => (
-            <Subscription image={subscription.snippet.thumbnails.high.url} title={subscription.snippet.title} key={index} channelId={subscription.snippet.channelId} />
+            <Subscription
+              image={subscription.snippet.thumbnails.high.url}
+              title={subscription.snippet.title}
+              key={index}
+              channelId={subscription.snippet.channelId}
+            />
           ))}
         </InfiniteScroll>
       </div>
 
-      <Button onClick={toggleExpandSubscriptions} text={btnText} startIcon={shouldExpandSubscriptions ? ExpandLessIcon : ExpandMoreIcon} className="Subscriptions__btn" />
+      <Button
+        onClick={toggleExpandSubscriptions}
+        text={btnText}
+        startIcon={shouldExpandSubscriptions ? ExpandLessIcon : ExpandMoreIcon}
+        className="Subscriptions__btn"
+      />
     </div>
   );
 }
