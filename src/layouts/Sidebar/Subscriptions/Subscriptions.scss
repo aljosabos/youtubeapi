@@ -22,10 +22,20 @@
       text-transform: initial;
       transition: all 0.2s;
       font-size: 13px;
+      width: 180px;
+      justify-content: flex-start;
 
       &:hover {
         background-color: #edeaea;
         box-shadow: none;
+      }
+
+      .MuiButton-startIcon {
+        margin-right: 13px;
+        .MuiSvgIcon-root {
+          width: 30px;
+          height: 25px;
+        }
       }
     }
   }
