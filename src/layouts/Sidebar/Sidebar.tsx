@@ -1,7 +1,7 @@
 import "./Sidebar.scss";
 import Subscriptions from "./Subscriptions/Subscriptions";
 import { useContext } from "react";
-import { UserContext } from "../Dashboard/Dashboard";
+import { UserContext } from "../../context/UserContext";
 
 function Sidebar() {
   const user = useContext(UserContext);

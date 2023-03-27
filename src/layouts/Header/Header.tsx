@@ -7,7 +7,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { googleLogout } from "@react-oauth/google";
 import { AUTH_SCOPE } from "../../data/constants";
 import { useContext } from "react";
-import { UserContext } from "../Dashboard/Dashboard";
+import { UserContext } from "../../context/UserContext";
 
 export default function Header() {
   const user = useContext(UserContext);

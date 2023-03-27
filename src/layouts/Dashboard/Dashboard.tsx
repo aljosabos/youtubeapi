@@ -3,12 +3,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
 import "./Dashboard.scss";
 import { useState } from "react";
-import { createContext } from "react";
-
-interface IUserContextProps {
-  isLoggedIn: boolean;
-  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { UserContext } from "../../context/UserContext";
 
 function Dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(Boolean(localStorage.getItem("access_token")));
@@ -25,4 +20,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-export const UserContext = createContext({} as IUserContextProps);
