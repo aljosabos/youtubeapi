@@ -12,6 +12,7 @@ export const getSubscriptionsThunk = createAsyncThunk("subscriptions/initialLoad
   return {
     items: response.data.items,
     nextPageToken: response.data.nextPageToken,
+    totalCount: response.data.pageInfo.totalResults,
   };
 });
 

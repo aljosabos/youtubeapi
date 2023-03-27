@@ -5,6 +5,7 @@ export interface ISubscriptionsSliceState {
   data: {
     items: ISubscriptionsResponse[];
     nextPageToken: string;
+    totalCount: number;
   };
   status: "idle" | "loading" | "succeeded" | "failed";
   error: SerializedError;

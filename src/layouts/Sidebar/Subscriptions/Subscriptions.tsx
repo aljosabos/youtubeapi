@@ -2,20 +2,28 @@ import "./Subscriptions.scss";
 import Subscription from "./Subscription/Subscription";
 import { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hooks";
-import { nextPageTokenSelector, subscriptionsSelector, subscriptionsStatusSelector } from "../../../redux/slices/subscriptionsSlice";
+import {
+  nextPageTokenSelector,
+  subscriptionsSelector,
+  subscriptionsStatusSelector,
+  totalCountSelector,
+} from "../../../redux/slices/subscriptionsSlice";
 import { getMoreSubscriptionsThunk, getSubscriptionsThunk } from "../../../redux/thunks/subscriptionsThunk";
 import Button from "../../../components/Button/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import { SCROLLABLE_JSX } from "../../../data/constants";
+import { COLLAPSED_SUBSCRIPTIONS_NUM, SCROLLABLE_JSX } from "../../../data/constants";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function Subscriptions() {
   const dispatch = useAppDispatch();
   const [shouldExpandSubscriptions, setShouldExpandSubscriptions] = useState<boolean>(false);
+
   const subscriptionsStatus = useAppSelector(subscriptionsStatusSelector);
   const subscriptions = useAppSelector(subscriptionsSelector);
   const nextPageToken = useAppSelector(nextPageTokenSelector);
+  const totalCount = useAppSelector(totalCountSelector);
+
   const listRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -36,7 +44,7 @@ export default function Subscriptions() {
     setShouldExpandSubscriptions((previousState) => !previousState);
   };
 
-  const btnText = shouldExpandSubscriptions ? "Show less" : "Show more";
+  const btnText = shouldExpandSubscriptions ? "Show less" : `Show ${totalCount - COLLAPSED_SUBSCRIPTIONS_NUM} more`;
 
   const loadMoreSubscriptions = () => {
     const nextPageTokenParam = `&pageToken=${nextPageToken}`;

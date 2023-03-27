@@ -8,6 +8,7 @@ const initialState: ISubscriptionsSliceState = {
   data: {
     items: [],
     nextPageToken: "",
+    totalCount: 0,
   },
   status: "idle",
   error: {},
@@ -47,6 +48,7 @@ export const subscriptionsSlice = createSlice({
       state.status = "succeeded";
       state.error = {};
       state.data = {
+        ...state.data,
         items: [...state.data.items, ...action.payload.items],
         nextPageToken: action.payload.nextPageToken,
       };
@@ -62,5 +64,6 @@ export const subscriptionsSlice = createSlice({
 export const subscriptionsSelector = (state: RootState) => state.subscriptions.data.items;
 export const subscriptionsStatusSelector = (state: RootState) => state.subscriptions.status;
 export const nextPageTokenSelector = (state: RootState) => state.subscriptions.data.nextPageToken;
+export const totalCountSelector = (state: RootState) => state.subscriptions.data.totalCount;
 
 export default subscriptionsSlice.reducer;
