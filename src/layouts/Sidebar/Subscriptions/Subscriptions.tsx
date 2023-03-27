@@ -2,29 +2,25 @@ import "./Subscriptions.scss";
 import Subscription from "./Subscription/Subscription";
 import { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hooks";
-import { subscriptionsSelector, subscriptionsStatusSelector } from "../../../redux/slices/subscriptionsSlice";
-import { getSubscriptionsThunk } from "../../../redux/thunks/subscriptionsThunk";
+import { nextPageTokenSelector, subscriptionsSelector, subscriptionsStatusSelector } from "../../../redux/slices/subscriptionsSlice";
+import { getMoreSubscriptionsThunk, getSubscriptionsThunk } from "../../../redux/thunks/subscriptionsThunk";
 import Button from "../../../components/Button/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import { COLLAPSED_SUBSCRIPTIONS_NUM, SCROLLABLE_JSX } from "../../../data/constants";
+import { SCROLLABLE_JSX } from "../../../data/constants";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function Subscriptions() {
-  const [shouldExpandSubscriptions, setShouldExpandSubscriptions] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const [shouldExpandSubscriptions, setShouldExpandSubscriptions] = useState<boolean>(false);
   const subscriptionsStatus = useAppSelector(subscriptionsStatusSelector);
   const subscriptions = useAppSelector(subscriptionsSelector);
-  const [totalCount, setTotalCount] = useState<number>(0);
+  const nextPageToken = useAppSelector(nextPageTokenSelector);
   const listRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (subscriptionsStatus === "idle") dispatch(getSubscriptionsThunk());
   }, [subscriptionsStatus, dispatch]);
-
-  useEffect(() => {
-    if (subscriptions.length > 0) setTotalCount(Number(subscriptions[0]?.contentDetails.totalItemCount));
-  }, [subscriptions]);
 
   const scrollListToTop = () => {
     if (listRef.current)
@@ -40,27 +36,17 @@ export default function Subscriptions() {
     setShouldExpandSubscriptions((previousState) => !previousState);
   };
 
-  const btnText = shouldExpandSubscriptions ? "Show less" : `Show ${totalCount && totalCount - COLLAPSED_SUBSCRIPTIONS_NUM} more`;
+  const btnText = shouldExpandSubscriptions ? "Show less" : "Show more";
 
-  const loadMore = () => {
-    console.log("load more");
+  const loadMoreSubscriptions = () => {
+    const nextPageTokenParam = `&pageToken=${nextPageToken}`;
+    dispatch(getMoreSubscriptionsThunk(nextPageTokenParam));
   };
 
   return (
     <div className="Subscriptions">
       <div id={SCROLLABLE_JSX} className={`Subscriptions__list ${shouldExpandSubscriptions && "Subscriptions__list-expanded"}`} ref={listRef}>
-        <InfiniteScroll
-          dataLength={totalCount}
-          next={loadMore}
-          hasMore={true}
-          scrollableTarget={SCROLLABLE_JSX}
-          loader={<h4>Loading...</h4>}
-          endMessage={
-            <p style={{ textAlign: "center" }}>
-              <b>Yay! You have seen it all</b>
-            </p>
-          }
-        >
+        <InfiniteScroll dataLength={subscriptions.length} next={loadMoreSubscriptions} hasMore={!!nextPageToken} scrollableTarget={SCROLLABLE_JSX} loader={<h4>Loading...</h4>}>
           {subscriptions.map((subscription, index) => (
             <Subscription image={subscription.snippet.thumbnails.high.url} title={subscription.snippet.title} key={index} channelId={subscription.snippet.channelId} />
           ))}

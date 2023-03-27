@@ -1,3 +1,4 @@
+import { getMoreSubscriptionsThunk } from "./../thunks/subscriptionsThunk";
 import { ISubscriptionsSliceState } from "./../types/subscriptionsTypes";
 import { RootState } from "./../store";
 import { createSlice } from "@reduxjs/toolkit";
@@ -31,6 +32,27 @@ export const subscriptionsSlice = createSlice({
     });
 
     builder.addCase(getSubscriptionsThunk.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error;
+    });
+
+    // LOAD MORE //
+
+    builder.addCase(getMoreSubscriptionsThunk.pending, (state, _) => {
+      state.status = "loading";
+      state.error = {};
+    });
+
+    builder.addCase(getMoreSubscriptionsThunk.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.error = {};
+      state.data = {
+        items: [...state.data.items, ...action.payload.items],
+        nextPageToken: action.payload.nextPageToken,
+      };
+    });
+
+    builder.addCase(getMoreSubscriptionsThunk.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error;
     });
