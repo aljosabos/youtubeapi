@@ -17,7 +17,7 @@ export default function Home() {
     if (videosStatus === "idle") {
       dispatch(getInitialVideosThunk());
     }
-  }, []);
+  }, [videosStatus, dispatch]);
 
   const loadMoreVideos = () => {
     const nextPageTokenParam = `&pageToken=${nextPageToken}`;
