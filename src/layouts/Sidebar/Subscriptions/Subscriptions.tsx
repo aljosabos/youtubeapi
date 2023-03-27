@@ -19,12 +19,15 @@ export default function Subscriptions() {
   }, [subscriptionsStatus, dispatch]);
 
   const toggleExpandSubscriptions = () => {
+    if (shouldExpandSubscriptions) {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }
     setShouldExpandSubscriptions((previousState) => !previousState);
   };
 
   return (
     <div className="Subscriptions">
-      <div className="Subscriptions__list">
+      <div className={`Subscriptions__list ${shouldExpandSubscriptions && "Subscriptions__list-expanded"}`}>
         {subscriptions.map((subscription, index) => (
           <Subscription image={subscription.snippet.thumbnails.high.url} title={subscription.snippet.title} key={index} channelId={subscription.snippet.channelId} />
         ))}
