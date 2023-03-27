@@ -1,12 +1,17 @@
 import "./Sidebar.scss";
 import Subscriptions from "./Subscriptions/Subscriptions";
+import { useContext } from "react";
+import { UserContext } from "../Dashboard/Dashboard";
 
 function Sidebar() {
+  const user = useContext(UserContext);
   return (
     <div className="Sidebar">
-      <div className="subscriptions-section">
-        <Subscriptions />
-      </div>
+      {user.isLoggedIn && (
+        <div className="subscriptions-section">
+          <Subscriptions />
+        </div>
+      )}
     </div>
   );
 }

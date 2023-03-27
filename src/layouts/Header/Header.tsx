@@ -5,28 +5,24 @@ import YoutubeLogo from "../../images/youtube.png";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { useGoogleLogin } from "@react-oauth/google";
 import { googleLogout } from "@react-oauth/google";
-import { useState } from "react";
 import { AUTH_SCOPE } from "../../data/constants";
-import { useAppDispatch } from "../../redux/hooks/hooks";
-import { userLoggedIn } from "../../redux/slices/userSlice";
+import { useContext } from "react";
+import { UserContext } from "../Dashboard/Dashboard";
 
 export default function Header() {
-  const [accessToken, setAccessToken] = useState<string | null>(localStorage.getItem("access_token"));
-  const dispatch = useAppDispatch();
+  const user = useContext(UserContext);
 
   const login = useGoogleLogin({
     onSuccess: (tokenResponse) => {
       localStorage.setItem("access_token", tokenResponse.access_token);
-      setAccessToken(tokenResponse.access_token);
-      dispatch(userLoggedIn(true));
+      user.setIsLoggedIn(true);
     },
     scope: AUTH_SCOPE,
   });
 
   const clearToken = () => {
     localStorage.removeItem("access_token");
-    setAccessToken(null);
-    dispatch(userLoggedIn(false));
+    user.setIsLoggedIn(false);
   };
 
   return (
@@ -34,7 +30,7 @@ export default function Header() {
       <img src={YoutubeLogo} className="Header__logo" alt="youtube_logo" />
       <SearchBar />
 
-      {!accessToken ? (
+      {!user.isLoggedIn ? (
         <Button startIcon={AccountCircleIcon} text="Sign in" className="Header__button" onClick={login} />
       ) : (
         <Button
