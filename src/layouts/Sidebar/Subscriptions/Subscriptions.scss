@@ -10,14 +10,15 @@
     overflow: hidden;
 
     &-expanded {
-      height: auto;
+      height: 610px;
       padding: 10px;
-      overflow: visible;
+      overflow: auto;
     }
   }
 
   &__btn {
     &.MuiButton-root {
+      margin-top: 10px;
       background-color: transparent;
       box-shadow: none;
       color: black;

@@ -41,4 +41,7 @@ export interface ISubscriptionsResponse {
       };
     };
   };
+  contentDetails: {
+    totalItemCount: string;
+  };
 }
