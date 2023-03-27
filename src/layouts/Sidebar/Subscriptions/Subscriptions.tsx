@@ -39,6 +39,8 @@ export default function Subscriptions() {
     setShouldExpandSubscriptions((previousState) => !previousState);
   };
 
+  const btnText = shouldExpandSubscriptions ? "Show less" : `Show ${totalCount && totalCount - COLLAPSED_SUBSCRIPTIONS_NUM} more`;
+
   return (
     <div className="Subscriptions">
       <div className={`Subscriptions__list ${shouldExpandSubscriptions && "Subscriptions__list-expanded"}`} ref={listRef}>
@@ -46,7 +48,7 @@ export default function Subscriptions() {
           <Subscription image={subscription.snippet.thumbnails.high.url} title={subscription.snippet.title} key={index} channelId={subscription.snippet.channelId} />
         ))}
       </div>
-      <Button onClick={toggleExpandSubscriptions} text={`show ${totalCount && totalCount - COLLAPSED_SUBSCRIPTIONS_NUM} more`} startIcon={shouldExpandSubscriptions ? ExpandLessIcon : ExpandMoreIcon} className="Subscriptions__btn" />
+      <Button onClick={toggleExpandSubscriptions} text={btnText} startIcon={shouldExpandSubscriptions ? ExpandLessIcon : ExpandMoreIcon} className="Subscriptions__btn" />
     </div>
   );
 }
