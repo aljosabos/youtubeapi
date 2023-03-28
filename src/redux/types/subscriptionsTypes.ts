@@ -1,10 +1,11 @@
 import { SerializedError } from "@reduxjs/toolkit";
-import { IVideo } from "./../types/response";
+import { ISubscriptionsResponse } from "../../types/response";
 
-export interface IVideoSliceState {
+export interface ISubscriptionsSliceState {
   data: {
-    items: IVideo[];
+    items: ISubscriptionsResponse[];
     nextPageToken: string;
+    totalCount: number;
   };
   status: "idle" | "loading" | "succeeded" | "failed";
   error: SerializedError;
