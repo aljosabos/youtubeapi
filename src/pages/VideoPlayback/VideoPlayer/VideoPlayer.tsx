@@ -14,9 +14,14 @@ export default function VideoPlayer({ videoId }: IVideoPlayerProps) {
       ecver: 2,
     },
   };
+
+  const onReady = (event: YouTubeEvent) => {
+    console.log(event.target);
+  };
+
   return (
     <div className="VideoPlayer">
-      <YouTube videoId={videoId} loading="lazy" opts={opts} iframeClassName="VideoPlayer__iframe" className="VideoPlayer__youtube" />
+      <YouTube videoId={videoId} onPlay={onReady} loading="lazy" opts={opts} iframeClassName="VideoPlayer__iframe" className="VideoPlayer__youtube" />
     </div>
   );
 }

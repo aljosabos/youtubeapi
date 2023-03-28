@@ -9,7 +9,7 @@
 
   &__youtube {
     .ytp-pause-overlay {
-      display: none;
+      display: none !important;
     }
   }
 }
