@@ -5,9 +5,9 @@ import YoutubeLogo from "../../images/youtube.png";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { useGoogleLogin } from "@react-oauth/google";
 import { googleLogout } from "@react-oauth/google";
-import { AUTH_SCOPE } from "../../data/constants";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
+import { AUTH_SCOPE } from "../../constants/endpoints";
 
 export default function Header() {
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
