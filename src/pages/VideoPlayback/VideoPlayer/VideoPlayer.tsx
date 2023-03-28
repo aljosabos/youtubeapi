@@ -1,4 +1,4 @@
-import YouTube, { YouTubeEvent } from "react-youtube";
+import YouTube from "react-youtube";
 import { PLAYER_OPTIONS } from "../../../data/constants";
 import "./VideoPlayer.scss";
 
