@@ -15,3 +15,12 @@ export const GET_INITIAL_VIDEOS_URL = `${GET_VIDEOS_URL}${INITIAL_LOAD_SIZE_PARA
 export const GET_MORE_VIDEOS_URL = `${GET_VIDEOS_URL}${LOAD_MORE_SIZE_PARAM}`;
 
 export const GET_SUBSCRIPTIONS_URL = `https://youtube.googleapis.com/youtube/v3/subscriptions?part=snippet&mine=true&maxResults=50&fields=items(id,snippet(title,channelId,thumbnails(high(url)))),nextPageToken,pageInfo(totalResults)&key=${process.env.REACT_APP_API_KEY}`;
+
+export const PLAYER_OPTIONS = {
+  playerVars: {
+    autoplay: 1,
+    rel: 0,
+    showinfo: 0,
+    ecver: 2,
+  },
+};

@@ -24,7 +24,7 @@ export default function Home() {
     dispatch(getMoreVideosThunk(nextPageTokenParam));
   };
 
-  const watchVideo = (videoId: string) => {
+  const openVideoURL = (videoId: string) => {
     navigate(`/video/${videoId}`);
   };
 
@@ -42,7 +42,7 @@ export default function Home() {
       }
     >
       {videos.map((video: IVideo) => (
-        <Video {...video} key={video.id} onClick={() => watchVideo(video.id)} />
+        <Video {...video} key={video.id} onClick={() => openVideoURL(video.id)} />
       ))}
     </InfiniteScroll>
   );
