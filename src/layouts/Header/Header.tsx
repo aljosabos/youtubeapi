@@ -13,8 +13,8 @@ export default function Header() {
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
 
   const login = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      localStorage.setItem("access_token", tokenResponse.access_token);
+    onSuccess: ({ access_token }) => {
+      localStorage.setItem("access_token", access_token);
       setIsLoggedIn(true);
     },
     scope: AUTH_SCOPE,
