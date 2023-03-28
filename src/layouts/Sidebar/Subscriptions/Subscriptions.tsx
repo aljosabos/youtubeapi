@@ -25,7 +25,7 @@ export default function Subscriptions() {
     dispatch(getSubscriptionsThunk());
   }, []);
 
-  const toggleExpandSubscriptions = () => {
+  const handleOnClick = () => {
     scrollToTop(listRef);
     setShouldExpandSubscriptions((previousState) => !previousState);
   };
@@ -59,7 +59,7 @@ export default function Subscriptions() {
       </div>
 
       <Button
-        onClick={toggleExpandSubscriptions}
+        onClick={handleOnClick}
         text={btnText}
         startIcon={shouldExpandSubscriptions ? ExpandLessIcon : ExpandMoreIcon}
         className="Subscriptions__btn"
