@@ -6,11 +6,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { getInitialVideosThunk, getMoreVideosThunk } from "../../redux/thunks/videosThunk";
 import { nextPageTokenSelector, videosSelector } from "../../redux/slices/videosSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const dispatch = useAppDispatch();
   const videos = useAppSelector(videosSelector);
   const nextPageToken = useAppSelector(nextPageTokenSelector);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getInitialVideosThunk());
@@ -19,6 +22,10 @@ export default function Home() {
   const loadMoreVideos = () => {
     const nextPageTokenParam = `&pageToken=${nextPageToken}`;
     dispatch(getMoreVideosThunk(nextPageTokenParam));
+  };
+
+  const watchVideo = (videoId: string) => {
+    navigate(`/video/${videoId}`);
   };
 
   return (
@@ -35,7 +42,7 @@ export default function Home() {
       }
     >
       {videos.map((video: IVideo) => (
-        <Video {...video} key={video.id} />
+        <Video {...video} key={video.id} onClick={() => watchVideo(video.id)} />
       ))}
     </InfiniteScroll>
   );
