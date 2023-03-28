@@ -9,6 +9,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { COLLAPSED_SUBSCRIPTIONS_NUM, SCROLLABLE_JSX } from "../../../data/constants";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { scrollToTop } from "../../../utils/pageScroll";
 
 export default function Subscriptions() {
   const dispatch = useAppDispatch();
@@ -24,17 +25,8 @@ export default function Subscriptions() {
     dispatch(getSubscriptionsThunk());
   }, []);
 
-  const scrollListToTop = () => {
-    if (listRef.current)
-      listRef.current.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "auto",
-      });
-  };
-
   const toggleExpandSubscriptions = () => {
-    scrollListToTop();
+    scrollToTop(listRef);
     setShouldExpandSubscriptions((previousState) => !previousState);
   };
 
