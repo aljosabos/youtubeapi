@@ -12,12 +12,13 @@ interface IVideo {
   duration: string;
   views: number;
   publishDate: string;
+  onClick: (id: string) => void;
 }
 
-export default function Video({ id, image, title, channel, duration, views, publishDate }: IVideo) {
+export default function Video({ id, image, title, channel, duration, views, publishDate, onClick }: IVideo) {
   return (
     <div className="Video">
-      <Card>
+      <Card onClick={() => onClick(id)}>
         <CardMedia sx={{ height: 100 }} image={image} title={title} className="Video__image" />
         <CardContent className="Video__content">
           <Typography gutterBottom variant="h5" component="div" className="Video__content-title">

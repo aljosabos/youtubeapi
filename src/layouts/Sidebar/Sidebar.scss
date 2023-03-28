@@ -1,5 +1,10 @@
 .Sidebar {
   height: 100%;
-  width: 200px;
+  width: 100%;
   position: relative;
+
+  &__link {
+    margin-left: 25px;
+    text-decoration: none;
+  }
 }

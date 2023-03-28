@@ -9,7 +9,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />}>
-        <Route path="video" element={<VideoPlayback />} />
+        <Route path="video/:videoId" element={<VideoPlayback />} />
         {["videos", "/"].map((path, index) => (
           <Route path={path} key={index} element={<Home />} />
         ))}

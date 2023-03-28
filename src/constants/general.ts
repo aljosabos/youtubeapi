@@ -1,0 +1,2 @@
+export const COLLAPSED_SUBSCRIPTIONS_NUM = 7;
+
