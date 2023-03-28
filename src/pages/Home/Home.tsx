@@ -5,12 +5,11 @@ import "./Home.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { getInitialVideosThunk, getMoreVideosThunk } from "../../redux/thunks/videosThunk";
-import { nextPageTokenSelector, videosSelector, videosStatusSelector } from "../../redux/slices/videosSlice";
+import { nextPageTokenSelector, videosSelector } from "../../redux/slices/videosSlice";
 
 export default function Home() {
   const dispatch = useAppDispatch();
   const videos = useAppSelector(videosSelector);
-  const videosStatus = useAppSelector(videosStatusSelector);
   const nextPageToken = useAppSelector(nextPageTokenSelector);
 
   useEffect(() => {
