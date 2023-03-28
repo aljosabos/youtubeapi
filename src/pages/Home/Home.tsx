@@ -14,10 +14,8 @@ export default function Home() {
   const nextPageToken = useAppSelector(nextPageTokenSelector);
 
   useEffect(() => {
-    if (videosStatus === "idle") {
-      dispatch(getInitialVideosThunk());
-    }
-  }, [videosStatus, dispatch]);
+    dispatch(getInitialVideosThunk());
+  }, []);
 
   const loadMoreVideos = () => {
     const nextPageTokenParam = `&pageToken=${nextPageToken}`;

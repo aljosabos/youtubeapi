@@ -10,19 +10,19 @@ import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 
 export default function Header() {
-  const user = useContext(UserContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
 
   const login = useGoogleLogin({
     onSuccess: (tokenResponse) => {
       localStorage.setItem("access_token", tokenResponse.access_token);
-      user.setIsLoggedIn(true);
+      setIsLoggedIn(true);
     },
     scope: AUTH_SCOPE,
   });
 
   const clearToken = () => {
     localStorage.removeItem("access_token");
-    user.setIsLoggedIn(false);
+    setIsLoggedIn(false);
   };
 
   return (
@@ -30,7 +30,7 @@ export default function Header() {
       <img src={YoutubeLogo} className="Header__logo" alt="youtube_logo" />
       <SearchBar />
 
-      {!user.isLoggedIn ? (
+      {!isLoggedIn ? (
         <Button startIcon={AccountCircleIcon} text="Sign in" className="Header__button" onClick={login} />
       ) : (
         <Button

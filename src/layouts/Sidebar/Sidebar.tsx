@@ -4,10 +4,11 @@ import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 
 function Sidebar() {
-  const user = useContext(UserContext);
+  const { isLoggedIn } = useContext(UserContext);
+
   return (
     <div className="Sidebar">
-      {user.isLoggedIn && (
+      {isLoggedIn && (
         <div className="subscriptions-section">
           <Subscriptions />
         </div>
