@@ -41,7 +41,7 @@ export default function Home() {
         </p>
       }
     >
-      {videos.map((video: IVideo, index) => (
+      {videos?.map((video: IVideo, index) => (
         <Video {...video} key={index} onClick={() => openVideoURL(video.id)} />
       ))}
     </InfiniteScroll>
