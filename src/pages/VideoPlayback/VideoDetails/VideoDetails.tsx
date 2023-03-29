@@ -4,7 +4,6 @@ import { IVideoDetails } from "../../../redux/types/videoDetailsTypes";
 import { formatNumToThousands } from "../../../utils/dateHelpers";
 import "./VideoDetails.scss";
 import Linkify from "react-linkify";
-import ReactLinkify from "react-linkify";
 
 export default function VideoDetails({ id, title, channelId, channelTitle, description, publishedAt, tags, thumbnails, statistics }: IVideoDetails) {
   return (
