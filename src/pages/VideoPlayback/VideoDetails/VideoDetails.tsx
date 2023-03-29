@@ -3,6 +3,8 @@ import moment from "moment";
 import { IVideoDetails } from "../../../redux/types/videoDetailsTypes";
 import { formatNumToThousands } from "../../../utils/dateHelpers";
 import "./VideoDetails.scss";
+import Linkify from "react-linkify";
+import ReactLinkify from "react-linkify";
 
 export default function VideoDetails({ id, title, channelId, channelTitle, description, publishedAt, tags, thumbnails, statistics }: IVideoDetails) {
   return (
@@ -20,7 +22,18 @@ export default function VideoDetails({ id, title, channelId, channelTitle, descr
       <div className="VideoDetails__description">
         <span className="VideoDetails__description-views">{formatNumToThousands(Number(statistics?.viewCount))}K views</span>
         <span className="VideoDetails__description-time">{moment(publishedAt).fromNow()}</span>
-        <p className="VideoDetails__description-text">{description}</p>
+        <p className="VideoDetails__description-text">
+          <Linkify
+            componentDecorator={(decoratedHref: string, decoratedText: string, key: number) => (
+              <a href={decoratedHref} key={key} target="_blank" rel="noreferrer">
+                {decoratedText}
+              </a>
+            )}
+          >
+            {description}
+          </Linkify>
+          ;
+        </p>
 
         <span className="VideoDetails__description-tags">{tags}</span>
       </div>
