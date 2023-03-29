@@ -24,7 +24,7 @@ export default function VideoPlayback() {
     <div className="VideoPlayback">
       <div className="VideoPlayback__player">
         <VideoPlayer videoId={videoId} />
-        <VideoDetails />
+        <VideoDetails {...videoDetails} />
       </div>
       <VideoSuggestions />
     </div>

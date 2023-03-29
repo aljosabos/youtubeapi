@@ -4,7 +4,7 @@ export interface IVideoDetails {
   id: string;
   title: string;
   channelId: string;
-  channnelTitle: string;
+  channelTitle: string;
   description: string;
   publishedAt: string;
   tags: string[];

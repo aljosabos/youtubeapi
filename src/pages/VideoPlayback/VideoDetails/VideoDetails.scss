@@ -1,0 +1,47 @@
+.VideoDetails {
+  &__title {
+    margin: 5px 0;
+  }
+  &__channel-info {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+
+    &-avatar {
+      margin-right: 10px;
+    }
+
+    &-head {
+      &-name {
+        letter-spacing: 0.3px;
+      }
+      display: flex;
+      flex-direction: column;
+
+      &-subscribers {
+        font-size: 12px;
+      }
+    }
+  }
+
+  &__description {
+    &-views,
+    &-time {
+      font-weight: bold;
+      font-size: 13px;
+    }
+    &-time {
+      margin-left: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    &-text {
+      margin-bottom: 30px;
+      font-size: 15px;
+    }
+
+    &-tags {
+      font-size: 13px;
+    }
+  }
+}
