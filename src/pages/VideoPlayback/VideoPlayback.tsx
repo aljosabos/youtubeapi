@@ -10,21 +10,22 @@ import { videosDetailsSelector } from "../../redux/slices/videoDetailsSlice";
 import { getVideoDetailsThunk } from "../../redux/thunks/videoDetailsThunk";
 
 export default function VideoPlayback() {
-  const { videoId = "" } = useParams<string>();
+  const { videoId } = useParams<string>();
   const dispatch = useAppDispatch();
   const videoDetails = useAppSelector(videosDetailsSelector);
 
   useEffect(() => {
+    console.log("called");
     if (videoId) dispatch(getVideoDetailsThunk(videoId));
   }, [videoId]);
 
-  console.log(videoDetails);
+  console.log(videoId);
 
   return (
     <div className="VideoPlayback">
       <div className="VideoPlayback__player">
-        <VideoPlayer videoId={videoId} />
-        <VideoDetails {...videoDetails} />
+        {videoId && <VideoPlayer videoId={videoId} />}
+        {videoDetails && <VideoDetails {...videoDetails} />}
       </div>
       <VideoSuggestions />
     </div>
