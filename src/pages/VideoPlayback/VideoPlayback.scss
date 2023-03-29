@@ -2,4 +2,8 @@
   display: flex;
   width: 100%;
   padding: 20px;
+
+  &__player {
+    width: 70%;
+  }
 }
