@@ -8,7 +8,8 @@ export const getVideoDetailsThunk = createAsyncThunk("videoDetails/get", async (
   console.log(response);
 
   return {
-    data: response.data.items[0].snippet,
     id: response.data.items[0].id,
+    data: response.data.items[0].snippet,
+    statistics: response.data.items[0].statistics,
   };
 });

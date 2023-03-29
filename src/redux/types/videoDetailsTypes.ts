@@ -13,6 +13,12 @@ export interface IVideoDetails {
       url: string;
     };
   };
+  statistics: {
+    viewCount: string;
+    likeCount: string;
+    favoriteCount: string;
+    commentCount: string;
+  };
 }
 
 export interface IVideoDetailsSliceState {

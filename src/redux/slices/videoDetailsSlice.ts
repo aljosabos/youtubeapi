@@ -26,6 +26,7 @@ export const videoDetailsSlice = createSlice({
       state.error = {};
       state.data = action.payload.data;
       state.data.id = action.payload.id;
+      state.data.statistics = action.payload.statistics;
     });
 
     builder.addCase(getVideoDetailsThunk.rejected, (state, action) => {
