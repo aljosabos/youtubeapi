@@ -25,7 +25,7 @@
   }
 
   &__desc {
-    position: relative;
+    // width: 100%;
 
     &-views,
     &-time {
@@ -38,6 +38,9 @@
     }
 
     &-text {
+      // position: relative;
+      width: 40%;
+
       margin-bottom: 30px;
       margin-top: 10px;
       padding: 8px;
@@ -57,7 +60,7 @@
     &-btn {
       @extend .btnMain;
       &.MuiButton-root {
-        right: 20%;
+        right: -50px;
         top: 63px;
       }
 
