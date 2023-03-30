@@ -20,11 +20,13 @@ export default function Subscriptions() {
   const nextPageToken = useAppSelector(nextPageTokenSelector);
   const totalCount = useAppSelector(totalCountSelector);
 
+  const accessToken = localStorage.getItem("access_token");
+
   const listRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    dispatch(getSubscriptionsThunk());
-  }, []);
+    if (accessToken) dispatch(getSubscriptionsThunk(accessToken));
+  }, [accessToken]);
 
   const handleOnClick = () => {
     scrollToTop(listRef);
@@ -48,12 +50,12 @@ export default function Subscriptions() {
           scrollableTarget={SCROLLABLE_JSX}
           loader={<h4>Loading...</h4>}
         >
-          {subscriptions.map((subscription, index) => (
+          {subscriptions?.map((subscription, index) => (
             <Subscription
-              image={subscription.snippet.thumbnails.high.url}
-              title={subscription.snippet.title}
+              image={subscription?.snippet.thumbnails.high.url}
+              title={subscription?.snippet.title}
               key={index}
-              channelId={subscription.snippet.channelId}
+              channelId={subscription?.snippet.channelId}
             />
           ))}
         </InfiniteScroll>
