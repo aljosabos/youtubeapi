@@ -77,7 +77,8 @@
 
   "husky": {
     "hooks": {
-      "pre-push": "npm run prepush"
+        "pre-commit": "./commands/pre-commit",
+        "pre-push": "./commands/pre-push $HUSKY_GIT_STDIN"
     }
-  }
+}
 }
