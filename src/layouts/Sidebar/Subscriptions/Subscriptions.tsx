@@ -40,6 +40,8 @@ export default function Subscriptions() {
     dispatch(getMoreSubscriptionsThunk(nextPageTokenParam));
   };
 
+  console.log("hello world");
+
   return (
     <div className="Subscriptions">
       <div id={SCROLLABLE_JSX} className={`Subscriptions__list ${shouldExpandSubscriptions && "Subscriptions__list-expanded"}`} ref={listRef}>
