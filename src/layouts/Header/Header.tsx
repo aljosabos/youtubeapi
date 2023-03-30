@@ -8,9 +8,11 @@ import { googleLogout } from "@react-oauth/google";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { AUTH_SCOPE } from "../../constants/endpoints";
+import { useNavigate } from "react-router";
 
 export default function Header() {
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const login = useGoogleLogin({
     onSuccess: ({ access_token }) => {
@@ -25,9 +27,13 @@ export default function Header() {
     setIsLoggedIn(false);
   };
 
+  const navigateToHome = () => {
+    navigate("/");
+  };
+
   return (
     <div className="Header">
-      <img src={YoutubeLogo} className="Header__logo" alt="youtube_logo" />
+      <img src={YoutubeLogo} className="Header__logo" alt="youtube_logo" onClick={navigateToHome} />
       <SearchBar />
 
       {!isLoggedIn ? (

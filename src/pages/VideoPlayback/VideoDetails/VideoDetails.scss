@@ -1,0 +1,101 @@
+.VideoDetails {
+  &__title {
+    margin: 5px 0;
+  }
+  &__channel {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+
+    &-avatar {
+      margin-right: 10px;
+    }
+
+    &-text {
+      &-name {
+        letter-spacing: 0.3px;
+      }
+      display: flex;
+      flex-direction: column;
+
+      &-subscribers {
+        font-size: 12px;
+      }
+    }
+  }
+
+  &__desc {
+    position: relative;
+    &-head {
+      display: flex;
+      align-items: flex-end;
+      &-views,
+      &-time {
+        font-weight: bold;
+        font-size: 13px;
+      }
+      &-time {
+        margin-left: 10px;
+        letter-spacing: -0.5px;
+      }
+    }
+
+    &-text {
+      margin-bottom: 30px;
+      margin-top: 10px;
+      padding: 8px;
+      font-size: 14px;
+      white-space: pre-line;
+      background-color: #edeaea;
+      border-radius: 4px;
+      height: 48px;
+      overflow: hidden;
+      padding-bottom: 40px;
+
+      &-expanded {
+        height: auto;
+      }
+    }
+
+    &-btn {
+      @extend .btnMain;
+      &.MuiButton-root {
+        margin-left: 15px;
+      }
+
+      &-bottom {
+        @extend .btnMain;
+        &.MuiButton-root {
+          position: absolute;
+          left: -5px;
+          bottom: 10px;
+        }
+      }
+    }
+
+    &-tags {
+      font-size: 13px;
+    }
+  }
+}
+
+/* btn main class */
+
+.btnMain {
+  &.MuiButton-root {
+    text-transform: initial;
+    font-size: 13px;
+    height: 16px;
+    width: 88px;
+    padding: 0;
+    border: none;
+
+    &:hover {
+      border: none;
+    }
+
+    &:active {
+      box-shadow: none;
+    }
+  }
+}

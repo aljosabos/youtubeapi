@@ -15,29 +15,13 @@ interface IButtonProps {
   className?: string;
   wrapperClassName?: string;
   disabled?: false;
-  color?:
-    | "inherit"
-    | "primary"
-    | "secondary"
-    | "success"
-    | "error"
-    | "info"
-    | "warning";
+  color?: "inherit" | "primary" | "secondary" | "success" | "error" | "info" | "warning";
   size?: "small" | "medium" | "large";
+  variant?: "text" | "contained" | "outlined";
   onClick?: () => void;
 }
 
-export default function Button({
-  endIcon,
-  startIcon,
-  text,
-  className,
-  wrapperClassName,
-  disabled,
-  color,
-  size,
-  onClick,
-}: IButtonProps) {
+export default function Button({ endIcon, startIcon, text, className, wrapperClassName, disabled, color, size, variant, onClick }: IButtonProps) {
   const centerIconClass = !text ? "centerIcon" : null;
 
   const handleClick = () => {
@@ -46,7 +30,7 @@ export default function Button({
   return (
     <div className={wrapperClassName}>
       <MaterialButton
-        variant="contained"
+        variant={variant ? variant : "contained"}
         endIcon={endIcon && <Box component={endIcon} />}
         startIcon={startIcon && <Box component={startIcon} />}
         className={`Button ${className} ${centerIconClass}`}
