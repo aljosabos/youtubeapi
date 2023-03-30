@@ -38,7 +38,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prepush": "if [ $(git rev-parse --abbrev-ref HEAD) = \"master\" ]; then echo \"You cannot push to master branch.\" && exit 1; fi"
   },
   "eslintConfig": {
     "extends": [
@@ -72,5 +73,11 @@
     "husky": "^8.0.0",
     "prettier": "^2.8.4",
     "sass": "^1.59.2"
+  },
+
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run prepush"
+    }
   }
 }
