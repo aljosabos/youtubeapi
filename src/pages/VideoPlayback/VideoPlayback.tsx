@@ -17,6 +17,8 @@ export default function VideoPlayback() {
     if (videoId) dispatch(getVideoDetailsThunk(videoId));
   }, [videoId]);
 
+  console.log(videoDetails.description);
+
   return (
     <div className="VideoPlayback">
       <div className="VideoPlayback__player">

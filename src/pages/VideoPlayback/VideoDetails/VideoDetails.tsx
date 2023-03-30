@@ -4,8 +4,16 @@ import { IVideoDetails } from "../../../redux/types/videoDetailsTypes";
 import { formatNumToThousands } from "../../../utils/dateHelpers";
 import "./VideoDetails.scss";
 import Linkify from "react-linkify";
+import Button from "../../../components/Button/Button";
+import { useState } from "react";
 
 export default function VideoDetails({ id, title, channelId, channelTitle, description, publishedAt, tags, thumbnails, statistics }: IVideoDetails) {
+  const [shouldShowMore, setShouldShowMore] = useState<boolean>(false);
+
+  const handleClick = () => {
+    setShouldShowMore((previousState) => !previousState);
+  };
+
   return (
     <div className="VideoDetails">
       <h3 className="VideoDetails__title">{title} </h3>
@@ -21,20 +29,25 @@ export default function VideoDetails({ id, title, channelId, channelTitle, descr
       <div className="VideoDetails__desc">
         <span className="VideoDetails__desc-views">{formatNumToThousands(Number(statistics?.viewCount))}K views</span>
         <span className="VideoDetails__desc-time">{moment(publishedAt).fromNow()}</span>
-        <p className="VideoDetails__desc-text">
-          <Linkify
-            componentDecorator={(decoratedHref: string, decoratedText: string, key: number) => (
-              <a href={decoratedHref} key={key} target="_blank" rel="noreferrer">
-                {decoratedText}
-              </a>
-            )}
-          >
-            {description}
-          </Linkify>
-          ;
-        </p>
 
-        <span className="VideoDetails__desc-tags">{tags}</span>
+        <Linkify
+          componentDecorator={(decoratedHref: string, decoratedText: string, key: number) => (
+            <a href={decoratedHref} key={key} target="_blank" rel="noreferrer">
+              {decoratedText}
+            </a>
+          )}
+        >
+          <p className={`VideoDetails__desc-text ${shouldShowMore && "VideoDetails__desc-text-expanded"}`}>{description}</p>
+        </Linkify>
+
+        <Button
+          onClick={handleClick}
+          text="Show more"
+          color="inherit"
+          className={`${shouldShowMore ? "VideoDetails__desc-btn-bottom" : "VideoDetails__desc-btn"}`}
+        />
+
+        {/* <span className="VideoDetails__desc-tags">{tags?.map((tag) => `#${tag}`)}</span> */}
       </div>
     </div>
   );

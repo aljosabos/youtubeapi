@@ -25,6 +25,8 @@
   }
 
   &__desc {
+    position: relative;
+
     &-views,
     &-time {
       font-weight: bold;
@@ -37,8 +39,65 @@
 
     &-text {
       margin-bottom: 30px;
+      margin-top: 10px;
+      padding: 8px;
       font-size: 14px;
       white-space: pre-line;
+      background-color: #edeaea;
+      border-radius: 4px;
+      height: 48px;
+      overflow: hidden;
+      padding-bottom: 40px;
+
+      &-expanded {
+        height: auto;
+      }
+    }
+
+    &-btn {
+      &.MuiButton-root {
+        background-color: transparent;
+        box-shadow: none;
+        text-transform: initial;
+        font-weight: bold;
+        color: #0f0f0f;
+        font-size: 13px;
+        position: absolute;
+        right: 20%;
+        top: 55px;
+        padding: 0;
+        height: 10px;
+        width: 80px;
+        background-color: red;
+
+        &:hover {
+          background-color: transparent;
+          box-shadow: none;
+          border: none;
+        }
+
+        &:active {
+          box-shadow: none;
+        }
+      }
+
+      &-bottom {
+        &.MuiButton-root {
+          background-color: transparent;
+          box-shadow: none;
+          text-transform: initial;
+          font-weight: bold;
+          color: #0f0f0f;
+          font-size: 13px;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          padding: 0;
+          height: 10px;
+          width: 100px;
+          background-color: red;
+        }
+      }
     }
 
     &-tags {
