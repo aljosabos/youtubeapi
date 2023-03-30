@@ -27,26 +27,26 @@ export default function VideoDetails({ id, title, channelId, channelTitle, descr
       </div>
 
       <div className="VideoDetails__desc">
-        <span className="VideoDetails__desc-views">{formatNumToThousands(Number(statistics?.viewCount))}K views</span>
-        <span className="VideoDetails__desc-time">{moment(publishedAt).fromNow()}</span>
-        <div style={{ position: "relative", width: "100%", backgroundColor: "#edeaea" }}>
-          <Linkify
-            componentDecorator={(decoratedHref: string, decoratedText: string, key: number) => (
-              <a href={decoratedHref} key={key} target="_blank" rel="noreferrer">
-                {decoratedText}
-              </a>
-            )}
-          >
-            <p className={`VideoDetails__desc-text ${shouldShowMore && "VideoDetails__desc-text-expanded"}`}>{description}</p>
-          </Linkify>
-
+        <div className="VideoDetails__desc-head">
+          <span className="VideoDetails__desc-head-views">{formatNumToThousands(Number(statistics?.viewCount))}K views</span>
+          <span className="VideoDetails__desc-head-time">{moment(publishedAt).fromNow()}</span>
           <Button
             onClick={handleClick}
-            text="Show more"
-            color="inherit"
+            text={shouldShowMore ? "Show less" : "Show more"}
+            color="info"
             className={`${shouldShowMore ? "VideoDetails__desc-btn-bottom" : "VideoDetails__desc-btn"}`}
+            variant="outlined"
           />
         </div>
+        <Linkify
+          componentDecorator={(decoratedHref: string, decoratedText: string, key: number) => (
+            <a href={decoratedHref} key={key} target="_blank" rel="noreferrer">
+              {decoratedText}
+            </a>
+          )}
+        >
+          <p className={`VideoDetails__desc-text ${shouldShowMore && "VideoDetails__desc-text-expanded"}`}>{description}</p>
+        </Linkify>
 
         {/* <span className="VideoDetails__desc-tags">{tags?.map((tag) => `#${tag}`)}</span> */}
       </div>
