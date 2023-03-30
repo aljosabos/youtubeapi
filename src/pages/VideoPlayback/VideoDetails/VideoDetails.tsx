@@ -50,7 +50,7 @@ export default function VideoDetails({ id, title, channelId, channelTitle, descr
 
         {/* <span className="VideoDetails__desc-tags">{tags?.map((tag) => `#${tag}`)}</span> */}
       </div>
-      <span>{statistics.commentCount} Comments</span>
+      <span>{statistics?.commentCount} Comments</span>
     </div>
   );
 }
