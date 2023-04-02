@@ -52,10 +52,10 @@ export default function Subscriptions() {
         >
           {subscriptions?.map((subscription, index) => (
             <Subscription
-              image={subscription?.snippet.thumbnails.high.url}
-              title={subscription?.snippet.title}
+              image={subscription?.snippet?.thumbnails?.high?.url}
+              title={subscription?.snippet?.title}
               key={index}
-              channelId={subscription?.snippet.channelId}
+              channelId={subscription?.snippet?.channelId}
             />
           ))}
         </InfiniteScroll>

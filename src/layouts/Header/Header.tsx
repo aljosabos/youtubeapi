@@ -15,8 +15,10 @@ export default function Header() {
   const navigate = useNavigate();
 
   const login = useGoogleLogin({
-    onSuccess: ({ access_token }) => {
+    onSuccess: ({ access_token, expires_in }) => {
       localStorage.setItem("access_token", access_token);
+      const tokenExpireTime = Date.now() + expires_in * 1000;
+      localStorage.setItem("token_expire_time", tokenExpireTime.toString());
       setIsLoggedIn(true);
     },
     scope: AUTH_SCOPE,
@@ -24,6 +26,8 @@ export default function Header() {
 
   const clearToken = () => {
     localStorage.removeItem("access_token");
+    localStorage.removeItem("token_expire_time");
+
     setIsLoggedIn(false);
   };
 
