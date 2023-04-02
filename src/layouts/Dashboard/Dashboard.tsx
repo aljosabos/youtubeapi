@@ -16,6 +16,7 @@ function Dashboard() {
     console.log("EXPIRE TIME: " + Number(tokenExpireTime));
 
     console.log(current_time < Number(tokenExpireTime));
+    console.log(Math.floor((Number(tokenExpireTime) - current_time) / 1000));
   }, [location]);
 
   return (
