@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import Video from "../../components/Video/Video";
 import { IVideo } from "../../types/response";
 import "./Home.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -7,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { getInitialVideosThunk, getMoreVideosThunk } from "../../redux/thunks/videosThunk";
 import { nextPageTokenSelector, videosSelector } from "../../redux/slices/videosSlice";
 import { useNavigate } from "react-router-dom";
+import VideoCard from "../../components/Video/VideoCard";
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -42,7 +42,7 @@ export default function Home() {
       }
     >
       {videos?.map((video: IVideo, index) => (
-        <Video {...video} key={index} onClick={() => openVideoURL(video.id)} />
+        <VideoCard {...video} key={index} onClick={() => openVideoURL(video.id)} />
       ))}
     </InfiniteScroll>
   );

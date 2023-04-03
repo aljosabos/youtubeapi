@@ -1,18 +1,40 @@
-.Video {
+.VideoCard {
   position: relative;
-  .MuiCard-root {
-    height: 100%;
-  }
   height: 100%;
   cursor: pointer;
 
+  .MuiCard-root {
+    height: 100%;
+  }
+
+  &__root-row {
+    &.MuiCard-root {
+      display: flex;
+      align-items: center;
+    }
+  }
+
   &__image {
+    position: relative;
     &.MuiCardMedia-root {
       border-radius: 10px;
+    }
+
+    &-row {
+      &.MuiCardMedia-root {
+        width: 49%;
+        height: 100%;
+      }
     }
   }
 
   &__content {
+    &-row {
+      &.MuiCardContent-root {
+        padding: 5px;
+        width: 49%;
+      }
+    }
     &.MuiCardContent-root:last-child {
       padding-bottom: 10px;
     }
@@ -48,18 +70,31 @@
   }
 
   &__duration {
-    color: white;
-    background-color: black;
-    font-size: 10px;
-    font-weight: bold;
-    padding: 2px 5px;
-    position: absolute;
+    @extend .durationMain;
     top: 40%;
     right: 5%;
+
     transition: all 0.2s;
 
-    &:hover {
-      transform: scale(1.2);
+    &-row {
+      @extend .durationMain;
+      position: absolute;
+      bottom: 15px;
+      left: 30%;
     }
+  }
+}
+
+.durationMain {
+  color: white;
+  background-color: black;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 5px;
+  position: absolute;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: scale(1.2);
   }
 }
