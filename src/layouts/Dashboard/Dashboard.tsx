@@ -4,25 +4,38 @@ import Header from "../Header/Header";
 import "./Dashboard.scss";
 import { useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
+import { googleLogout } from "@react-oauth/google";
+import { clearLocalStorage } from "../../utils/localStorage";
+import { TOKEN_EXPIRE_TIME } from "../../constants/general";
 
 function Dashboard() {
   const location = useLocation();
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(Boolean(localStorage.getItem("access_token")));
+  const currentTime = Date.now();
+  const tokenExpireTime = Number(localStorage.getItem(TOKEN_EXPIRE_TIME));
+  const tokenExpired = currentTime >= tokenExpireTime;
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!tokenExpired);
+
+  const handleLogout = () => {
+    googleLogout();
+    clearLocalStorage();
+    setIsLoggedIn(false);
+  };
 
   useEffect(() => {
-    const current_time = Date.now();
-    const tokenExpireTime = localStorage.getItem("token_expire_time");
-    console.log("CURRENT TIME: " + current_time);
+    console.log("CURRENT TIME: " + currentTime);
     console.log("EXPIRE TIME: " + Number(tokenExpireTime));
+    console.log(currentTime >= tokenExpireTime);
 
-    console.log(current_time < Number(tokenExpireTime));
-    console.log(Math.floor((Number(tokenExpireTime) - current_time) / 1000));
-  }, [location]);
+    if (tokenExpired) {
+      handleLogout();
+      console.log("LOGOUT THE USER");
+    }
+  }, [location, tokenExpired]);
 
   return (
     <div className="Dashboard">
       <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-        <Header />
+        <Header handleLogout={handleLogout} />
         <Sidebar />
         <Outlet />
       </UserContext.Provider>
