@@ -48,7 +48,7 @@ export default function RelatedVideos({ videoId }: IRelatedVideosProps) {
     navigate(`/video/${videoId}`);
   };
   return (
-    <div className="VideoSuggestions">
+    <div className="RelatedVideos">
       {relatedVideos?.map((relatedVideo: IVideo, index) => (
         <VideoCard {...relatedVideo} onClick={openVideoURL} key={index} cardDirection="row" />
       ))}
