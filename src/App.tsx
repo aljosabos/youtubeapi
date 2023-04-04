@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home";
 import NotFound from "./pages/NotFound/NotFound";
 import VideoPlayback from "./pages/VideoPlayback/VideoPlayback";
 import VideoSearch from "./pages/VideoSearch/VideoSearch";
+import "./axiosInstance/interceptor";
 
 function App() {
   return (
