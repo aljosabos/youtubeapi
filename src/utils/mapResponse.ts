@@ -1,6 +1,6 @@
 import { formatISOtoHumanReadable, formatNumToThousands } from "./dateHelpers";
 import moment from "moment";
-import { IVideoResponse } from "../types/response";
+import { IRelatedVideosResponse, IVideoResponse } from "../types/response";
 
 export const mapResponseToVideos = (items: IVideoResponse[]) =>
   items.map((item: IVideoResponse) => ({
@@ -12,3 +12,27 @@ export const mapResponseToVideos = (items: IVideoResponse[]) =>
     views: formatNumToThousands(Number(item.statistics.viewCount)),
     publishDate: moment(item.snippet.publishedAt).fromNow(),
   }));
+
+export const mapResponseToRelatedVideoIDs = (
+  response: IRelatedVideosResponse[]
+) => response.map((item: IRelatedVideosResponse) => item.id.videoId);
+
+// "items": [
+//   {
+//     "id": {
+//       "kind": "youtube#video",
+//       "videoId": "mTHcRufPfRw"
+//     },
+//     "snippet": {
+//       "title": "Our First Week of Van Life in Mexico"
+//     }
+//   },
+//   {
+//     "id": {
+//       "kind": "youtube#video",
+//       "videoId": "RsYyxrrxlV8"
+//     },
+//     "snippet": {
+//       "title": "We Built a Greenhouse in our Backyard"
+//     }
+//   }

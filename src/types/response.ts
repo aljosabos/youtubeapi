@@ -42,3 +42,13 @@ export interface ISubscriptionsResponse {
     };
   };
 }
+
+export interface IRelatedVideosResponse {
+  id: {
+    kind: string;
+    videoId: string;
+  };
+  snippet: {
+    title: string;
+  };
+}

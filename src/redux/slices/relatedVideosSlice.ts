@@ -1,15 +1,11 @@
 import { RootState } from "./../store";
 import { createSlice } from "@reduxjs/toolkit";
-import { IVideoSliceState } from "../types/videosTypes";
-import {
-  getMoreRelatedVideosThunk,
-  getRelatedVideosThunk,
-} from "../thunks/relatedVideosThunk";
+import { getRelatedVideosThunk } from "../thunks/relatedVideosThunk";
+import { IRelatedVideosSliceState } from "../types/relatedVideosTypes";
 
-const initialState: IVideoSliceState = {
+const initialState: IRelatedVideosSliceState = {
   data: {
     items: [],
-    nextPageToken: "",
   },
   status: "idle",
   error: {},
@@ -39,30 +35,28 @@ export const relatedVideosSlice = createSlice({
     });
 
     // LOAD MORE //
-    builder.addCase(getMoreRelatedVideosThunk.pending, (state, _) => {
-      state.status = "loading";
-      state.error = {};
-    });
+    // builder.addCase(getMoreRelatedVideosThunk.pending, (state, _) => {
+    //   state.status = "loading";
+    //   state.error = {};
+    // });
 
-    builder.addCase(getMoreRelatedVideosThunk.fulfilled, (state, action) => {
-      state.status = "succeeded";
-      state.error = {};
-      state.data = {
-        items: [...state.data.items, ...action.payload.items],
-        nextPageToken: action.payload.nextPageToken,
-      };
-    });
+    // builder.addCase(getMoreRelatedVideosThunk.fulfilled, (state, action) => {
+    //   state.status = "succeeded";
+    //   state.error = {};
+    //   state.data = {
+    //     items: [...state.data.items, ...action.payload.items],
+    //     nextPageToken: action.payload.nextPageToken,
+    //   };
+    // });
 
-    builder.addCase(getMoreRelatedVideosThunk.rejected, (state, action) => {
-      state.status = "failed";
-      state.error = action.error;
-    });
+    // builder.addCase(getMoreRelatedVideosThunk.rejected, (state, action) => {
+    //   state.status = "failed";
+    //   state.error = action.error;
+    // });
   },
 });
 
 export const relatedVideosSelector = (state: RootState) =>
-  state.videos.data.items;
-export const nextPageTokenSelector = (state: RootState) =>
-  state.videos.data.nextPageToken;
+  state.relatedVideos.data.items;
 
 export default relatedVideosSlice.reducer;

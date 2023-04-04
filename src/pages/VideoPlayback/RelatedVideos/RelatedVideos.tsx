@@ -44,6 +44,8 @@ export default function RelatedVideos({ videoId }: IRelatedVideosProps) {
     if (videoId) dispatch(getRelatedVideosThunk(videoId));
   }, [videoId]);
 
+  console.log(relatedVideos);
+
   const openVideoURL = (videoId: string) => {
     navigate(`/video/${videoId}`);
   };
