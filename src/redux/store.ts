@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import videosReducer from "./slices/videosSlice";
 import subscriptionsReducer from "./slices/subscriptionsSlice";
 import videoDetailsReducer from "./slices/videoDetailsSlice";
+import relatedVideosReducer from "./slices/relatedVideosSlice";
 
 export const store = configureStore({
   reducer: {
     videos: videosReducer,
     subscriptions: subscriptionsReducer,
     videoDetails: videoDetailsReducer,
+    relatedVideos: relatedVideosReducer,
   },
 });
 

@@ -1,0 +1,112 @@
+.VideoCard {
+  height: 100%;
+  cursor: pointer;
+
+  .MuiCard-root {
+    height: 100%;
+  }
+
+  &__root {
+    &-row {
+      &.MuiCard-root {
+        display: flex;
+        align-items: center;
+        box-shadow: none;
+      }
+    }
+  }
+
+  &__media {
+    position: relative;
+
+    &-image {
+      &.MuiCardMedia-root {
+        border-radius: 10px;
+      }
+
+      &-row {
+        &.MuiCardMedia-root {
+          border-radius: 10px;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    &-row {
+      position: relative;
+      width: 49%;
+      height: 100%;
+      border-radius: 10px;
+    }
+
+    &-duration {
+      @extend .durationMain;
+      bottom: 10px;
+      right: 10px;
+
+      &-row {
+        @extend .durationMain;
+        bottom: 10px;
+        right: 10px;
+      }
+    }
+  }
+
+  &__content {
+    &-row {
+      &.MuiCardContent-root {
+        padding: 5px;
+        width: 49%;
+      }
+    }
+    &.MuiCardContent-root:last-child {
+      padding-bottom: 10px;
+    }
+
+    &-title {
+      &.MuiTypography-root {
+        font-size: 13px;
+        line-height: 15px;
+        height: 30px;
+        overflow: hidden;
+        font-weight: bold;
+      }
+    }
+
+    &-channel {
+      font-weight: normal;
+      color: grey;
+    }
+
+    &-views {
+      font-size: 12px;
+      &::after {
+        content: " \00B7";
+      }
+    }
+
+    &-publish-date {
+      font-size: 12px;
+      &::before {
+        content: " ";
+      }
+    }
+  }
+}
+
+.durationMain {
+  position: absolute;
+  color: white;
+  background-color: black;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 5px;
+  position: absolute;
+  transition: all 0.2s;
+  z-index: 100;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}

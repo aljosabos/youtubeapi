@@ -4,6 +4,6 @@
   padding: 20px;
 
   &__player {
-    width: 70%;
+    width: calc(100% - 400px);
   }
 }
