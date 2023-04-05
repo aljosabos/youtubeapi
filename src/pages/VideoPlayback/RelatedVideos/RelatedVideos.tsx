@@ -16,9 +16,9 @@ export default function RelatedVideos({ videoId }: IRelatedVideosProps) {
   const navigate = useNavigate();
   const relatedVideos = useAppSelector(relatedVideosSelector);
 
-  useEffect(() => {
-    if (videoId) dispatch(getRelatedVideosThunk(videoId));
-  }, [videoId]);
+  // useEffect(() => {
+  //   if (videoId) dispatch(getRelatedVideosThunk(videoId));
+  // }, [videoId]);
 
   console.log(relatedVideos);
 

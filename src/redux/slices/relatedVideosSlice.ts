@@ -57,6 +57,6 @@ export const relatedVideosSlice = createSlice({
 });
 
 export const relatedVideosSelector = (state: RootState) =>
-  state.relatedVideos.data.items;
+  state.videos.data.items;
 
 export default relatedVideosSlice.reducer;
