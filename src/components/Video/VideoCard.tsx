@@ -17,14 +17,16 @@ interface IVideoCardProps {
 }
 
 export default function VideoCard({ id, image, title, channel, duration, views, publishDate, onClick, cardDirection }: IVideoCardProps) {
+  const addClasses = (className: string) => (cardDirection ? `${className}-row` : className);
+
   return (
     <div className="VideoCard">
-      <Card onClick={() => onClick(id)} className={`${cardDirection && `VideoCard__root-${cardDirection}`}`}>
-        <div className={cardDirection ? "VideoCard__media-row" : "VideoCard__media"}>
-          <CardMedia sx={{ height: 100 }} image={image} title={title} className={`VideoCard__media-image${`-${cardDirection}`}`} />
-          <span className={cardDirection ? "VideoCard__media-duration-row" : "VideoCard__media-duration"}>{duration}</span>
+      <Card onClick={() => onClick(id)} className={addClasses("VideoCard__root")}>
+        <div className={addClasses("VideoCard__media")}>
+          <CardMedia sx={{ height: 100 }} image={image} title={title} className={addClasses("VideoCard__media-image")} />
+          <span className={addClasses("VideoCard__media-duration")}>{duration}</span>
         </div>
-        <CardContent className={`VideoCard__content${`-${cardDirection}`}`}>
+        <CardContent className={addClasses("VideoCard__content")}>
           <Typography gutterBottom variant="h5" component="div" className="VideoCard__content-title">
             {title}
           </Typography>
