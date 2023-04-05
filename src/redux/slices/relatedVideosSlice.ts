@@ -17,7 +17,6 @@ export const relatedVideosSlice = createSlice({
   reducers: {},
 
   extraReducers(builder) {
-    // INITIAL LOAD //
     builder.addCase(getRelatedVideosThunk.pending, (state, _) => {
       state.status = "loading";
       state.error = {};
@@ -33,30 +32,10 @@ export const relatedVideosSlice = createSlice({
       state.status = "failed";
       state.error = action.error;
     });
-
-    // LOAD MORE //
-    // builder.addCase(getMoreRelatedVideosThunk.pending, (state, _) => {
-    //   state.status = "loading";
-    //   state.error = {};
-    // });
-
-    // builder.addCase(getMoreRelatedVideosThunk.fulfilled, (state, action) => {
-    //   state.status = "succeeded";
-    //   state.error = {};
-    //   state.data = {
-    //     items: [...state.data.items, ...action.payload.items],
-    //     nextPageToken: action.payload.nextPageToken,
-    //   };
-    // });
-
-    // builder.addCase(getMoreRelatedVideosThunk.rejected, (state, action) => {
-    //   state.status = "failed";
-    //   state.error = action.error;
-    // });
   },
 });
 
 export const relatedVideosSelector = (state: RootState) =>
-  state.videos.data.items;
+  state.relatedVideos.data.items;
 
 export default relatedVideosSlice.reducer;

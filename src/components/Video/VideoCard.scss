@@ -27,6 +27,8 @@
       &-row {
         &.MuiCardMedia-root {
           border-radius: 10px;
+          height: 100%;
+          object-fit: cover;
         }
       }
     }
