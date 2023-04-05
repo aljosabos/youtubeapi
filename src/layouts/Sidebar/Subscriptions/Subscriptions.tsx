@@ -7,7 +7,7 @@ import { getMoreSubscriptionsThunk, getSubscriptionsThunk } from "../../../redux
 import Button from "../../../components/Button/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import { COLLAPSED_SUBSCRIPTIONS_NUM } from "../../../constants/constants";
+import { ACCESS_TOKEN, COLLAPSED_SUBSCRIPTIONS_NUM } from "../../../constants/constants";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { SCROLLABLE_JSX } from "../../../constants/libraryPropsConstants";
 import { scrollToTop } from "../../../utils/utils";
@@ -20,7 +20,7 @@ export default function Subscriptions() {
   const nextPageToken = useAppSelector(nextPageTokenSelector);
   const totalCount = useAppSelector(totalCountSelector);
 
-  const accessToken = localStorage.getItem("access_token");
+  const accessToken = localStorage.getItem(ACCESS_TOKEN);
 
   const listRef = useRef<HTMLDivElement | null>(null);
 
