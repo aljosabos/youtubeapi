@@ -15,9 +15,9 @@ export const getRelatedVideosThunk = createAsyncThunk(
   "relatedVideos/initialLoad",
   async (videoId: string) => {
     const relatedToVideoIdParam = `&relatedToVideoId=${videoId}`;
-    const idsURL = `${RELATED_VIDEO_IDS_URL}${relatedToVideoIdParam}`;
+    const relatedVideoIDsURL = `${RELATED_VIDEO_IDS_URL}${relatedToVideoIdParam}`;
 
-    const relatedVideoIDsResponse = await axios.get(idsURL);
+    const relatedVideoIDsResponse = await axios.get(relatedVideoIDsURL);
 
     const relatedVideoIDs = mapResponseToRelatedVideoIDs(
       relatedVideoIDsResponse.data.items
