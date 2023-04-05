@@ -1,19 +1,16 @@
-.Subscriptions {
+.SubscriptionList {
   width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 330px;
+  padding: 10px;
+  overflow: hidden;
 
-  &__list {
-    height: 330px;
+  &-expanded {
     padding: 10px;
-    overflow: hidden;
-
-    &-expanded {
-      height: 610px;
-      padding: 10px;
-      overflow: auto;
-    }
+    overflow-y: scroll;
+    height: 500px;
   }
 
   &__btn {
