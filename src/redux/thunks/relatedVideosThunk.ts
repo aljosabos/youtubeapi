@@ -19,12 +19,11 @@ export const getRelatedVideosThunk = createAsyncThunk(
 
     const relatedVideoIDsResponse = await axios.get(idsURL);
 
-    const relatedVideoIDsArray = mapResponseToRelatedVideoIDs(
+    const relatedVideoIDs = mapResponseToRelatedVideoIDs(
       relatedVideoIDsResponse.data.items
-    );
+    ).join(",");
 
-    const relatedVideoIDsJoined = relatedVideoIDsArray.join(",");
-    const videosURL = `${RELATED_VIDEOS_URL}&id=${relatedVideoIDsJoined}&maxResults=${relatedVideoIDsArray.length}`;
+    const videosURL = `${RELATED_VIDEOS_URL}&id=${relatedVideoIDs}&maxResults=${relatedVideoIDs.length}`;
 
     const relatedVideosResponse = await axios.get(videosURL);
 
