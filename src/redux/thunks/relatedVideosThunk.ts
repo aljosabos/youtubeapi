@@ -3,11 +3,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   mapResponseToRelatedVideoIDs,
   mapResponseToVideos,
-} from "../../utils/mapResponse";
+} from "../../utils/mapResponseUtils";
 import {
   RELATED_VIDEOS_URL,
   RELATED_VIDEO_IDS_URL,
-} from "../../constants/endpoints";
+} from "../../constants/endpointConstants";
 
 /* Because of the youtubeapi limitation, related videos endpoint doesnt provide some informations like video duration. Because of that, first, the related videos enpoint is called only to get related video ids, and then video list endpoint is called by passing list of all ids to get all the neccessary informations */
 

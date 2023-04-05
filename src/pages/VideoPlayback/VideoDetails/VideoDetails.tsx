@@ -1,7 +1,7 @@
 import { Avatar } from "@mui/material";
 import moment from "moment";
 import { IVideoDetails } from "../../../redux/types/videoDetailsTypes";
-import { formatNumToThousands } from "../../../utils/dateHelpers";
+import { formatNumToThousands } from "../../../utils/dateUtils";
 import "./VideoDetails.scss";
 import Linkify from "react-linkify";
 import Button from "../../../components/Button/Button";

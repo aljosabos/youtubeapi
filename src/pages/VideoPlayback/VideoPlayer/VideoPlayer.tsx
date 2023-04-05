@@ -1,5 +1,5 @@
 import YouTube from "react-youtube";
-import { PLAYER_OPTIONS } from "../../../constants/libraryProps";
+import { PLAYER_OPTIONS } from "../../../constants/libraryPropsConstants";
 import "./VideoPlayer.scss";
 
 interface IVideoPlayerProps {

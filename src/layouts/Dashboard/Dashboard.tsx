@@ -5,8 +5,8 @@ import "./Dashboard.scss";
 import { useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import { googleLogout } from "@react-oauth/google";
-import { clearLocalStorage } from "../../utils/localStorage";
-import { TOKEN_EXPIRE_TIME } from "../../constants/general";
+import { TOKEN_EXPIRE_TIME } from "../../constants/constants";
+import { clearLocalStorage } from "../../utils/utils";
 
 function Dashboard() {
   const location = useLocation();

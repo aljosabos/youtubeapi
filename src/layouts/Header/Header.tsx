@@ -6,9 +6,9 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-import { AUTH_SCOPE } from "../../constants/endpoints";
+import { AUTH_SCOPE } from "../../constants/endpointConstants";
 import { useNavigate } from "react-router";
-import { ACCESS_TOKEN, TOKEN_EXPIRE_TIME } from "../../constants/general";
+import { ACCESS_TOKEN, TOKEN_EXPIRE_TIME } from "../../constants/constants";
 
 interface IHeaderProps {
   handleLogout: () => void;

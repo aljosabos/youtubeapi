@@ -1,11 +1,11 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { mapResponseToVideos } from "../../utils/mapResponse";
+import { mapResponseToVideos } from "../../utils/mapResponseUtils";
 import {
   INITIAL_LOAD_SIZE_PARAM,
   LOAD_MORE_SIZE_PARAM,
   POPULAR_VIDEOS_URL,
-} from "../../constants/endpoints";
+} from "../../constants/endpointConstants";
 
 export const getInitialVideosThunk = createAsyncThunk(
   "videos/initialLoad",

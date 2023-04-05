@@ -7,10 +7,10 @@ import { getMoreSubscriptionsThunk, getSubscriptionsThunk } from "../../../redux
 import Button from "../../../components/Button/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import { COLLAPSED_SUBSCRIPTIONS_NUM } from "../../../constants/general";
+import { COLLAPSED_SUBSCRIPTIONS_NUM } from "../../../constants/constants";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { scrollToTop } from "../../../utils/pageScroll";
-import { SCROLLABLE_JSX } from "../../../constants/libraryProps";
+import { SCROLLABLE_JSX } from "../../../constants/libraryPropsConstants";
+import { scrollToTop } from "../../../utils/utils";
 
 export default function Subscriptions() {
   const dispatch = useAppDispatch();

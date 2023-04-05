@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { SUBSCRIPTIONS_URL } from "../../constants/endpoints";
+import { SUBSCRIPTIONS_URL } from "../../constants/endpointConstants";
 
 export const getSubscriptionsThunk = createAsyncThunk(
   "subscriptions/initialLoad",

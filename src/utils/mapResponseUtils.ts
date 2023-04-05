@@ -1,4 +1,4 @@
-import { formatISOtoHumanReadable, formatNumToThousands } from "./dateHelpers";
+import { formatISOtoHumanReadable, formatNumToThousands } from "./dateUtils";
 import moment from "moment";
 import { IRelatedVideosResponse, IVideoResponse } from "../types/response";
 
