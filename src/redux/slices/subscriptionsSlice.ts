@@ -1,5 +1,5 @@
 import { getMoreSubscriptionsThunk } from "./../thunks/subscriptionsThunk";
-import { ISubscriptionsSliceState } from "./../types/subscriptionsTypes";
+import { ISubscriptionsSliceState } from "../types/subscriptionDetailsState";
 import { RootState } from "./../store";
 import { createSlice } from "@reduxjs/toolkit";
 import { getSubscriptionsThunk } from "../thunks/subscriptionsThunk";
@@ -61,9 +61,13 @@ export const subscriptionsSlice = createSlice({
   },
 });
 
-export const subscriptionsSelector = (state: RootState) => state.subscriptions.data.items;
-export const subscriptionsStatusSelector = (state: RootState) => state.subscriptions.status;
-export const nextPageTokenSelector = (state: RootState) => state.subscriptions.data.nextPageToken;
-export const totalCountSelector = (state: RootState) => state.subscriptions.data.totalCount;
+export const subscriptionsSelector = (state: RootState) =>
+  state.subscriptions.data.items;
+export const subscriptionsStatusSelector = (state: RootState) =>
+  state.subscriptions.status;
+export const nextPageTokenSelector = (state: RootState) =>
+  state.subscriptions.data.nextPageToken;
+export const totalCountSelector = (state: RootState) =>
+  state.subscriptions.data.totalCount;
 
 export default subscriptionsSlice.reducer;

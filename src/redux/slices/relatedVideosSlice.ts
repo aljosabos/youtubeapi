@@ -1,7 +1,7 @@
 import { RootState } from "./../store";
 import { createSlice } from "@reduxjs/toolkit";
 import { getRelatedVideosThunk } from "../thunks/relatedVideosThunk";
-import { IRelatedVideosSliceState } from "../types/relatedVideosTypes";
+import { IRelatedVideosSliceState } from "../types/relatedVideosState";
 
 const initialState: IRelatedVideosSliceState = {
   data: {

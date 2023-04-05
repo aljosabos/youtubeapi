@@ -1,6 +1,6 @@
 import { Avatar } from "@mui/material";
 import moment from "moment";
-import { IVideoDetails } from "../../../redux/types/videoDetailsTypes";
+import { IVideoDetails } from "../../../redux/types/videoDetailsState";
 import { formatNumToThousands } from "../../../utils/dateUtils";
 import "./VideoDetails.scss";
 import Linkify from "react-linkify";

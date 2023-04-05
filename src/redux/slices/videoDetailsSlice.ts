@@ -1,7 +1,7 @@
-import { IVideoDetails } from "./../types/videoDetailsTypes";
+import { IVideoDetails } from "../types/videoDetailsState";
 import { createSlice } from "@reduxjs/toolkit";
 import { getVideoDetailsThunk } from "../thunks/videoDetailsThunk";
-import { IVideoDetailsSliceState } from "../types/videoDetailsTypes";
+import { IVideoDetailsSliceState } from "../types/videoDetailsState";
 import { RootState } from "../store";
 
 const initialState: IVideoDetailsSliceState = {
@@ -36,6 +36,7 @@ export const videoDetailsSlice = createSlice({
   },
 });
 
-export const videosDetailsSelector = (state: RootState) => state.videoDetails.data;
+export const videosDetailsSelector = (state: RootState) =>
+  state.videoDetails.data;
 
 export default videoDetailsSlice.reducer;
