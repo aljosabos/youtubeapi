@@ -10,10 +10,10 @@ import VideoCard from "../../components/Video/VideoCard";
 
 export default function Home() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const videos = useAppSelector(videosSelector);
   const nextPageToken = useAppSelector(nextPageTokenSelector);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getInitialVideosThunk());

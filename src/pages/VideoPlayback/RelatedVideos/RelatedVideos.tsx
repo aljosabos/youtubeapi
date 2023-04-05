@@ -30,7 +30,7 @@ export default function RelatedVideos({ videoId }: IRelatedVideosProps) {
   return (
     <div className="RelatedVideos">
       {popularVideos?.map((relatedVideo: IVideo, index) => (
-        <VideoCard {...relatedVideo} onClick={openVideoURL} key={index} cardDirection="row" />
+        <VideoCard {...relatedVideo} onClick={openVideoURL} key={index} layout="horizontal" />
       ))}
     </div>
   );
