@@ -16,23 +16,3 @@ export const mapResponseToVideos = (items: IVideoResponse[]) =>
 export const mapResponseToRelatedVideoIDs = (
   response: IRelatedVideosResponse[]
 ) => response.map((item: IRelatedVideosResponse) => item.id.videoId);
-
-// "items": [
-//   {
-//     "id": {
-//       "kind": "youtube#video",
-//       "videoId": "mTHcRufPfRw"
-//     },
-//     "snippet": {
-//       "title": "Our First Week of Van Life in Mexico"
-//     }
-//   },
-//   {
-//     "id": {
-//       "kind": "youtube#video",
-//       "videoId": "RsYyxrrxlV8"
-//     },
-//     "snippet": {
-//       "title": "We Built a Greenhouse in our Backyard"
-//     }
-//   }
