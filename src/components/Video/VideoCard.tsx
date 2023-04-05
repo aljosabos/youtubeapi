@@ -22,7 +22,7 @@ export default function VideoCard({ id, image, title, channel, duration, views, 
       <Card onClick={() => onClick(id)} className={`${cardDirection && `VideoCard__root-${cardDirection}`}`}>
         <div className={cardDirection ? "VideoCard__media-row" : "VideoCard__media"}>
           <CardMedia sx={{ height: 100 }} image={image} title={title} className={`VideoCard__media-image${`-${cardDirection}`}`} />
-          <span className={cardDirection ? "VideoCard__duration-row" : "VideoCard__duration"}>{duration}</span>
+          <span className={cardDirection ? "VideoCard__media-duration-row" : "VideoCard__media-duration"}>{duration}</span>
         </div>
         <CardContent className={`VideoCard__content${`-${cardDirection}`}`}>
           <Typography gutterBottom variant="h5" component="div" className="VideoCard__content-title">
