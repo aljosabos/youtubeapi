@@ -11,7 +11,7 @@ export default function VideoDetails({ id, title, channelId, channelTitle, descr
   const [shouldShowMore, setShouldShowMore] = useState<boolean>(false);
 
   const btnText = shouldShowMore ? "Show less" : "Show more";
-  const btnClass = shouldShowMore ? "VideoDetails__description-btn-bottom" : "VideoDetails__description-btn";
+  const addBtnClass = (className: string) => (shouldShowMore ? `${className}-bottom` : className);
 
   const addDescriptionTextClass = (className: string) => (shouldShowMore ? `${className}-expanded` : className);
 
@@ -24,7 +24,7 @@ export default function VideoDetails({ id, title, channelId, channelTitle, descr
       <h3 className="VideoDetails__title">{title} </h3>
 
       <div className="VideoDetails__channel">
-        {<Avatar className="VideoDetails__channel-avatar" src={thumbnails?.high?.url} alt="Subscriptions avatar" />}
+        {<Avatar src={thumbnails?.high?.url} className="VideoDetails__channel-avatar" alt="Subscriptions avatar" />}
 
         <div className="VideoDetails__channel-info">
           <h4 className="VideoDetails__channel-info-name">{channelTitle}</h4>
@@ -37,7 +37,7 @@ export default function VideoDetails({ id, title, channelId, channelTitle, descr
           <span className="VideoDetails__description-heading-views">{formatNumToThousands(Number(statistics?.viewCount))}K views</span>
           <span className="VideoDetails__description-heading-time">{moment(publishedAt).fromNow()}</span>
 
-          <Button onClick={handleClick} text={btnText} color="info" className={btnClass} variant="outlined" />
+          <Button onClick={handleClick} text={btnText} color="info" className={addBtnClass("VideoDetails__description-btn")} variant="outlined" />
         </div>
 
         <LinkifyText>
