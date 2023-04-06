@@ -10,7 +10,7 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { ACCESS_TOKEN, COLLAPSED_SUBSCRIPTIONS_NUM } from "../../../constants/constants";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { SCROLLABLE_JSX } from "../../../constants/libraryPropsConstants";
-import { scrollToTop } from "../../../utils/utils";
+import { scrollElementToTop } from "../../../utils/utils";
 import { subscriptionsSelector } from "../../../redux/slices/subscriptionsSlice";
 
 export default function SubscriptionList() {
@@ -31,7 +31,7 @@ export default function SubscriptionList() {
   const rootClass = shouldExpandList ? "SubscriptionList-expanded" : "SubscriptionList";
 
   const handleOnClick = () => {
-    scrollToTop(listRef);
+    scrollElementToTop(listRef);
     setShouldExpandList((previousState) => !previousState);
   };
 

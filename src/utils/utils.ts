@@ -4,7 +4,7 @@ export const clearLocalStorage = () => {
   localStorage.clear();
 };
 
-export const scrollToTop = (
+export const scrollElementToTop = (
   ref: MutableRefObject<HTMLDivElement | null>,
   behavior?: "smooth" | "auto"
 ) => {
@@ -16,4 +16,8 @@ export const scrollToTop = (
       behavior: behavior || "auto",
     });
   }
+};
+
+export const scrollPageToTop = () => {
+  window.scrollTo(0, 0);
 };
