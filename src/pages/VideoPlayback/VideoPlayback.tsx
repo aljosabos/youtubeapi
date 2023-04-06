@@ -21,10 +21,10 @@ export default function VideoPlayback() {
   const relatedVideos = useAppSelector(relatedVideosSelector);
   const popularVideos = useAppSelector(videosSelector);
 
-  const videosRef = useRef<HTMLDivElement | null>(null);
+  const playbackRef = useRef<HTMLDivElement | null>(null);
 
   const handleClick = (videoId: string) => {
-    scrollToTop(videosRef);
+    scrollToTop(playbackRef);
     navigate(`/video/${videoId}`);
   };
 
@@ -38,7 +38,7 @@ export default function VideoPlayback() {
   }, [videoId]);
 
   return (
-    <div className="VideoPlayback">
+    <div className="VideoPlayback" ref={playbackRef}>
       <div className="VideoPlayback__player">
         {videoId && <VideoPlayer videoId={videoId} />}
         {videoDetails && <VideoDetails {...videoDetails} />}
