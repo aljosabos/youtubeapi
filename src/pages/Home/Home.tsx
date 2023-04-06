@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { IVideo } from "../../types/response";
 import "./Home.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
@@ -7,6 +6,7 @@ import { getInitialVideosThunk, getMoreVideosThunk } from "../../redux/thunks/vi
 import { videosSelector } from "../../redux/slices/videosSlice";
 import { useNavigate } from "react-router-dom";
 import VideoCard from "../../components/VideoCard/VideoCard";
+import { IVideo } from "../../types/types";
 
 export default function Home() {
   const dispatch = useAppDispatch();

@@ -1,6 +1,6 @@
 import VideoCard from "../../../components/VideoCard/VideoCard";
+import { IVideo } from "../../../types/types";
 import "./RelatedVideos.scss";
-import { IVideo } from "../../../types/response";
 
 interface IRelatedVideosProps {
   videos: IVideo[];

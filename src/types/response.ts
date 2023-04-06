@@ -1,4 +1,3 @@
-/* VIDEOS */
 export interface IVideoResponse {
   id: string;
   snippet: {
@@ -19,17 +18,6 @@ export interface IVideoResponse {
   };
 }
 
-export interface IVideo {
-  id: string;
-  title: string;
-  channel: string;
-  image: string;
-  duration: string;
-  views: number;
-  publishDate: string;
-}
-
-/* SUBSCRIPTION */
 export interface ISubscriptionsResponse {
   id: string;
   snippet: {
