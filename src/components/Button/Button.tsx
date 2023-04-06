@@ -24,9 +24,6 @@ interface IButtonProps {
 export default function Button({ endIcon, startIcon, text, className, wrapperClassName, disabled, color, size, variant, onClick }: IButtonProps) {
   const centerIconClass = !text ? "centerIcon" : null;
 
-  const handleClick = () => {
-    onClick && onClick();
-  };
   return (
     <div className={wrapperClassName}>
       <MaterialButton
@@ -37,7 +34,7 @@ export default function Button({ endIcon, startIcon, text, className, wrapperCla
         disabled={disabled}
         color={color}
         size={size}
-        onClick={handleClick}
+        onClick={onClick}
       >
         {text}
       </MaterialButton>
