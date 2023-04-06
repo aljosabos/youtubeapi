@@ -1,8 +1,8 @@
-import { IVideoDetails } from "../types/videoDetailsState";
 import { createSlice } from "@reduxjs/toolkit";
 import { getVideoDetailsThunk } from "../thunks/videoDetailsThunk";
 import { IVideoDetailsSliceState } from "../types/videoDetailsState";
 import { RootState } from "../store";
+import { IVideoDetails } from "../../types/types";
 
 const initialState: IVideoDetailsSliceState = {
   data: {} as IVideoDetails,

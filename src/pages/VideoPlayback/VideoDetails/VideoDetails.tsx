@@ -1,9 +1,9 @@
 import { Avatar } from "@mui/material";
-import { IVideoDetails } from "../../../redux/types/videoDetailsState";
 import "./VideoDetails.scss";
 import Button from "../../../components/Button/Button";
 import { useState } from "react";
 import LinkifyText from "../../../components/LinkifyText/LinkifyText";
+import { IVideoDetails } from "../../../types/types";
 
 export default function VideoDetails({
   id,
