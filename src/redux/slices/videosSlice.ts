@@ -21,7 +21,6 @@ export const videosSlice = createSlice({
   reducers: {},
 
   extraReducers(builder) {
-    // INITIAL LOAD //
     builder.addCase(getInitialVideosThunk.pending, (state, _) => {
       state.status = "loading";
       state.error = {};
@@ -38,7 +37,6 @@ export const videosSlice = createSlice({
       state.error = action.error;
     });
 
-    // LOAD MORE //
     builder.addCase(getMoreVideosThunk.pending, (state, _) => {
       state.status = "loading";
       state.error = {};
@@ -59,11 +57,6 @@ export const videosSlice = createSlice({
     });
   },
 });
-
-// export const videosSelector = (state: RootState) => state.videos.data.items;
-// export const videosStatusSelector = (state: RootState) => state.videos.status;
-// export const nextPageTokenSelector = (state: RootState) =>
-//   state.videos.data.nextPageToken;
 
 export const videosSelector = ({ videos }: RootState) => ({
   videos: videos.data.items,

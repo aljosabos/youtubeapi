@@ -17,12 +17,6 @@ function Dashboard() {
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!tokenExpired);
 
-  const handleLogout = () => {
-    googleLogout();
-    clearLocalStorage();
-    setIsLoggedIn(false);
-  };
-
   useEffect(() => {
     console.log("CURRENT TIME: " + currentTime);
     console.log("EXPIRE TIME: " + Number(tokenExpireTime));
@@ -33,6 +27,12 @@ function Dashboard() {
       console.log("LOGOUT THE USER");
     }
   }, [location, tokenExpired]);
+
+  const handleLogout = () => {
+    googleLogout();
+    clearLocalStorage();
+    setIsLoggedIn(false);
+  };
 
   return (
     <div className="Dashboard">

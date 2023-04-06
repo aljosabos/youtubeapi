@@ -18,13 +18,13 @@ export default function Home() {
     dispatch(getInitialVideosThunk());
   }, []);
 
+  const openVideoURL = (videoId: string) => {
+    navigate(`/video/${videoId}`);
+  };
+
   const loadMoreVideos = () => {
     const nextPageTokenParam = `&pageToken=${nextPageToken}`;
     dispatch(getMoreVideosThunk(nextPageTokenParam));
-  };
-
-  const openVideoURL = (videoId: string) => {
-    navigate(`/video/${videoId}`);
   };
 
   return (

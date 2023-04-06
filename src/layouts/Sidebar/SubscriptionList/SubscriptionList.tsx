@@ -30,14 +30,14 @@ export default function SubscriptionList() {
 
   const rootClass = shouldExpandList ? "SubscriptionList-expanded" : "SubscriptionList";
 
-  const loadMoreSubscriptions = () => {
-    const nextPageTokenParam = `&pageToken=${nextPageToken}`;
-    dispatch(getMoreSubscriptionsThunk(nextPageTokenParam));
-  };
-
   const handleOnClick = () => {
     scrollToTop(listRef);
     setShouldExpandList((previousState) => !previousState);
+  };
+
+  const loadMoreSubscriptions = () => {
+    const nextPageTokenParam = `&pageToken=${nextPageToken}`;
+    dispatch(getMoreSubscriptionsThunk(nextPageTokenParam));
   };
 
   return (

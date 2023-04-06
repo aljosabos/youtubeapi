@@ -11,6 +11,8 @@ import { getRelatedVideosThunk } from "../../redux/thunks/relatedVideosThunk";
 import { scrollToTop } from "../../utils/utils";
 import { videosSelector } from "../../redux/slices/videosSlice";
 
+/* getRelatedVideosThunk is commented out since the related videos endpoint uses lot of quota (100 per call out from 10000), instead popular videos are used since they use quota of only 1 unit per call */
+
 export default function VideoPlayback() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -21,19 +23,17 @@ export default function VideoPlayback() {
   const videoDetails = useAppSelector(videosDetailsSelector);
   const { videos } = useAppSelector(videosSelector);
 
-  const handleClick = (videoId: string) => {
-    scrollToTop(playbackRef);
-    navigate(`/video/${videoId}`);
-  };
-
-  /* getRelatedVideosThunk is commented out since the related videos endpoint uses lot of quota (100 per call out from 10000), instead popular videos are used since they use quota of only 1 unit per call */
-
   useEffect(() => {
     if (videoId) {
       dispatch(getVideoDetailsThunk(videoId));
       // dispatch(getRelatedVideosThunk(videoId));
     }
   }, [videoId]);
+
+  const handleClick = (videoId: string) => {
+    scrollToTop(playbackRef);
+    navigate(`/video/${videoId}`);
+  };
 
   return (
     <div className="VideoPlayback" ref={playbackRef}>

@@ -20,7 +20,6 @@ export const subscriptionsSlice = createSlice({
   reducers: {},
 
   extraReducers(builder) {
-    // INITIAL LOAD //
     builder.addCase(getSubscriptionsThunk.pending, (state, _) => {
       state.status = "loading";
       state.error = {};
@@ -36,8 +35,6 @@ export const subscriptionsSlice = createSlice({
       state.status = "failed";
       state.error = action.error;
     });
-
-    // LOAD MORE //
 
     builder.addCase(getMoreSubscriptionsThunk.pending, (state, _) => {
       state.status = "loading";
