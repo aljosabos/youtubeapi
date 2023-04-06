@@ -19,7 +19,7 @@ export default function VideoDetails({ id, title, channelId, channelTitle, descr
       <h3 className="VideoDetails__title">{title} </h3>
 
       <div className="VideoDetails__channel">
-        {<Avatar alt="Subscriptions avatar" src={thumbnails?.high?.url} className="VideoDetails__channel-avatar" />}
+        {<Avatar className="VideoDetails__channel-avatar" src={thumbnails?.high?.url} alt="Subscriptions avatar" />}
         <div className="VideoDetails__channel-text">
           <h4 className="VideoDetails__channel-text-name">{channelTitle}</h4>
           <span className="VideoDetails__channel-text-subscribers">20K subscribers</span>

@@ -15,8 +15,9 @@ interface IHeaderProps {
 }
 
 export default function Header({ handleLogout }: IHeaderProps) {
-  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
+
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
 
   const login = useGoogleLogin({
     onSuccess: ({ access_token, expires_in }) => {

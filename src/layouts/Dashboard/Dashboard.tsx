@@ -10,9 +10,11 @@ import { clearLocalStorage } from "../../utils/utils";
 
 function Dashboard() {
   const location = useLocation();
+
   const currentTime = Date.now();
   const tokenExpireTime = Number(localStorage.getItem(TOKEN_EXPIRE_TIME));
   const tokenExpired = currentTime >= tokenExpireTime;
+
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!tokenExpired);
 
   const handleLogout = () => {

@@ -15,31 +15,30 @@ import { subscriptionsSelector } from "../../../redux/slices/subscriptionsSlice"
 
 export default function SubscriptionList() {
   const dispatch = useAppDispatch();
+  const listRef = useRef<HTMLDivElement | null>(null);
+  const accessToken = localStorage.getItem(ACCESS_TOKEN);
+
   const [shouldExpandList, setShouldExpandList] = useState<boolean>(false);
 
   const { subscriptions, nextPageToken, totalCount } = useAppSelector(subscriptionsSelector);
-
-  const accessToken = localStorage.getItem(ACCESS_TOKEN);
-
-  const listRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (accessToken) dispatch(getSubscriptionsThunk(accessToken));
   }, [accessToken]);
 
-  const handleOnClick = () => {
-    scrollToTop(listRef);
-    setShouldExpandList((previousState) => !previousState);
-  };
-
   const btnText = shouldExpandList ? "Show less" : `Show ${totalCount - COLLAPSED_SUBSCRIPTIONS_NUM} more`;
+
+  const rootClass = shouldExpandList ? "SubscriptionList-expanded" : "SubscriptionList";
 
   const loadMoreSubscriptions = () => {
     const nextPageTokenParam = `&pageToken=${nextPageToken}`;
     dispatch(getMoreSubscriptionsThunk(nextPageTokenParam));
   };
 
-  const rootClass = shouldExpandList ? "SubscriptionList-expanded" : "SubscriptionList";
+  const handleOnClick = () => {
+    scrollToTop(listRef);
+    setShouldExpandList((previousState) => !previousState);
+  };
 
   return (
     <>

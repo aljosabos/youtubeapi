@@ -14,12 +14,12 @@ import { videosSelector } from "../../redux/slices/videosSlice";
 export default function VideoPlayback() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const playbackRef = useRef<HTMLDivElement | null>(null);
 
   const { videoId } = useParams<string>();
+
   const videoDetails = useAppSelector(videosDetailsSelector);
   const { videos } = useAppSelector(videosSelector);
-
-  const playbackRef = useRef<HTMLDivElement | null>(null);
 
   const handleClick = (videoId: string) => {
     scrollToTop(playbackRef);

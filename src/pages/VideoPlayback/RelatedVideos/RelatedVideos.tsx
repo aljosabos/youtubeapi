@@ -1,4 +1,4 @@
-import VideoCard from "../../../components/Video/VideoCard";
+import VideoCard from "../../../components/VideoCard/VideoCard";
 import "./RelatedVideos.scss";
 import { IVideo } from "../../../types/response";
 

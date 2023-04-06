@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { getInitialVideosThunk, getMoreVideosThunk } from "../../redux/thunks/videosThunk";
 import { videosSelector } from "../../redux/slices/videosSlice";
 import { useNavigate } from "react-router-dom";
-import VideoCard from "../../components/Video/VideoCard";
+import VideoCard from "../../components/VideoCard/VideoCard";
 
 export default function Home() {
   const dispatch = useAppDispatch();
