@@ -1,6 +1,10 @@
 import { formatISOtoHumanReadable, formatNumToThousands } from "./dateUtils";
 import moment from "moment";
-import { IRelatedVideosResponse, IVideoResponse } from "../types/response";
+import {
+  IRelatedVideosResponse,
+  IVideoDetailsResponse,
+  IVideoResponse,
+} from "../types/response";
 
 export const mapResponseToVideos = (items: IVideoResponse[]) =>
   items.map((item: IVideoResponse) => ({
@@ -16,3 +20,18 @@ export const mapResponseToVideos = (items: IVideoResponse[]) =>
 export const mapResponseToRelatedVideoIDs = (
   response: IRelatedVideosResponse[]
 ) => response.map((item: IRelatedVideosResponse) => item.id.videoId);
+
+export const formatResponseToVideoDetails = (
+  response: IVideoDetailsResponse
+) => ({
+  id: response?.snippet?.id,
+  title: response?.snippet?.title,
+  channelId: response?.snippet?.channelId,
+  channelTitle: response?.snippet?.channelTitle,
+  description: response?.snippet?.description,
+  publishedAt: moment(response?.snippet?.publishedAt).fromNow(),
+  tags: response?.snippet?.tags,
+  image: response?.snippet?.thumbnails?.high?.url,
+  viewCount: formatNumToThousands(Number(response?.statistics?.viewCount)),
+  commentCount: response?.statistics?.commentCount,
+});

@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   mapResponseToRelatedVideoIDs,
   mapResponseToVideos,
-} from "../../utils/mapResponseUtils";
+} from "../../utils/responseUtils";
 import {
   RELATED_VIDEOS_URL,
   RELATED_VIDEO_IDS_URL,

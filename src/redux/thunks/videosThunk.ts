@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { mapResponseToVideos } from "../../utils/mapResponseUtils";
+import { mapResponseToVideos } from "../../utils/responseUtils";
 import {
   INITIAL_LOAD_SIZE_PARAM,
   LOAD_MORE_SIZE_PARAM,
