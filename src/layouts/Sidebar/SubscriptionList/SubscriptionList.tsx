@@ -2,7 +2,7 @@ import "./SubscriptionList.scss";
 import Subscription from "./Subscription/Subscription";
 import { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hooks";
-import { nextPageTokenSelector, subscriptionsSelector, totalCountSelector } from "../../../redux/slices/subscriptionsSlice";
+
 import { getMoreSubscriptionsThunk, getSubscriptionsThunk } from "../../../redux/thunks/subscriptionsThunk";
 import Button from "../../../components/Button/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -11,14 +11,13 @@ import { ACCESS_TOKEN, COLLAPSED_SUBSCRIPTIONS_NUM } from "../../../constants/co
 import InfiniteScroll from "react-infinite-scroll-component";
 import { SCROLLABLE_JSX } from "../../../constants/libraryPropsConstants";
 import { scrollToTop } from "../../../utils/utils";
+import { subscriptionsSelector } from "../../../redux/slices/subscriptionsSlice";
 
 export default function SubscriptionList() {
   const dispatch = useAppDispatch();
   const [shouldExpandList, setShouldExpandList] = useState<boolean>(false);
 
-  const subscriptions = useAppSelector(subscriptionsSelector);
-  const nextPageToken = useAppSelector(nextPageTokenSelector);
-  const totalCount = useAppSelector(totalCountSelector);
+  const { subscriptions, nextPageToken, totalCount } = useAppSelector(subscriptionsSelector);
 
   const accessToken = localStorage.getItem(ACCESS_TOKEN);
 

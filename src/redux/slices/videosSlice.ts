@@ -60,9 +60,15 @@ export const videosSlice = createSlice({
   },
 });
 
-export const videosSelector = (state: RootState) => state.videos.data.items;
-export const videosStatusSelector = (state: RootState) => state.videos.status;
-export const nextPageTokenSelector = (state: RootState) =>
-  state.videos.data.nextPageToken;
+// export const videosSelector = (state: RootState) => state.videos.data.items;
+// export const videosStatusSelector = (state: RootState) => state.videos.status;
+// export const nextPageTokenSelector = (state: RootState) =>
+//   state.videos.data.nextPageToken;
+
+export const videosSelector = ({ videos }: RootState) => ({
+  videos: videos.data.items,
+  status: videos.status,
+  nextPageToken: videos.data.nextPageToken,
+});
 
 export default videosSlice.reducer;

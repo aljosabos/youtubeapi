@@ -4,7 +4,7 @@ import "./Home.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { getInitialVideosThunk, getMoreVideosThunk } from "../../redux/thunks/videosThunk";
-import { nextPageTokenSelector, videosSelector } from "../../redux/slices/videosSlice";
+import { videosSelector } from "../../redux/slices/videosSlice";
 import { useNavigate } from "react-router-dom";
 import VideoCard from "../../components/Video/VideoCard";
 
@@ -12,8 +12,7 @@ export default function Home() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const videos = useAppSelector(videosSelector);
-  const nextPageToken = useAppSelector(nextPageTokenSelector);
+  const { videos, nextPageToken } = useAppSelector(videosSelector);
 
   useEffect(() => {
     dispatch(getInitialVideosThunk());

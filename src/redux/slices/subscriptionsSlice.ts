@@ -61,13 +61,11 @@ export const subscriptionsSlice = createSlice({
   },
 });
 
-export const subscriptionsSelector = (state: RootState) =>
-  state.subscriptions.data.items;
-export const subscriptionsStatusSelector = (state: RootState) =>
-  state.subscriptions.status;
-export const nextPageTokenSelector = (state: RootState) =>
-  state.subscriptions.data.nextPageToken;
-export const totalCountSelector = (state: RootState) =>
-  state.subscriptions.data.totalCount;
+export const subscriptionsSelector = ({ subscriptions }: RootState) => ({
+  subscriptions: subscriptions.data.items,
+  status: subscriptions.status,
+  nextPageToken: subscriptions.data.nextPageToken,
+  totalCount: subscriptions.data.totalCount,
+});
 
 export default subscriptionsSlice.reducer;
