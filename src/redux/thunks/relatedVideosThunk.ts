@@ -14,18 +14,20 @@ import {
 export const getRelatedVideosThunk = createAsyncThunk(
   "relatedVideos/initialLoad",
   async (videoId: string) => {
-    const relatedToVideoIdParam = `&relatedToVideoId=${videoId}`;
-    const url = `${RELATED_VIDEO_IDS_URL}${relatedToVideoIdParam}`;
-
-    const response = await axios.get(url);
-
-    const relatedVideosIDs = mapResponseToRelatedVideoIDs(
-      response.data.items
-    ).join(",");
+    const relatedVideosIDs = await getRelatedVideosIDs(videoId);
 
     return getRelatedVideos(relatedVideosIDs);
   }
 );
+
+const getRelatedVideosIDs = async (videoId: string) => {
+  const relatedToVideoIdParam = `&relatedToVideoId=${videoId}`;
+  const url = `${RELATED_VIDEO_IDS_URL}${relatedToVideoIdParam}`;
+
+  const response = await axios.get(url);
+
+  return mapResponseToRelatedVideoIDs(response.data.items).join(",");
+};
 
 const getRelatedVideos = async (videosIDs: string) => {
   const url = `${RELATED_VIDEOS_URL}&id=${videosIDs}&maxResults=${videosIDs.length}`;
