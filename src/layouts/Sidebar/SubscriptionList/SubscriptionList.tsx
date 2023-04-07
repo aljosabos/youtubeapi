@@ -27,10 +27,8 @@ export default function SubscriptionList() {
   }, [accessToken]);
 
   const jsxConfig = {
-    btn: {
-      text: shouldExpandList ? "Show less" : `Show ${totalCount - COLLAPSED_SUBSCRIPTIONS_NUM} more`,
-      icon: shouldExpandList ? ExpandLessIcon : ExpandMoreIcon,
-    },
+    btnText: shouldExpandList ? "Show less" : `Show ${totalCount - COLLAPSED_SUBSCRIPTIONS_NUM} more`,
+    btnIcon: shouldExpandList ? ExpandLessIcon : ExpandMoreIcon,
     rootClass: shouldExpandList ? "SubscriptionList-expanded" : "SubscriptionList",
   };
 
@@ -65,7 +63,7 @@ export default function SubscriptionList() {
         </InfiniteScroll>
       </div>
 
-      <Button onClick={handleOnClick} text={jsxConfig.btn.text} startIcon={jsxConfig.btn.icon} className="SubscriptionList__btn" />
+      <Button onClick={handleOnClick} text={jsxConfig.btnText} startIcon={jsxConfig.btnIcon} className="SubscriptionList__btn" />
     </>
   );
 }

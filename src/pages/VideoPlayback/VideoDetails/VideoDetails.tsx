@@ -19,10 +19,11 @@ export default function VideoDetails({
 }: IVideoDetails) {
   const [shouldShowMore, setShouldShowMore] = useState<boolean>(false);
 
-  const btnText = shouldShowMore ? "Show less" : "Show more";
-  const addBtnClass = (className: string) => (shouldShowMore ? `${className}-bottom` : className);
-
-  const addDescriptionTextClass = (className: string) => (shouldShowMore ? `${className}-expanded` : className);
+  const jsxConfig = {
+    btnText: shouldShowMore ? "Show less" : "Show more",
+    btnClass: shouldShowMore ? "VideoDetails__description-btn-bottom" : "VideoDetails__description-btn",
+    descriptionClass: shouldShowMore ? "VideoDetails__description-text-expanded" : "VideoDetails__description-text",
+  };
 
   const handleClick = () => {
     setShouldShowMore((previousState) => !previousState);
@@ -46,11 +47,11 @@ export default function VideoDetails({
           <span className="VideoDetails__description-heading-views">{viewCount}K views</span>
           <span className="VideoDetails__description-heading-time">{publishedAt}</span>
 
-          <Button onClick={handleClick} text={btnText} color="info" className={addBtnClass("VideoDetails__description-btn")} variant="outlined" />
+          <Button onClick={handleClick} text={jsxConfig.btnText} color="info" className={jsxConfig.btnClass} variant="outlined" />
         </div>
 
         <LinkifyText>
-          <p className={addDescriptionTextClass("VideoDetails__description-text")}>{description}</p>
+          <p className={jsxConfig.descriptionClass}>{description}</p>
         </LinkifyText>
 
         {/* <span className="VideoDetails__desc-tags">{tags?.map((tag) => `#${tag}`)}</span> */}
