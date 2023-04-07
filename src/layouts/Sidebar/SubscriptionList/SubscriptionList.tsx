@@ -26,9 +26,12 @@ export default function SubscriptionList() {
     if (accessToken) dispatch(getSubscriptionsThunk(accessToken));
   }, [accessToken]);
 
-  const btnText = shouldExpandList ? "Show less" : `Show ${totalCount - COLLAPSED_SUBSCRIPTIONS_NUM} more`;
-
-  const rootClass = shouldExpandList ? "SubscriptionList-expanded" : "SubscriptionList";
+  const jsxConfig = shouldExpandList
+    ? { btn: { text: "Show less", icon: ExpandLessIcon }, rootClass: "SubscriptionList-expanded" }
+    : {
+        btn: { text: `Show ${totalCount - COLLAPSED_SUBSCRIPTIONS_NUM} more`, icon: ExpandMoreIcon },
+        rootClass: "SubscriptionList",
+      };
 
   const handleOnClick = () => {
     scrollElementToTop(listRef);
@@ -42,7 +45,7 @@ export default function SubscriptionList() {
 
   return (
     <>
-      <div id={SCROLLABLE_JSX} className={rootClass} ref={listRef}>
+      <div id={SCROLLABLE_JSX} className={jsxConfig.rootClass} ref={listRef}>
         <InfiniteScroll
           dataLength={subscriptions.length}
           next={loadMoreSubscriptions}
@@ -61,12 +64,7 @@ export default function SubscriptionList() {
         </InfiniteScroll>
       </div>
 
-      <Button
-        onClick={handleOnClick}
-        text={btnText}
-        startIcon={shouldExpandList ? ExpandLessIcon : ExpandMoreIcon}
-        className="SubscriptionList__btn"
-      />
+      <Button onClick={handleOnClick} text={jsxConfig.btn.text} startIcon={jsxConfig.btn.icon} className="SubscriptionList__btn" />
     </>
   );
 }
