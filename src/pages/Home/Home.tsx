@@ -2,20 +2,20 @@ import { useEffect } from "react";
 import "./Home.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
-import { getInitialVideosThunk, getMoreVideosThunk } from "../../redux/thunks/videosThunk";
-import { videosSelector } from "../../redux/slices/videosSlice";
+import { recommendedVideosSelector } from "../../redux/slices/recommendedVideosSlice";
 import { useNavigate } from "react-router-dom";
 import VideoCard from "../../components/VideoCard/VideoCard";
 import { IVideo } from "../../types/types";
+import { getMoreRecommendedVideosThunk, getRecommendedVideosThunk } from "../../redux/thunks/recommendedVideosThunk";
 
 export default function Home() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { videos, nextPageToken } = useAppSelector(videosSelector);
+  const { recommendedVideos, nextPageToken } = useAppSelector(recommendedVideosSelector);
 
   useEffect(() => {
-    dispatch(getInitialVideosThunk());
+    dispatch(getRecommendedVideosThunk());
   }, []);
 
   const openVideoURL = (videoId: string) => {
@@ -24,13 +24,13 @@ export default function Home() {
 
   const loadMoreVideos = () => {
     const nextPageTokenParam = `&pageToken=${nextPageToken}`;
-    dispatch(getMoreVideosThunk(nextPageTokenParam));
+    dispatch(getMoreRecommendedVideosThunk(nextPageTokenParam));
   };
 
   return (
     <InfiniteScroll
       className="Home"
-      dataLength={videos.length}
+      dataLength={recommendedVideos.length}
       next={loadMoreVideos}
       hasMore={!!nextPageToken}
       loader={<h4>Loading...</h4>}
@@ -40,7 +40,7 @@ export default function Home() {
         </p>
       }
     >
-      {videos?.map((video: IVideo, index) => (
+      {recommendedVideos?.map((video: IVideo, index) => (
         <VideoCard {...video} key={index} onClick={() => openVideoURL(video.id)} />
       ))}
     </InfiniteScroll>

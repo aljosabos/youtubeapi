@@ -7,7 +7,7 @@ import {
   POPULAR_VIDEOS_URL,
 } from "../../constants/endpointConstants";
 
-export const getInitialVideosThunk = createAsyncThunk(
+export const getRecommendedVideosThunk = createAsyncThunk(
   "videos/initialLoad",
   async () => {
     const url = `${POPULAR_VIDEOS_URL}${INITIAL_LOAD_SIZE_PARAM}`;
@@ -20,7 +20,7 @@ export const getInitialVideosThunk = createAsyncThunk(
   }
 );
 
-export const getMoreVideosThunk = createAsyncThunk(
+export const getMoreRecommendedVideosThunk = createAsyncThunk(
   "videos/loadMore",
   async (nextPageTokenParam: string) => {
     const url = `${POPULAR_VIDEOS_URL}${LOAD_MORE_SIZE_PARAM}${nextPageTokenParam}`;
