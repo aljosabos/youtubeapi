@@ -22,8 +22,11 @@ export const getRecommendedVideosThunk = createAsyncThunk(
 
 export const getMoreRecommendedVideosThunk = createAsyncThunk(
   "videos/loadMore",
-  async (nextPageTokenParam: string) => {
+  async (nextPageToken: string) => {
+    const nextPageTokenParam = `&pageToken=${nextPageToken}`;
+
     const url = `${POPULAR_VIDEOS_URL}${LOAD_MORE_SIZE_PARAM}${nextPageTokenParam}`;
+
     const response = await axios.get(url);
 
     return {

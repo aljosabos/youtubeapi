@@ -23,8 +23,7 @@ export default function Home() {
   };
 
   const loadMoreVideos = () => {
-    const nextPageTokenParam = `&pageToken=${nextPageToken}`;
-    dispatch(getMoreRecommendedVideosThunk(nextPageTokenParam));
+    dispatch(getMoreRecommendedVideosThunk(nextPageToken));
   };
 
   return (

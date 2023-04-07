@@ -17,12 +17,13 @@ export default function VideoDetails({
   viewCount,
   commentCount,
 }: IVideoDetails) {
+  const BASE_CLASS = "VideoDetails__description";
   const [shouldShowMore, setShouldShowMore] = useState<boolean>(false);
 
   const jsxConfig = {
     btnText: shouldShowMore ? "Show less" : "Show more",
-    btnClass: shouldShowMore ? "VideoDetails__description-btn-bottom" : "VideoDetails__description-btn",
-    descriptionClass: shouldShowMore ? "VideoDetails__description-text-expanded" : "VideoDetails__description-text",
+    btnClass: shouldShowMore ? `${BASE_CLASS}-btn-bottom` : `${BASE_CLASS}-btn`,
+    descriptionClass: shouldShowMore ? `${BASE_CLASS}-text-expanded` : `${BASE_CLASS}-text`,
   };
 
   const handleClick = () => {

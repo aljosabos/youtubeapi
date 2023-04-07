@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { SUBSCRIPTIONS_URL } from "../../constants/endpointConstants";
+import { ACCESS_TOKEN } from "../../constants/constants";
 
 export const getSubscriptionsThunk = createAsyncThunk(
   "subscriptions/initialLoad",
@@ -22,8 +23,10 @@ export const getSubscriptionsThunk = createAsyncThunk(
 
 export const getMoreSubscriptionsThunk = createAsyncThunk(
   "subscriptions/loadMore",
-  async (nextPageTokenParam: string) => {
-    const accessToken = localStorage.getItem("access_token");
+  async (nextPageToken: string) => {
+    const nextPageTokenParam = `&pageToken=${nextPageToken}`;
+    const accessToken = localStorage.getItem(ACCESS_TOKEN);
+
     const url = `${SUBSCRIPTIONS_URL}${nextPageTokenParam}`;
 
     const response = await axios.get(url, {

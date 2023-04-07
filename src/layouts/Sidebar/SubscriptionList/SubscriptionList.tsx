@@ -38,8 +38,7 @@ export default function SubscriptionList() {
   };
 
   const loadMoreSubscriptions = () => {
-    const nextPageTokenParam = `&pageToken=${nextPageToken}`;
-    dispatch(getMoreSubscriptionsThunk(nextPageTokenParam));
+    dispatch(getMoreSubscriptionsThunk(nextPageToken));
   };
 
   return (
