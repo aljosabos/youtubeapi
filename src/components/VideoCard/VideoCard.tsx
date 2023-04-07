@@ -17,7 +17,7 @@ interface IVideoCardProps {
 }
 
 export default function VideoCard({ id, image, title, channel, duration, views, publishDate, onClick, layout }: IVideoCardProps) {
-  const addClasses = (className: string) => (layout ? `${className}-horizontal` : className);
+  const addClasses = (className: string) => (layout ? `${className}--horizontal` : className);
 
   return (
     <div className="VideoCard">

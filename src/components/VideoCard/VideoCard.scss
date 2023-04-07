@@ -7,7 +7,7 @@
   }
 
   &__wrapper {
-    &-horizontal {
+    &--horizontal {
       &.MuiCard-root {
         display: flex;
         align-items: center;
@@ -24,7 +24,7 @@
         border-radius: 10px;
       }
 
-      &-horizontal {
+      &--horizontal {
         &.MuiCardMedia-root {
           border-radius: 10px;
           height: 100%;
@@ -33,7 +33,7 @@
       }
     }
 
-    &-horizontal {
+    &--horizontal {
       position: relative;
       width: 49%;
       height: 100%;
@@ -45,7 +45,7 @@
       bottom: 10px;
       right: 10px;
 
-      &-row {
+      &--horizontal {
         @extend .durationMain;
         bottom: 10px;
         right: 10px;
@@ -54,7 +54,7 @@
   }
 
   &__content {
-    &-horizontal {
+    &--horizontal {
       &.MuiCardContent-root {
         padding: 5px;
         width: 49%;
