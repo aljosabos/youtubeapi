@@ -9,8 +9,8 @@ import {
 } from "./responseUtils";
 
 export const getRelatedVideosIDs = async (videoId: string) => {
-  const relatedToVideoIdParam = `&relatedToVideoId=${videoId}`;
-  const url = `${RELATED_VIDEO_IDS_URL}${relatedToVideoIdParam}`;
+  const param = `&relatedToVideoId=${videoId}`;
+  const url = `${RELATED_VIDEO_IDS_URL}${param}`;
 
   const response = await axios.get(url);
 
@@ -18,7 +18,8 @@ export const getRelatedVideosIDs = async (videoId: string) => {
 };
 
 export const getRelatedVideos = async (videosIDs: string) => {
-  const url = `${RELATED_VIDEOS_URL}&id=${videosIDs}&maxResults=${videosIDs.length}`;
+  const param = `&maxResults=${videosIDs.length}`;
+  const url = `${RELATED_VIDEOS_URL}&id=${videosIDs}${param}`;
 
   const response = await axios.get(url);
 
