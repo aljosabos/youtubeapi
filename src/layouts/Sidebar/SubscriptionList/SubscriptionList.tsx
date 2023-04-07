@@ -26,12 +26,13 @@ export default function SubscriptionList() {
     if (accessToken) dispatch(getSubscriptionsThunk(accessToken));
   }, [accessToken]);
 
-  const jsxConfig = shouldExpandList
-    ? { btn: { text: "Show less", icon: ExpandLessIcon }, rootClass: "SubscriptionList-expanded" }
-    : {
-        btn: { text: `Show ${totalCount - COLLAPSED_SUBSCRIPTIONS_NUM} more`, icon: ExpandMoreIcon },
-        rootClass: "SubscriptionList",
-      };
+  const jsxConfig = {
+    btn: {
+      text: shouldExpandList ? "Show less" : `Show ${totalCount - COLLAPSED_SUBSCRIPTIONS_NUM} more`,
+      icon: shouldExpandList ? ExpandLessIcon : ExpandMoreIcon,
+    },
+    rootClass: shouldExpandList ? "SubscriptionList-expanded" : "SubscriptionList",
+  };
 
   const handleOnClick = () => {
     scrollElementToTop(listRef);
