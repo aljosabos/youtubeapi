@@ -41,12 +41,12 @@
     }
 
     &-duration {
-      @extend .durationMain;
+      @extend .duration-base;
       bottom: 10px;
       right: 10px;
 
       &--horizontal {
-        @extend .durationMain;
+        @extend .duration-base;
         bottom: 10px;
         right: 10px;
       }
@@ -95,7 +95,7 @@
   }
 }
 
-.durationMain {
+.duration-base {
   position: absolute;
   color: white;
   background-color: black;
