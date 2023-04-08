@@ -29,7 +29,7 @@ export default function SubscriptionList() {
   const jsxConfig = {
     btnText: shouldExpandList ? "Show less" : `Show ${totalCount - COLLAPSED_SUBSCRIPTIONS_NUM} more`,
     btnIcon: shouldExpandList ? ExpandLessIcon : ExpandMoreIcon,
-    rootClass: shouldExpandList ? "SubscriptionList-expanded" : "SubscriptionList",
+    rootClass: shouldExpandList ? "SubscriptionList--expanded" : "SubscriptionList",
   };
 
   const handleOnClick = () => {

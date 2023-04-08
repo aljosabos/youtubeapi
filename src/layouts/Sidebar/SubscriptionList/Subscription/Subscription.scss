@@ -3,8 +3,9 @@
   align-items: center;
   cursor: pointer;
 
-  &__name {
-    font-size: 13px;
+  &:hover {
+    background-color: #edeaea;
+    border-radius: 5px;
   }
 
   &__avatar {
@@ -15,8 +16,7 @@
     }
   }
 
-  &:hover {
-    background-color: #edeaea;
-    border-radius: 5px;
+  &__name {
+    font-size: 13px;
   }
 }

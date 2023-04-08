@@ -18,10 +18,6 @@ function Dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!tokenExpired);
 
   useEffect(() => {
-    console.log("CURRENT TIME: " + currentTime);
-    console.log("EXPIRE TIME: " + Number(tokenExpireTime));
-    console.log(currentTime >= tokenExpireTime);
-
     if (tokenExpired) {
       handleLogout();
       console.log("LOGOUT THE USER");
