@@ -18,8 +18,8 @@ export default function VideoDetails({
   viewCount,
   commentCount,
 }: IVideoDetails) {
-  const BASE_CLASS = "VideoDetails__description";
   const [shouldShowMore, setShouldShowMore] = useState<boolean>(false);
+  const BASE_CLASS = "VideoDetails__description";
 
   const jsxConfig = {
     btnText: shouldShowMore ? "Show less" : "Show more",
