@@ -3,6 +3,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import "./VideoCard.scss";
+import { addBEMClasses } from "../../utils/utils";
 
 interface IVideoCardProps {
   id: string;
@@ -17,16 +18,14 @@ interface IVideoCardProps {
 }
 
 export default function VideoCard({ id, image, title, channel, duration, views, publishDate, onClick, layout }: IVideoCardProps) {
-  const addClasses = (className: string) => (layout ? `${className}--horizontal` : className);
-
   return (
-    <div className="VideoCard">
-      <Card onClick={() => onClick(id)} className={addClasses("VideoCard__wrapper")}>
-        <div className={addClasses("VideoCard__media")}>
-          <CardMedia sx={{ height: 100 }} image={image} title={title} className={addClasses("VideoCard__media-image")} />
-          <span className={addClasses("VideoCard__media-duration")}>{duration}</span>
+    <div className={addBEMClasses("VideoCard")}>
+      <Card onClick={() => onClick(id)} className={addBEMClasses("VideoCard", "wrapper", layout)}>
+        <div className={addBEMClasses("VideoCard", "media", layout)}>
+          <CardMedia sx={{ height: 100 }} image={image} title={title} className={addBEMClasses("VideoCard", "media-image", layout)} />
+          <span className={addBEMClasses("VideoCard", "media-duration", layout)}>{duration}</span>
         </div>
-        <CardContent className={addClasses("VideoCard__content")}>
+        <CardContent className={addBEMClasses("VideoCard", "content", layout)}>
           <Typography gutterBottom variant="h5" component="div" className="VideoCard__content-title">
             {title}
           </Typography>

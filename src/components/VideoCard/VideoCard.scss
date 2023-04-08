@@ -19,6 +19,13 @@
   &__media {
     position: relative;
 
+    &--horizontal {
+      position: relative;
+      width: 49%;
+      height: 100%;
+      border-radius: 10px;
+    }
+
     &-image {
       &.MuiCardMedia-root {
         border-radius: 10px;
@@ -31,13 +38,6 @@
           object-fit: cover;
         }
       }
-    }
-
-    &--horizontal {
-      position: relative;
-      width: 49%;
-      height: 100%;
-      border-radius: 10px;
     }
 
     &-duration {
