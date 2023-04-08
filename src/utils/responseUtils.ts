@@ -1,4 +1,7 @@
-import { formatISOtoHumanReadable, formatNumToThousands } from "./dateUtils";
+import {
+  formatISOtoHumanReadable,
+  formatToThousandsWithOneDecimal,
+} from "./dateUtils";
 import moment from "moment";
 import {
   IRelatedVideosResponse,
@@ -13,7 +16,7 @@ export const mapResponseToVideos = (items: IVideoResponse[]) =>
     channel: item.snippet.channelTitle,
     image: item.snippet.thumbnails.high.url,
     duration: formatISOtoHumanReadable(item.contentDetails.duration),
-    views: formatNumToThousands(Number(item.statistics.viewCount)),
+    views: formatToThousandsWithOneDecimal(Number(item.statistics.viewCount)),
     publishDate: moment(item.snippet.publishedAt).fromNow(),
   }));
 
@@ -32,6 +35,8 @@ export const formatResponseToVideoDetails = (
   publishedAt: moment(response?.snippet?.publishedAt).fromNow(),
   tags: response?.snippet?.tags,
   image: response?.snippet?.thumbnails?.high?.url,
-  viewCount: formatNumToThousands(Number(response?.statistics?.viewCount)),
+  viewCount: formatToThousandsWithOneDecimal(
+    Number(response?.statistics?.viewCount)
+  ),
   commentCount: response?.statistics?.commentCount,
 });
