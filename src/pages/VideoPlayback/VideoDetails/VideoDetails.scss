@@ -45,20 +45,20 @@
       height: 48px;
       @extend .descriptionTextMain;
 
-      &-expanded {
+      &--expanded {
         @extend .descriptionTextMain;
         height: auto;
       }
     }
 
     &-btn {
-      @extend .btnMain;
+      @extend .btn-base;
       &.MuiButton-root {
         margin-left: 15px;
       }
 
-      &-bottom {
-        @extend .btnMain;
+      &--bottom {
+        @extend .btn-base;
         &.MuiButton-root {
           position: absolute;
           left: -5px;
@@ -73,7 +73,7 @@
   }
 }
 
-.btnMain {
+.btn-base {
   &.MuiButton-root {
     text-transform: initial;
     font-size: 13px;

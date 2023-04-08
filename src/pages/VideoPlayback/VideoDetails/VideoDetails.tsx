@@ -4,6 +4,7 @@ import Button from "../../../components/Button/Button";
 import { useState } from "react";
 import LinkifyText from "../../../components/LinkifyText/LinkifyText";
 import { IVideoDetails } from "../../../types/types";
+import { scrollPageToTop } from "../../../utils/utils";
 
 export default function VideoDetails({
   id,
@@ -22,11 +23,12 @@ export default function VideoDetails({
 
   const jsxConfig = {
     btnText: shouldShowMore ? "Show less" : "Show more",
-    btnClass: shouldShowMore ? `${BASE_CLASS}-btn-bottom` : `${BASE_CLASS}-btn`,
-    descriptionClass: shouldShowMore ? `${BASE_CLASS}-text-expanded` : `${BASE_CLASS}-text`,
+    btnClass: shouldShowMore ? `${BASE_CLASS}-btn--bottom` : `${BASE_CLASS}-btn`,
+    descriptionClass: shouldShowMore ? `${BASE_CLASS}-text--expanded` : `${BASE_CLASS}-text`,
   };
 
   const handleClick = () => {
+    if (shouldShowMore) scrollPageToTop();
     setShouldShowMore((previousState) => !previousState);
   };
 
