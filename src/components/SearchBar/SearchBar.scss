@@ -1,7 +1,6 @@
 .Searchbar {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  //   border: 1px solid black;
   align-items: center;
 
   &__textfield {
@@ -10,7 +9,6 @@
       border-top-left-radius: 40px;
       border-right: none;
       cursor: pointer;
-      //   outline: 1px solid grey;
 
       .MuiOutlinedInput-root {
         border-bottom-left-radius: 40px;
@@ -23,12 +21,6 @@
 
       .MuiOutlinedInput-input {
         padding: 9px 20px;
-
-        // ovde focus radi
-        // &:focus {
-        //   border-top: 1px solid blue;
-        //   border-bottom: 1px solid blue;
-        // }
       }
 
       .MuiOutlinedInput-notchedOutline {

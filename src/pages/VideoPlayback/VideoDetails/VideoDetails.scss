@@ -11,7 +11,7 @@
       margin-right: 10px;
     }
 
-    &-text {
+    &-info {
       &-name {
         letter-spacing: 0.3px;
       }
@@ -24,9 +24,9 @@
     }
   }
 
-  &__desc {
+  &__description {
     position: relative;
-    &-head {
+    &-heading {
       display: flex;
       align-items: flex-end;
       &-views,
@@ -41,30 +41,24 @@
     }
 
     &-text {
-      margin-bottom: 30px;
-      margin-top: 10px;
-      padding: 8px;
-      font-size: 14px;
-      white-space: pre-line;
-      background-color: #edeaea;
-      border-radius: 4px;
-      height: 48px;
       overflow: hidden;
-      padding-bottom: 40px;
+      height: 48px;
+      @extend .descriptionTextMain;
 
-      &-expanded {
+      &--expanded {
+        @extend .descriptionTextMain;
         height: auto;
       }
     }
 
     &-btn {
-      @extend .btnMain;
+      @extend .btn-base;
       &.MuiButton-root {
         margin-left: 15px;
       }
 
-      &-bottom {
-        @extend .btnMain;
+      &--bottom {
+        @extend .btn-base;
         &.MuiButton-root {
           position: absolute;
           left: -5px;
@@ -79,9 +73,7 @@
   }
 }
 
-/* btn main class */
-
-.btnMain {
+.btn-base {
   &.MuiButton-root {
     text-transform: initial;
     font-size: 13px;
@@ -98,4 +90,15 @@
       box-shadow: none;
     }
   }
+}
+
+.descriptionTextMain {
+  margin-bottom: 30px;
+  margin-top: 10px;
+  padding: 8px;
+  font-size: 14px;
+  white-space: pre-line;
+  background-color: #edeaea;
+  border-radius: 4px;
+  padding-bottom: 40px;
 }

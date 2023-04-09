@@ -1,25 +1,5 @@
 import { SerializedError } from "@reduxjs/toolkit";
-
-export interface IVideoDetails {
-  id: string;
-  title: string;
-  channelId: string;
-  channelTitle: string;
-  description: string;
-  publishedAt: string;
-  tags: string[];
-  thumbnails: {
-    high: {
-      url: string;
-    };
-  };
-  statistics: {
-    viewCount: string;
-    likeCount: string;
-    favoriteCount: string;
-    commentCount: string;
-  };
-}
+import { IVideoDetails } from "../../types/types";
 
 export interface IVideoDetailsSliceState {
   data: IVideoDetails;

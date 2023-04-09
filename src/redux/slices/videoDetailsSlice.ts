@@ -1,8 +1,8 @@
-import { IVideoDetails } from "../types/videoDetailsState";
 import { createSlice } from "@reduxjs/toolkit";
 import { getVideoDetailsThunk } from "../thunks/videoDetailsThunk";
 import { IVideoDetailsSliceState } from "../types/videoDetailsState";
 import { RootState } from "../store";
+import { IVideoDetails } from "../../types/types";
 
 const initialState: IVideoDetailsSliceState = {
   data: {} as IVideoDetails,
@@ -24,9 +24,7 @@ export const videoDetailsSlice = createSlice({
     builder.addCase(getVideoDetailsThunk.fulfilled, (state, action) => {
       state.status = "succeeded";
       state.error = {};
-      state.data = action.payload.data;
-      state.data.id = action.payload.id;
-      state.data.statistics = action.payload.statistics;
+      state.data = action.payload;
     });
 
     builder.addCase(getVideoDetailsThunk.rejected, (state, action) => {

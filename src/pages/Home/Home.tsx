@@ -1,37 +1,35 @@
 import { useEffect } from "react";
-import { IVideo } from "../../types/response";
 import "./Home.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
-import { getInitialVideosThunk, getMoreVideosThunk } from "../../redux/thunks/videosThunk";
-import { nextPageTokenSelector, videosSelector } from "../../redux/slices/videosSlice";
+import { recommendedVideosSelector } from "../../redux/slices/recommendedVideosSlice";
 import { useNavigate } from "react-router-dom";
-import VideoCard from "../../components/Video/VideoCard";
+import VideoCard from "../../components/VideoCard/VideoCard";
+import { IVideo } from "../../types/types";
+import { getMoreRecommendedVideosThunk, getRecommendedVideosThunk } from "../../redux/thunks/recommendedVideosThunk";
 
 export default function Home() {
   const dispatch = useAppDispatch();
-  const videos = useAppSelector(videosSelector);
-  const nextPageToken = useAppSelector(nextPageTokenSelector);
-
   const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(getInitialVideosThunk());
-  }, []);
+  const { recommendedVideos, nextPageToken } = useAppSelector(recommendedVideosSelector);
 
-  const loadMoreVideos = () => {
-    const nextPageTokenParam = `&pageToken=${nextPageToken}`;
-    dispatch(getMoreVideosThunk(nextPageTokenParam));
-  };
+  useEffect(() => {
+    dispatch(getRecommendedVideosThunk());
+  }, []);
 
   const openVideoURL = (videoId: string) => {
     navigate(`/video/${videoId}`);
   };
 
+  const loadMoreVideos = () => {
+    dispatch(getMoreRecommendedVideosThunk(nextPageToken));
+  };
+
   return (
     <InfiniteScroll
       className="Home"
-      dataLength={videos.length}
+      dataLength={recommendedVideos.length}
       next={loadMoreVideos}
       hasMore={!!nextPageToken}
       loader={<h4>Loading...</h4>}
@@ -41,7 +39,7 @@ export default function Home() {
         </p>
       }
     >
-      {videos?.map((video: IVideo, index) => (
+      {recommendedVideos?.map((video: IVideo, index) => (
         <VideoCard {...video} key={index} onClick={() => openVideoURL(video.id)} />
       ))}
     </InfiniteScroll>

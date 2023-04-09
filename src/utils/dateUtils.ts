@@ -8,7 +8,7 @@ export const formatISOtoHumanReadable = (ISOTime: string) => {
     .format(duration.hours() > 0 ? "HH:mm:ss" : "mm:ss");
 };
 
-export const formatNumToThousands = (num: number) =>
+export const formatToThousandsWithOneDecimal = (num: number) =>
   Math.abs(num) > 999
     ? Math.sign(num) * Number((Math.abs(num) / 1000).toFixed(1))
     : Math.sign(num) * Math.abs(num);
