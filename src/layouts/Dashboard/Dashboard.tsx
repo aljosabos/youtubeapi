@@ -20,7 +20,6 @@ function Dashboard() {
   useEffect(() => {
     if (tokenExpired) {
       handleLogout();
-      console.log("LOGOUT THE USER");
     }
   }, [location, tokenExpired]);
 

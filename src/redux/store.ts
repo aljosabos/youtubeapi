@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { PreloadedState, configureStore } from "@reduxjs/toolkit";
 import recommendedVideosReducer from "./slices/recommendedVideosSlice";
 import subscriptionsReducer from "./slices/subscriptionsSlice";
 import videoDetailsReducer from "./slices/videoDetailsSlice";

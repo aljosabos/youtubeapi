@@ -14,7 +14,7 @@ export const getRecommendedVideosThunk = createAsyncThunk(
     const response = await axios.get(url);
 
     return {
-      items: mapResponseToVideos(response.data.items),
+      items: response.data.items,
       nextPageToken: response.data.nextPageToken,
     };
   }
@@ -30,7 +30,7 @@ export const getMoreRecommendedVideosThunk = createAsyncThunk(
     const response = await axios.get(url);
 
     return {
-      items: mapResponseToVideos(response.data.items),
+      items: response.data.items,
       nextPageToken: response.data.nextPageToken,
     };
   }
