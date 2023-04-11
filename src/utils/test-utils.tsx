@@ -8,7 +8,7 @@ import recommendedVideosReducer from "../redux/slices/recommendedVideosSlice";
 import subscriptionsReducer from "../redux/slices/subscriptionsSlice";
 import videoDetailsReducer from "../redux/slices/videoDetailsSlice";
 import relatedVideosReducer from "../redux/slices/relatedVideosSlice";
-import { BrowserRouter } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 import type { RootState } from "../redux/store";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 
@@ -19,6 +19,7 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
 
 export function renderWithProviders(
   ui: React.ReactElement,
+  initialEntries?: Array<string>,
   {
     preloadedState = {} as RootState,
     // Automatically create a store instance if no store was passed in
@@ -36,9 +37,9 @@ export function renderWithProviders(
 ) {
   function Wrapper({ children }: PropsWithChildren<{}>): JSX.Element {
     return (
-      <BrowserRouter>
+      <MemoryRouter initialEntries={initialEntries}>
         <Provider store={store}>{children}</Provider>
-      </BrowserRouter>
+      </MemoryRouter>
     );
   }
 
