@@ -8,7 +8,7 @@ import recommendedVideosReducer from "../redux/slices/recommendedVideosSlice";
 import subscriptionsReducer from "../redux/slices/subscriptionsSlice";
 import videoDetailsReducer from "../redux/slices/videoDetailsSlice";
 import relatedVideosReducer from "../redux/slices/relatedVideosSlice";
-import { BrowserRouter, NavigateFunction, Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import type { RootState } from "../redux/store";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 

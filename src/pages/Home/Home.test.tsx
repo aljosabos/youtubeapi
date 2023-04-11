@@ -1,13 +1,13 @@
 import { act, fireEvent, screen } from "@testing-library/react";
 import { renderWithProviders } from "../../utils/test-utils";
-import { getRecommendedVideosMockResponse } from "../../utils/tests.data";
+import { mockAxiosRequests } from "../../utils/tests.data";
 import Home from "./Home";
 import { getMoreRecommendedVideosThunk, getRecommendedVideosThunk } from "../../redux/thunks/recommendedVideosThunk";
 import * as reduxHooks from "../../redux/hooks/hooks";
 
 describe("Home page tests", () => {
   beforeAll(() => {
-    getRecommendedVideosMockResponse();
+    mockAxiosRequests();
   });
 
   test("should load initial recommended videos", async () => {
@@ -40,7 +40,7 @@ describe("Home page tests", () => {
   });
 
   test.only("getMoreRecommendedVideosThunk should return results", async () => {
-    /* before load more initial videos are loaded */
+    /* first  initial videos are loaded */
     const { store } = renderWithProviders(<Home />);
     await act(async () => {
       await (store.dispatch as any)(getRecommendedVideosThunk());
