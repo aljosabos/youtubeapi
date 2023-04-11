@@ -12,12 +12,12 @@ import {
 export const mapResponseToVideos = (items: IVideoResponse[]) =>
   items.map((item: IVideoResponse) => ({
     id: item.id,
-    title: item.snippet.title,
-    channel: item.snippet.channelTitle,
-    image: item.snippet.thumbnails.high.url,
-    duration: formatISOtoHumanReadable(item.contentDetails.duration),
-    views: formatToThousandsWithOneDecimal(Number(item.statistics.viewCount)),
-    publishDate: moment(item.snippet.publishedAt).fromNow(),
+    title: item.snippet?.title,
+    channel: item.snippet?.channelTitle,
+    image: item.snippet?.thumbnails.high.url,
+    duration: formatISOtoHumanReadable(item.contentDetails?.duration),
+    views: formatToThousandsWithOneDecimal(Number(item.statistics?.viewCount)),
+    publishDate: moment(item.snippet?.publishedAt).fromNow(),
   }));
 
 export const mapResponseToRelatedVideoIDs = (

@@ -22,19 +22,22 @@ export const getRelatedVideosThunk = createAsyncThunk(
 
 /* helpers */
 const getRelatedVideosIDs = async (videoId: string) => {
-  const param = `&relatedToVideoId=${videoId}`;
-  const url = `${RELATED_VIDEO_IDS_URL}${param}`;
-
-  const response = await axios.get(url);
+  const response = await axios.get(RELATED_VIDEO_IDS_URL, {
+    params: {
+      relatedToVideoId: videoId,
+    },
+  });
 
   return mapResponseToRelatedVideoIDs(response.data.items).join(",");
 };
 
 const getRelatedVideos = async (videosIDs: string) => {
-  const param = `&maxResults=${videosIDs.length}`;
-  const url = `${RELATED_VIDEOS_URL}&id=${videosIDs}${param}`;
-
-  const response = await axios.get(url);
+  const response = await axios.get(RELATED_VIDEOS_URL, {
+    params: {
+      id: videosIDs,
+      maxResults: videosIDs.length,
+    },
+  });
 
   return {
     items: mapResponseToVideos(response.data.items),

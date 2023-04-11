@@ -6,9 +6,11 @@ import { formatResponseToVideoDetails } from "../../utils/responseUtils";
 export const getVideoDetailsThunk = createAsyncThunk(
   "videoDetails/get",
   async (videoId: string) => {
-    const url = `${VIDEO_DETAILS_URL}&id=${videoId}`;
-
-    const response = await axios.get(url);
+    const response = await axios.get(VIDEO_DETAILS_URL, {
+      params: {
+        id: videoId,
+      },
+    });
 
     return formatResponseToVideoDetails(response.data.items[0]);
   }

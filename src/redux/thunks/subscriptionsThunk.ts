@@ -24,15 +24,15 @@ export const getSubscriptionsThunk = createAsyncThunk(
 export const getMoreSubscriptionsThunk = createAsyncThunk(
   "subscriptions/loadMore",
   async (nextPageToken: string) => {
-    const nextPageTokenParam = `&pageToken=${nextPageToken}`;
     const accessToken = localStorage.getItem(ACCESS_TOKEN);
 
-    const url = `${SUBSCRIPTIONS_URL}${nextPageTokenParam}`;
-
-    const response = await axios.get(url, {
+    const response = await axios.get(SUBSCRIPTIONS_URL, {
       headers: {
         Authorization: `Bearer ${accessToken} `,
         Accept: "application/json",
+      },
+      params: {
+        pageToken: nextPageToken,
       },
     });
 

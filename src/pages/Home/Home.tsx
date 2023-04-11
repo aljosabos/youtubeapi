@@ -27,21 +27,23 @@ export default function Home() {
   };
 
   return (
-    <InfiniteScroll
-      className="Home"
-      dataLength={recommendedVideos.length}
-      next={loadMoreVideos}
-      hasMore={!!nextPageToken}
-      loader={<h4>Loading...</h4>}
-      endMessage={
-        <p style={{ textAlign: "center" }}>
-          <b>Yay! You have seen it all</b>
-        </p>
-      }
-    >
-      {recommendedVideos?.map((video: IVideo, index) => (
-        <VideoCard {...video} key={index} onClick={() => openVideoURL(video.id)} />
-      ))}
-    </InfiniteScroll>
+    <div data-testid="infinite-scroll">
+      <InfiniteScroll
+        className="Home"
+        dataLength={recommendedVideos.length}
+        next={loadMoreVideos}
+        hasMore={!!nextPageToken}
+        loader={<h4>Loading...</h4>}
+        endMessage={
+          <p style={{ textAlign: "center" }}>
+            <b>Yay! You have seen it all</b>
+          </p>
+        }
+      >
+        {recommendedVideos?.map((video: IVideo, index) => (
+          <VideoCard ariaLabel="video-card" {...video} key={index} onClick={() => openVideoURL(video.id)} />
+        ))}
+      </InfiniteScroll>
+    </div>
   );
 }

@@ -5,6 +5,7 @@ import {
   getRecommendedVideosThunk,
 } from "../thunks/recommendedVideosThunk";
 import { IRecommendedVideosState } from "../types/recommendedVideosState";
+import { mapResponseToVideos } from "../../utils/responseUtils";
 
 const initialState: IRecommendedVideosState = {
   data: {
@@ -29,7 +30,8 @@ export const recommendedVideosSlice = createSlice({
     builder.addCase(getRecommendedVideosThunk.fulfilled, (state, action) => {
       state.status = "succeeded";
       state.error = {};
-      state.data = action.payload;
+      state.data.items = mapResponseToVideos(action.payload.items);
+      state.data.nextPageToken = action.payload.nextPageToken;
     });
 
     builder.addCase(getRecommendedVideosThunk.rejected, (state, action) => {
@@ -45,10 +47,11 @@ export const recommendedVideosSlice = createSlice({
     builder.addCase(
       getMoreRecommendedVideosThunk.fulfilled,
       (state, action) => {
+        const mappedVideos = mapResponseToVideos(action.payload.items);
         state.status = "succeeded";
         state.error = {};
         state.data = {
-          items: [...state.data.items, ...action.payload.items],
+          items: [...state.data.items, ...mappedVideos],
           nextPageToken: action.payload.nextPageToken,
         };
       }

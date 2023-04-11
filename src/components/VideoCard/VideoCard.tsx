@@ -15,11 +15,12 @@ interface IVideoCardProps {
   publishDate: string;
   onClick: (id: string) => void;
   layout?: "horizontal";
+  ariaLabel?: string;
 }
 
-export default function VideoCard({ id, image, title, channel, duration, views, publishDate, onClick, layout }: IVideoCardProps) {
+export default function VideoCard({ id, image, title, channel, duration, views, publishDate, onClick, layout, ariaLabel }: IVideoCardProps) {
   return (
-    <div className={addBEMClasses("VideoCard")}>
+    <div className={addBEMClasses("VideoCard")} aria-label={ariaLabel}>
       <Card onClick={() => onClick(id)} className={addBEMClasses("VideoCard", "wrapper", layout)}>
         <div className={addBEMClasses("VideoCard", "media", layout)}>
           <CardMedia sx={{ height: 100 }} image={image} title={title} className={addBEMClasses("VideoCard", "media-image", layout)} />
