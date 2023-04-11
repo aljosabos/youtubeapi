@@ -4,11 +4,12 @@ import { mockAxiosRequests } from "../../utils/tests.data";
 import Home from "./Home";
 import { getMoreRecommendedVideosThunk, getRecommendedVideosThunk } from "../../redux/thunks/recommendedVideosThunk";
 import * as reduxHooks from "../../redux/hooks/hooks";
-import { recommendedVideosMock } from "../../utils/recommendedVideosMock";
+import { moreRecommendedVideosMock, recommendedVideosMock } from "../../utils/recommendedVideosMock";
 import { mapResponseToVideos } from "../../utils/responseUtils";
 import { IVideo } from "../../types/types";
 
 const { items: mockVideos } = recommendedVideosMock.data;
+const { items: moreMockVideos } = moreRecommendedVideosMock.data;
 
 describe("Home page tests", () => {
   beforeAll(() => {
@@ -70,7 +71,7 @@ describe("Home page tests", () => {
     expect(mockedDispatch).toHaveBeenCalled();
   });
 
-  test("getMoreRecommendedVideosThunk should return results and add them to intial results", async () => {
+  test("getMoreRecommendedVideosThunk should return videos which will be added to previous videos", async () => {
     /* before loading more videos, initial load is called */
     const { store } = renderWithProviders(<Home />);
     await act(async () => {
@@ -79,6 +80,26 @@ describe("Home page tests", () => {
       const nextPageToken = await store.getState().recommendedVideos.data.nextPageToken;
 
       await store.dispatch(getMoreRecommendedVideosThunk(nextPageToken) as any);
+
+      const videosInStore = await store.getState().recommendedVideos.data.items;
+
+      expect(videosInStore).toEqual([...mapResponseToVideos(mockVideos), ...mapResponseToVideos(moreMockVideos)]);
+    });
+  });
+
+  test("next page token is updated after new videos are loaded", async () => {
+    const { store } = renderWithProviders(<Home />);
+    await act(async () => {
+      await store.dispatch(getRecommendedVideosThunk() as any);
+
+      const initialNextPageToken = await store.getState().recommendedVideos.data.nextPageToken;
+
+      await store.dispatch(getMoreRecommendedVideosThunk(initialNextPageToken) as any);
+
+      const updatedNextPageToken = await store.getState().recommendedVideos.data.nextPageToken;
+
+      expect(updatedNextPageToken).toBeTruthy();
+      expect(initialNextPageToken).not.toEqual(updatedNextPageToken);
     });
   });
 });
