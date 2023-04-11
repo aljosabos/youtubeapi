@@ -45,4 +45,4 @@ describe("Dashboard tests", () => {
     const signInButton = screen.getByRole("button", { name: "Sign in" });
     expect(signInButton).toBeInTheDocument();
   });
-}); // subscribe
+});
