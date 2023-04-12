@@ -34,7 +34,7 @@ export default function Header({ handleLogout }: IHeaderProps) {
 
   return (
     <div className="Header">
-      <img src={YoutubeLogo} className="Header__logo" alt="youtube_logo" onClick={navigateToHome} />
+      <img src={YoutubeLogo} className="Header__logo" alt="youtube_logo" aria-label="logo" onClick={navigateToHome} />
       <SearchBar />
 
       {!isLoggedIn ? (
