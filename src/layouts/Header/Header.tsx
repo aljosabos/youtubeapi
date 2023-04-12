@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { AUTH_SCOPE } from "../../constants/endpointConstants";
 import { useNavigate } from "react-router";
-import { ACCESS_TOKEN, TOKEN_EXPIRE_TIME } from "../../constants/constants";
+import { setTokenExpireTimeToLocalStorage } from "../../utils/utils";
 
 interface IHeaderProps {
   handleLogout: () => void;
@@ -20,9 +20,7 @@ export default function Header({ handleLogout }: IHeaderProps) {
 
   const login = useGoogleLogin({
     onSuccess: ({ access_token, expires_in }) => {
-      localStorage.setItem(ACCESS_TOKEN, access_token);
-      const tokenExpireTime = Date.now() + expires_in * 1000;
-      localStorage.setItem(TOKEN_EXPIRE_TIME, tokenExpireTime.toString());
+      setTokenExpireTimeToLocalStorage(access_token, expires_in);
       setIsLoggedIn(true);
     },
     scope: AUTH_SCOPE,

@@ -6,12 +6,10 @@ import * as googleOAuth from "@react-oauth/google";
 
 describe("Header tests", () => {
   const handleLogout = jest.fn();
-
   afterEach(() => jest.clearAllMocks());
 
   test("If the user is logged out, button text is 'Sign in' ", async () => {
     clearLocalStorage();
-
     renderWithProviders(<Header handleLogout={handleLogout} />);
 
     const signInButton = screen.getByRole("button", { name: "Sign in" });
@@ -20,13 +18,10 @@ describe("Header tests", () => {
 
   test("click on the button invokes useGoogleLogin method", async () => {
     clearLocalStorage();
-
     const spyOnLogin = jest.spyOn(googleOAuth, "useGoogleLogin");
-
     renderWithProviders(<Header handleLogout={handleLogout} />);
 
     const btn = screen.getByRole("button", { name: "Sign in" });
-
     fireEvent.click(btn);
     expect(spyOnLogin).toHaveBeenCalledTimes(1);
   });
@@ -51,7 +46,6 @@ describe("Header tests", () => {
 
     const logo = screen.getByLabelText("logo");
     fireEvent.click(logo);
-
     expect(window.location.pathname).toEqual("/");
   });
 });

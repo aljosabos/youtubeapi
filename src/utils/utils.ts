@@ -1,7 +1,17 @@
 import { MutableRefObject } from "react";
+import { ACCESS_TOKEN, TOKEN_EXPIRE_TIME } from "../constants/constants";
 
 export const clearLocalStorage = () => {
   localStorage.clear();
+};
+
+export const setTokenExpireTimeToLocalStorage = (
+  accessToken: string,
+  tokenExpiresIn: number
+) => {
+  localStorage.setItem(ACCESS_TOKEN, accessToken);
+  const tokenExpireTime = Date.now() + tokenExpiresIn * 1000;
+  localStorage.setItem(TOKEN_EXPIRE_TIME, tokenExpireTime.toString());
 };
 
 export const scrollElementToTop = (
