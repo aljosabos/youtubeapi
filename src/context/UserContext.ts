@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-interface IUserContextProps {
+export interface IUserContextProps {
   isLoggedIn: boolean;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 }

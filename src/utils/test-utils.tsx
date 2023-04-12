@@ -11,6 +11,8 @@ import relatedVideosReducer from "../redux/slices/relatedVideosSlice";
 import { MemoryRouter } from "react-router-dom";
 import type { RootState } from "../redux/store";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
+import { IUserContextProps, UserContext } from "../context/UserContext";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: PreloadedState<RootState>;
@@ -20,6 +22,7 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
 export function renderWithProviders(
   ui: React.ReactElement,
   initialEntries?: Array<string>,
+  userContext?: IUserContextProps,
   {
     preloadedState = {} as RootState,
     // Automatically create a store instance if no store was passed in
@@ -38,7 +41,11 @@ export function renderWithProviders(
   function Wrapper({ children }: PropsWithChildren<{}>): JSX.Element {
     return (
       <MemoryRouter initialEntries={initialEntries}>
-        <Provider store={store}>{children}</Provider>
+        <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
+          <Provider store={store}>
+            <UserContext.Provider value={userContext || ({} as IUserContextProps)}>{children}</UserContext.Provider>
+          </Provider>
+        </GoogleOAuthProvider>
       </MemoryRouter>
     );
   }

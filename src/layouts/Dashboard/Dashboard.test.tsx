@@ -1,4 +1,3 @@
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import { TOKEN_EXPIRE_TIME } from "../../constants/constants";
 import { renderWithProviders } from "../../utils/test-utils";
 import Dashboard from "./Dashboard";
@@ -15,11 +14,7 @@ describe("Dashboard tests", () => {
 
     const googleLogoutSpy = jest.spyOn(googleOAuth, "googleLogout");
 
-    renderWithProviders(
-      <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
-        <Dashboard />
-      </GoogleOAuthProvider>
-    );
+    renderWithProviders(<Dashboard />);
     const mockLocation = { pathname: "/videos" };
 
     jest.mock("react-router-dom", () => ({
@@ -36,11 +31,7 @@ describe("Dashboard tests", () => {
   test("if the user is logged out, button text is 'Sign in' ", async () => {
     clearLocalStorage();
 
-    renderWithProviders(
-      <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
-        <Dashboard />
-      </GoogleOAuthProvider>
-    );
+    renderWithProviders(<Dashboard />);
 
     const signInButton = screen.getByRole("button", { name: "Sign in" });
     expect(signInButton).toBeInTheDocument();
