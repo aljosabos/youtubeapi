@@ -4,4 +4,10 @@
   &__icon {
     cursor: pointer;
   }
+
+  &__content {
+    .MuiPopover-paper {
+      top: 70px !important;
+    }
+  }
 }

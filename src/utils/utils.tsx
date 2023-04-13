@@ -36,4 +36,4 @@ export const addBEMClasses = (blockName: string, elementName?: string, modifierN
 };
 
 export const renderIconBasedOnType = (icon: MaterialIcon | string) =>
-  typeof icon === "string" ? <img src={icon} alt=" Icon" /> : createElement(icon, {});
+  typeof icon === "string" ? <img src={icon} alt=" Icon" /> : createElement(icon, { className: "Icon" });

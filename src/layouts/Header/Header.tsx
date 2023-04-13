@@ -12,7 +12,6 @@ import { setTokenExpireTimeToLocalStorage } from "../../utils/utils";
 import Popover from "../../components/Popover/Popover";
 import SettingsIcon from "@mui/icons-material/Settings";
 
-
 interface IHeaderProps {
   handleLogout: () => void;
 }
@@ -41,9 +40,9 @@ export default function Header({ handleLogout }: IHeaderProps) {
       {!isLoggedIn ? (
         <Button startIcon={AccountCircleIcon} text="Sign in" className="Header__btn" wrapperClassName="Header__btn-wrapper" onClick={login} />
       ) : (
-        <Button startIcon={AccountCircleIcon} text="Sign out" className="Header__btn" onClick={handleLogout} />
+        <Button startIcon={AccountCircleIcon} text="Sign out" className="Header__btn" wrapperClassName="Header__btn-wrapper" onClick={handleLogout} />
       )}
-      <Popover icon={SettingsIcon}>This is the content</Popover>
+      <Popover icon={SettingsIcon}>Lorem ipsum</Popover>
     </div>
   );
 }

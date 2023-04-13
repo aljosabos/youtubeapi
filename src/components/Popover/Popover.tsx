@@ -1,5 +1,5 @@
 import { Popover as MaterialPopover, Typography } from "@mui/material";
-import { useState, ReactNode } from "react";
+import { useState, ReactNode, useRef } from "react";
 import "./Popover.scss";
 import { renderIconBasedOnType } from "../../utils/utils";
 import { MaterialIcon } from "@material-ui/core";
@@ -10,9 +10,9 @@ interface IPopoverProps {
 }
 
 export default function Popover({ children, icon }: IPopoverProps) {
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLSpanElement | null>(null);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLSpanElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -36,8 +36,13 @@ export default function Popover({ children, icon }: IPopoverProps) {
         onClose={handleClose}
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "left",
+          horizontal: "right",
         }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        className="Popover__content"
       >
         <Typography sx={{ p: 2 }}>{children}</Typography>
       </MaterialPopover>
