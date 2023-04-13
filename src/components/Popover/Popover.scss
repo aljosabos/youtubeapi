@@ -1,0 +1,7 @@
+.Popover {
+  display: flex;
+  justify-self: center;
+  &__icon {
+    cursor: pointer;
+  }
+}

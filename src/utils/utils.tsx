@@ -1,23 +1,19 @@
 import { MutableRefObject } from "react";
 import { ACCESS_TOKEN, TOKEN_EXPIRE_TIME } from "../constants/constants";
+import { createElement } from "react";
+import { MaterialIcon } from "@material-ui/core";
 
 export const clearLocalStorage = () => {
   localStorage.clear();
 };
 
-export const setTokenExpireTimeToLocalStorage = (
-  accessToken: string,
-  tokenExpiresIn: number
-) => {
+export const setTokenExpireTimeToLocalStorage = (accessToken: string, tokenExpiresIn: number) => {
   localStorage.setItem(ACCESS_TOKEN, accessToken);
   const tokenExpireTime = Date.now() + tokenExpiresIn * 1000;
   localStorage.setItem(TOKEN_EXPIRE_TIME, tokenExpireTime.toString());
 };
 
-export const scrollElementToTop = (
-  ref: MutableRefObject<HTMLDivElement | null>,
-  behavior?: "smooth" | "auto"
-) => {
+export const scrollElementToTop = (ref: MutableRefObject<HTMLDivElement | null>, behavior?: "smooth" | "auto") => {
   if (ref.current) {
     ref.current.scrollTo({
       top: 0,
@@ -31,14 +27,13 @@ export const scrollPageToTop = () => {
   window.scrollTo(0, 0);
 };
 
-export const addBEMClasses = (
-  blockName: string,
-  elementName?: string,
-  modifierName?: string
-) => {
+export const addBEMClasses = (blockName: string, elementName?: string, modifierName?: string) => {
   const classList = [blockName];
   if (elementName) classList.push(`__${elementName}`);
   if (elementName && modifierName) classList.push(`--${modifierName}`);
 
   return classList.join("");
 };
+
+export const renderIconBasedOnType = (icon: MaterialIcon | string) =>
+  typeof icon === "string" ? <img src={icon} alt=" Icon" /> : createElement(icon, {});
