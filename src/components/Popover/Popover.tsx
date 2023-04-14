@@ -1,8 +1,8 @@
 import { Popover as MaterialPopover, Typography } from "@mui/material";
-import { useState, ReactNode, useRef } from "react";
+import { useState, ReactNode } from "react";
 import "./Popover.scss";
 import { renderIconBasedOnType } from "../../utils/utils";
-import { MaterialIcon } from "@material-ui/core";
+import { MaterialIcon } from "../../types/types";
 
 interface IPopoverProps {
   children?: ReactNode;

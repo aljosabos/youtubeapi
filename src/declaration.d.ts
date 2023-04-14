@@ -10,9 +10,3 @@ declare module "*.svg" {
 
   export default src;
 }
-
-declare module "@material-ui/core" {
-  type MaterialIcon = OverridableComponent<SvgIconTypeMap<object, "svg">> & {
-    muiName: string;
-  };
-}

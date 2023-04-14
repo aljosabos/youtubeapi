@@ -1,3 +1,6 @@
+import { SvgIconTypeMap } from "@mui/material";
+import { OverridableComponent } from "@mui/material/OverridableComponent";
+
 export interface IVideo {
   id: string;
   title: string;
@@ -20,3 +23,9 @@ export interface IVideoDetails {
   viewCount: number;
   commentCount: string;
 }
+
+export type MaterialIcon = OverridableComponent<
+  SvgIconTypeMap<object, "svg">
+> & {
+  muiName: string;
+};
