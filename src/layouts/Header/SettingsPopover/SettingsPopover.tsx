@@ -17,7 +17,8 @@ export default function SettingsPopover({ icon }: ISettingsPopoverProps) {
   return (
     <div className="SettingsPopover">
       <Popover icon={icon}>
-        <Select items={selectItems} />
+        <h4 className="SettingsPopover__heading">Settings</h4>
+        <Select items={selectItems} label="Language" />
         <p style={{ fontSize: "12px" }}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident, dolores?</p>
       </Popover>
     </div>
