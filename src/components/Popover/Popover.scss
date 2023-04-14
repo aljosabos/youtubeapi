@@ -1,0 +1,13 @@
+.Popover {
+  display: flex;
+  justify-self: center;
+  &__icon {
+    cursor: pointer;
+  }
+
+  &__content {
+    .MuiPopover-paper {
+      top: 70px !important;
+    }
+  }
+}

@@ -9,6 +9,8 @@ import { UserContext } from "../../context/UserContext";
 import { AUTH_SCOPE } from "../../constants/endpointConstants";
 import { useNavigate } from "react-router";
 import { setTokenExpireTimeToLocalStorage } from "../../utils/utils";
+import Popover from "../../components/Popover/Popover";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 interface IHeaderProps {
   handleLogout: () => void;
@@ -36,10 +38,11 @@ export default function Header({ handleLogout }: IHeaderProps) {
       <SearchBar />
 
       {!isLoggedIn ? (
-        <Button startIcon={AccountCircleIcon} text="Sign in" className="Header__button" onClick={login} />
+        <Button startIcon={AccountCircleIcon} text="Sign in" className="Header__btn" wrapperClassName="Header__btn-wrapper" onClick={login} />
       ) : (
-        <Button startIcon={AccountCircleIcon} text="Sign out" className="Header__button" onClick={handleLogout} />
+        <Button startIcon={AccountCircleIcon} text="Sign out" className="Header__btn" wrapperClassName="Header__btn-wrapper" onClick={handleLogout} />
       )}
+      <Popover icon={SettingsIcon}>Lorem ipsum</Popover>
     </div>
   );
 }

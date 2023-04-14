@@ -1,16 +1,11 @@
 import MaterialButton from "@mui/material/Button";
-import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { SvgIconTypeMap } from "@mui/material/SvgIcon";
 import { Box } from "@mui/system";
 import "./Button.scss";
+import { MaterialIcon } from "../../types/types";
 
 interface IButtonProps {
-  endIcon?: OverridableComponent<SvgIconTypeMap<object, "svg">> & {
-    muiName: string;
-  };
-  startIcon?: OverridableComponent<SvgIconTypeMap<object, "svg">> & {
-    muiName: string;
-  };
+  endIcon?: MaterialIcon;
+  startIcon?: MaterialIcon;
   text?: string;
   className?: string;
   wrapperClassName?: string;

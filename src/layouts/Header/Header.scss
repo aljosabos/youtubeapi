@@ -2,18 +2,24 @@
   grid-column: 1 / -1;
   display: grid;
   width: 100%;
-  grid-template-columns: max-content 500px max-content;
+  grid-template-columns: 1fr 500px 1fr 50px;
   align-items: center;
-  justify-content: space-between;
   padding: 0 40px;
+  padding-right: 0;
 
   &__logo {
     width: 100px;
     cursor: pointer;
   }
 
-  &__button {
+  &__btn {
     display: grid;
+
+    &-wrapper {
+      justify-self: flex-end;
+      margin-right: 10px;
+    }
+
     &.MuiButton-root {
       &:hover {
         background-color: #c5cae9;
