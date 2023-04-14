@@ -7,6 +7,8 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./redux/store";
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
@@ -15,7 +17,9 @@ root.render(
       <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            <App />
+            <I18nextProvider i18n={i18n}>
+              <App />
+            </I18nextProvider>
           </PersistGate>
         </Provider>
       </GoogleOAuthProvider>
