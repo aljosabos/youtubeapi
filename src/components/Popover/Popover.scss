@@ -3,11 +3,14 @@
   justify-self: center;
   &__icon {
     cursor: pointer;
+    color: #5d5858;
   }
 
   &__content {
     .MuiPopover-paper {
       top: 70px !important;
+      width: 270px; // for popover width
+      padding: 10px;
     }
   }
 }
