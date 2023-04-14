@@ -15,8 +15,11 @@ const selectItems = [
 
 export default function SettingsPopover({ icon }: ISettingsPopoverProps) {
   return (
-    <Popover icon={icon}>
-      <Select items={selectItems} />
-    </Popover>
+    <div className="SettingsPopover">
+      <Popover icon={icon}>
+        <Select items={selectItems} />
+        <p style={{ fontSize: "12px" }}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident, dolores?</p>
+      </Popover>
+    </div>
   );
 }

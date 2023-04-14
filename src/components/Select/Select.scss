@@ -1,4 +1,14 @@
 .Select {
+  &__heading {
+    color: #1565c0;
+    font-size: 15px;
+  }
+
+  &__group {
+    &.MuiFormControl-root {
+      margin: 15px 0;
+    }
+  }
   &__input {
     .MuiSelect-select.MuiInputBase-input.MuiInput-input {
       font-size: 14px;
@@ -15,8 +25,6 @@
   }
 
   &__menu-item {
-    color: red;
-
     &.MuiMenuItem-root {
       font-size: 14px;
     }

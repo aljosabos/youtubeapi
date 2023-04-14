@@ -23,7 +23,8 @@ export default function Select({ items, selectedItem, label, onChange, variant =
 
   return (
     <div className="Select">
-      <FormControl variant={variant} sx={{ m: 1, minWidth: 120 }} className="FormControl">
+      <h4 className="Select__heading">Settings</h4>
+      <FormControl variant={variant} sx={{ m: 1, minWidth: 120 }} className="Select__group">
         <InputLabel id="demo-simple-select-standard-label" className="Select__label">
           Language
         </InputLabel>
