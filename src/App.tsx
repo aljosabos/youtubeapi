@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import VideoPlayback from "./pages/VideoPlayback/VideoPlayback";
 import VideoSearch from "./pages/VideoSearch/VideoSearch";
 import "./axiosInstance/interceptor";
+import "./i18n";
 
 function App() {
   return (
