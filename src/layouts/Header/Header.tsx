@@ -9,8 +9,8 @@ import { UserContext } from "../../context/UserContext";
 import { AUTH_SCOPE } from "../../constants/endpointConstants";
 import { useNavigate } from "react-router";
 import { setTokenExpireTimeToLocalStorage } from "../../utils/utils";
-import Popover from "../../components/Popover/Popover";
 import SettingsIcon from "@mui/icons-material/Settings";
+import SettingsPopover from "./SettingsPopover/SettingsPopover";
 
 interface IHeaderProps {
   handleLogout: () => void;
@@ -19,10 +19,11 @@ interface IHeaderProps {
 export default function Header({ handleLogout }: IHeaderProps) {
   const navigate = useNavigate();
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+  const token = localStorage.getItem("access_token");
 
   const login = useGoogleLogin({
-    onSuccess: ({ access_token, expires_in }) => {
-      setTokenExpireTimeToLocalStorage(access_token, expires_in);
+    onSuccess: (response) => {
+      setTokenExpireTimeToLocalStorage(response.access_token, response.expires_in);
       setIsLoggedIn(true);
     },
     scope: AUTH_SCOPE,
@@ -42,7 +43,7 @@ export default function Header({ handleLogout }: IHeaderProps) {
       ) : (
         <Button startIcon={AccountCircleIcon} text="Sign out" className="Header__btn" wrapperClassName="Header__btn-wrapper" onClick={handleLogout} />
       )}
-      <Popover icon={SettingsIcon}>Lorem ipsum</Popover>
+      <SettingsPopover icon={SettingsIcon} />
     </div>
   );
 }

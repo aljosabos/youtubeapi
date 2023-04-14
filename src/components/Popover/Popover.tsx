@@ -4,7 +4,7 @@ import "./Popover.scss";
 import { renderIconBasedOnType } from "../../utils/utils";
 import { MaterialIcon } from "../../types/types";
 
-interface IPopoverProps {
+export interface IPopoverProps {
   children?: ReactNode;
   icon: MaterialIcon | string;
 }
