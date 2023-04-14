@@ -12,7 +12,7 @@ interface IPopoverProps {
 export default function Popover({ children, icon }: IPopoverProps) {
   const [anchorEl, setAnchorEl] = useState<HTMLSpanElement | null>(null);
 
-  const handleClick = (event: React.MouseEvent<HTMLSpanElement>) => {
+  const handleOpen = (event: React.MouseEvent<HTMLSpanElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -25,7 +25,7 @@ export default function Popover({ children, icon }: IPopoverProps) {
 
   return (
     <div className="Popover">
-      <span onClick={handleClick} className="Popover__icon" aria-describedby={id}>
+      <span onClick={handleOpen} className="Popover__icon" aria-describedby={id}>
         {renderIconBasedOnType(icon)}
       </span>
 
