@@ -21,9 +21,8 @@ const languages = [
 export default function SettingsPopover({ icon }: ISettingsPopoverProps) {
   const dispatch = useAppDispatch();
   const currentLanguage = useAppSelector(languageSelector);
-  const [value, setValue] = useState(currentLanguage);
 
-  const selectedLanguage = languages.find((language) => language.value === currentLanguage);
+  const [value, setValue] = useState(currentLanguage);
 
   const handleChange = (e: SelectChangeEvent) => {
     setValue(e.target.value);
@@ -35,7 +34,7 @@ export default function SettingsPopover({ icon }: ISettingsPopoverProps) {
     <div className="SettingsPopover">
       <Popover icon={icon}>
         <h4 className="SettingsPopover__heading">Settings</h4>
-        <Select onChange={handleChange} value={value} items={languages} selectedItem={selectedLanguage} label="Language" />
+        <Select onChange={handleChange} value={value} items={languages} label="Language" />
         <p style={{ fontSize: "12px" }}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident, dolores?</p>
       </Popover>
     </div>
