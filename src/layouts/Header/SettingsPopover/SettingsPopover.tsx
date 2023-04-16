@@ -4,7 +4,9 @@ import Select from "../../../components/Select/Select";
 import i18n from "../../../i18n";
 import { MaterialIcon } from "../../../types/types";
 import "./SettingsPopover.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hooks";
+import { changeLanguage, languageSelector } from "../../../redux/slices/settingsSlice";
 
 interface ISettingsPopoverProps {
   icon: MaterialIcon | string;
@@ -17,22 +19,23 @@ const languageOptions = [
 ];
 
 export default function SettingsPopover({ icon }: ISettingsPopoverProps) {
-  const [language, setLanguage] = useState("");
+  const dispatch = useAppDispatch();
+  const language = useAppSelector(languageSelector);
+  const [value, setValue] = useState(language);
 
-  const changeLanguage = (language: string) => {
-    i18n.changeLanguage(language);
-  };
+  const selectedItem = languageOptions.find((item) => item.value === language);
 
   const handleChange = (e: SelectChangeEvent) => {
-    setLanguage(e.target.value);
-    changeLanguage(e.target.value);
+    setValue(e.target.value);
+    i18n.changeLanguage(e.target.value);
+    dispatch(changeLanguage(e.target.value));
   };
 
   return (
     <div className="SettingsPopover">
       <Popover icon={icon}>
         <h4 className="SettingsPopover__heading">Settings</h4>
-        <Select onChange={handleChange} value={language} items={languageOptions} label="Language" />
+        <Select onChange={handleChange} value={value} items={languageOptions} selectedItem={selectedItem} label="Language" />
         <p style={{ fontSize: "12px" }}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident, dolores?</p>
       </Popover>
     </div>
