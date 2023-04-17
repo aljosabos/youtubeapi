@@ -1,6 +1,6 @@
 import { fireEvent, screen } from "@testing-library/react";
 import { renderWithProviders } from "../../utils/test-utils";
-import { clearLocalStorage } from "../../utils/utils";
+import { removeAccessTokenAndExpireTime } from "../../utils/utils";
 import Header from "./Header";
 import * as googleOAuth from "@react-oauth/google";
 
@@ -9,7 +9,7 @@ describe("Header tests", () => {
   afterEach(() => jest.clearAllMocks());
 
   test("If the user is logged out, button text is 'Sign in' ", async () => {
-    clearLocalStorage();
+    removeAccessTokenAndExpireTime();
     renderWithProviders(<Header handleLogout={handleLogout} />);
 
     const signInButton = screen.getByRole("button", { name: "Sign in" });
@@ -17,7 +17,7 @@ describe("Header tests", () => {
   });
 
   test("click on the button invokes useGoogleLogin method", async () => {
-    clearLocalStorage();
+    removeAccessTokenAndExpireTime();
     const spyOnLogin = jest.spyOn(googleOAuth, "useGoogleLogin");
     renderWithProviders(<Header handleLogout={handleLogout} />);
 

@@ -3,7 +3,7 @@ import { renderWithProviders } from "../../utils/test-utils";
 import Dashboard from "./Dashboard";
 import * as googleOAuth from "@react-oauth/google";
 import { act } from "react-dom/test-utils";
-import { clearLocalStorage } from "../../utils/utils";
+import { removeAccessTokenAndExpireTime } from "../../utils/utils";
 import { screen } from "@testing-library/react";
 
 describe("Dashboard tests", () => {
@@ -29,7 +29,7 @@ describe("Dashboard tests", () => {
   });
 
   test("if the user is logged out, button text is 'Sign in' ", async () => {
-    clearLocalStorage();
+    removeAccessTokenAndExpireTime();
 
     renderWithProviders(<Dashboard />);
 
