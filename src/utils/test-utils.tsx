@@ -9,13 +9,10 @@ import subscriptionsReducer from "../redux/slices/subscriptionsSlice";
 import videoDetailsReducer from "../redux/slices/videoDetailsSlice";
 import relatedVideosReducer from "../redux/slices/relatedVideosSlice";
 import { MemoryRouter } from "react-router-dom";
-import { RootState, persistor } from "../redux/store";
+import { RootState } from "../redux/store";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 import { IUserContextProps, UserContext } from "../context/UserContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { PersistGate } from "redux-persist/integration/react";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18n";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: PreloadedState<RootState>;
