@@ -9,7 +9,7 @@ import subscriptionsReducer from "../redux/slices/subscriptionsSlice";
 import videoDetailsReducer from "../redux/slices/videoDetailsSlice";
 import relatedVideosReducer from "../redux/slices/relatedVideosSlice";
 import { MemoryRouter } from "react-router-dom";
-import type { RootState } from "../redux/store";
+import { RootState } from "../redux/store";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 import { IUserContextProps, UserContext } from "../context/UserContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
