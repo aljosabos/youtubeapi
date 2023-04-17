@@ -20,8 +20,8 @@ export default function Popover({ children, icon }: IPopoverProps) {
     setAnchorEl(null);
   };
 
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
+  const isOpen = Boolean(anchorEl);
+  const id = isOpen ? "simple-popover" : undefined;
 
   return (
     <div className="Popover">
@@ -31,7 +31,7 @@ export default function Popover({ children, icon }: IPopoverProps) {
 
       <MaterialPopover
         id={id}
-        open={open}
+        open={isOpen}
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
