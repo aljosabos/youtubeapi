@@ -44,7 +44,9 @@ export default function Popover({ children, icon }: IPopoverProps) {
         }}
         className="Popover__content"
       >
-        <Typography sx={{ p: 2 }}>{children}</Typography>
+        <Typography sx={{ p: 2 }} component="span">
+          {children}
+        </Typography>
       </MaterialPopover>
     </div>
   );
