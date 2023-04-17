@@ -46,11 +46,7 @@ export function renderWithProviders(
       <MemoryRouter initialEntries={initialEntries}>
         <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
           <Provider store={store}>
-            <UserContext.Provider value={userContext || ({} as IUserContextProps)}>
-              <PersistGate loading={null} persistor={persistor}>
-                <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
-              </PersistGate>
-            </UserContext.Provider>
+            <UserContext.Provider value={userContext || ({} as IUserContextProps)}>{children}</UserContext.Provider>
           </Provider>
         </GoogleOAuthProvider>
       </MemoryRouter>
