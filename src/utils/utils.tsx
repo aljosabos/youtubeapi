@@ -3,8 +3,9 @@ import { ACCESS_TOKEN, TOKEN_EXPIRE_TIME } from "../constants/constants";
 import { createElement } from "react";
 import { MaterialIcon } from "../types/types";
 
-export const clearLocalStorage = () => {
-  localStorage.clear();
+export const removeAccessTokenAndExpireTime = () => {
+  localStorage.removeItem(ACCESS_TOKEN);
+  localStorage.removeItem(TOKEN_EXPIRE_TIME);
 };
 
 export const setTokenExpireTimeToLocalStorage = (accessToken: string, tokenExpiresIn: number) => {

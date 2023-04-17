@@ -8,13 +8,12 @@ import "./Select.scss";
 interface ISelectProps {
   value?: string;
   items: Array<{ name: string; value: string }>;
-  selectedItem?: { name: string; value: string };
   label?: string;
   onChange?: (e: SelectChangeEvent) => void;
   variant?: "filled" | "outlined" | "standard";
 }
 
-export default function Select({ value, items, selectedItem, label, onChange, variant = "standard" }: ISelectProps) {
+export default function Select({ value, items, label, onChange, variant = "standard" }: ISelectProps) {
   return (
     <div className="Select">
       <FormControl variant={variant} sx={{ m: 1, minWidth: 120 }} className="Select__group">
