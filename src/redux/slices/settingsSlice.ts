@@ -19,7 +19,7 @@ export const settingsSlice = createSlice({
 });
 
 export const languageSelector = (state: RootState) =>
-  state.settings.data.language;
+  state.settings?.data?.language;
 
 export const { changeLanguage } = settingsSlice.actions;
 export default settingsSlice.reducer;

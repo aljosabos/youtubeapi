@@ -9,10 +9,13 @@ import subscriptionsReducer from "../redux/slices/subscriptionsSlice";
 import videoDetailsReducer from "../redux/slices/videoDetailsSlice";
 import relatedVideosReducer from "../redux/slices/relatedVideosSlice";
 import { MemoryRouter } from "react-router-dom";
-import type { RootState } from "../redux/store";
+import { RootState, persistor } from "../redux/store";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 import { IUserContextProps, UserContext } from "../context/UserContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { PersistGate } from "redux-persist/integration/react";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18n";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: PreloadedState<RootState>;
@@ -43,7 +46,11 @@ export function renderWithProviders(
       <MemoryRouter initialEntries={initialEntries}>
         <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
           <Provider store={store}>
-            <UserContext.Provider value={userContext || ({} as IUserContextProps)}>{children}</UserContext.Provider>
+            <UserContext.Provider value={userContext || ({} as IUserContextProps)}>
+              <PersistGate loading={null} persistor={persistor}>
+                <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
+              </PersistGate>
+            </UserContext.Provider>
           </Provider>
         </GoogleOAuthProvider>
       </MemoryRouter>
