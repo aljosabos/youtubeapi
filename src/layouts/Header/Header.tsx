@@ -12,6 +12,7 @@ import { setTokenExpireTimeToLocalStorage } from "../../utils/utils";
 import SettingsIcon from "@mui/icons-material/Settings";
 import SettingsPopover from "./SettingsPopover/SettingsPopover";
 import { useTranslation } from "react-i18next";
+import Drawer from "../../components/Drawer/Drawer";
 
 interface IHeaderProps {
   handleLogout: () => void;
@@ -34,10 +35,10 @@ export default function Header({ handleLogout }: IHeaderProps) {
     navigate("/");
   };
 
- 
-
   return (
     <div className="Header">
+      <Drawer />
+
       <img src={YoutubeLogo} className="Header__logo" alt="youtube_logo" aria-label="logo" onClick={navigateToHome} />
       <SearchBar />
 

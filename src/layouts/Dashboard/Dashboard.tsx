@@ -10,6 +10,7 @@ import { removeAccessTokenAndExpireTime } from "../../utils/utils";
 import { useAppSelector } from "../../redux/hooks/hooks";
 import { languageSelector } from "../../redux/slices/settingsSlice";
 import i18n from "../../i18n";
+import Drawer from "../../components/Drawer/Drawer";
 
 function Dashboard() {
   const location = useLocation();
