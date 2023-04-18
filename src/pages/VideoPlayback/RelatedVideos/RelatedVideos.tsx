@@ -11,7 +11,7 @@ export default function RelatedVideos({ onClick, videos }: IRelatedVideosProps) 
   return (
     <div className="RelatedVideos">
       {videos?.map((relatedVideo: IVideo, index) => (
-        <VideoCard {...relatedVideo} onClick={onClick} key={index} layout="horizontal" />
+        <VideoCard {...relatedVideo} onClick={onClick} key={index} layout="horizontal" className="RelatedVideos__card" />
       ))}
     </div>
   );

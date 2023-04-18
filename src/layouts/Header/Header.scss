@@ -1,3 +1,5 @@
+@import "../../scss/mixin";
+
 .Header {
   grid-column: 1 / -1;
   display: grid;
@@ -6,6 +8,10 @@
   align-items: center;
   padding: 0 40px;
   padding-right: 0;
+
+  @include lg {
+    grid-template-columns: 1fr 2fr 1fr 40px;
+  }
 
   &__logo {
     width: 100px;

@@ -1,7 +1,28 @@
+@import "../../../scss/mixin";
+
 .RelatedVideos {
   width: 400px;
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 10px;
   padding: 0 15px;
+
+  @include xl {
+    width: 100%;
+    padding: 0;
+    margin-top: 10px;
+
+    &__card {
+      .VideoCard__media--horizontal {
+        width: 20%;
+      }
+
+      .VideoCard__content--horizontal {
+        &.MuiCardContent-root {
+          width: 79%;
+          padding-left: 10px;
+        }
+      }
+    }
+  }
 }
