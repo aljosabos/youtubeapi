@@ -9,6 +9,13 @@
   padding: 0 40px;
   padding-right: 0;
 
+  &__drawer-icon {
+    &.MuiSvgIcon-root {
+      cursor: pointer;
+      user-select: all;
+    }
+  }
+
   @include lg {
     grid-template-columns: 1fr 2fr 1fr 40px;
   }

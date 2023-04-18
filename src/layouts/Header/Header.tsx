@@ -4,7 +4,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import YoutubeLogo from "../../images/youtube.png";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { useGoogleLogin } from "@react-oauth/google";
-import { useContext } from "react";
+import { Dispatch, SetStateAction, useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { AUTH_SCOPE } from "../../constants/endpointConstants";
 import { useNavigate } from "react-router";
@@ -12,13 +12,14 @@ import { setTokenExpireTimeToLocalStorage } from "../../utils/utils";
 import SettingsIcon from "@mui/icons-material/Settings";
 import SettingsPopover from "./SettingsPopover/SettingsPopover";
 import { useTranslation } from "react-i18next";
-import Drawer from "../../components/Drawer/Drawer";
+import MenuIcon from "@mui/icons-material/Menu";
 
 interface IHeaderProps {
   handleLogout: () => void;
+  toggleExpandDrawer: () => void;
 }
 
-export default function Header({ handleLogout }: IHeaderProps) {
+export default function Header({ handleLogout, toggleExpandDrawer }: IHeaderProps) {
   const navigate = useNavigate();
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   const { t, i18n } = useTranslation();
@@ -37,7 +38,9 @@ export default function Header({ handleLogout }: IHeaderProps) {
 
   return (
     <div className="Header">
-      <Drawer />
+      <span onClick={toggleExpandDrawer}>
+        <MenuIcon className="Header__drawer-icon" />
+      </span>
 
       <img src={YoutubeLogo} className="Header__logo" alt="youtube_logo" aria-label="logo" onClick={navigateToHome} />
       <SearchBar />

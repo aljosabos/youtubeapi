@@ -1,1 +1,52 @@
+.Drawer {
+  width: 300px;
 
+  .MuiModal-backdrop {
+    background-color: transparent;
+    width: 300px;
+  }
+
+  .MuiPaper-root.MuiDrawer-paper {
+    width: 300px;
+    top: 100px;
+    overflow-y: auto;
+    height: calc(100vh - 100px);
+  }
+
+  &__list {
+    &.MuiList-root {
+      padding: 0;
+    }
+    &-item {
+      &.MuiListItem-root {
+        padding-top: 0;
+        padding-bottom: 0;
+        color: black;
+      }
+
+      &-icon {
+        &.MuiListItemIcon-root {
+          min-width: 38px;
+          color: black;
+        }
+      }
+    }
+
+    &-item-text {
+      .MuiTypography-root {
+        font-size: 14px;
+        color: black;
+        font-weight: 500;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+          "Helvetica Neue", sans-serif;
+      }
+    }
+  }
+
+  &__divider {
+    &.MuiDivider-root {
+      width: 90%;
+      margin: auto;
+    }
+  }
+}

@@ -21,6 +21,7 @@ function Dashboard() {
   const tokenExpired = currentTime >= tokenExpireTime;
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!tokenExpired);
+  const [shouldExpandDrawer, setShouldExpandDrawer] = useState<boolean>(false);
 
   useEffect(() => {
     if (currentLanguage) i18n.changeLanguage(currentLanguage);
@@ -38,11 +39,16 @@ function Dashboard() {
     setIsLoggedIn(false);
   };
 
+  const toggleExpandDrawer = () => {
+    setShouldExpandDrawer((previousState) => !previousState);
+  };
+
   return (
     <div className="Dashboard">
       <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-        <Header handleLogout={handleLogout} />
-        <Sidebar />
+        <Header handleLogout={handleLogout} toggleExpandDrawer={toggleExpandDrawer} />
+        {/* <Sidebar /> */}
+        <Drawer shouldExpandDrawer={shouldExpandDrawer} />
         <Outlet />
       </UserContext.Provider>
     </div>
