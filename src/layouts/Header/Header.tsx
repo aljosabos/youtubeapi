@@ -4,7 +4,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import YoutubeLogo from "../../images/youtube.png";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { useGoogleLogin } from "@react-oauth/google";
-import { Dispatch, SetStateAction, useContext } from "react";
+import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { AUTH_SCOPE } from "../../constants/endpointConstants";
 import { useNavigate } from "react-router";
@@ -22,7 +22,7 @@ interface IHeaderProps {
 export default function Header({ handleLogout, toggleExpandDrawer }: IHeaderProps) {
   const navigate = useNavigate();
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const login = useGoogleLogin({
     onSuccess: (response) => {

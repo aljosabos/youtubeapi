@@ -9,7 +9,7 @@ describe("Header tests", () => {
   const toggleExpandDrawer = jest.fn();
   afterEach(() => jest.clearAllMocks());
 
-  test("If the user is logged out, button text is 'Sign in' ", async () => {
+  test("If the user is logged out, button text is 'Sign in'", async () => {
     removeAccessTokenAndExpireTime();
     renderWithProviders(<Header handleLogout={handleLogout} toggleExpandDrawer={toggleExpandDrawer} />);
 
@@ -27,7 +27,7 @@ describe("Header tests", () => {
     expect(spyOnLogin).toHaveBeenCalledTimes(1);
   });
 
-  test("if the user is logged in, button text is 'Sign out' ", async () => {
+  test("if the user is logged in, button text is 'Sign out'", async () => {
     renderWithProviders(<Header handleLogout={handleLogout} toggleExpandDrawer={toggleExpandDrawer} />, undefined, {
       isLoggedIn: true,
       setIsLoggedIn: jest.fn(),
