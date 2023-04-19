@@ -13,6 +13,7 @@
     top: 100px;
     overflow-y: auto;
     height: calc(100vh - 100px);
+    padding: 10px;
   }
 
   &__list {
@@ -22,9 +23,8 @@
 
     &-item {
       &.MuiListItem-root {
-        padding-top: 0;
-        padding-bottom: 0;
         color: black;
+        padding: 0;
       }
 
       &-icon {
@@ -35,6 +35,16 @@
 
         .MuiSvgIcon-root {
           margin: auto;
+        }
+        &--expanded {
+          &.MuiListItemIcon-root {
+            min-width: 38px;
+            color: black;
+          }
+
+          .MuiSvgIcon-root {
+            margin: 0;
+          }
         }
       }
 
@@ -60,7 +70,7 @@
 
       &--expanded {
         .MuiTypography-root {
-          font-size: 13px;
+          font-size: 14px;
           color: black;
           font-weight: 500;
           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
@@ -78,17 +88,18 @@
   }
 
   &--expanded {
-    width: 300px;
+    width: 250px;
     margin-top: 100px;
 
     .MuiModal-backdrop {
-      width: 300px;
+      width: 250px;
       margin-top: 100px;
     }
-
     .MuiPaper-root.MuiDrawer-paper {
-      width: 300px;
+      width: 250px;
       top: 100px;
+      overflow-y: auto;
+      height: calc(100vh - 100px);
     }
   }
 }
