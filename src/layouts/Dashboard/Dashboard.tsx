@@ -47,7 +47,6 @@ function Dashboard() {
     <div className="Dashboard">
       <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
         <Header handleLogout={handleLogout} toggleExpandDrawer={toggleExpandDrawer} />
-        {/* <Sidebar /> */}
         <Drawer shouldExpandDrawer={shouldExpandDrawer} />
         <Outlet />
       </UserContext.Provider>
