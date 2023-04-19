@@ -7,8 +7,12 @@
   grid-template-columns: 1fr 500px 1fr 50px;
   align-items: center;
   padding: 0 20px;
-  padding-right: 0;
-  padding: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: white;
+  z-index: 1000;
+  height: 60px;
 
   &__menu {
     position: fixed;
@@ -29,7 +33,7 @@
   &__logo {
     width: 100px;
     cursor: pointer;
-    margin-left: 100px;
+    margin-left: 80px;
 
     @include lg {
       width: 80px;

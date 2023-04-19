@@ -1,18 +1,18 @@
 .Drawer {
   width: 80px;
-  margin-top: 80px;
+  margin-top: 60px;
 
   .MuiModal-backdrop {
     background-color: transparent;
     width: 80px;
-    margin-top: 80px;
+    margin-top: 60px;
   }
 
   .MuiPaper-root.MuiDrawer-paper {
     width: 80px;
-    top: 80px;
+    top: 60px;
     overflow-y: auto;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 60px);
     padding: 0 10px;
     box-shadow: none;
   }
@@ -97,17 +97,17 @@
 
   &--expanded {
     width: 250px;
-    margin-top: 80px;
+    margin-top: 60px;
 
     .MuiModal-backdrop {
       width: 250px;
-      margin-top: 80px;
+      margin-top: 60px;
     }
     .MuiPaper-root.MuiDrawer-paper {
       width: 250px;
-      top: 80px;
+      top: 60px;
       overflow-y: auto;
-      height: calc(100vh - 80px);
+      height: calc(100vh - 60px);
       padding: 0 10px;
       box-shadow: none;
     }
