@@ -29,6 +29,13 @@
       }
 
       &-icon {
+        &-home {
+          margin: auto;
+
+          &--expanded {
+            margin: initial;
+          }
+        }
         &.MuiListItemIcon-root {
           min-width: 38px;
           color: black;

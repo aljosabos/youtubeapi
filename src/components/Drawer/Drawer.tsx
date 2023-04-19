@@ -8,7 +8,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { useContext, useState } from "react";
+import { Fragment, useContext, useState } from "react";
 import Button from "../Button/Button";
 import "./Drawer.scss";
 import Sidebar from "../../layouts/Sidebar/Sidebar";
@@ -16,17 +16,21 @@ import SubscriptionList from "../../layouts/Sidebar/SubscriptionList/Subscriptio
 import { UserContext } from "../../context/UserContext";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import HomeIcon from "@mui/icons-material/Home";
+import { useNavigate } from "react-router-dom";
 
 interface IDrawerProps {
   shouldExpandDrawer: boolean;
 }
 
 export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
-  const anchor = "anchor";
-
+  const navigate = useNavigate();
   const { isLoggedIn } = useContext(UserContext);
   console.log(shouldExpandDrawer);
   const expanded = shouldExpandDrawer ? "--expanded" : "";
+
+  const navigateToHome = () => {
+    navigate("/");
+  };
 
   const list = () => (
     <Box role="presentation">
@@ -34,7 +38,15 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
         {["Home", "Subscriptions"].map((text, index) => (
           <ListItem key={text} className="Drawer__list-item">
             <ListItemButton className={`Drawer__list-item-button${expanded}`}>
-              <ListItemIcon className={`Drawer__list-item-icon${expanded}`}>{index % 2 === 0 ? <HomeIcon /> : <SubscriptionsIcon />}</ListItemIcon>
+              <ListItemIcon className={`Drawer__list-item-icon${expanded}`}>
+                {index % 2 === 0 ? (
+                  <span onClick={navigateToHome} className={`Drawer__list-item-icon-home${expanded}`}>
+                    <HomeIcon />
+                  </span>
+                ) : (
+                  <SubscriptionsIcon />
+                )}
+              </ListItemIcon>
               <ListItemText primary={text} className={`Drawer__list-item-text${expanded}`} />
             </ListItemButton>
           </ListItem>
