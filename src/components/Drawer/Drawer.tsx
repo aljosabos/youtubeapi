@@ -6,12 +6,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import { Fragment, useContext, useState } from "react";
-import Button from "../Button/Button";
+import { useContext } from "react";
 import "./Drawer.scss";
-import Sidebar from "../../layouts/Sidebar/Sidebar";
 import SubscriptionList from "../../layouts/Sidebar/SubscriptionList/SubscriptionList";
 import { UserContext } from "../../context/UserContext";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
@@ -25,7 +21,6 @@ interface IDrawerProps {
 export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(UserContext);
-  console.log(shouldExpandDrawer);
   const expanded = shouldExpandDrawer ? "--expanded" : "";
 
   const navigateToHome = () => {

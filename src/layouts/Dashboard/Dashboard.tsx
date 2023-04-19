@@ -23,6 +23,8 @@ function Dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!tokenExpired);
   const [shouldExpandDrawer, setShouldExpandDrawer] = useState<boolean>(false);
 
+  const rootClass = shouldExpandDrawer ? "Dashboard--drawer-expanded" : "Dashboard";
+
   useEffect(() => {
     if (currentLanguage) i18n.changeLanguage(currentLanguage);
   }, [currentLanguage]);
@@ -44,7 +46,7 @@ function Dashboard() {
   };
 
   return (
-    <div className="Dashboard">
+    <div className={rootClass}>
       <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
         <Header handleLogout={handleLogout} toggleExpandDrawer={toggleExpandDrawer} />
         <Drawer shouldExpandDrawer={shouldExpandDrawer} />
