@@ -1,18 +1,20 @@
+$margin-top: 70px;
+
 .Drawer {
   width: 80px;
-  margin-top: 60px;
+  margin-top: $margin-top;
 
   .MuiModal-backdrop {
     background-color: transparent;
     width: 80px;
-    margin-top: 60px;
+    margin-top: $margin-top;
   }
 
   .MuiPaper-root.MuiDrawer-paper {
     width: 80px;
-    top: 60px;
+    top: $margin-top;
     overflow-y: auto;
-    height: calc(100vh - 60px);
+    height: calc(100vh - $margin-top);
     padding: 0 10px;
     box-shadow: none;
   }
@@ -97,17 +99,17 @@
 
   &--expanded {
     width: 250px;
-    margin-top: 60px;
+    margin-top: $margin-top;
 
     .MuiModal-backdrop {
       width: 250px;
-      margin-top: 60px;
+      margin-top: $margin-top;
     }
     .MuiPaper-root.MuiDrawer-paper {
       width: 250px;
-      top: 60px;
+      top: $margin-top;
       overflow-y: auto;
-      height: calc(100vh - 60px);
+      height: calc(100vh - $margin-top);
       padding: 0 10px;
       box-shadow: none;
     }

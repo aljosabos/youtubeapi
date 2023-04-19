@@ -4,7 +4,7 @@
   grid-column: 1 / -1;
   display: grid;
   width: 100%;
-  grid-template-columns: 1fr 500px 1fr 50px;
+  grid-template-columns: 100px 1fr 500px 1fr 50px;
   align-items: center;
   padding: 0 20px;
   position: fixed;
@@ -12,12 +12,14 @@
   top: 0;
   background-color: white;
   z-index: 1000;
-  height: 60px;
+  height: 70px;
+
+  @include lg {
+    grid-template-columns: 100px 1fr 2fr 1fr 40px;
+  }
 
   &__menu {
-    position: fixed;
-    top: 18px;
-    left: 28px;
+    margin-left: 8px;
 
     &-icon {
       &.MuiSvgIcon-root {
@@ -26,14 +28,9 @@
     }
   }
 
-  @include lg {
-    grid-template-columns: 1fr 2fr 1fr 40px;
-  }
-
   &__logo {
     width: 100px;
     cursor: pointer;
-    margin-left: 80px;
 
     @include lg {
       width: 80px;
