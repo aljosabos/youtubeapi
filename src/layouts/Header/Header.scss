@@ -4,15 +4,20 @@
   grid-column: 1 / -1;
   display: grid;
   width: 100%;
-  grid-template-columns: 100px 1fr 500px 1fr 50px;
+  grid-template-columns: 80px 1fr 500px 1fr 50px;
   align-items: center;
   padding: 0 40px;
   padding-right: 0;
+  padding: 0;
 
-  &__drawer-icon {
-    &.MuiSvgIcon-root {
-      cursor: pointer;
-      user-select: all;
+  &__menu {
+    justify-self: center;
+
+    &-icon {
+      &.MuiSvgIcon-root {
+        cursor: pointer;
+        user-select: all;
+      }
     }
   }
 
@@ -23,6 +28,7 @@
   &__logo {
     width: 100px;
     cursor: pointer;
+    margin-left: 10px;
   }
 
   &__btn {

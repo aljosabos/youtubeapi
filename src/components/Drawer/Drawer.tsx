@@ -26,15 +26,16 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
 
   const { isLoggedIn } = useContext(UserContext);
   console.log(shouldExpandDrawer);
+  const expanded = shouldExpandDrawer ? "--expanded" : "";
 
   const list = () => (
     <Box role="presentation">
       <List className="Drawer__list">
         {["Home", "Subscriptions"].map((text, index) => (
           <ListItem key={text} className="Drawer__list-item">
-            <ListItemButton className="Drawer__list-item-button">
+            <ListItemButton className={`Drawer__list-item-button${expanded}`}>
               <ListItemIcon className="Drawer__list-item-icon">{index % 2 === 0 ? <HomeIcon /> : <SubscriptionsIcon />}</ListItemIcon>
-              <ListItemText primary={text} className="Drawer__list-item-text" />
+              <ListItemText primary={text} className={`Drawer__list-item-text${expanded}`} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -50,9 +51,11 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
     </Box>
   );
 
+  const rootClass = shouldExpandDrawer ? "Drawer--expanded" : "Drawer";
+
   return (
     <div>
-      <MaterialDrawer anchor="left" open={true} className="Drawer">
+      <MaterialDrawer anchor="left" open={true} className={rootClass}>
         {list()}
       </MaterialDrawer>
     </div>

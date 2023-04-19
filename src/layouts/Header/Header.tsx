@@ -38,8 +38,8 @@ export default function Header({ handleLogout, toggleExpandDrawer }: IHeaderProp
 
   return (
     <div className="Header">
-      <span onClick={toggleExpandDrawer}>
-        <MenuIcon className="Header__drawer-icon" />
+      <span onClick={toggleExpandDrawer} className={"Header__menu"}>
+        <MenuIcon className="Header__menu-icon" />
       </span>
 
       <img src={YoutubeLogo} className="Header__logo" alt="youtube_logo" aria-label="logo" onClick={navigateToHome} />
