@@ -22,13 +22,17 @@
   }
 
   @include lg {
-    grid-template-columns: 1fr 2fr 1fr 40px;
+    grid-template-columns: 80px 1fr 2fr 1fr 40px;
   }
 
   &__logo {
     width: 100px;
     cursor: pointer;
     margin-left: 10px;
+
+    @include lg {
+      width: 80px;
+    }
   }
 
   &__btn {
