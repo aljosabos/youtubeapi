@@ -32,7 +32,7 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
       <List className="Drawer__list">
         {["Home", "Subscriptions"].map((text, index) => (
           <ListItem key={text} className="Drawer__list-item">
-            <ListItemButton>
+            <ListItemButton className="Drawer__list-item-button">
               <ListItemIcon className="Drawer__list-item-icon">{index % 2 === 0 ? <HomeIcon /> : <SubscriptionsIcon />}</ListItemIcon>
               <ListItemText primary={text} className="Drawer__list-item-text" />
             </ListItemButton>
