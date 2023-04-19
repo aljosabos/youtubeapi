@@ -27,22 +27,6 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
   const { isLoggedIn } = useContext(UserContext);
   console.log(shouldExpandDrawer);
 
-  // const toggleExpandDrawer = () => {
-  //   // if ("key" in event) {
-  //   //   if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
-  //   //     return;
-  //   //   }
-  //   // }
-
-  //   setShouldExpandDrawer((previousState) => !previousState);
-  // };
-
-  // const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-  //   event.stopPropagation();
-  //   console.log(event.key);
-  //   if (event.key === "Enter") setShouldExpandDrawer(true);
-  // };
-
   const list = () => (
     <Box role="presentation">
       <List className="Drawer__list">
@@ -70,7 +54,6 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
     <div>
       <MaterialDrawer anchor="left" open={true} className="Drawer">
         {list()}
-        {/* <Sidebar /> */}
       </MaterialDrawer>
     </div>
   );
