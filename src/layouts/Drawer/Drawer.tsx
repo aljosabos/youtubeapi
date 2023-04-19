@@ -8,11 +8,12 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { useContext } from "react";
 import "./Drawer.scss";
-import SubscriptionList from "../../layouts/Sidebar/SubscriptionList/SubscriptionList";
+
 import { UserContext } from "../../context/UserContext";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate } from "react-router-dom";
+import SubscriptionList from "./SubscriptionList/SubscriptionList";
 
 interface IDrawerProps {
   shouldExpandDrawer: boolean;

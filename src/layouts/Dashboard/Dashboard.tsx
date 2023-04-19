@@ -1,5 +1,4 @@
 import { Outlet, useLocation } from "react-router-dom";
-import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
 import "./Dashboard.scss";
 import { useEffect, useState } from "react";
@@ -10,7 +9,7 @@ import { removeAccessTokenAndExpireTime } from "../../utils/utils";
 import { useAppSelector } from "../../redux/hooks/hooks";
 import { languageSelector } from "../../redux/slices/settingsSlice";
 import i18n from "../../i18n";
-import Drawer from "../../components/Drawer/Drawer";
+import Drawer from "../Drawer/Drawer";
 
 function Dashboard() {
   const location = useLocation();
