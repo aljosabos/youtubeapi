@@ -4,7 +4,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import YoutubeLogo from "../../images/youtube.png";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { useGoogleLogin } from "@react-oauth/google";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { AUTH_SCOPE } from "../../constants/endpointConstants";
 import { useNavigate } from "react-router";
@@ -13,6 +13,8 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import SettingsPopover from "./SettingsPopover/SettingsPopover";
 import { useTranslation } from "react-i18next";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useWindowResize } from "../../redux/hooks/useWindowResize";
+import { X_LARGE_WIDTH } from "../../constants/constants";
 
 interface IHeaderProps {
   handleLogout: () => void;
@@ -23,11 +25,12 @@ export default function Header({ handleLogout, toggleExpandDrawer }: IHeaderProp
   const navigate = useNavigate();
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   const { t } = useTranslation();
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const { isResized } = useWindowResize(X_LARGE_WIDTH);
 
   const btnText = {
-    signIn: windowWidth > 1200 ? t("header.btn.signIn") : "",
-    signOut: windowWidth > 1200 ? t("header.btn.signOut") : "",
+    signIn: isResized ? "" : t("header.btn.signIn"),
+    signOut: isResized ? "" : t("header.btn.signOut"),
   };
 
   const login = useGoogleLogin({
@@ -41,17 +44,6 @@ export default function Header({ handleLogout, toggleExpandDrawer }: IHeaderProp
   const navigateToHome = () => {
     navigate("/");
   };
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   return (
     <div className="Header">
