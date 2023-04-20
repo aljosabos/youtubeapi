@@ -14,7 +14,7 @@
   z-index: 1000;
   height: 70px;
 
-  @include lg {
+  @include xl {
     grid-template-columns: 1fr 2fr 1fr 40px;
   }
 
@@ -52,6 +52,27 @@
     &.MuiButton-root {
       &:hover {
         background-color: #c5cae9;
+      }
+
+      @include xl {
+        background-color: transparent;
+        box-shadow: none;
+        padding: 0;
+        min-width: min-content;
+        vertical-align: baseline;
+      }
+    }
+    @include xl {
+      .MuiButton-startIcon > *:nth-of-type(1) {
+        color: #1976d2;
+        min-width: 25px;
+        min-height: 25px;
+      }
+    }
+
+    @include xl {
+      .MuiButton-startIcon {
+        margin: 0;
       }
     }
   }
