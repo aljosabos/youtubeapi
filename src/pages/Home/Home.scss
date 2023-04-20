@@ -9,8 +9,7 @@
   margin-top: 50px;
 
   @include xl {
-    background-color: red;
-    height: calc(100vh - 130px);
-    overflow: auto;
+    height: calc(100vh - 130px) !important;
+    overflow: auto !important;
   }
 }
