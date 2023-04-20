@@ -60,6 +60,11 @@
         padding: 0;
         min-width: min-content;
         vertical-align: baseline;
+
+        &:hover {
+          background-color: transparent;
+          box-shadow: none;
+        }
       }
     }
     @include xl {
