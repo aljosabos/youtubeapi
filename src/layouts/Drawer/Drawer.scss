@@ -1,0 +1,117 @@
+$margin-top: 70px;
+
+.Drawer {
+  width: 80px;
+  margin-top: $margin-top;
+
+  .MuiModal-backdrop {
+    background-color: transparent;
+    width: 80px;
+    margin-top: $margin-top;
+  }
+
+  .MuiPaper-root.MuiDrawer-paper {
+    width: 80px;
+    top: $margin-top;
+    overflow-y: auto;
+    height: calc(100vh - $margin-top);
+    padding: 0 10px;
+    box-shadow: none;
+  }
+
+  &__list {
+    &.MuiList-root {
+      padding: 0;
+    }
+
+    &-item {
+      &.MuiListItem-root {
+        color: black;
+        padding: 0;
+      }
+
+      &-icon {
+        &-home {
+          margin: auto;
+
+          &--expanded {
+            margin: initial;
+          }
+        }
+        &.MuiListItemIcon-root {
+          min-width: 38px;
+          color: black;
+        }
+
+        .MuiSvgIcon-root {
+          margin: auto;
+        }
+        &--expanded {
+          &.MuiListItemIcon-root {
+            min-width: 38px;
+            color: black;
+          }
+
+          .MuiSvgIcon-root {
+            margin: 0;
+          }
+        }
+      }
+
+      &-button {
+        &.MuiListItemButton-root {
+          flex-direction: column;
+        }
+
+        &--expanded {
+          flex-direction: row;
+        }
+      }
+    }
+
+    &-item-text {
+      .MuiTypography-root {
+        font-size: 10px;
+        color: black;
+        font-weight: 500;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+          "Helvetica Neue", sans-serif;
+      }
+
+      &--expanded {
+        .MuiTypography-root {
+          font-size: 14px;
+          color: black;
+          font-weight: 500;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+            "Helvetica Neue", sans-serif;
+        }
+      }
+    }
+  }
+
+  &__divider {
+    &.MuiDivider-root {
+      width: 90%;
+      margin: auto;
+    }
+  }
+
+  &--expanded {
+    width: 250px;
+    margin-top: $margin-top;
+
+    .MuiModal-backdrop {
+      width: 250px;
+      margin-top: $margin-top;
+    }
+    .MuiPaper-root.MuiDrawer-paper {
+      width: 250px;
+      top: $margin-top;
+      overflow-y: auto;
+      height: calc(100vh - $margin-top);
+      padding: 0 10px;
+      box-shadow: none;
+    }
+  }
+}

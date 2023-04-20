@@ -7,7 +7,7 @@ import { removeAccessTokenAndExpireTime } from "../../utils/utils";
 import { screen } from "@testing-library/react";
 
 describe("Dashboard tests", () => {
-  test("if token is expired, the user will be log out ", async () => {
+  test("if token is expired, the user will be log out", async () => {
     const currentTime = Date.now();
     const tokenExpireTime = currentTime;
     localStorage.setItem(TOKEN_EXPIRE_TIME, tokenExpireTime.toString());
@@ -28,7 +28,7 @@ describe("Dashboard tests", () => {
     });
   });
 
-  test("if the user is logged out, button text is 'Sign in' ", async () => {
+  test("if the user is logged out, button text is 'Sign in'", async () => {
     removeAccessTokenAndExpireTime();
 
     renderWithProviders(<Dashboard />);

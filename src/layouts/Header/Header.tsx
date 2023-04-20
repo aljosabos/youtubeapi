@@ -12,15 +12,17 @@ import { setTokenExpireTimeToLocalStorage } from "../../utils/utils";
 import SettingsIcon from "@mui/icons-material/Settings";
 import SettingsPopover from "./SettingsPopover/SettingsPopover";
 import { useTranslation } from "react-i18next";
+import MenuIcon from "@mui/icons-material/Menu";
 
 interface IHeaderProps {
   handleLogout: () => void;
+  toggleExpandDrawer: () => void;
 }
 
-export default function Header({ handleLogout }: IHeaderProps) {
+export default function Header({ handleLogout, toggleExpandDrawer }: IHeaderProps) {
   const navigate = useNavigate();
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const login = useGoogleLogin({
     onSuccess: (response) => {
@@ -34,10 +36,12 @@ export default function Header({ handleLogout }: IHeaderProps) {
     navigate("/");
   };
 
- 
-
   return (
     <div className="Header">
+      <span onClick={toggleExpandDrawer} className={"Header__menu"}>
+        <MenuIcon className="Header__menu-icon" />
+      </span>
+
       <img src={YoutubeLogo} className="Header__logo" alt="youtube_logo" aria-label="logo" onClick={navigateToHome} />
       <SearchBar />
 
