@@ -8,12 +8,16 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { useContext } from "react";
 import "./Drawer.scss";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 import { UserContext } from "../../context/UserContext";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate } from "react-router-dom";
 import SubscriptionList from "./SubscriptionList/SubscriptionList";
+import SettingsPopover from "../Header/SettingsPopover/SettingsPopover";
+import { useWindowResize } from "../../redux/hooks/useWindowResize";
+import { X_LARGE_WIDTH } from "../../constants/constants";
 
 interface IDrawerProps {
   shouldExpandDrawer: boolean;
@@ -22,28 +26,35 @@ interface IDrawerProps {
 export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(UserContext);
-  const expanded = shouldExpandDrawer ? "--expanded" : "";
+  const modifier = shouldExpandDrawer ? "--expanded" : "";
+  const { isResized } = useWindowResize(X_LARGE_WIDTH);
 
   const navigateToHome = () => {
     navigate("/");
   };
 
+  const listItems = [
+    {
+      text: "Home",
+      icon: (
+        <span onClick={navigateToHome} className={`Drawer__list-item-icon-home${modifier}`}>
+          <HomeIcon />
+        </span>
+      ),
+    },
+    { text: "Subscriptions", icon: <SubscriptionsIcon /> },
+  ];
+
+  if (isResized) listItems.push({ text: "Settings", icon: <SettingsPopover icon={SettingsIcon} /> });
+
   const list = () => (
     <Box role="presentation">
       <List className="Drawer__list">
-        {["Home", "Subscriptions"].map((text, index) => (
+        {listItems.map(({ text, icon }) => (
           <ListItem key={text} className="Drawer__list-item">
-            <ListItemButton className={`Drawer__list-item-button${expanded}`}>
-              <ListItemIcon className={`Drawer__list-item-icon${expanded}`}>
-                {index % 2 === 0 ? (
-                  <span onClick={navigateToHome} className={`Drawer__list-item-icon-home${expanded}`}>
-                    <HomeIcon />
-                  </span>
-                ) : (
-                  <SubscriptionsIcon />
-                )}
-              </ListItemIcon>
-              <ListItemText primary={text} className={`Drawer__list-item-text${expanded}`} />
+            <ListItemButton className={`Drawer__list-item-button${modifier}`}>
+              <ListItemIcon className={`Drawer__list-item-icon${modifier}`}>{icon}</ListItemIcon>
+              <ListItemText primary={text} className={`Drawer__list-item-text${modifier}`} />
             </ListItemButton>
           </ListItem>
         ))}

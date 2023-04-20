@@ -1,17 +1,27 @@
+@import "../../scss/breakpoints";
+
 .Popover {
   display: flex;
   justify-self: center;
   &__icon {
     cursor: pointer;
-    color: #5d5858;
+
+    @include xl {
+      height: 28px;
+    }
   }
 
   &__content {
     .MuiPopover-paper {
       top: 70px !important;
-      width: 270px; // for popover width
+      width: 270px;
       padding: 0 20px;
       overflow: hidden;
+
+      @include xl {
+        width: 100%;
+        height: 100vh;
+      }
     }
   }
 }
