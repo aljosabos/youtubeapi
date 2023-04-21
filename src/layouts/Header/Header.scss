@@ -15,7 +15,7 @@
   height: 70px;
 
   @include xl {
-    grid-template-columns: 1fr 2fr 1fr 40px;
+    grid-template-columns: 1fr 2fr 50px;
   }
 
   &__menu {
