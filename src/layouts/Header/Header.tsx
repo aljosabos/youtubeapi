@@ -65,7 +65,7 @@ export default function Header({ handleLogout, toggleExpandDrawer }: IHeaderProp
           onClick={handleLogout}
         />
       )}
-      <SettingsPopover icon={SettingsIcon} />
+      {!isResized && <SettingsPopover icon={SettingsIcon} />}
     </div>
   );
 }
