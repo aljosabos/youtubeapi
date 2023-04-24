@@ -13,6 +13,8 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import SettingsPopover from "./SettingsPopover/SettingsPopover";
 import { useTranslation } from "react-i18next";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useWindowResize } from "../../redux/hooks/useWindowResize";
+import { X_LARGE_WIDTH } from "../../constants/constants";
 
 interface IHeaderProps {
   handleLogout: () => void;
@@ -23,6 +25,13 @@ export default function Header({ handleLogout, toggleExpandDrawer }: IHeaderProp
   const navigate = useNavigate();
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   const { t } = useTranslation();
+
+  const { isResized } = useWindowResize(X_LARGE_WIDTH);
+
+  const btnText = {
+    signIn: isResized ? "" : t("header.btn.signIn"),
+    signOut: isResized ? "" : t("header.btn.signOut"),
+  };
 
   const login = useGoogleLogin({
     onSuccess: (response) => {
@@ -46,23 +55,17 @@ export default function Header({ handleLogout, toggleExpandDrawer }: IHeaderProp
       <SearchBar />
 
       {!isLoggedIn ? (
-        <Button
-          startIcon={AccountCircleIcon}
-          text={t("header.btn.signIn") || ""}
-          className="Header__btn"
-          wrapperClassName="Header__btn-wrapper"
-          onClick={login}
-        />
+        <Button startIcon={AccountCircleIcon} text={btnText.signIn} className="Header__btn" wrapperClassName="Header__btn-wrapper" onClick={login} />
       ) : (
         <Button
           startIcon={AccountCircleIcon}
-          text={t("header.btn.signOut") || ""}
+          text={btnText.signOut}
           className="Header__btn"
           wrapperClassName="Header__btn-wrapper"
           onClick={handleLogout}
         />
       )}
-      <SettingsPopover icon={SettingsIcon} />
+      {!isResized && <SettingsPopover icon={SettingsIcon} />}
     </div>
   );
 }

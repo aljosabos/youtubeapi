@@ -36,16 +36,10 @@ export default function SearchBar() {
         size="small"
         className="Searchbar__textfield "
         InputProps={{
-          startAdornment: (
-            <SearchIcon sx={{ color: "grey.500" }} fontSize="small" />
-          ),
+          startAdornment: <SearchIcon sx={{ color: "grey.500" }} fontSize="small" />,
         }}
       />
-      <Button
-        startIcon={SearchIcon}
-        className="Searchbar__button"
-        onClick={handleClick}
-      />
+      <Button startIcon={SearchIcon} className="Searchbar__button" onClick={handleClick} />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-@import "../../scss/mixin";
+@import "../../scss/breakpoints";
 
 .Header {
   grid-column: 1 / -1;
@@ -14,12 +14,16 @@
   z-index: 1000;
   height: 70px;
 
-  @include lg {
-    grid-template-columns: 100px 1fr 2fr 1fr 40px;
+  @include xl {
+    grid-template-columns: 1fr 2fr 50px;
   }
 
   &__menu {
     margin-left: 8px;
+
+    @include xl {
+      display: none;
+    }
 
     &-icon {
       &.MuiSvgIcon-root {
@@ -48,6 +52,32 @@
     &.MuiButton-root {
       &:hover {
         background-color: #c5cae9;
+      }
+
+      @include xl {
+        background-color: transparent;
+        box-shadow: none;
+        padding: 0;
+        min-width: min-content;
+        vertical-align: baseline;
+
+        &:hover {
+          background-color: transparent;
+          box-shadow: none;
+        }
+      }
+    }
+    @include xl {
+      .MuiButton-startIcon > *:nth-of-type(1) {
+        color: #1976d2;
+        min-width: 25px;
+        min-height: 25px;
+      }
+    }
+
+    @include xl {
+      .MuiButton-startIcon {
+        margin: 0;
       }
     }
   }

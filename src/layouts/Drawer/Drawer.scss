@@ -1,36 +1,63 @@
+@import "../../scss/breakpoints";
 $margin-top: 70px;
 
 .Drawer {
   width: 80px;
   margin-top: $margin-top;
 
+  @include xl {
+    margin-top: calc(100vh - $margin-top);
+    width: 100%;
+    height: 60px;
+  }
+
   .MuiModal-backdrop {
     background-color: transparent;
     width: 80px;
     margin-top: $margin-top;
+    @include xl {
+      margin-top: calc(100vh - $margin-top);
+      width: 100%;
+      height: 60px;
+    }
   }
 
   .MuiPaper-root.MuiDrawer-paper {
     width: 80px;
     top: $margin-top;
-    overflow-y: auto;
+    overflow-y: hidden;
     height: calc(100vh - $margin-top);
     padding: 0 10px;
     box-shadow: none;
+    @include xl {
+      top: calc(100vh - $margin-top);
+      width: 100%;
+      height: 60px;
+    }
   }
 
   &__list {
     &.MuiList-root {
       padding: 0;
+      justify-content: center;
+
+      @include xl {
+        display: flex;
+      }
     }
 
     &-item {
       &.MuiListItem-root {
         color: black;
         padding: 0;
+        @include xl {
+          width: 100px;
+        }
       }
 
       &-icon {
+        height: 24px;
+
         &-home {
           margin: auto;
 
@@ -41,6 +68,7 @@ $margin-top: 70px;
         &.MuiListItemIcon-root {
           min-width: 38px;
           color: black;
+          justify-content: center;
         }
 
         .MuiSvgIcon-root {
