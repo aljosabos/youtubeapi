@@ -74,7 +74,7 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
 
   return (
     <div>
-      <MaterialDrawer anchor="left" open={true} className={rootClass}>
+      <MaterialDrawer disableEnforceFocus anchor="left" open={true} className={rootClass}>
         {list()}
       </MaterialDrawer>
     </div>
