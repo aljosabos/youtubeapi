@@ -6,9 +6,13 @@ $margin-top: 69px;
   margin-top: $margin-top;
 
   @include xl {
-    margin-top: calc(100vh - $margin-top);
+    top: calc(100vh - $margin-top);
     width: 100%;
     height: 60px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 10000;
   }
 
   .MuiModal-backdrop {

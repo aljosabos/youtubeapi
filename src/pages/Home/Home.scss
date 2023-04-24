@@ -12,5 +12,7 @@
     margin-top: 0;
     padding: 20px 30px;
     margin-bottom: 65px;
+    height: calc(100vh - 130px);
+    overflow: auto;
   }
 }
