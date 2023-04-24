@@ -60,7 +60,7 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
         ))}
       </List>
 
-      <Divider className="Drawer__divider" />
+      { !isResized && <Divider className="Drawer__divider" />}
 
       {isLoggedIn && shouldExpandDrawer && (
         <div className="subscriptions-section">

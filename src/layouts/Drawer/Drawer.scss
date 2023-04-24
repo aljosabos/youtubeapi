@@ -32,7 +32,6 @@ $margin-top: 70px;
     @include xl {
       top: calc(100vh - $margin-top);
       width: 100%;
-      height: 60px;
     }
   }
 

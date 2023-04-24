@@ -11,5 +11,7 @@
   @include xl {
     height: calc(100vh - 130px) !important;
     overflow: initial !important;
+    margin-top: 0;
+    padding: 20px 30px;
   }
 }
