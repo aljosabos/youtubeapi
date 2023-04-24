@@ -39,7 +39,7 @@ export default function SearchBar() {
           startAdornment: <SearchIcon sx={{ color: "grey.500" }} fontSize="small" />,
         }}
       />
-      <Button startIcon={SearchIcon} className="Searchbar__button" onClick={handleClick} />
+        <Button startIcon={SearchIcon} className="Searchbar__button" onClick={handleClick} />
     </div>
   );
 }

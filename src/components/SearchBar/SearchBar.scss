@@ -1,3 +1,5 @@
+@import "../../scss/breakpoints";
+
 .Searchbar {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -18,10 +20,18 @@
         border-bottom-right-radius: 0;
         border: 1px solid #1976d2;
         height: 36px;
+
+        @include md {
+          height: 28px;
+        }
       }
 
       .MuiOutlinedInput-input {
         padding: 9px 20px;
+
+        @include md {
+          padding: 5px;
+        }
       }
 
       .MuiOutlinedInput-notchedOutline {
@@ -36,6 +46,26 @@
       height: 36px;
       border-bottom-left-radius: 0;
       border-top-left-radius: 0;
+
+      @include md {
+        height: 28px;
+        min-width: min-content;
+        padding: 0;
+        display: flex;
+      }
+
+      .MuiButton-startIcon {
+        @include md {
+          margin: 0;
+          padding: 3px;
+        }
+      }
     }
   }
+}
+
+/* move somewhere else */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
 }
