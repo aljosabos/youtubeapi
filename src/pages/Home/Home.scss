@@ -9,9 +9,8 @@
   margin-top: 50px;
 
   @include xl {
-    height: calc(100vh - 130px) !important;
-    overflow: initial !important;
     margin-top: 0;
     padding: 20px 30px;
+    margin-bottom: 65px;
   }
 }
