@@ -40,5 +40,5 @@ export interface IIconStyles {
   [key: string]: string | number;
 }
 
-export const renderIconBasedOnType = (icon: MaterialIcon | string, imgStyles?: IIconStyles) =>
-  typeof icon === "string" ? <img src={icon} alt="Icon" style={imgStyles} className="Button__Icon" /> : createElement(icon, { className: "Icon" });
+export const renderIconBasedOnType = (icon: MaterialIcon | string) =>
+  typeof icon === "string" ? <img src={icon} alt="Icon" className="Button__Icon" /> : createElement(icon, { className: "Icon" });
