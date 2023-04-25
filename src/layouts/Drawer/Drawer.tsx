@@ -1,7 +1,6 @@
 import Box from "@mui/material/Box";
 import MaterialDrawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -59,8 +58,6 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
           </ListItem>
         ))}
       </List>
-
-      { !isResized && <Divider className="Drawer__divider" />}
 
       {isLoggedIn && shouldExpandDrawer && (
         <div className="subscriptions-section">
