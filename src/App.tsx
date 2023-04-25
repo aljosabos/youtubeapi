@@ -14,7 +14,7 @@ function App() {
         {["videos", "/"].map((path, index) => (
           <Route path={path} key={index} element={<Home />} />
         ))}
-        <Route path="search" element={<VideoSearch />} />
+        <Route path="results" element={<VideoSearch />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
