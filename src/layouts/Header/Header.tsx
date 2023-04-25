@@ -25,12 +25,12 @@ interface IHeaderProps {
 }
 
 export default function Header({ handleLogout, toggleExpandDrawer }: IHeaderProps) {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
-  const { t } = useTranslation();
-  const { username, userAvatar } = useAppSelector(userInfoSelector);
 
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+  const { username, userAvatar } = useAppSelector(userInfoSelector);
   const { isResized } = useWindowResize(X_LARGE_WIDTH);
 
   const btnConfig = {
