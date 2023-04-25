@@ -4,6 +4,7 @@ import subscriptionsReducer from "./slices/subscriptionsSlice";
 import videoDetailsReducer from "./slices/videoDetailsSlice";
 import relatedVideosReducer from "./slices/relatedVideosSlice";
 import settingsReducer from "./slices/settingsSlice";
+import userInfoReducer from "./slices/userInfoSlice";
 import {
   persistStore,
   persistReducer,
@@ -22,12 +23,13 @@ const reducers = combineReducers({
   videoDetails: videoDetailsReducer,
   relatedVideos: relatedVideosReducer,
   settings: settingsReducer,
+  userInfo: userInfoReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["settings"],
+  whitelist: ["settings", "userInfo"],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

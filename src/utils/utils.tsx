@@ -36,5 +36,9 @@ export const addBEMClasses = (blockName: string, elementName?: string, modifierN
   return classList.join("");
 };
 
+export interface IIconStyles {
+  [key: string]: string | number;
+}
+
 export const renderIconBasedOnType = (icon: MaterialIcon | string) =>
-  typeof icon === "string" ? <img src={icon} alt=" Icon" /> : createElement(icon, { className: "Icon" });
+  typeof icon === "string" ? <img src={icon} alt="Icon" className="Button__Icon" /> : createElement(icon, { className: "Icon" });

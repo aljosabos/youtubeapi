@@ -10,6 +10,8 @@ import { changeLanguage, languageSelector } from "../../../redux/slices/settings
 
 interface ISettingsPopoverProps {
   icon: MaterialIcon | string;
+  username: string;
+  userAvatar: string;
 }
 
 const languages = [
@@ -18,7 +20,7 @@ const languages = [
   { name: "Russian", value: "ru" },
 ];
 
-export default function SettingsPopover({ icon }: ISettingsPopoverProps) {
+export default function SettingsPopover({ icon, username, userAvatar }: ISettingsPopoverProps) {
   const dispatch = useAppDispatch();
   const currentLanguage = useAppSelector(languageSelector);
 
@@ -33,7 +35,11 @@ export default function SettingsPopover({ icon }: ISettingsPopoverProps) {
   return (
     <div className="SettingsPopover">
       <Popover icon={icon}>
-        <h4 className="SettingsPopover__heading">Settings</h4>
+        <div className="SettingsPopover__user-info">
+          <span className="SettingsPopover__user-info-name">{username}</span>
+
+          <img src={userAvatar} alt="User_avatar" className="SettingsPopover__user-info-avatar" />
+        </div>
 
         <Select onChange={handleChange} value={selectValue} items={languages} label="Language" />
 
