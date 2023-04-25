@@ -11,11 +11,11 @@
     }
   }
 
-  &__content {
+  &__material-popover {
     .MuiPopover-paper {
       top: 70px !important;
       width: 270px;
-      padding: 0 20px;
+      padding: 10px 20px 15px;
       overflow: hidden;
 
       @include xl {

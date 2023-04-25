@@ -42,11 +42,9 @@ export default function Popover({ children, icon }: IPopoverProps) {
           vertical: "top",
           horizontal: "right",
         }}
-        className="Popover__content"
+        className="Popover__material-popover"
       >
-        <Typography sx={{ p: 2 }} component="span">
-          {children}
-        </Typography>
+        <Typography component="span">{children}</Typography>
       </MaterialPopover>
     </div>
   );

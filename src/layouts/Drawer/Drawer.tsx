@@ -17,6 +17,8 @@ import SubscriptionList from "./SubscriptionList/SubscriptionList";
 import SettingsPopover from "../Header/SettingsPopover/SettingsPopover";
 import { useWindowResize } from "../../redux/hooks/useWindowResize";
 import { X_LARGE_WIDTH } from "../../constants/constants";
+import { useAppSelector } from "../../redux/hooks/hooks";
+import { userInfoSelector } from "../../redux/slices/userInfoSlice";
 
 interface IDrawerProps {
   shouldExpandDrawer: boolean;
@@ -24,6 +26,7 @@ interface IDrawerProps {
 
 export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
   const navigate = useNavigate();
+  const { username, userAvatar } = useAppSelector(userInfoSelector);
   const { isLoggedIn } = useContext(UserContext);
   const modifier = shouldExpandDrawer ? "--expanded" : "";
   const { isResized } = useWindowResize(X_LARGE_WIDTH);
@@ -44,7 +47,7 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
     { text: "Subscriptions", icon: <SubscriptionsIcon /> },
   ];
 
-  if (isResized) listItems.push({ text: "Settings", icon: <SettingsPopover icon={SettingsIcon} /> });
+  if (isResized) listItems.push({ text: "Settings", icon: <SettingsPopover icon={SettingsIcon} username={username} userAvatar={userAvatar} /> });
 
   const list = () => (
     <Box role="presentation">

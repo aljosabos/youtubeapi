@@ -15,6 +15,9 @@ import { useTranslation } from "react-i18next";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useWindowResize } from "../../redux/hooks/useWindowResize";
 import { X_LARGE_WIDTH } from "../../constants/constants";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
+import { userInfoSelector } from "../../redux/slices/userInfoSlice";
+import { getUserInfoThunk } from "../../redux/thunks/userInfoThunk";
 
 interface IHeaderProps {
   handleLogout: () => void;
@@ -22,21 +25,25 @@ interface IHeaderProps {
 }
 
 export default function Header({ handleLogout, toggleExpandDrawer }: IHeaderProps) {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   const { t } = useTranslation();
+  const { username, userAvatar } = useAppSelector(userInfoSelector);
 
   const { isResized } = useWindowResize(X_LARGE_WIDTH);
 
-  const btnText = {
-    signIn: isResized ? "" : t("header.btn.signIn"),
-    signOut: isResized ? "" : t("header.btn.signOut"),
+  const btnConfig = {
+    signInText: isResized ? "" : t("header.btn.signIn"),
+    signOutText: isResized ? "" : t("header.btn.signOut"),
+    icon: isLoggedIn ? userAvatar : AccountCircleIcon,
   };
 
   const login = useGoogleLogin({
-    onSuccess: (response) => {
-      setTokenExpireTimeToLocalStorage(response.access_token, response.expires_in);
+    onSuccess: ({ access_token, expires_in }) => {
+      setTokenExpireTimeToLocalStorage(access_token, expires_in);
       setIsLoggedIn(true);
+      dispatch(getUserInfoThunk(access_token));
     },
     scope: AUTH_SCOPE,
   });
@@ -55,17 +62,23 @@ export default function Header({ handleLogout, toggleExpandDrawer }: IHeaderProp
       <SearchBar />
 
       {!isLoggedIn ? (
-        <Button startIcon={AccountCircleIcon} text={btnText.signIn} className="Header__btn" wrapperClassName="Header__btn-wrapper" onClick={login} />
+        <Button
+          startIcon={btnConfig.icon}
+          text={btnConfig.signInText}
+          className="Header__btn"
+          wrapperClassName="Header__btn-wrapper"
+          onClick={login}
+        />
       ) : (
         <Button
-          startIcon={AccountCircleIcon}
-          text={btnText.signOut}
+          startIcon={btnConfig.icon}
+          text={btnConfig.signOutText}
           className="Header__btn"
           wrapperClassName="Header__btn-wrapper"
           onClick={handleLogout}
         />
       )}
-      {!isResized && <SettingsPopover icon={SettingsIcon} />}
+      {!isResized && <SettingsPopover icon={SettingsIcon} username={username} userAvatar={userAvatar} />}
     </div>
   );
 }

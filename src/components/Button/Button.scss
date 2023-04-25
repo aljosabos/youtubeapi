@@ -23,4 +23,15 @@
       font-size: 9px;
     }
   }
+
+  &__Icon {
+    width: 28px;
+    width: 28px;
+    border-radius: 50%;
+
+    @include md {
+      width: 25px;
+      height: 25px;
+    }
+  }
 }

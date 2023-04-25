@@ -1,11 +1,11 @@
 import MaterialButton from "@mui/material/Button";
-import { Box } from "@mui/system";
 import "./Button.scss";
 import { MaterialIcon } from "../../types/types";
+import { renderIconBasedOnType } from "../../utils/utils";
 
 interface IButtonProps {
-  endIcon?: MaterialIcon;
-  startIcon?: MaterialIcon;
+  endIcon?: MaterialIcon | string;
+  startIcon?: MaterialIcon | string;
   text?: string;
   className?: string;
   wrapperClassName?: string;
@@ -23,8 +23,8 @@ export default function Button({ endIcon, startIcon, text, className, wrapperCla
     <div className={wrapperClassName}>
       <MaterialButton
         variant={variant ? variant : "contained"}
-        endIcon={endIcon && <Box component={endIcon} />}
-        startIcon={startIcon && <Box component={startIcon} />}
+        endIcon={endIcon && renderIconBasedOnType(endIcon)}
+        startIcon={startIcon && renderIconBasedOnType(startIcon)}
         className={`Button ${className} ${centerIconClass}`}
         disabled={disabled}
         color={color}
