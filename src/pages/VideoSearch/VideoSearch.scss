@@ -1,0 +1,15 @@
+.VideoSearch {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 20px;
+  width: 80%;
+  margin: 100px auto;
+
+  &__card {
+    height: 220px;
+
+    .MuiCardContent-root {
+      padding-left: 20px;
+    }
+  }
+}

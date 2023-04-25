@@ -17,6 +17,7 @@ interface IVideoCardProps {
   layout?: "horizontal";
   ariaLabel?: string;
   className?: string;
+  wrapperClassName?: string;
 }
 
 export default function VideoCard({
@@ -31,23 +32,26 @@ export default function VideoCard({
   layout,
   ariaLabel,
   className,
+  wrapperClassName,
 }: IVideoCardProps) {
   return (
-    <div className={addBEMClasses("VideoCard")} aria-label={ariaLabel}>
-      <Card onClick={() => onClick(id)} className={`${addBEMClasses("VideoCard", "wrapper", layout)} ${className}`}>
-        <div className={addBEMClasses("VideoCard", "media", layout)}>
-          <CardMedia sx={{ height: 100 }} image={image} title={title} className={addBEMClasses("VideoCard", "media-image", layout)} />
-          <span className={addBEMClasses("VideoCard", "media-duration", layout)}>{duration}</span>
-        </div>
-        <CardContent className={addBEMClasses("VideoCard", "content", layout)}>
-          <Typography gutterBottom variant="h5" component="div" className="VideoCard__content-title">
-            {title}
-          </Typography>
-          <h5 className="Video__content-channel">{channel}</h5>
-          <span className="VideoCard__content-views">{views}K views</span>
-          <span className="VideoCard__content-publish-date">{publishDate}</span>
-        </CardContent>
-      </Card>
+    <div className={wrapperClassName}>
+      <div className={addBEMClasses("VideoCard")} aria-label={ariaLabel}>
+        <Card onClick={() => onClick(id)} className={`${addBEMClasses("VideoCard", "wrapper", layout)} ${className}`}>
+          <div className={addBEMClasses("VideoCard", "media", layout)}>
+            <CardMedia sx={{ height: 100 }} image={image} title={title} className={addBEMClasses("VideoCard", "media-image", layout)} />
+            <span className={addBEMClasses("VideoCard", "media-duration", layout)}>{duration}</span>
+          </div>
+          <CardContent className={addBEMClasses("VideoCard", "content", layout)}>
+            <Typography gutterBottom variant="h5" component="div" className="VideoCard__content-title">
+              {title}
+            </Typography>
+            <h5 className="Video__content-channel">{channel}</h5>
+            <span className="VideoCard__content-views">{views}K views</span>
+            <span className="VideoCard__content-publish-date">{publishDate}</span>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
