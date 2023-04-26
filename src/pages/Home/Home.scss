@@ -7,12 +7,12 @@
   grid-gap: 15px;
   align-content: start;
   margin-top: 50px;
+  height: min-content;
 
   @include xl {
     padding: 20px 30px;
     margin-bottom: 65px;
-    margin-top: 50px;
-    height: calc(100vh - 130px);
+    margin-top: 0;
     overflow: auto;
   }
 }

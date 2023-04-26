@@ -2,7 +2,7 @@
 $margin-top: 70px;
 
 .Drawer {
-  width: 80px;
+  width: 100px;
   margin-top: $margin-top;
 
   @include xl {
@@ -22,7 +22,7 @@ $margin-top: 70px;
 
   .MuiModal-backdrop {
     background-color: transparent;
-    width: 80px;
+    width: 100px;
     margin-top: $margin-top;
     @include xl {
       margin-top: calc(100vh - $margin-top);
@@ -32,7 +32,7 @@ $margin-top: 70px;
   }
 
   .MuiPaper-root.MuiDrawer-paper {
-    width: 80px;
+    width: 100px;
     top: $margin-top;
     overflow-y: hidden;
     height: calc(100vh - $margin-top);
@@ -154,7 +154,7 @@ $margin-top: 70px;
       top: $margin-top;
       overflow-y: auto;
       height: calc(100vh - $margin-top);
-      padding: 0 10px;
+      padding: 0 22px;
       box-shadow: none;
     }
   }

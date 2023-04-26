@@ -20,7 +20,8 @@
   }
 
   &__menu {
-    margin-left: 8px;
+    display: flex;
+    margin-left: 18px;
 
     @include xl {
       display: none;

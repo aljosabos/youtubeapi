@@ -12,3 +12,5 @@ export const RELATED_VIDEO_IDS_URL = `https://youtube.googleapis.com/youtube/v3/
 export const RELATED_VIDEOS_URL = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&fields=items(id,contentDetails(duration),snippet(title,channelTitle,publishedAt,thumbnails(high(url))),statistics(viewCount)),nextPageToken&key=${process.env.REACT_APP_API_KEY}`;
 
 export const USER_INFO_URL = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&fields=items(snippet(title,thumbnails(default(url))))&mine=true&key=${process.env.REACT_APP_API_KEY}`;
+
+export const SEARCHED_VIDEOS_URL = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=cars&&maxResults=50&fields=items(id(videoId,channelId),snippet(publishedAt,title,description,channelTitle,thumbnails(default(url))))&key=${process.env.REACT_APP_API_KEY}`;

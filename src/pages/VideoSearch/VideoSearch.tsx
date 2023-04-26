@@ -22,16 +22,18 @@ export default function VideoSearch() {
 
   return (
     <div className="VideoSearch">
-      {recommendedVideos?.map((video: IVideo, index) => (
-        <VideoCard
-          layout="horizontal"
-          wrapperClassName="VideoSearch__card"
-          ariaLabel="video-card"
-          {...video}
-          key={index}
-          onClick={() => openVideoURL(video.id)}
-        />
-      ))}
+      <div className="VideoSearch__card-list">
+        {recommendedVideos?.map((video: IVideo, index) => (
+          <VideoCard
+            layout="horizontal"
+            wrapperClassName="VideoSearch__card"
+            ariaLabel="video-card"
+            {...video}
+            key={index}
+            onClick={() => openVideoURL(video.id)}
+          />
+        ))}
+      </div>
     </div>
   );
 }

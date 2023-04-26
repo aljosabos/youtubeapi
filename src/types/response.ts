@@ -63,3 +63,21 @@ export interface IVideoDetailsResponse {
     commentCount: string;
   };
 }
+
+export interface ISearchedVideoResponse {
+  id: {
+    videoId: string;
+    channelId: string;
+  };
+  snippet: {
+    publishedAt: string;
+    title: string;
+    description: string;
+    thumbnails: {
+      default: {
+        url: string;
+      };
+    };
+  };
+  channelTitle: string;
+}

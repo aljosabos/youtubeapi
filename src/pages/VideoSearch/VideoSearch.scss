@@ -1,13 +1,26 @@
+@import "../../scss/breakpoints";
+
 .VideoSearch {
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 20px;
-  width: 80%;
-  margin: 100px auto;
-  height: calc(100vh - 130px);
+  margin-top: 70px;
+  height: min-content;
+  padding: 20px;
+
+  @include xl {
+    overflow: auto;
+    padding-bottom: 70px;
+    margin-top: 0;
+  }
+
+  &__card-list {
+    width: 80%;
+    margin: auto;
+  }
 
   &__card {
-    height: 220px;
+    height: 30vh;
+    margin: 20px 0;
 
     .MuiCardContent-root {
       padding-left: 20px;
