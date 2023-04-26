@@ -40,15 +40,3 @@ export const formatResponseToVideoDetails = (
   ),
   commentCount: response?.statistics?.commentCount,
 });
-
-// export const mapResponseToSearchedVideos = (items: ISearchedVideosResponse[]) => {
-//   items.map((item: ISearchedVideosResponse) => ({
-//     id: item.id.videoId,
-//     title: item.snippet.title,
-//     channelId: item.id.channelId,
-//     channelTitle: item.channelTitle,
-//     publishedDate: moment(item.snippet.publishedAt).fromNow(),
-//     description: item.snippet.description,
-//     image: item.snippet.thumbnails.default.url,
-//   }));
-// };
