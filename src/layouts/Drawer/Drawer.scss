@@ -152,10 +152,15 @@ $margin-top: 70px;
     .MuiPaper-root.MuiDrawer-paper {
       width: 250px;
       top: $margin-top;
-      overflow-y: auto;
       height: calc(100vh - $margin-top);
+      overflow: hidden;
       padding: 0 22px;
       box-shadow: none;
     }
   }
+}
+
+.Subscriptions-section {
+  margin-top: 30px;
+  overflow: auto;
 }

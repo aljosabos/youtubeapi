@@ -61,12 +61,6 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
           </ListItem>
         ))}
       </List>
-
-      {isLoggedIn && shouldExpandDrawer && (
-        <div className="subscriptions-section">
-          <SubscriptionList />
-        </div>
-      )}
     </Box>
   );
 
@@ -76,6 +70,11 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
     <div>
       <MaterialDrawer disableEnforceFocus anchor="left" open={true} className={rootClass}>
         {list()}
+        {isLoggedIn && shouldExpandDrawer && (
+          <div className="Subscriptions-section">
+            <SubscriptionList />
+          </div>
+        )}
       </MaterialDrawer>
     </div>
   );
