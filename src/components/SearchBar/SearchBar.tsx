@@ -4,9 +4,12 @@ import { ChangeEvent, useEffect, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import Button from "../Button/Button";
 import { createSearchParams, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks/hooks";
+import { searchVideosThunk } from "../../redux/thunks/searchVideosThunk";
 
 export default function SearchBar() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [value, setValue] = useState<string>("");
   const [searchTerm, setSearchedTerm] = useState<string>("");
 
@@ -18,6 +21,7 @@ export default function SearchBar() {
           search_query: searchTerm,
         }).toString(),
       });
+      dispatch(searchVideosThunk(searchTerm));
     }
   }, [searchTerm]);
 

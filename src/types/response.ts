@@ -3,6 +3,7 @@ export interface IVideoResponse {
   snippet: {
     publishedAt: string;
     title: string;
+    description: string;
     thumbnails: {
       high: {
         url: string;
@@ -64,20 +65,20 @@ export interface IVideoDetailsResponse {
   };
 }
 
-export interface ISearchedVideoResponse {
-  id: {
-    videoId: string;
-    channelId: string;
-  };
-  snippet: {
-    publishedAt: string;
-    title: string;
-    description: string;
-    thumbnails: {
-      default: {
-        url: string;
-      };
-    };
-  };
-  channelTitle: string;
-}
+// export interface ISearchedVideosResponse {
+//   id: {
+//     videoId: string;
+//     channelId: string;
+//   };
+//   snippet: {
+//     publishedAt: string;
+//     title: string;
+//     description: string;
+//     thumbnails: {
+//       default: {
+//         url: string;
+//       };
+//     };
+//   };
+//   channelTitle: string;
+// }

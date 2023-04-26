@@ -13,6 +13,7 @@ export const mapResponseToVideos = (items: IVideoResponse[]) =>
   items.map((item: IVideoResponse) => ({
     id: item.id,
     title: item.snippet?.title,
+    description: item.snippet?.description,
     channel: item.snippet?.channelTitle,
     image: item.snippet?.thumbnails.high.url,
     duration: formatISOtoHumanReadable(item.contentDetails?.duration),
@@ -20,9 +21,8 @@ export const mapResponseToVideos = (items: IVideoResponse[]) =>
     publishDate: moment(item.snippet?.publishedAt).fromNow(),
   }));
 
-export const mapResponseToRelatedVideoIDs = (
-  response: IRelatedVideosResponse[]
-) => response.map((item: IRelatedVideosResponse) => item.id.videoId);
+export const mapResponseToVideoIDs = (response: IRelatedVideosResponse[]) =>
+  response.map((item: IRelatedVideosResponse) => item.id.videoId);
 
 export const formatResponseToVideoDetails = (
   response: IVideoDetailsResponse
@@ -40,3 +40,15 @@ export const formatResponseToVideoDetails = (
   ),
   commentCount: response?.statistics?.commentCount,
 });
+
+// export const mapResponseToSearchedVideos = (items: ISearchedVideosResponse[]) => {
+//   items.map((item: ISearchedVideosResponse) => ({
+//     id: item.id.videoId,
+//     title: item.snippet.title,
+//     channelId: item.id.channelId,
+//     channelTitle: item.channelTitle,
+//     publishedDate: moment(item.snippet.publishedAt).fromNow(),
+//     description: item.snippet.description,
+//     image: item.snippet.thumbnails.default.url,
+//   }));
+// };

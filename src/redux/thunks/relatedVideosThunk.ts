@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
-  RELATED_VIDEOS_URL,
+  VIDEOS_LIST_URL,
   RELATED_VIDEO_IDS_URL,
 } from "../../constants/endpointConstants";
 import axios from "axios";
 import {
-  mapResponseToRelatedVideoIDs,
+  mapResponseToVideoIDs,
   mapResponseToVideos,
 } from "../../utils/responseUtils";
 
@@ -28,11 +28,11 @@ const getRelatedVideosIDs = async (videoId: string) => {
     },
   });
 
-  return mapResponseToRelatedVideoIDs(response.data.items).join(",");
+  return mapResponseToVideoIDs(response.data.items).join(",");
 };
 
 const getRelatedVideos = async (videosIDs: string) => {
-  const response = await axios.get(RELATED_VIDEOS_URL, {
+  const response = await axios.get(VIDEOS_LIST_URL, {
     params: {
       id: videosIDs,
       maxResults: videosIDs.length,
