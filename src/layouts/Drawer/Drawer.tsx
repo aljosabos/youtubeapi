@@ -47,7 +47,11 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
     { text: "Subscriptions", icon: <SubscriptionsIcon /> },
   ];
 
-  if (isResized) listItems.push({ text: "Settings", icon: <SettingsPopover icon={SettingsIcon} username={username} userAvatar={userAvatar} /> });
+  if (isResized)
+    listItems.push({
+      text: "Settings",
+      icon: <SettingsPopover icon={SettingsIcon} username={username} userAvatar={userAvatar} isLoggedIn={isLoggedIn} />,
+    });
 
   const list = () => (
     <Box role="presentation">

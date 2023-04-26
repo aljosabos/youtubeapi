@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { IUserInfoState } from "../types/userInfoState";
 import { getUserInfoThunk } from "../thunks/userInfoThunk";
 
-const initialState: IUserInfoState = {
+export const initialState: IUserInfoState = {
   data: {
     name: "",
     avatar: "",

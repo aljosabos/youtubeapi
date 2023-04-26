@@ -12,6 +12,7 @@ interface ISettingsPopoverProps {
   icon: MaterialIcon | string;
   username: string;
   userAvatar: string;
+  isLoggedIn: boolean;
 }
 
 const languages = [
@@ -20,7 +21,7 @@ const languages = [
   { name: "Russian", value: "ru" },
 ];
 
-export default function SettingsPopover({ icon, username, userAvatar }: ISettingsPopoverProps) {
+export default function SettingsPopover({ icon, username, userAvatar, isLoggedIn }: ISettingsPopoverProps) {
   const dispatch = useAppDispatch();
   const currentLanguage = useAppSelector(languageSelector);
 
@@ -35,11 +36,13 @@ export default function SettingsPopover({ icon, username, userAvatar }: ISetting
   return (
     <div className="SettingsPopover">
       <Popover icon={icon}>
-        <div className="SettingsPopover__user-info">
-          <span className="SettingsPopover__user-info-name">{username}</span>
+        {isLoggedIn && (
+          <div className="SettingsPopover__user-info">
+            <span className="SettingsPopover__user-info-name">{username}</span>
 
-          <img src={userAvatar} alt="User_avatar" className="SettingsPopover__user-info-avatar" />
-        </div>
+            <img src={userAvatar} alt="User_avatar" className="SettingsPopover__user-info-avatar" />
+          </div>
+        )}
 
         <Select onChange={handleChange} value={selectValue} items={languages} label="Language" />
 
