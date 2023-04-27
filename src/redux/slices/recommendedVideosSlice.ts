@@ -6,6 +6,7 @@ import {
 } from "../thunks/recommendedVideosThunk";
 import { IRecommendedVideosState } from "../types/recommendedVideosState";
 import { mapResponseToVideos } from "../../utils/responseUtils";
+import { IVideo } from "../../types/types";
 
 const initialState: IRecommendedVideosState = {
   data: {
@@ -47,7 +48,9 @@ export const recommendedVideosSlice = createSlice({
     builder.addCase(
       getMoreRecommendedVideosThunk.fulfilled,
       (state, action) => {
-        const mappedVideos = mapResponseToVideos(action.payload.items);
+        const mappedVideos: IVideo[] = mapResponseToVideos(
+          action.payload.items
+        );
         state.status = "succeeded";
         state.error = {};
         state.data = {

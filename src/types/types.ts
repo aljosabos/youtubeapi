@@ -4,6 +4,7 @@ import { OverridableComponent } from "@mui/material/OverridableComponent";
 export interface IVideo {
   id: string;
   title: string;
+  description: string;
   channel: string;
   image: string;
   duration: string;

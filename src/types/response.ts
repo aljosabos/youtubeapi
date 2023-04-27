@@ -3,6 +3,7 @@ export interface IVideoResponse {
   snippet: {
     publishedAt: string;
     title: string;
+    description: string;
     thumbnails: {
       high: {
         url: string;

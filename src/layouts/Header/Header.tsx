@@ -78,7 +78,7 @@ export default function Header({ handleLogout, toggleExpandDrawer }: IHeaderProp
           onClick={handleLogout}
         />
       )}
-      {!isResized && <SettingsPopover icon={SettingsIcon} username={username} userAvatar={userAvatar} />}
+      {!isResized && <SettingsPopover icon={SettingsIcon} username={username} userAvatar={userAvatar} isLoggedIn={isLoggedIn} />}
     </div>
   );
 }

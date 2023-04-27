@@ -3,6 +3,7 @@ import recommendedVideosReducer from "./slices/recommendedVideosSlice";
 import subscriptionsReducer from "./slices/subscriptionsSlice";
 import videoDetailsReducer from "./slices/videoDetailsSlice";
 import relatedVideosReducer from "./slices/relatedVideosSlice";
+import searchedVideosReducer from "./slices/searchVideosSlice";
 import settingsReducer from "./slices/settingsSlice";
 import userInfoReducer from "./slices/userInfoSlice";
 import {
@@ -22,6 +23,7 @@ const reducers = combineReducers({
   subscriptions: subscriptionsReducer,
   videoDetails: videoDetailsReducer,
   relatedVideos: relatedVideosReducer,
+  searchedVideos: searchedVideosReducer,
   settings: settingsReducer,
   userInfo: userInfoReducer,
 });

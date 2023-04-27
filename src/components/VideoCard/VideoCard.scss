@@ -2,6 +2,11 @@
   height: 100%;
   cursor: pointer;
 
+  .MuiTypography-root {
+    font-size: 13px;
+    line-height: normal;
+  }
+
   .MuiCard-root {
     height: 100%;
   }
@@ -29,6 +34,7 @@
     &-image {
       &.MuiCardMedia-root {
         border-radius: 10px;
+        height: 150px;
       }
 
       &--horizontal {
@@ -65,13 +71,16 @@
     }
 
     &-title {
-      &.MuiTypography-root {
-        font-size: 13px;
-        line-height: 15px;
-        height: 30px;
-        overflow: hidden;
-        font-weight: bold;
-      }
+      font-size: 13px;
+      line-height: 15px;
+      height: 30px;
+      overflow: hidden;
+      font-weight: bold;
+    }
+
+    &-description {
+      font-size: 12px;
+      margin: 10px 0;
     }
 
     &-channel {

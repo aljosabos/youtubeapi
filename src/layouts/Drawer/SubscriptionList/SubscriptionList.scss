@@ -5,7 +5,6 @@
   height: 320px;
   overflow: hidden;
   color: black;
-  margin-top: 20px;
 
   &--expanded {
     height: auto;
@@ -24,7 +23,7 @@
       padding-left: 15px;
       width: 100%;
       display: flex;
-      justify-content: start;
+      justify-content: flex-start;
 
       &:hover {
         background-color: #edeaea;

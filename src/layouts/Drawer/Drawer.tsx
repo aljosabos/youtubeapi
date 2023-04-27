@@ -47,7 +47,11 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
     { text: "Subscriptions", icon: <SubscriptionsIcon /> },
   ];
 
-  if (isResized) listItems.push({ text: "Settings", icon: <SettingsPopover icon={SettingsIcon} username={username} userAvatar={userAvatar} /> });
+  if (isResized)
+    listItems.push({
+      text: "Settings",
+      icon: <SettingsPopover icon={SettingsIcon} username={username} userAvatar={userAvatar} isLoggedIn={isLoggedIn} />,
+    });
 
   const list = () => (
     <Box role="presentation">
@@ -61,12 +65,6 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
           </ListItem>
         ))}
       </List>
-
-      {isLoggedIn && shouldExpandDrawer && (
-        <div className="subscriptions-section">
-          <SubscriptionList />
-        </div>
-      )}
     </Box>
   );
 
@@ -76,6 +74,11 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
     <div>
       <MaterialDrawer disableEnforceFocus anchor="left" open={true} className={rootClass}>
         {list()}
+        {isLoggedIn && shouldExpandDrawer && (
+          <div className="Subscriptions-section">
+            <SubscriptionList />
+          </div>
+        )}
       </MaterialDrawer>
     </div>
   );

@@ -1,3 +1,5 @@
+import { IVideoResponse } from "../types/response";
+
 export const recommendedVideosMock = {
   data: {
     items: [
@@ -6,6 +8,7 @@ export const recommendedVideosMock = {
         snippet: {
           publishedAt: "2023-04-09T05:24:51Z",
           title: "Israel Adesanya Octagon Interview | UFC 287",
+          description: "Lorem ipsum dolor sit amen",
           thumbnails: {
             high: {
               url: "https://i.ytimg.com/vi/ZNoODFgTq3c/hqdefault.jpg",
@@ -26,6 +29,7 @@ export const recommendedVideosMock = {
         snippet: {
           publishedAt: "2022-04-09T05:20:51Z",
           title: "News happening  | UFC 227",
+          description: "Lorem ipsum dolor sit amen",
           thumbnails: {
             high: {
               url: "https://i.ytimg.com/vi/ZNoODFgTq3c/hqdefault.jpg",
@@ -46,6 +50,7 @@ export const recommendedVideosMock = {
         snippet: {
           publishedAt: "2019-04-09T05:24:51Z",
           title: "Animals planet comming  | UFC 287",
+          description: "Lorem ipsum dolor sit amen",
           thumbnails: {
             high: {
               url: "https://i.ytimg.com/vi/ZNoODFgTq3c/hqdefault.jpg",
@@ -73,6 +78,7 @@ export const moreRecommendedVideosMock = {
         snippet: {
           publishedAt: "2015-02-09T05:24:51Z",
           title: "More recommended videos",
+          description: "Lorem ipsum dolor sit amen more",
           thumbnails: {
             high: {
               url: "https://i.ytimg.com/vi/ZNoODFgTq3c/hqdefault.jpg",
