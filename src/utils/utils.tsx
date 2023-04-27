@@ -42,3 +42,22 @@ export interface IIconStyles {
 
 export const renderIconBasedOnType = (icon: MaterialIcon | string) =>
   typeof icon === "string" ? <img src={icon} alt="Icon" className="Button__Icon" /> : createElement(icon, { className: "Icon" });
+
+export const formatDescriptionForPreview = (desc: string, descLength?: number) => {
+  if (!desc) return;
+
+  const formattedDescription = desc?.split("\n\n")[0].slice(0, descLength || 160);
+
+  if (formattedDescription.includes("?")) return formattedDescription.split("?")[0] + "?";
+
+  if (formattedDescription.includes("!")) return formattedDescription.split("!")[0] + "!";
+
+  if (formattedDescription.includes(".") && !formattedDescription.includes("https")) return formattedDescription.split(".")[0] + ".";
+
+  return formattedDescription.endsWith("?") ||
+    formattedDescription.endsWith("!") ||
+    formattedDescription.endsWith(".") ||
+    formattedDescription.includes("https")
+    ? formattedDescription
+    : `${formattedDescription}...`;
+};

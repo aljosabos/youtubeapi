@@ -6,6 +6,7 @@ import { IVideo } from "../../types/types";
 import "./VideoSearch.scss";
 import { getRecommendedVideosThunk } from "../../redux/thunks/recommendedVideosThunk";
 import { searchedVideosSelector } from "../../redux/slices/searchVideosSlice";
+import { useEffect } from "react";
 
 export default function VideoSearch() {
   const { recommendedVideos } = useAppSelector(recommendedVideosSelector);
@@ -17,20 +18,21 @@ export default function VideoSearch() {
     navigate(`/video/${videoId}`);
   };
 
-  // useEffect(() => {
-  //   // dispatch(getRecommendedVideosThunk());
-  // }, []);
+  useEffect(() => {
+    dispatch(getRecommendedVideosThunk());
+  }, []);
 
   return (
     <div className="VideoSearch">
       <div className="VideoSearch__card-list">
-        {searchedVideos?.map((video: IVideo, index) => (
+        {recommendedVideos?.map((video: IVideo, index) => (
           <VideoCard
             layout="horizontal"
             wrapperClassName="VideoSearch__card"
             ariaLabel="video-card"
             {...video}
             key={index}
+            showDescriptionPreview
             onClick={() => openVideoURL(video.id)}
           />
         ))}

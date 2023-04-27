@@ -65,13 +65,16 @@
     }
 
     &-title {
-      &.MuiTypography-root {
-        font-size: 13px;
-        line-height: 15px;
-        height: 30px;
-        overflow: hidden;
-        font-weight: bold;
-      }
+      font-size: 13px;
+      line-height: 15px;
+      height: 30px;
+      overflow: hidden;
+      font-weight: bold;
+    }
+
+    &-description {
+      font-size: 12px;
+      margin: 10px 0;
     }
 
     &-channel {

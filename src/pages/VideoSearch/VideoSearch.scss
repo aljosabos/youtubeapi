@@ -19,11 +19,23 @@
   }
 
   &__card {
-    height: 230px;
+    height: 200px;
     margin: 20px 0;
 
     .MuiCardContent-root {
       padding-left: 20px;
+    }
+
+    .VideoCard__media--horizontal {
+      width: 40%;
+    }
+
+    .VideoCard__content--horizontal {
+      width: 60%;
+    }
+
+    .VideoCard__content-title {
+      font-size: 16px;
     }
   }
 }
