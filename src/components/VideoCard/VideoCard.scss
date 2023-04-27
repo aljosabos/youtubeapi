@@ -2,6 +2,11 @@
   height: 100%;
   cursor: pointer;
 
+  .MuiTypography-root {
+    font-size: 13px;
+    line-height: normal;
+  }
+
   .MuiCard-root {
     height: 100%;
   }
@@ -29,6 +34,7 @@
     &-image {
       &.MuiCardMedia-root {
         border-radius: 10px;
+        height: 150px;
       }
 
       &--horizontal {
