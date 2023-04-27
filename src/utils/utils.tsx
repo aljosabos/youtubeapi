@@ -1,5 +1,5 @@
 import { MutableRefObject } from "react";
-import { ACCESS_TOKEN, TOKEN_EXPIRE_TIME } from "../constants/constants";
+import { ACCESS_TOKEN, DEFAULT_DESC_LENGTH, TOKEN_EXPIRE_TIME } from "../constants/constants";
 import { createElement } from "react";
 import { MaterialIcon } from "../types/types";
 
@@ -43,21 +43,23 @@ export interface IIconStyles {
 export const renderIconBasedOnType = (icon: MaterialIcon | string) =>
   typeof icon === "string" ? <img src={icon} alt="Icon" className="Button__Icon" /> : createElement(icon, { className: "Icon" });
 
+const cutStringAfterCharIfCharExists = (string: string, char: string, exception?: string) => {
+  if (!string.includes(char) || (exception && string.includes(exception))) return;
+  return string.split(char)[0] + char;
+};
+
 export const formatDescriptionForPreview = (desc: string, descLength?: number) => {
   if (!desc) return;
+  const length = descLength || DEFAULT_DESC_LENGTH;
 
-  const formattedDescription = desc?.split("\n\n")[0].slice(0, descLength || 160);
+  const slicedDesc = desc?.split("\n\n")[0].slice(0, length);
 
-  if (formattedDescription.includes("?")) return formattedDescription.split("?")[0] + "?";
+  /* cut string even more if includes puncation marks */
+  cutStringAfterCharIfCharExists(slicedDesc, "?");
+  cutStringAfterCharIfCharExists(slicedDesc, "!");
+  cutStringAfterCharIfCharExists(slicedDesc, ".", "https");
 
-  if (formattedDescription.includes("!")) return formattedDescription.split("!")[0] + "!";
-
-  if (formattedDescription.includes(".") && !formattedDescription.includes("https")) return formattedDescription.split(".")[0] + ".";
-
-  return formattedDescription.endsWith("?") ||
-    formattedDescription.endsWith("!") ||
-    formattedDescription.endsWith(".") ||
-    formattedDescription.includes("https")
-    ? formattedDescription
-    : `${formattedDescription}...`;
+  return slicedDesc.endsWith("?") || slicedDesc.endsWith("!") || slicedDesc.endsWith(".") || slicedDesc.includes("https")
+    ? slicedDesc
+    : `${slicedDesc}...`;
 };
