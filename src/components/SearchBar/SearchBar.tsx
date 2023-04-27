@@ -21,7 +21,7 @@ export default function SearchBar() {
           search_query: searchTerm,
         }).toString(),
       });
-      // dispatch(searchVideosThunk(searchTerm));
+      dispatch(searchVideosThunk(searchTerm));
     }
   }, [searchTerm]);
 

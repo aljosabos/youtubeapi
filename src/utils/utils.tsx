@@ -44,22 +44,21 @@ export const renderIconBasedOnType = (icon: MaterialIcon | string) =>
   typeof icon === "string" ? <img src={icon} alt="Icon" className="Button__Icon" /> : createElement(icon, { className: "Icon" });
 
 const cutStringAfterCharIfCharExists = (string: string, char: string, exception?: string) => {
-  if (!string.includes(char) || (exception && string.includes(exception))) return;
+  if (!string.includes(char) || (exception && string.includes(exception))) return string;
   return string.split(char)[0] + char;
 };
 
 export const cutDescriptionForPreview = (desc: string, descLength?: number) => {
-  if (!desc) return;
+  if (!desc) return "";
   const length = descLength || DEFAULT_DESC_LENGTH;
 
-  const slicedDesc = desc?.split("\n\n")[0].slice(0, length);
+  const slicedDesc = desc.split("\n\n")[0].slice(0, length);
+  let slicedDescWithPunctuation = "";
+  const punctuationChars = ["?", "!", "."];
 
-  /* cut string even more if includes puncation marks */
-  cutStringAfterCharIfCharExists(slicedDesc, "?");
-  cutStringAfterCharIfCharExists(slicedDesc, "!");
-  cutStringAfterCharIfCharExists(slicedDesc, ".", "https");
+  punctuationChars.forEach((char) => {
+    slicedDescWithPunctuation = cutStringAfterCharIfCharExists(slicedDesc, char, "https");
+  });
 
-  return slicedDesc.endsWith("?") || slicedDesc.endsWith("!") || slicedDesc.endsWith(".") || slicedDesc.includes("https")
-    ? slicedDesc
-    : `${slicedDesc}...`;
+  return slicedDescWithPunctuation ? slicedDescWithPunctuation : `${slicedDesc}...`;
 };

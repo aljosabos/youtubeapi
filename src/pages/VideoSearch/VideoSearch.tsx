@@ -18,14 +18,14 @@ export default function VideoSearch() {
     navigate(`/video/${videoId}`);
   };
 
-  useEffect(() => {
-    dispatch(getRecommendedVideosThunk());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getRecommendedVideosThunk());
+  // }, []);
 
   return (
     <div className="VideoSearch">
       <div className="VideoSearch__card-list">
-        {recommendedVideos?.map((video: IVideo, index) => (
+        {searchedVideos?.map((video: IVideo, index) => (
           <VideoCard
             layout="horizontal"
             wrapperClassName="VideoSearch__card"
