@@ -3,7 +3,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import "./VideoCard.scss";
-import { addBEMClasses, formatDescriptionForPreview } from "../../utils/utils";
+import { addBEMClasses, cutDescriptionForPreview } from "../../utils/utils";
 
 interface IVideoCardProps {
   id: string;
@@ -49,7 +49,7 @@ export default function VideoCard({
           <CardContent className={addBEMClasses("VideoCard", "content", layout)}>
             <Typography gutterBottom variant="h5" component="div">
               <span className="VideoCard__content-title">{title}</span>
-              {showDescriptionPreview && <p className="VideoCard__content-description">{formatDescriptionForPreview(description)}</p>}
+              {showDescriptionPreview && <p className="VideoCard__content-description">{cutDescriptionForPreview(description)}</p>}
             </Typography>
 
             <h5 className="Video__content-channel">{channel}</h5>

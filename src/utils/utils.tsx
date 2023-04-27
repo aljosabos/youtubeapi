@@ -48,7 +48,7 @@ const cutStringAfterCharIfCharExists = (string: string, char: string, exception?
   return string.split(char)[0] + char;
 };
 
-export const formatDescriptionForPreview = (desc: string, descLength?: number) => {
+export const cutDescriptionForPreview = (desc: string, descLength?: number) => {
   if (!desc) return;
   const length = descLength || DEFAULT_DESC_LENGTH;
 
