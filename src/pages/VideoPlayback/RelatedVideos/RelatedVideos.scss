@@ -15,6 +15,10 @@
     &__card {
       .VideoCard__media--horizontal {
         width: 20%;
+
+        @include sm {
+          width: 30%;
+        }
       }
 
       .VideoCard__content--horizontal {
