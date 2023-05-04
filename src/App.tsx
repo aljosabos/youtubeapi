@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import VideoPlayback from "./pages/VideoPlayback/VideoPlayback";
 import VideoSearch from "./pages/VideoSearch/VideoSearch";
 import "./axiosInstance/interceptor";
+import Channels from "./pages/Channels/Channels";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path={path} key={index} element={<Home />} />
         ))}
         <Route path="results" element={<VideoSearch />} />
+        <Route path="channel/:channelId" element={<Channels />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

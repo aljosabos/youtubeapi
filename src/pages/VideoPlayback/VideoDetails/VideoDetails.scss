@@ -5,7 +5,10 @@
   &__channel {
     display: flex;
     align-items: center;
+    cursor: pointer;
     margin: 10px 0;
+    width: max-content;
+    padding-right: 10px;
 
     &-avatar {
       margin-right: 10px;
