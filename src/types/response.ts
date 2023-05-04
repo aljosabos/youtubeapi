@@ -23,8 +23,10 @@ export interface IVideoResponse {
 export interface ISubscriptionsResponse {
   id: string;
   snippet: {
-    channelId: string;
     title: string;
+    resourceId: {
+      channelId: string;
+    };
     thumbnails: {
       high: {
         url: string;

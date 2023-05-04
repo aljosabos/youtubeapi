@@ -53,7 +53,7 @@ export const mapResponseToSubscriptions = (
 ): ISubscription[] =>
   response.map((item) => ({
     id: item?.id,
-    channelId: item?.snippet?.channelId,
+    channelId: item?.snippet?.resourceId.channelId,
     title: item?.snippet?.title,
     image: item?.snippet?.thumbnails?.high?.url,
   }));
