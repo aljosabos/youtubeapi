@@ -10,6 +10,7 @@ export interface IVideoResponse {
       };
     };
     channelTitle: string;
+    channelId: string;
   };
   contentDetails: {
     duration: string;

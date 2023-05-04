@@ -3,6 +3,7 @@ import { ISubscriptionsSliceState } from "../types/subscriptionsState";
 import { RootState } from "./../store";
 import { createSlice } from "@reduxjs/toolkit";
 import { getSubscriptionsThunk } from "../thunks/subscriptionsThunk";
+import { mapResponseToSubscriptions } from "../../utils/responseUtils";
 
 const initialState: ISubscriptionsSliceState = {
   data: {
@@ -28,7 +29,8 @@ export const subscriptionsSlice = createSlice({
     builder.addCase(getSubscriptionsThunk.fulfilled, (state, action) => {
       state.status = "succeeded";
       state.error = {};
-      state.data = action.payload;
+      state.data.nextPageToken = action.payload.nextPageToken;
+      state.data.items = mapResponseToSubscriptions(action.payload.items);
     });
 
     builder.addCase(getSubscriptionsThunk.rejected, (state, action) => {

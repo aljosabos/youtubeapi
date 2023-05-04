@@ -1,9 +1,9 @@
 import { SerializedError } from "@reduxjs/toolkit";
-import { ISubscriptionsResponse } from "../../types/response";
+import { ISubscription } from "../../types/types";
 
 export interface ISubscriptionsSliceState {
   data: {
-    items: ISubscriptionsResponse[];
+    items: ISubscription[];
     nextPageToken: string;
     totalCount: number;
   };
