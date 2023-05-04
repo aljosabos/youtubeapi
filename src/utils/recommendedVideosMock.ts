@@ -15,6 +15,7 @@ export const recommendedVideosMock = {
             },
           },
           channelTitle: "UFC - Ultimate Fighting Championship",
+          channelId: "12345",
         },
         contentDetails: {
           duration: "PT3M59S",
@@ -36,6 +37,7 @@ export const recommendedVideosMock = {
             },
           },
           channelTitle: "BBC - News",
+          channelId: "123456",
         },
         contentDetails: {
           duration: "PT3M59S",
@@ -57,6 +59,7 @@ export const recommendedVideosMock = {
             },
           },
           channelTitle: "We love animals",
+          channelId: "12345678",
         },
         contentDetails: {
           duration: "PT3M59S",
@@ -85,6 +88,7 @@ export const moreRecommendedVideosMock = {
             },
           },
           channelTitle: "More popular channel videos",
+          channelId: "12345",
         },
         contentDetails: {
           duration: "PT3M59S",

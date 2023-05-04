@@ -51,12 +51,7 @@ export default function SubscriptionList() {
           loader={<h4>Loading...</h4>}
         >
           {subscriptions?.map((subscription, index) => (
-            <Subscription
-              image={subscription?.snippet?.thumbnails?.high?.url}
-              title={subscription?.snippet?.title}
-              key={index}
-              channelId={subscription?.snippet?.channelId}
-            />
+            <Subscription {...subscription} key={index} />
           ))}
         </InfiniteScroll>
       </div>

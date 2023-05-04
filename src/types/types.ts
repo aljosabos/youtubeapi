@@ -6,6 +6,7 @@ export interface IVideo {
   title: string;
   description: string;
   channel: string;
+  channelId: string;
   image: string;
   duration: string;
   views: number;
@@ -23,6 +24,13 @@ export interface IVideoDetails {
   image: string;
   viewCount: number;
   commentCount: string;
+}
+
+export interface ISubscription {
+  id: string;
+  channelId: string;
+  title: string;
+  image: string;
 }
 
 export type MaterialIcon = OverridableComponent<

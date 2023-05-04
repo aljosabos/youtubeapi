@@ -10,6 +10,7 @@ export interface IVideoResponse {
       };
     };
     channelTitle: string;
+    channelId: string;
   };
   contentDetails: {
     duration: string;
@@ -22,8 +23,10 @@ export interface IVideoResponse {
 export interface ISubscriptionsResponse {
   id: string;
   snippet: {
-    channelId: string;
     title: string;
+    resourceId: {
+      channelId: string;
+    };
     thumbnails: {
       high: {
         url: string;
