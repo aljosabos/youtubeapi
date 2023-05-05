@@ -16,3 +16,5 @@ export const USER_INFO_URL = `https://youtube.googleapis.com/youtube/v3/channels
 export const SEARCH_VIDEOS_URL = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&fields=items(id(videoId,channelId),snippet(publishedAt,title,description,channelTitle,thumbnails(default(url))))&key=${process.env.REACT_APP_API_KEY}`;
 
 export const SEARCH_VIDEO_IDS_URL = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&fields=items(id,snippet(title))&type=video&maxResults=50&key=${process.env.REACT_APP_API_KEY}`;
+
+export const CHANNEL_INFO_URL = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet,statistics&maxResults=50&fields=items(snippet(title,description,customUrl,publishedAt,thumbnails(medium(url))),statistics(subscriberCount,videoCount))&key=${process.env.REACT_APP_API_KEY}`;

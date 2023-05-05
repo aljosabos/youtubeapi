@@ -5,7 +5,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import VideoPlayback from "./pages/VideoPlayback/VideoPlayback";
 import VideoSearch from "./pages/VideoSearch/VideoSearch";
 import "./axiosInstance/interceptor";
-import Channels from "./pages/Channels/Channels";
+import Channels from "./pages/Channel/Channel";
 
 function App() {
   return (

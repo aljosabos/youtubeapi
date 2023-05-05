@@ -6,6 +6,7 @@ import relatedVideosReducer from "./slices/relatedVideosSlice";
 import searchedVideosReducer from "./slices/searchVideosSlice";
 import settingsReducer from "./slices/settingsSlice";
 import userInfoReducer from "./slices/userInfoSlice";
+import channelReducer from "./slices/channelSlice";
 import {
   persistStore,
   persistReducer,
@@ -24,6 +25,7 @@ const reducers = combineReducers({
   videoDetails: videoDetailsReducer,
   relatedVideos: relatedVideosReducer,
   searchedVideos: searchedVideosReducer,
+  channel: channelReducer,
   settings: settingsReducer,
   userInfo: userInfoReducer,
 });

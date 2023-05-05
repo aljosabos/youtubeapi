@@ -1,17 +1,19 @@
 import InfiniteScroll from "react-infinite-scroll-component";
 import ChannelInfo from "../../components/ChannelInfo/ChannelInfo";
-import "./Channels.scss";
+import "./Channel.scss";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { recommendedVideosSelector } from "../../redux/slices/recommendedVideosSlice";
 import { getMoreRecommendedVideosThunk, getRecommendedVideosThunk } from "../../redux/thunks/recommendedVideosThunk";
 import VideoCard from "../../components/VideoCard/VideoCard";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { IVideo } from "../../types/types";
 import { useEffect } from "react";
+import { getChannelInfoThunk } from "../../redux/thunks/channelInfoThunk";
 
-export default function Channels() {
+export default function Channel() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { channelId } = useParams();
 
   const { recommendedVideos, nextPageToken } = useAppSelector(recommendedVideosSelector);
 
@@ -27,13 +29,17 @@ export default function Channels() {
     dispatch(getRecommendedVideosThunk());
   }, []);
 
+  useEffect(() => {
+    if (channelId) dispatch(getChannelInfoThunk(channelId));
+  }, [channelId]);
+
   return (
-    <div className="Channels">
+    <div className="Channel">
       <ChannelInfo />
 
       <div data-testid="infinite-scroll">
         <InfiniteScroll
-          className="Channels__wrapper"
+          className="Channel__wrapper"
           dataLength={recommendedVideos.length}
           next={loadMoreVideos}
           hasMore={!!nextPageToken}

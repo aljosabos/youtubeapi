@@ -67,3 +67,21 @@ export interface IVideoDetailsResponse {
     commentCount: string;
   };
 }
+
+export interface IChannelInfoResponse {
+  snippet: {
+    title: string;
+    description: string;
+    customUrl: string;
+    publishedAt: string;
+    thumbnails: {
+      medium: {
+        url: string;
+      };
+    };
+  };
+  statistics: {
+    subscriberCount: string;
+    videoCount: string;
+  };
+}
