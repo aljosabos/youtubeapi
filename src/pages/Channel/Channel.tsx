@@ -9,11 +9,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { IVideo } from "../../types/types";
 import { useEffect } from "react";
 import { getChannelInfoThunk } from "../../redux/thunks/channelInfoThunk";
+import { channelInfoSelector } from "../../redux/slices/channelSlice";
 
 export default function Channel() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { channelId } = useParams();
+  const channelInfo = useAppSelector(channelInfoSelector);
 
   const { recommendedVideos, nextPageToken } = useAppSelector(recommendedVideosSelector);
 
@@ -35,7 +37,7 @@ export default function Channel() {
 
   return (
     <div className="Channel">
-      <ChannelInfo />
+      <ChannelInfo {...channelInfo} />
 
       <div data-testid="infinite-scroll">
         <InfiniteScroll

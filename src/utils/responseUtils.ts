@@ -67,11 +67,13 @@ export const mapResponseToSubscriptions = (
 export const formatResponseToChannelInfo = (
   response: IChannelInfoResponse
 ): IChannelInfo => ({
-  title: response?.snippet.title,
-  customUrl: response?.snippet.customUrl,
-  description: response?.snippet.description,
-  publishedAt: response?.snippet.publishedAt,
-  image: response?.snippet?.thumbnails?.medium.url,
-  subscriberCount: Number(response?.statistics.subscriberCount),
+  title: response?.snippet?.title,
+  customUrl: response?.snippet?.customUrl,
+  description: response?.snippet?.description,
+  publishedAt: response?.snippet?.publishedAt,
+  image: response?.snippet?.thumbnails?.medium?.url,
+  subscriberCount: formatToThousandsWithOneDecimal(
+    Number(response?.statistics?.subscriberCount)
+  ),
   videoCount: Number(response?.statistics?.videoCount),
 });
