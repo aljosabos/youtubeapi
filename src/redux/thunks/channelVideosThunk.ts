@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
-  CHANNEL_INFO_URL,
   VIDEOS_LIST_URL,
   VIDEO_IDS_URL,
 } from "../../constants/endpointConstants";
@@ -10,32 +9,41 @@ import {
   mapResponseToVideos,
 } from "../../utils/responseUtils";
 
+interface IChannelVideosThunkParams {
+  channelId: string;
+  nextPageToken: string;
+}
+
 /* Because of the youtubeapi limitation, search videos endpoint doesnt provide some informations like video duration. As a workaround, first, the search videos enpoint is called only to get search videos ids, and then video list endpoint is called by passing list of all ids to get all the neccessary information */
 
 export const getChannelVideosThunk = createAsyncThunk(
   "channel/get",
   async (channelId: string) => {
-    const searchVideosIDs = await getChannelVideosIDs(channelId);
+    const { IDs, nextPageToken } = await getChannelVideosIDs(channelId);
 
-    return await getChannelVideos(searchVideosIDs);
+    // return await getChannelVideos(searchVideosIDs);
+
+    return {
+      items: await getChannelVideos(IDs),
+      nextPageToken: nextPageToken,
+    };
   }
 );
 
 export const getMoreChannelVideosThunk = createAsyncThunk(
   "channel/getMore",
-  async ({
-    channelId,
-    nextPageToken,
-  }: {
-    channelId: string;
-    nextPageToken: string;
-  }) => {
-    const searchVideosIDs = await getMoreChannelVideosIDs(
-      channelId,
-      nextPageToken
+  async (params: IChannelVideosThunkParams) => {
+    const { IDs, nextPageToken } = await getMoreChannelVideosIDs(
+      params.channelId,
+      params.nextPageToken
     );
 
-    return await getChannelVideos(searchVideosIDs);
+    // return await getChannelVideos(searchVideosIDs);
+
+    return {
+      items: await getChannelVideos(IDs),
+      nextPageToken: nextPageToken,
+    };
   }
 );
 
@@ -49,7 +57,11 @@ const getChannelVideosIDs = async (channelId: string) => {
 
   console.log(response);
 
-  return mapResponseToVideoIDs(response.data.items).join(",");
+  // return mapResponseToVideoIDs(response.data.items).join(",");
+  return {
+    IDs: mapResponseToVideoIDs(response.data.items).join(","),
+    nextPageToken: response.data.nextPageToken,
+  };
 };
 
 const getMoreChannelVideosIDs = async (
@@ -63,7 +75,12 @@ const getMoreChannelVideosIDs = async (
     },
   });
 
-  return mapResponseToVideoIDs(response.data.items).join(",");
+  // return mapResponseToVideoIDs(response.data.items).join(",");
+
+  return {
+    IDs: mapResponseToVideoIDs(response.data.items).join(","),
+    nextPageToken: response.data.nextPageToken,
+  };
 };
 
 const getChannelVideos = async (videosIDs: string) => {
@@ -76,8 +93,5 @@ const getChannelVideos = async (videosIDs: string) => {
 
   console.log(response);
 
-  return {
-    items: mapResponseToVideos(response.data.items),
-    nextPageToken: response.data.nextPageToken,
-  };
+  return mapResponseToVideos(response.data.items);
 };
