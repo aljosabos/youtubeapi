@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   VIDEOS_LIST_URL,
-  SEARCH_VIDEO_IDS_URL,
+  VIDEO_IDS_URL,
 } from "../../constants/endpointConstants";
 import axios from "axios";
 import {
@@ -22,7 +22,7 @@ export const searchVideosThunk = createAsyncThunk(
 
 /* helpers */
 const getSearchedVideosIDs = async (searchTerm: string) => {
-  const response = await axios.get(SEARCH_VIDEO_IDS_URL, {
+  const response = await axios.get(VIDEO_IDS_URL, {
     params: {
       q: searchTerm,
     },

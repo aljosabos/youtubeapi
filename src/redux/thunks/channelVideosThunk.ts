@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
+  CHANNEL_INFO_URL,
   VIDEOS_LIST_URL,
-  SEARCH_VIDEO_IDS_URL,
+  VIDEO_IDS_URL,
 } from "../../constants/endpointConstants";
 import axios from "axios";
 import {
@@ -11,10 +12,28 @@ import {
 
 /* Because of the youtubeapi limitation, search videos endpoint doesnt provide some informations like video duration. As a workaround, first, the search videos enpoint is called only to get search videos ids, and then video list endpoint is called by passing list of all ids to get all the neccessary information */
 
-export const channelVideosThunk = createAsyncThunk(
-  "channelVideos/get",
-  async (searchTerm: string) => {
-    const searchVideosIDs = await getChannelVideosIDs(searchTerm);
+export const getChannelVideosThunk = createAsyncThunk(
+  "channel/get",
+  async (channelId: string) => {
+    const searchVideosIDs = await getChannelVideosIDs(channelId);
+
+    return await getChannelVideos(searchVideosIDs);
+  }
+);
+
+export const getMoreChannelVideosThunk = createAsyncThunk(
+  "channel/getMore",
+  async ({
+    channelId,
+    nextPageToken,
+  }: {
+    channelId: string;
+    nextPageToken: string;
+  }) => {
+    const searchVideosIDs = await getMoreChannelVideosIDs(
+      channelId,
+      nextPageToken
+    );
 
     return await getChannelVideos(searchVideosIDs);
   }
@@ -22,9 +41,25 @@ export const channelVideosThunk = createAsyncThunk(
 
 /* helpers */
 const getChannelVideosIDs = async (channelId: string) => {
-  const response = await axios.get(SEARCH_VIDEO_IDS_URL, {
+  const response = await axios.get(VIDEO_IDS_URL, {
     params: {
-      channelId,
+      id: channelId,
+    },
+  });
+
+  console.log(response);
+
+  return mapResponseToVideoIDs(response.data.items).join(",");
+};
+
+const getMoreChannelVideosIDs = async (
+  channelId: string,
+  nextPageToken: string
+) => {
+  const response = await axios.get(VIDEO_IDS_URL, {
+    params: {
+      id: channelId,
+      pageToken: nextPageToken,
     },
   });
 
@@ -39,7 +74,10 @@ const getChannelVideos = async (videosIDs: string) => {
     },
   });
 
+  console.log(response);
+
   return {
     items: mapResponseToVideos(response.data.items),
+    nextPageToken: response.data.nextPageToken,
   };
 };

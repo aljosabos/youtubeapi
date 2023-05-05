@@ -9,6 +9,7 @@ interface ISubscriptionProps {
 }
 
 export default function Subscription({ channelId, image, title, onClick }: ISubscriptionProps) {
+  console.log(channelId);
   return (
     <div className="Subscription" onClick={() => onClick(channelId)}>
       <Avatar alt="Subscriptions avatar" src={image} className="Subscription__avatar" />

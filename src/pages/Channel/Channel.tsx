@@ -10,6 +10,7 @@ import { IVideo } from "../../types/types";
 import { useEffect } from "react";
 import { getChannelInfoThunk } from "../../redux/thunks/channelInfoThunk";
 import { channelInfoSelector } from "../../redux/slices/channelSlice";
+import { getChannelVideosThunk } from "../../redux/thunks/channelVideosThunk";
 
 export default function Channel() {
   const dispatch = useAppDispatch();
@@ -32,7 +33,10 @@ export default function Channel() {
   }, []);
 
   useEffect(() => {
-    if (channelId) dispatch(getChannelInfoThunk(channelId));
+    if (channelId) {
+      dispatch(getChannelInfoThunk(channelId));
+      dispatch(getChannelVideosThunk(channelId));
+    }
   }, [channelId]);
 
   return (
