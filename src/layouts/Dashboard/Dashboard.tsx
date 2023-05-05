@@ -4,16 +4,19 @@ import "./Dashboard.scss";
 import { useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import { googleLogout } from "@react-oauth/google";
-import { TOKEN_EXPIRE_TIME } from "../../constants/constants";
+import { TOKEN_EXPIRE_TIME, X_LARGE_WIDTH } from "../../constants/constants";
 import { removeAccessTokenAndExpireTime } from "../../utils/utils";
 import { useAppSelector } from "../../redux/hooks/hooks";
 import { languageSelector } from "../../redux/slices/settingsSlice";
 import i18n from "../../i18n";
 import Drawer from "../Drawer/Drawer";
+import { useWindowResize } from "../../redux/hooks/useWindowResize";
+import useEnhancedEffect from "@mui/material/utils/useEnhancedEffect";
 
 function Dashboard() {
   const location = useLocation();
   const currentLanguage = useAppSelector(languageSelector);
+  const { isResized } = useWindowResize(X_LARGE_WIDTH);
 
   const currentTime = Date.now();
   const tokenExpireTime = Number(localStorage.getItem(TOKEN_EXPIRE_TIME));
@@ -33,6 +36,10 @@ function Dashboard() {
       handleLogout();
     }
   }, [location, tokenExpired]);
+
+  useEffect(() => {
+    if (isResized) setShouldExpandDrawer(false);
+  }, [isResized]);
 
   const handleLogout = () => {
     googleLogout();

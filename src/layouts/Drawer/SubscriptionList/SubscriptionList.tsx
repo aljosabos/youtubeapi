@@ -6,18 +6,20 @@ import { getMoreSubscriptionsThunk, getSubscriptionsThunk } from "../../../redux
 import Button from "../../../components/Button/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import { ACCESS_TOKEN, COLLAPSED_SUBSCRIPTIONS_NUM } from "../../../constants/constants";
+import { ACCESS_TOKEN, COLLAPSED_SUBSCRIPTIONS_NUM, X_LARGE_WIDTH } from "../../../constants/constants";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { SCROLLABLE_JSX } from "../../../constants/libraryPropsConstants";
 import { scrollElementToTop } from "../../../utils/utils";
 import { subscriptionsSelector } from "../../../redux/slices/subscriptionsSlice";
 import { useNavigate } from "react-router-dom";
+import { useWindowResize } from "../../../redux/hooks/useWindowResize";
 
 export default function SubscriptionList() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const listRef = useRef<HTMLDivElement | null>(null);
   const accessToken = localStorage.getItem(ACCESS_TOKEN);
-  const navigate = useNavigate();
 
   const [shouldExpandList, setShouldExpandList] = useState<boolean>(false);
 
