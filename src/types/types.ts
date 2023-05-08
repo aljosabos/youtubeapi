@@ -1,6 +1,12 @@
 import { SvgIconTypeMap } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 
+export type MaterialIcon = OverridableComponent<
+  SvgIconTypeMap<object, "svg">
+> & {
+  muiName: string;
+};
+
 export interface IVideo {
   id: string;
   title: string;
@@ -33,8 +39,12 @@ export interface ISubscription {
   image: string;
 }
 
-export type MaterialIcon = OverridableComponent<
-  SvgIconTypeMap<object, "svg">
-> & {
-  muiName: string;
-};
+export interface IChannelInfo {
+  title: string;
+  customUrl: string;
+  description: string;
+  publishedAt: string;
+  image: string;
+  subscriberCount: number;
+  videoCount: number;
+}

@@ -4,12 +4,18 @@ import {
 } from "./dateUtils";
 import moment from "moment";
 import {
+  IChannelInfoResponse,
   IRelatedVideosResponse,
   ISubscriptionsResponse,
   IVideoDetailsResponse,
   IVideoResponse,
 } from "../types/response";
-import { ISubscription, IVideo, IVideoDetails } from "../types/types";
+import {
+  IChannelInfo,
+  ISubscription,
+  IVideo,
+  IVideoDetails,
+} from "../types/types";
 
 export const mapResponseToVideos = (items: IVideoResponse[]) =>
   items.map(
@@ -57,3 +63,17 @@ export const mapResponseToSubscriptions = (
     title: item?.snippet?.title,
     image: item?.snippet?.thumbnails?.high?.url,
   }));
+
+export const formatResponseToChannelInfo = (
+  response: IChannelInfoResponse
+): IChannelInfo => ({
+  title: response?.snippet?.title,
+  customUrl: response?.snippet?.customUrl,
+  description: response?.snippet?.description,
+  publishedAt: response?.snippet?.publishedAt,
+  image: response?.snippet?.thumbnails?.medium?.url,
+  subscriberCount: formatToThousandsWithOneDecimal(
+    Number(response?.statistics?.subscriberCount)
+  ),
+  videoCount: Number(response?.statistics?.videoCount),
+});

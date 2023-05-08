@@ -11,9 +11,13 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { SCROLLABLE_JSX } from "../../../constants/libraryPropsConstants";
 import { scrollElementToTop } from "../../../utils/utils";
 import { subscriptionsSelector } from "../../../redux/slices/subscriptionsSlice";
+import { useNavigate } from "react-router-dom";
+
 
 export default function SubscriptionList() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const listRef = useRef<HTMLDivElement | null>(null);
   const accessToken = localStorage.getItem(ACCESS_TOKEN);
 
@@ -31,9 +35,13 @@ export default function SubscriptionList() {
     rootClass: shouldExpandList ? "SubscriptionList--expanded" : "SubscriptionList",
   };
 
-  const handleOnClick = () => {
+  const handleBtnClick = () => {
     scrollElementToTop(listRef);
     setShouldExpandList((previousState) => !previousState);
+  };
+
+  const openChannel = (channelId: string) => {
+    navigate(`channel/${channelId}`);
   };
 
   const loadMoreSubscriptions = () => {
@@ -51,12 +59,12 @@ export default function SubscriptionList() {
           loader={<h4>Loading...</h4>}
         >
           {subscriptions?.map((subscription, index) => (
-            <Subscription {...subscription} key={index} />
+            <Subscription {...subscription} key={index} onClick={openChannel} />
           ))}
         </InfiniteScroll>
       </div>
 
-      <Button onClick={handleOnClick} text={jsxConfig.btnText} startIcon={jsxConfig.btnIcon} className="SubscriptionList__btn" />
+      <Button onClick={handleBtnClick} text={jsxConfig.btnText} startIcon={jsxConfig.btnIcon} className="SubscriptionList__btn" />
     </>
   );
 }

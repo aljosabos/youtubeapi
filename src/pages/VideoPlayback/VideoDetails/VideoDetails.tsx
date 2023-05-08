@@ -5,6 +5,7 @@ import { useState } from "react";
 import LinkifyText from "../../../components/LinkifyText/LinkifyText";
 import { IVideoDetails } from "../../../types/types";
 import { scrollPageToTop } from "../../../utils/utils";
+import { useNavigate } from "react-router-dom";
 
 export default function VideoDetails({
   id,
@@ -18,6 +19,7 @@ export default function VideoDetails({
   viewCount,
   commentCount,
 }: IVideoDetails) {
+  const navigate = useNavigate();
   const [shouldShowMore, setShouldShowMore] = useState<boolean>(false);
   const BASE_CLASS = "VideoDetails__description";
 
@@ -32,11 +34,15 @@ export default function VideoDetails({
     setShouldShowMore((previousState) => !previousState);
   };
 
+  const openChannel = (channelId: string) => {
+    navigate(`/channel/${channelId}`);
+  };
+
   return (
     <div className="VideoDetails">
       <h3 className="VideoDetails__title">{title} </h3>
 
-      <div className="VideoDetails__channel">
+      <div className="VideoDetails__channel" onClick={() => openChannel(channelId)}>
         {<Avatar src={image} className="VideoDetails__channel-avatar" alt="Subscriptions avatar" />}
 
         <div className="VideoDetails__channel-info">
