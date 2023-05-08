@@ -51,8 +51,6 @@ const getChannelVideosIDs = async (channelId: string) => {
     },
   });
 
-  console.log(response);
-
   return {
     IDs: mapResponseToVideoIDs(response.data.items).join(","),
     nextPageToken: response.data.nextPageToken,
