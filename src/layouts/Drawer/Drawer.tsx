@@ -19,7 +19,6 @@ import { useWindowResize } from "../../redux/hooks/useWindowResize";
 import { X_LARGE_WIDTH } from "../../constants/constants";
 import { useAppSelector } from "../../redux/hooks/hooks";
 import { userInfoSelector } from "../../redux/slices/userInfoSlice";
-import { MaterialIcon } from "../../types/types";
 import { ReactNode } from "react";
 
 interface IDrawerProps {
@@ -31,6 +30,7 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
   const { username, userAvatar } = useAppSelector(userInfoSelector);
   const { isLoggedIn } = useContext(UserContext);
   const modifier = shouldExpandDrawer ? "--expanded" : "";
+  const rootClass = shouldExpandDrawer ? "Drawer--expanded" : "Drawer";
   const { isResized } = useWindowResize(X_LARGE_WIDTH);
 
   interface IListItem {
@@ -42,7 +42,7 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
   const listItems: IListItem[] = [
     {
       text: "Home",
-      icon: <HomeIcon className={`Drawer__list-item-icon-home${modifier}`} />,
+      icon: <HomeIcon />,
       path: "/",
     },
     { text: "Subscriptions", icon: <SubscriptionsIcon />, path: "subscriptions" },
@@ -58,11 +58,9 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
     <Box role="presentation">
       <List className="Drawer__list">
         {listItems.map(({ text, icon, path }) => (
-          <ListItem key={text} className="Drawer__list-item">
+          <ListItem key={text} className="Drawer__list-item" onClick={() => path && navigate(path)}>
             <ListItemButton className={`Drawer__list-item-button${modifier}`}>
-              <ListItemIcon className={`Drawer__list-item-icon${modifier}`} onClick={() => path && navigate(path)}>
-                {icon}
-              </ListItemIcon>
+              <ListItemIcon className={`Drawer__list-item-icon${modifier}`}>{icon}</ListItemIcon>
               <ListItemText primary={text} className={`Drawer__list-item-text${modifier}`} />
             </ListItemButton>
           </ListItem>
@@ -70,8 +68,6 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
       </List>
     </Box>
   );
-
-  const rootClass = shouldExpandDrawer ? "Drawer--expanded" : "Drawer";
 
   return (
     <div>
