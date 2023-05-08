@@ -33,10 +33,6 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
   const modifier = shouldExpandDrawer ? "--expanded" : "";
   const { isResized } = useWindowResize(X_LARGE_WIDTH);
 
-  const navigateToHome = () => {
-    navigate("/");
-  };
-
   interface IListItem {
     text: string;
     icon: ReactNode;
@@ -46,11 +42,7 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
   const listItems: IListItem[] = [
     {
       text: "Home",
-      icon: (
-        <span onClick={navigateToHome} className={`Drawer__list-item-icon-home${modifier}`}>
-          <HomeIcon />
-        </span>
-      ),
+      icon: <HomeIcon className={`Drawer__list-item-icon-home${modifier}`} />,
       path: "/",
     },
     { text: "Subscriptions", icon: <SubscriptionsIcon />, path: "subscriptions" },
