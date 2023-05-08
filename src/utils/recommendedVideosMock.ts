@@ -1,5 +1,3 @@
-import { IVideoResponse } from "../types/response";
-
 export const recommendedVideosMock = {
   data: {
     items: [

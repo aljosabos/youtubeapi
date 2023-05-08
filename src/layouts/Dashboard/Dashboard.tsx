@@ -11,7 +11,6 @@ import { languageSelector } from "../../redux/slices/settingsSlice";
 import i18n from "../../i18n";
 import Drawer from "../Drawer/Drawer";
 import { useWindowResize } from "../../redux/hooks/useWindowResize";
-import useEnhancedEffect from "@mui/material/utils/useEnhancedEffect";
 
 function Dashboard() {
   const location = useLocation();

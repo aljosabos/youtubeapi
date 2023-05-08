@@ -56,6 +56,7 @@ export const channelSlice = createSlice({
       state.status = "succeeded";
       state.error = {};
       state.data.items = action.payload.items;
+      state.data.nextPageToken = action.payload.nextPageToken;
     });
 
     builder.addCase(getChannelVideosThunk.rejected, (state, action) => {
@@ -89,5 +90,11 @@ export const channelSlice = createSlice({
 
 export const channelInfoSelector = (state: RootState) =>
   state.channel.data.channelInfo;
+
+export const channelSelector = ({ channel }: RootState) => ({
+  channelVideos: channel.data.items,
+  nextPageToken: channel.data.nextPageToken,
+  channelInfo: channel.data.channelInfo,
+});
 
 export default channelSlice.reducer;

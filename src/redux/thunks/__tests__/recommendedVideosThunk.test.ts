@@ -6,6 +6,6 @@ describe("recommendedVideosThunk tests", () => {
   beforeAll(() => mockAxiosRequests());
 
   test("should fetch videos", async () => {
-    const results = await store.dispatch(getRecommendedVideosThunk());
+    await store.dispatch(getRecommendedVideosThunk());
   });
 });

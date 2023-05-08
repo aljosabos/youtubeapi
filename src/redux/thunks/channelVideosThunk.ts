@@ -9,7 +9,7 @@ import {
   mapResponseToVideos,
 } from "../../utils/responseUtils";
 
-interface IChannelVideosThunkParams {
+export interface IChannelVideosThunkParams {
   channelId: string;
   nextPageToken: string;
 }
@@ -20,8 +20,6 @@ export const getChannelVideosThunk = createAsyncThunk(
   "channel/get",
   async (channelId: string) => {
     const { IDs, nextPageToken } = await getChannelVideosIDs(channelId);
-
-    // return await getChannelVideos(searchVideosIDs);
 
     return {
       items: await getChannelVideos(IDs),
@@ -38,8 +36,6 @@ export const getMoreChannelVideosThunk = createAsyncThunk(
       params.nextPageToken
     );
 
-    // return await getChannelVideos(searchVideosIDs);
-
     return {
       items: await getChannelVideos(IDs),
       nextPageToken: nextPageToken,
@@ -51,13 +47,12 @@ export const getMoreChannelVideosThunk = createAsyncThunk(
 const getChannelVideosIDs = async (channelId: string) => {
   const response = await axios.get(VIDEO_IDS_URL, {
     params: {
-      id: channelId,
+      channelId,
     },
   });
 
   console.log(response);
 
-  // return mapResponseToVideoIDs(response.data.items).join(",");
   return {
     IDs: mapResponseToVideoIDs(response.data.items).join(","),
     nextPageToken: response.data.nextPageToken,
@@ -70,12 +65,10 @@ const getMoreChannelVideosIDs = async (
 ) => {
   const response = await axios.get(VIDEO_IDS_URL, {
     params: {
-      id: channelId,
+      channelId: channelId,
       pageToken: nextPageToken,
     },
   });
-
-  // return mapResponseToVideoIDs(response.data.items).join(",");
 
   return {
     IDs: mapResponseToVideoIDs(response.data.items).join(","),
@@ -90,8 +83,6 @@ const getChannelVideos = async (videosIDs: string) => {
       maxResults: videosIDs.length,
     },
   });
-
-  console.log(response);
 
   return mapResponseToVideos(response.data.items);
 };
