@@ -19,6 +19,8 @@ import { useWindowResize } from "../../redux/hooks/useWindowResize";
 import { X_LARGE_WIDTH } from "../../constants/constants";
 import { useAppSelector } from "../../redux/hooks/hooks";
 import { userInfoSelector } from "../../redux/slices/userInfoSlice";
+import { MaterialIcon } from "../../types/types";
+import { ReactNode } from "react";
 
 interface IDrawerProps {
   shouldExpandDrawer: boolean;
@@ -35,7 +37,13 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
     navigate("/");
   };
 
-  const listItems = [
+  interface IListItem {
+    text: string;
+    icon: ReactNode;
+    path?: string;
+  }
+
+  const listItems: IListItem[] = [
     {
       text: "Home",
       icon: (
@@ -43,8 +51,9 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
           <HomeIcon />
         </span>
       ),
+      path: "/",
     },
-    { text: "Subscriptions", icon: <SubscriptionsIcon /> },
+    { text: "Subscriptions", icon: <SubscriptionsIcon />, path: "subscriptions" },
   ];
 
   if (isResized)
@@ -56,10 +65,12 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
   const list = () => (
     <Box role="presentation">
       <List className="Drawer__list">
-        {listItems.map(({ text, icon }) => (
+        {listItems.map(({ text, icon, path }) => (
           <ListItem key={text} className="Drawer__list-item">
             <ListItemButton className={`Drawer__list-item-button${modifier}`}>
-              <ListItemIcon className={`Drawer__list-item-icon${modifier}`}>{icon}</ListItemIcon>
+              <ListItemIcon className={`Drawer__list-item-icon${modifier}`} onClick={() => path && navigate(path)}>
+                {icon}
+              </ListItemIcon>
               <ListItemText primary={text} className={`Drawer__list-item-text${modifier}`} />
             </ListItemButton>
           </ListItem>

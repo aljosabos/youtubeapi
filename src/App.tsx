@@ -6,6 +6,8 @@ import VideoPlayback from "./pages/VideoPlayback/VideoPlayback";
 import VideoSearch from "./pages/VideoSearch/VideoSearch";
 import "./axiosInstance/interceptor";
 import Channels from "./pages/Channel/Channel";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import Subscriptions from "./pages/Subscriptions/Subscriptions";
 
 function App() {
   return (
@@ -17,6 +19,14 @@ function App() {
         ))}
         <Route path="results" element={<VideoSearch />} />
         <Route path="channel/:channelId" element={<Channels />} />
+        <Route
+          path="subscriptions"
+          element={
+            <ProtectedRoute>
+              <Subscriptions />
+            </ProtectedRoute>
+          }
+        />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
