@@ -11,8 +11,6 @@ interface IProtectedRouteProps {
 export default function ProtectedRoute({ children }: IProtectedRouteProps) {
   const { isLoggedIn } = useContext(UserContext);
 
-  console.log(isLoggedIn);
-
   if (!isLoggedIn) return <Navigate to="/" replace />;
 
   return <>{children}</>;

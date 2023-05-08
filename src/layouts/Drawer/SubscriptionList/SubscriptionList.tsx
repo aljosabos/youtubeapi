@@ -22,7 +22,7 @@ export default function SubscriptionList() {
 
   const [shouldExpandList, setShouldExpandList] = useState<boolean>(false);
 
-  const { subscriptions, nextPageToken, totalCount } = useAppSelector(subscriptionsSelector);
+  const { subscriptions, nextPageToken } = useAppSelector(subscriptionsSelector);
 
   useEffect(() => {
     if (accessToken) dispatch(getSubscriptionsThunk(accessToken));
