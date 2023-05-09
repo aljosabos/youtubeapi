@@ -40,8 +40,8 @@ export interface IIconStyles {
   [key: string]: string | number;
 }
 
-export const renderIconBasedOnType = (icon: MaterialIcon | string) =>
-  typeof icon === "string" ? <img src={icon} alt="Icon" className="Button__Icon" /> : createElement(icon, { className: "Icon" });
+export const renderIconBasedOnType = (icon: MaterialIcon | string, iconClass: string) =>
+  typeof icon === "string" ? <img src={icon} alt="Icon" className={iconClass} /> : createElement(icon, { className: iconClass });
 
 const cutStringAfterCharIfCharExists = (string: string, char: string, exception?: string) => {
   if (!string.includes(char) || (exception && string.includes(exception))) return string;
