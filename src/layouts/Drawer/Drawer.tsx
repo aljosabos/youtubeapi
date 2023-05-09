@@ -19,6 +19,7 @@ import { useWindowResize } from "../../redux/hooks/useWindowResize";
 import { X_LARGE_WIDTH } from "../../constants/constants";
 import { useAppSelector } from "../../redux/hooks/hooks";
 import { userInfoSelector } from "../../redux/slices/userInfoSlice";
+import { ReactNode } from "react";
 
 interface IDrawerProps {
   shouldExpandDrawer: boolean;
@@ -29,22 +30,22 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
   const { username, userAvatar } = useAppSelector(userInfoSelector);
   const { isLoggedIn } = useContext(UserContext);
   const modifier = shouldExpandDrawer ? "--expanded" : "";
+  const rootClass = shouldExpandDrawer ? "Drawer--expanded" : "Drawer";
   const { isResized } = useWindowResize(X_LARGE_WIDTH);
 
-  const navigateToHome = () => {
-    navigate("/");
-  };
+  interface IListItem {
+    text: string;
+    icon: ReactNode;
+    path?: string;
+  }
 
-  const listItems = [
+  const listItems: IListItem[] = [
     {
       text: "Home",
-      icon: (
-        <span onClick={navigateToHome} className={`Drawer__list-item-icon-home${modifier}`}>
-          <HomeIcon />
-        </span>
-      ),
+      icon: <HomeIcon />,
+      path: "/",
     },
-    { text: "Subscriptions", icon: <SubscriptionsIcon /> },
+    { text: "Subscriptions", icon: <SubscriptionsIcon />, path: "subscriptions" },
   ];
 
   if (isResized)
@@ -56,8 +57,8 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
   const list = () => (
     <Box role="presentation">
       <List className="Drawer__list">
-        {listItems.map(({ text, icon }) => (
-          <ListItem key={text} className="Drawer__list-item">
+        {listItems.map(({ text, icon, path }) => (
+          <ListItem key={text} className="Drawer__list-item" onClick={() => path && navigate(path)}>
             <ListItemButton className={`Drawer__list-item-button${modifier}`}>
               <ListItemIcon className={`Drawer__list-item-icon${modifier}`}>{icon}</ListItemIcon>
               <ListItemText primary={text} className={`Drawer__list-item-text${modifier}`} />
@@ -67,8 +68,6 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
       </List>
     </Box>
   );
-
-  const rootClass = shouldExpandDrawer ? "Drawer--expanded" : "Drawer";
 
   return (
     <div>

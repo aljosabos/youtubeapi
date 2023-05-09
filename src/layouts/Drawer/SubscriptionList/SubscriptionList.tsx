@@ -1,5 +1,5 @@
 import "./SubscriptionList.scss";
-import Subscription from "./Subscription/Subscription";
+import Subscription from "./SubscriptionItem/SubscriptionItem";
 import { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hooks";
 import { getMoreSubscriptionsThunk, getSubscriptionsThunk } from "../../../redux/thunks/subscriptionsThunk";
@@ -13,7 +13,6 @@ import { scrollElementToTop } from "../../../utils/utils";
 import { subscriptionsSelector } from "../../../redux/slices/subscriptionsSlice";
 import { useNavigate } from "react-router-dom";
 
-
 export default function SubscriptionList() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -23,14 +22,14 @@ export default function SubscriptionList() {
 
   const [shouldExpandList, setShouldExpandList] = useState<boolean>(false);
 
-  const { subscriptions, nextPageToken, totalCount } = useAppSelector(subscriptionsSelector);
+  const { subscriptions, nextPageToken } = useAppSelector(subscriptionsSelector);
 
   useEffect(() => {
     if (accessToken) dispatch(getSubscriptionsThunk(accessToken));
   }, [accessToken]);
 
   const jsxConfig = {
-    btnText: shouldExpandList ? "Show less" : `Show ${totalCount - COLLAPSED_SUBSCRIPTIONS_NUM} more`,
+    btnText: shouldExpandList ? "Show less" : "Show more",
     btnIcon: shouldExpandList ? ExpandLessIcon : ExpandMoreIcon,
     rootClass: shouldExpandList ? "SubscriptionList--expanded" : "SubscriptionList",
   };
@@ -64,7 +63,9 @@ export default function SubscriptionList() {
         </InfiniteScroll>
       </div>
 
-      <Button onClick={handleBtnClick} text={jsxConfig.btnText} startIcon={jsxConfig.btnIcon} className="SubscriptionList__btn" />
+      {subscriptions.length > COLLAPSED_SUBSCRIPTIONS_NUM && (
+        <Button onClick={handleBtnClick} text={jsxConfig.btnText} startIcon={jsxConfig.btnIcon} className="SubscriptionList__btn" />
+      )}
     </>
   );
 }
