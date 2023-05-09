@@ -10,11 +10,12 @@ interface ISubscriptionItemProps {
 }
 
 export default function SubscriptionItem({ channelId, image, title, onClick, largeView = false }: ISubscriptionItemProps) {
-  const addClass = (className: string) => (largeView ? `${className}-large` : className);
+  const modifier = largeView ? "--large" : "";
+
   return (
-    <div className={addClass("Subscription")} onClick={() => onClick(channelId)}>
-      <Avatar alt="Subscriptions avatar" src={image} className={addClass("Subscription__avatar")} />
-      <span className={addClass("Subscription__name")}>{title}</span>
+    <div className={`Subscription${modifier}`} onClick={() => onClick(channelId)}>
+      <Avatar alt="Subscriptions avatar" src={image} className={`Subscription__avatar${modifier}`} />
+      <span className={`Subscription__name${modifier}`}>{title}</span>
     </div>
   );
 }
