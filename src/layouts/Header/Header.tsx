@@ -15,9 +15,9 @@ import { useTranslation } from "react-i18next";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useWindowResize } from "../../redux/hooks/useWindowResize";
 import { X_LARGE_WIDTH } from "../../constants/constants";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
+import { useAppSelector } from "../../redux/hooks/hooks";
 import { userInfoSelector } from "../../redux/slices/userInfoSlice";
-import { getUserInfoThunk } from "../../redux/thunks/userInfoThunk";
+import { useLogin } from "../../redux/hooks/useLogin";
 
 interface IHeaderProps {
   handleLogout: () => void;
@@ -26,27 +26,18 @@ interface IHeaderProps {
 
 export default function Header({ handleLogout, toggleExpandDrawer }: IHeaderProps) {
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   const { username, userAvatar } = useAppSelector(userInfoSelector);
   const { isResized } = useWindowResize(X_LARGE_WIDTH);
+
+  const { login, isLoggedIn } = useLogin();
 
   const btnConfig = {
     signInText: isResized ? "" : t("header.btn.signIn"),
     signOutText: isResized ? "" : t("header.btn.signOut"),
     icon: isLoggedIn ? userAvatar : AccountCircleIcon,
   };
-
-  const login = useGoogleLogin({
-    onSuccess: ({ access_token, expires_in }) => {
-      setTokenExpireTimeToLocalStorage(access_token, expires_in);
-      setIsLoggedIn(true);
-      dispatch(getUserInfoThunk(access_token));
-    },
-    scope: AUTH_SCOPE,
-  });
 
   const navigateToHome = () => {
     navigate("/");
