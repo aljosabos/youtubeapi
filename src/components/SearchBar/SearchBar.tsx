@@ -4,7 +4,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import Button from "../Button/Button";
 import { createSearchParams, useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../redux/hooks/hooks";
+import { useAppDispatch } from "../../hooks/reduxHooks";
 import { searchVideosThunk } from "../../redux/thunks/searchVideosThunk";
 
 export default function SearchBar() {

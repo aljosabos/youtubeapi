@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "./Home.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { recommendedVideosSelector } from "../../redux/slices/recommendedVideosSlice";
 import { useNavigate } from "react-router-dom";
 import VideoCard from "../../components/VideoCard/VideoCard";

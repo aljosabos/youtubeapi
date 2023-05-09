@@ -1,7 +1,7 @@
 import Button from "../Button/Button";
 import DialogBox from "../DialogBox/DialogBox";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { useLogin } from "../../redux/hooks/useLogin";
+import { useLogin } from "../../hooks/useLogin";
 import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 import "./LoginDialogBox.scss";
 

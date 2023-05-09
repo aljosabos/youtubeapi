@@ -6,11 +6,11 @@ import { UserContext } from "../../context/UserContext";
 import { googleLogout } from "@react-oauth/google";
 import { TOKEN_EXPIRE_TIME, X_LARGE_WIDTH } from "../../constants/constants";
 import { removeAccessTokenAndExpireTime } from "../../utils/utils";
-import { useAppSelector } from "../../redux/hooks/hooks";
+import { useAppSelector } from "../../hooks/reduxHooks";
 import { languageSelector } from "../../redux/slices/settingsSlice";
 import i18n from "../../i18n";
 import Drawer from "../Drawer/Drawer";
-import { useWindowResize } from "../../redux/hooks/useWindowResize";
+import { useWindowResize } from "../../hooks/useWindowResize";
 
 function Dashboard() {
   const location = useLocation();

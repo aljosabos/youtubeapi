@@ -3,7 +3,7 @@ import "./VideoPlayback.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import VideoDetails from "./VideoDetails/VideoDetails";
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { videosDetailsSelector } from "../../redux/slices/videoDetailsSlice";
 import { getVideoDetailsThunk } from "../../redux/thunks/videoDetailsThunk";
 import RelatedVideos from "./RelatedVideos/RelatedVideos";

@@ -3,7 +3,7 @@ import { renderWithProviders } from "../../utils/test-utils";
 import { mockAxiosRequests } from "../../utils/tests.data";
 import Home from "./Home";
 import { getMoreRecommendedVideosThunk, getRecommendedVideosThunk } from "../../redux/thunks/recommendedVideosThunk";
-import * as reduxHooks from "../../redux/hooks/hooks";
+import * as reduxHooks from "../../hooks/reduxHooks";
 import { moreRecommendedVideosMock, recommendedVideosMock } from "../../utils/recommendedVideosMock";
 import { mapResponseToVideos } from "../../utils/responseUtils";
 import { IVideo } from "../../types/types";

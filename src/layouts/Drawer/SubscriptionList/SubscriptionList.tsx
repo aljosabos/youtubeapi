@@ -1,7 +1,7 @@
 import "./SubscriptionList.scss";
 import Subscription from "./SubscriptionItem/SubscriptionItem";
 import { useEffect, useRef, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
 import { getMoreSubscriptionsThunk, getSubscriptionsThunk } from "../../../redux/thunks/subscriptionsThunk";
 import Button from "../../../components/Button/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";

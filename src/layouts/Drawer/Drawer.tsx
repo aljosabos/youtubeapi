@@ -15,13 +15,13 @@ import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate } from "react-router-dom";
 import SubscriptionList from "./SubscriptionList/SubscriptionList";
 import SettingsPopover from "../Header/SettingsPopover/SettingsPopover";
-import { useWindowResize } from "../../redux/hooks/useWindowResize";
+import { useWindowResize } from "../../hooks/useWindowResize";
 import { X_LARGE_WIDTH } from "../../constants/constants";
-import { useAppSelector } from "../../redux/hooks/hooks";
+import { useAppSelector } from "../../hooks/reduxHooks";
 import { userInfoSelector } from "../../redux/slices/userInfoSlice";
 import { ReactNode } from "react";
 import DialogBox from "../../components/DialogBox/DialogBox";
-import { useLogin } from "../../redux/hooks/useLogin";
+import { useLogin } from "../../hooks/useLogin";
 import Button from "../../components/Button/Button";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 

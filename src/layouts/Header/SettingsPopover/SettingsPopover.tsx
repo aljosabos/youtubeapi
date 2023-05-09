@@ -5,7 +5,7 @@ import i18n from "../../../i18n";
 import { MaterialIcon } from "../../../types/types";
 import "./SettingsPopover.scss";
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
 import { changeLanguage, languageSelector } from "../../../redux/slices/settingsSlice";
 
 interface ISettingsPopoverProps {

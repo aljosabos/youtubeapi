@@ -8,11 +8,11 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import SettingsPopover from "./SettingsPopover/SettingsPopover";
 import { useTranslation } from "react-i18next";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useWindowResize } from "../../redux/hooks/useWindowResize";
+import { useWindowResize } from "../../hooks/useWindowResize";
 import { X_LARGE_WIDTH } from "../../constants/constants";
-import { useAppSelector } from "../../redux/hooks/hooks";
+import { useAppSelector } from "../../hooks/reduxHooks";
 import { userInfoSelector } from "../../redux/slices/userInfoSlice";
-import { useLogin } from "../../redux/hooks/useLogin";
+import { useLogin } from "../../hooks/useLogin";
 
 interface IHeaderProps {
   handleLogout: () => void;

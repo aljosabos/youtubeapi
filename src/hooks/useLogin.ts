@@ -1,10 +1,10 @@
 import { useGoogleLogin } from "@react-oauth/google";
-import { setTokenExpireTimeToLocalStorage } from "../../utils/utils";
+import { setTokenExpireTimeToLocalStorage } from "../utils/utils";
 import { useContext } from "react";
-import { UserContext } from "../../context/UserContext";
-import { AUTH_SCOPE } from "../../constants/endpointConstants";
-import { useAppDispatch } from "./hooks";
-import { getUserInfoThunk } from "../thunks/userInfoThunk";
+import { UserContext } from "../context/UserContext";
+import { AUTH_SCOPE } from "../constants/endpointConstants";
+import { useAppDispatch } from "./reduxHooks";
+import { getUserInfoThunk } from "../redux/thunks/userInfoThunk";
 import { useNavigate } from "react-router-dom";
 
 export const useLogin = (redirectPath?: string) => {

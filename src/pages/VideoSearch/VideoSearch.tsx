@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import VideoCard from "../../components/VideoCard/VideoCard";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { recommendedVideosSelector } from "../../redux/slices/recommendedVideosSlice";
 import { IVideo } from "../../types/types";
 import "./VideoSearch.scss";
