@@ -20,6 +20,10 @@ import { X_LARGE_WIDTH } from "../../constants/constants";
 import { useAppSelector } from "../../redux/hooks/hooks";
 import { userInfoSelector } from "../../redux/slices/userInfoSlice";
 import { ReactNode } from "react";
+import DialogBox from "../../components/DialogBox/DialogBox";
+import { useLogin } from "../../redux/hooks/useLogin";
+import Button from "../../components/Button/Button";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 interface IDrawerProps {
   shouldExpandDrawer: boolean;
@@ -32,6 +36,7 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
   const modifier = shouldExpandDrawer ? "--expanded" : "";
   const rootClass = shouldExpandDrawer ? "Drawer--expanded" : "Drawer";
   const { isResized } = useWindowResize(X_LARGE_WIDTH);
+  const { login } = useLogin("/subscriptions");
 
   interface IListItem {
     text: string;
@@ -77,6 +82,13 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
           <div className="Subscriptions-section">
             <SubscriptionList />
           </div>
+        )}
+        {!isLoggedIn && shouldExpandDrawer && (
+          <DialogBox
+            text="Sign in to like videos, comment, and subscribe."
+            btn={<Button text="Sign in" startIcon={AccountCircleIcon} onClick={login} variant="outlined" />}
+            wrapperClassName="Drawer__dialogBox"
+          />
         )}
       </MaterialDrawer>
     </div>
