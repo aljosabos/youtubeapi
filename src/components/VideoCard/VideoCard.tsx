@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import "./VideoCard.scss";
 import { addBEMClasses, cutDescriptionForPreview } from "../../utils/utils";
 import { translateDateToCurrentLanguage } from "../../utils/date-utils";
+import { useTranslation } from "react-i18next";
 
 interface IVideoCardProps {
   id: string;
@@ -39,6 +40,8 @@ export default function VideoCard({
   description,
   showDescriptionPreview = false,
 }: IVideoCardProps) {
+  const { t } = useTranslation();
+
   const translatedDate = translateDateToCurrentLanguage(publishDate);
 
   return (
@@ -56,7 +59,9 @@ export default function VideoCard({
             </Typography>
 
             <h5 className="Video__content-channel">{channel}</h5>
-            <span className="VideoCard__content-views">{views}K views</span>
+            <span className="VideoCard__content-views">
+              {views}K {t("videoCard.views")}
+            </span>
             <span className="VideoCard__content-publish-date">{translatedDate}</span>
           </CardContent>
         </Card>

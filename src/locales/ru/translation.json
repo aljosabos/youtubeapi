@@ -32,5 +32,9 @@
       "showLess": "Меньше",
       "showMore": "Больше"
     }
+  },
+
+  "videoCard": {
+    "views": "посмотров"
   }
 }
