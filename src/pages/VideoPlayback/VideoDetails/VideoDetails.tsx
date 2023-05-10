@@ -1,11 +1,18 @@
 import { Avatar } from "@mui/material";
 import "./VideoDetails.scss";
 import Button from "../../../components/Button/Button";
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import LinkifyText from "../../../components/LinkifyText/LinkifyText";
 import { IVideoDetails } from "../../../types/types";
 import { scrollPageToTop } from "../../../utils/utils";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { translateDateToCurrentLanguage } from "../../../utils/date-utils";
+
+interface IVideoDetailsProps extends IVideoDetails {
+  expandVideoDetails: boolean;
+  setExpandVideoDetails: Dispatch<SetStateAction<boolean>>;
+}
 
 export default function VideoDetails({
   id,
@@ -18,20 +25,25 @@ export default function VideoDetails({
   image,
   viewCount,
   commentCount,
-}: IVideoDetails) {
+  expandVideoDetails,
+  setExpandVideoDetails,
+}: IVideoDetailsProps) {
   const navigate = useNavigate();
-  const [shouldShowMore, setShouldShowMore] = useState<boolean>(false);
+  const { t } = useTranslation();
+
+  const translatedDate = translateDateToCurrentLanguage(publishedAt);
+
   const BASE_CLASS = "VideoDetails__description";
 
   const jsxConfig = {
-    btnText: shouldShowMore ? "Show less" : "Show more",
-    btnClass: shouldShowMore ? `${BASE_CLASS}-btn--bottom` : `${BASE_CLASS}-btn`,
-    descriptionClass: shouldShowMore ? `${BASE_CLASS}-text--expanded` : `${BASE_CLASS}-text`,
+    btnText: expandVideoDetails ? t("videoDetails.btn.showLess") : t("videoDetails.btn.showMore"),
+    btnClass: expandVideoDetails ? `${BASE_CLASS}-btn--bottom` : `${BASE_CLASS}-btn`,
+    descriptionClass: expandVideoDetails ? `${BASE_CLASS}-text--expanded` : `${BASE_CLASS}-text`,
   };
 
   const handleClick = () => {
-    if (shouldShowMore) scrollPageToTop();
-    setShouldShowMore((previousState) => !previousState);
+    if (expandVideoDetails) scrollPageToTop();
+    setExpandVideoDetails((previousState) => !previousState);
   };
 
   const openChannel = (channelId: string) => {
@@ -47,14 +59,14 @@ export default function VideoDetails({
 
         <div className="VideoDetails__channel-info">
           <h4 className="VideoDetails__channel-info-name">{channelTitle}</h4>
-          <span className="VideoDetails__channel-info-subscribers">20K subscribers</span>
+          <span className="VideoDetails__channel-info-subscribers">20K {t("videoDetails.subscribers")}</span>
         </div>
       </div>
 
       <div className="VideoDetails__description">
         <div className="VideoDetails__description-heading">
           <span className="VideoDetails__description-heading-views">{viewCount}K views</span>
-          <span className="VideoDetails__description-heading-time">{publishedAt}</span>
+          <span className="VideoDetails__description-heading-time">{translatedDate}</span>
 
           <Button onClick={handleClick} text={jsxConfig.btnText} color="info" className={jsxConfig.btnClass} variant="outlined" />
         </div>

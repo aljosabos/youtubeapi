@@ -9,6 +9,8 @@ import Channels from "./pages/Channel/Channel";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Subscriptions from "./pages/Subscriptions/Subscriptions";
 
+import LoginDialogBox from "./components/LoginDialogBox/LoginDialogBox";
+
 function App() {
   return (
     <Routes>
@@ -19,15 +21,13 @@ function App() {
         ))}
         <Route path="results" element={<VideoSearch />} />
         <Route path="channel/:channelId" element={<Channels />} />
+
         <Route
           path="subscriptions"
-          element={
-            <ProtectedRoute>
-              <Subscriptions />
-            </ProtectedRoute>
-          }
+          element={<ProtectedRoute componentForAuthorizedUser={<Subscriptions />} componentForNonAuthorized={<LoginDialogBox />} />}
         />
       </Route>
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

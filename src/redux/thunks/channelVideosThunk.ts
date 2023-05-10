@@ -7,7 +7,7 @@ import axios from "axios";
 import {
   mapResponseToVideoIDs,
   mapResponseToVideos,
-} from "../../utils/responseUtils";
+} from "../../utils/response-utils";
 
 export interface IChannelVideosThunkParams {
   channelId: string;

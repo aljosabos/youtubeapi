@@ -51,9 +51,11 @@ $margin-top: 70px;
       padding: 0;
       justify-content: center;
       height: $margin-top;
+      margin-bottom: 30px;
 
       @include xl {
         display: flex;
+        margin-bottom: 30px;
       }
     }
 
@@ -149,6 +151,20 @@ $margin-top: 70px;
       overflow: hidden;
       padding: 0 22px;
       box-shadow: none;
+    }
+  }
+
+  &__dialogBox {
+    margin-top: -10px !important;
+    .DialogBox {
+      &__text {
+        font-size: 13px;
+        padding: 0 20px;
+      }
+    }
+
+    .MuiButton-root {
+      border-radius: 35px;
     }
   }
 }

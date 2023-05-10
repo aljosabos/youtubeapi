@@ -26,7 +26,7 @@ export default function Popover({ children, icon }: IPopoverProps) {
   return (
     <div className="Popover">
       <span onClick={handleOpen} className="Popover__icon" aria-describedby={id}>
-        {renderIconBasedOnType(icon)}
+        {renderIconBasedOnType(icon, "Button__icon")}
       </span>
 
       <MaterialPopover

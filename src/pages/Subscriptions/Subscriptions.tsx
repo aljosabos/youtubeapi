@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { subscriptionsSelector } from "../../redux/slices/subscriptionsSlice";
 import "./Subscriptions.scss";
 import SubscriptionItem from "../../layouts/Drawer/SubscriptionList/SubscriptionItem/SubscriptionItem";

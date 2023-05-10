@@ -15,23 +15,31 @@ import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate } from "react-router-dom";
 import SubscriptionList from "./SubscriptionList/SubscriptionList";
 import SettingsPopover from "../Header/SettingsPopover/SettingsPopover";
-import { useWindowResize } from "../../redux/hooks/useWindowResize";
+import { useWindowResize } from "../../hooks/useWindowResize";
 import { X_LARGE_WIDTH } from "../../constants/constants";
-import { useAppSelector } from "../../redux/hooks/hooks";
+import { useAppSelector } from "../../hooks/reduxHooks";
 import { userInfoSelector } from "../../redux/slices/userInfoSlice";
 import { ReactNode } from "react";
+import DialogBox from "../../components/DialogBox/DialogBox";
+import { useLogin } from "../../hooks/useLogin";
+import Button from "../../components/Button/Button";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useTranslation } from "react-i18next";
+import { MaterialIcon } from "../../types/types";
 
 interface IDrawerProps {
   shouldExpandDrawer: boolean;
 }
 
 export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { username, userAvatar } = useAppSelector(userInfoSelector);
   const { isLoggedIn } = useContext(UserContext);
   const modifier = shouldExpandDrawer ? "--expanded" : "";
   const rootClass = shouldExpandDrawer ? "Drawer--expanded" : "Drawer";
   const { isResized } = useWindowResize(X_LARGE_WIDTH);
+  const { login } = useLogin("/");
 
   interface IListItem {
     text: string;
@@ -41,16 +49,16 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
 
   const listItems: IListItem[] = [
     {
-      text: "Home",
+      text: t("drawer.listItems.home"),
       icon: <HomeIcon />,
       path: "/",
     },
-    { text: "Subscriptions", icon: <SubscriptionsIcon />, path: "subscriptions" },
+    { text: t("drawer.listItems.subscriptions"), icon: <SubscriptionsIcon />, path: "subscriptions" },
   ];
 
   if (isResized)
     listItems.push({
-      text: "Settings",
+      text: t("drawer.listItems.settings"),
       icon: <SettingsPopover icon={SettingsIcon} username={username} userAvatar={userAvatar} isLoggedIn={isLoggedIn} />,
     });
 
@@ -77,6 +85,13 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
           <div className="Subscriptions-section">
             <SubscriptionList />
           </div>
+        )}
+        {!isLoggedIn && shouldExpandDrawer && (
+          <DialogBox
+            text={t("dialogBox.text")}
+            btn={<Button text={t("dialogBox.btn")} startIcon={AccountCircleIcon} onClick={login} variant="outlined" />}
+            wrapperClassName="Drawer__dialogBox"
+          />
         )}
       </MaterialDrawer>
     </div>

@@ -23,8 +23,8 @@ export default function Button({ endIcon, startIcon, text, className, wrapperCla
     <div className={wrapperClassName}>
       <MaterialButton
         variant={variant ? variant : "contained"}
-        endIcon={endIcon && renderIconBasedOnType(endIcon)}
-        startIcon={startIcon && renderIconBasedOnType(startIcon)}
+        endIcon={endIcon && renderIconBasedOnType(endIcon, "Button__icon")}
+        startIcon={startIcon && renderIconBasedOnType(startIcon, "Button__icon")}
         className={`Button ${className} ${centerIconClass}`}
         disabled={disabled}
         color={color}

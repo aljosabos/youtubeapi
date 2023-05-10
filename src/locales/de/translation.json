@@ -4,5 +4,48 @@
       "signIn": "Anmelden",
       "signOut": "Abmelden"
     }
+  },
+
+  "loginDialogBox": {
+    "title": "„Verpassen Sie keine neuen Videos“",
+    "text": "Melden Sie sich an, um Updates von Ihren bevorzugten YouTube-Kanälen zu sehen",
+    "btn": "Anmelden"
+  },
+
+  "dialogBox": {
+    "text": "Melden Sie sich an, um Videos zu liken, zu kommentieren und zu abonnieren.",
+    "btn": "Anmelden"
+  },
+
+  "drawer": {
+    "listItems": {
+      "home": "Startseite",
+      "subscriptions": "Abonnements",
+      "settings": "Einstellungen"
+    }
+  },
+
+  "videoDetails": {
+    "subscribers": "abonnements",
+    "views": "ansichten",
+    "btn": {
+      "showLess": "Weniger",
+      "showMore": "Mehr"
+    }
+  },
+
+  "videoCard": {
+    "views": "ansichten"
+  },
+
+  "settingsPopover": {
+    "lang": {
+      "en": "Englisch",
+      "de": "Deutsch",
+      "ru": "Russisch"
+    },
+    "selectLabel": {
+      "lang": "Sprache"
+    }
   }
 }

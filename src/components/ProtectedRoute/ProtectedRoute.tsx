@@ -1,17 +1,15 @@
-import { ReactNode, useContext } from "react";
+import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-import Home from "../../pages/Home/Home";
-import { Navigate } from "react-router-dom";
-import { JsxElement } from "typescript";
 
 interface IProtectedRouteProps {
-  children: ReactNode;
+  componentForAuthorizedUser: JSX.Element;
+  componentForNonAuthorized: JSX.Element;
 }
 
-export default function ProtectedRoute({ children }: IProtectedRouteProps) {
+export default function ProtectedRoute({ componentForAuthorizedUser, componentForNonAuthorized }: IProtectedRouteProps) {
   const { isLoggedIn } = useContext(UserContext);
 
-  if (!isLoggedIn) return <Navigate to="/" replace />;
+  if (!isLoggedIn) return componentForNonAuthorized;
 
-  return <>{children}</>;
+  return componentForAuthorizedUser;
 }

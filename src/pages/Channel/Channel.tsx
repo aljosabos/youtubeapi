@@ -1,7 +1,7 @@
 import InfiniteScroll from "react-infinite-scroll-component";
 import ChannelInfo from "../../components/ChannelInfo/ChannelInfo";
 import "./Channel.scss";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import VideoCard from "../../components/VideoCard/VideoCard";
 import { useNavigate, useParams } from "react-router-dom";
 import { IVideo } from "../../types/types";
