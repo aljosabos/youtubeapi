@@ -3,7 +3,7 @@ import { ISubscriptionsSliceState } from "../types/subscriptionsState";
 import { RootState } from "./../store";
 import { createSlice } from "@reduxjs/toolkit";
 import { getSubscriptionsThunk } from "../thunks/subscriptionsThunk";
-import { mapResponseToSubscriptions } from "../../utils/responseUtils";
+import { mapResponseToSubscriptions } from "../../utils/response-utils";
 
 const initialState: ISubscriptionsSliceState = {
   data: {

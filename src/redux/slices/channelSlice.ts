@@ -1,6 +1,6 @@
 import { RootState } from "./../store";
 import { createSlice } from "@reduxjs/toolkit";
-import { formatResponseToChannelInfo } from "../../utils/responseUtils";
+import { formatResponseToChannelInfo } from "../../utils/response-utils";
 import { IChannelSliceState } from "../types/channelSliceState";
 import { IChannelInfo } from "../../types/types";
 import { getChannelInfoThunk } from "../thunks/channelInfoThunk";

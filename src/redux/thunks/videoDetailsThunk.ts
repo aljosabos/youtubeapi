@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { VIDEO_DETAILS_URL } from "../../constants/endpointConstants";
-import { formatResponseToVideoDetails } from "../../utils/responseUtils";
+import { formatResponseToVideoDetails } from "../../utils/response-utils";
 
 export const getVideoDetailsThunk = createAsyncThunk(
   "videoDetails/get",

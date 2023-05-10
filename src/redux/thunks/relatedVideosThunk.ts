@@ -7,7 +7,7 @@ import axios from "axios";
 import {
   mapResponseToVideoIDs,
   mapResponseToVideos,
-} from "../../utils/responseUtils";
+} from "../../utils/response-utils";
 
 /* Because of the youtubeapi limitation, related videos endpoint doesnt provide some informations like video duration. As a workaround, first, the related videos enpoint is called only to get related videos ids, and then video list endpoint is called by passing list of all ids to get all the neccessary information */
 

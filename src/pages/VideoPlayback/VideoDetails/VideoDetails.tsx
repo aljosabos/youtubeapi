@@ -7,7 +7,7 @@ import { IVideoDetails } from "../../../types/types";
 import { scrollPageToTop } from "../../../utils/utils";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useTranslateDate } from "../../../hooks/useTranslateDate";
+import { translateDateToCurrentLanguage } from "../../../utils/date-utils";
 
 interface IVideoDetailsProps extends IVideoDetails {
   expandVideoDetails: boolean;
@@ -30,7 +30,8 @@ export default function VideoDetails({
 }: IVideoDetailsProps) {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { translatedDate } = useTranslateDate(publishedAt);
+
+  const translatedDate = translateDateToCurrentLanguage(publishedAt);
 
   const BASE_CLASS = "VideoDetails__description";
 

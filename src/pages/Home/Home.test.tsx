@@ -5,7 +5,7 @@ import Home from "./Home";
 import { getMoreRecommendedVideosThunk, getRecommendedVideosThunk } from "../../redux/thunks/recommendedVideosThunk";
 import * as reduxHooks from "../../hooks/reduxHooks";
 import { moreRecommendedVideosMock, recommendedVideosMock } from "../../utils/recommendedVideosMock";
-import { mapResponseToVideos } from "../../utils/responseUtils";
+import { mapResponseToVideos } from "../../utils/response-utils";
 import { IVideo } from "../../types/types";
 
 const { items: mockVideos } = recommendedVideosMock.data;

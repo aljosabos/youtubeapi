@@ -4,6 +4,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import "./VideoCard.scss";
 import { addBEMClasses, cutDescriptionForPreview } from "../../utils/utils";
+import { translateDateToCurrentLanguage } from "../../utils/date-utils";
 
 interface IVideoCardProps {
   id: string;
@@ -38,6 +39,8 @@ export default function VideoCard({
   description,
   showDescriptionPreview = false,
 }: IVideoCardProps) {
+  const translatedDate = translateDateToCurrentLanguage(publishDate);
+
   return (
     <div className={wrapperClassName}>
       <div className={addBEMClasses("VideoCard")} aria-label={ariaLabel}>
@@ -54,7 +57,7 @@ export default function VideoCard({
 
             <h5 className="Video__content-channel">{channel}</h5>
             <span className="VideoCard__content-views">{views}K views</span>
-            <span className="VideoCard__content-publish-date">{publishDate}</span>
+            <span className="VideoCard__content-publish-date">{translatedDate}</span>
           </CardContent>
         </Card>
       </div>

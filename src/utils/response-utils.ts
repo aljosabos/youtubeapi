@@ -1,8 +1,7 @@
 import {
   formatISOtoHumanReadable,
   formatToThousandsWithOneDecimal,
-} from "./dateUtils";
-import moment from "moment";
+} from "./date-utils";
 import {
   IChannelInfoResponse,
   IRelatedVideosResponse,
@@ -30,7 +29,7 @@ export const mapResponseToVideos = (items: IVideoResponse[]) =>
       views: formatToThousandsWithOneDecimal(
         Number(item.statistics?.viewCount)
       ),
-      publishDate: moment(item.snippet?.publishedAt).fromNow(),
+      publishDate: item?.snippet?.publishedAt,
     })
   );
 
