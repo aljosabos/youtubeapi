@@ -4,15 +4,25 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useLogin } from "../../hooks/useLogin";
 import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 import "./LoginDialogBox.scss";
+import { useTranslation } from "react-i18next";
 
 export default function LoginDialogBox() {
   const { login } = useLogin("/subscriptions");
+  const { t } = useTranslation();
   return (
     <DialogBox
       icon={VideoLibraryIcon}
-      title="Don’t miss new videos"
-      text="Sign in to see updates from your favorite YouTube channels."
-      btn={<Button text="Sign in" startIcon={AccountCircleIcon} onClick={login} variant="outlined" wrapperClassName="LoginDialogBox__btn" />}
+      title={t("loginDialogBox.title")}
+      text={t("loginDialogBox.text")}
+      btn={
+        <Button
+          text={t("loginDialogBox.btn")}
+          startIcon={AccountCircleIcon}
+          onClick={login}
+          variant="outlined"
+          wrapperClassName="LoginDialogBox__btn"
+        />
+      }
     />
   );
 }

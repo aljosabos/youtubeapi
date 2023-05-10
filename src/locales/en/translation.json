@@ -4,5 +4,24 @@
       "signIn": "Sign in",
       "signOut": "Sign out"
     }
+  },
+
+  "loginDialogBox": {
+    "title": "Don’t miss new videos",
+    "text": "Sign in to see updates from your favorite YouTube channels.",
+    "btn": "Sign in"
+  },
+
+  "dialogBox": {
+    "text": "Sign in to like videos, comment, and subscribe.",
+    "btn": "Sign in"
+  },
+
+  "drawer": {
+    "listItems": {
+      "home": "Home",
+      "subscriptions": "Subscriptions",
+      "settings": "Settings"
+    }
   }
 }
