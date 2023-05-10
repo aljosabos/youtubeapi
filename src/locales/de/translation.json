@@ -36,5 +36,16 @@
 
   "videoCard": {
     "views": "ansichten"
+  },
+
+  "settingsPopover": {
+    "lang": {
+      "en": "Englisch",
+      "de": "Deutsch",
+      "ru": "Russisch"
+    },
+    "selectLabel": {
+      "lang": "Sprache"
+    }
   }
 }
