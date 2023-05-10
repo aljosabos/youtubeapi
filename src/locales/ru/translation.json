@@ -23,5 +23,14 @@
       "subscriptions": "Подписки",
       "settings": "Настройки"
     }
+  },
+
+  "videoDetails": {
+    "subscribers": "подписчиков",
+    "views": "посмотров",
+    "btn": {
+      "showLess": "Меньше",
+      "showMore": "Больше"
+    }
   }
 }

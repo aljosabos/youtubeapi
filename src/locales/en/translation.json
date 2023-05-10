@@ -23,5 +23,14 @@
       "subscriptions": "Subscriptions",
       "settings": "Settings"
     }
+  },
+
+  "videoDetails": {
+    "subscribers": "subscribers",
+    "views": "views",
+    "btn": {
+      "showLess": "Show less",
+      "showMore": "Show more"
+    }
   }
 }

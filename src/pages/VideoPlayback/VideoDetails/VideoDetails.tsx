@@ -6,6 +6,8 @@ import LinkifyText from "../../../components/LinkifyText/LinkifyText";
 import { IVideoDetails } from "../../../types/types";
 import { scrollPageToTop } from "../../../utils/utils";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useTranslateDate } from "../../../hooks/useTranslateDate";
 
 interface IVideoDetailsProps extends IVideoDetails {
   expandVideoDetails: boolean;
@@ -27,11 +29,13 @@ export default function VideoDetails({
   setExpandVideoDetails,
 }: IVideoDetailsProps) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { translatedDate } = useTranslateDate(publishedAt);
 
   const BASE_CLASS = "VideoDetails__description";
 
   const jsxConfig = {
-    btnText: expandVideoDetails ? "Show less" : "Show more",
+    btnText: expandVideoDetails ? t("videoDetails.btn.showLess") : t("videoDetails.btn.showMore"),
     btnClass: expandVideoDetails ? `${BASE_CLASS}-btn--bottom` : `${BASE_CLASS}-btn`,
     descriptionClass: expandVideoDetails ? `${BASE_CLASS}-text--expanded` : `${BASE_CLASS}-text`,
   };
@@ -54,14 +58,14 @@ export default function VideoDetails({
 
         <div className="VideoDetails__channel-info">
           <h4 className="VideoDetails__channel-info-name">{channelTitle}</h4>
-          <span className="VideoDetails__channel-info-subscribers">20K subscribers</span>
+          <span className="VideoDetails__channel-info-subscribers">20K {t("videoDetails.subscribers")}</span>
         </div>
       </div>
 
       <div className="VideoDetails__description">
         <div className="VideoDetails__description-heading">
           <span className="VideoDetails__description-heading-views">{viewCount}K views</span>
-          <span className="VideoDetails__description-heading-time">{publishedAt}</span>
+          <span className="VideoDetails__description-heading-time">{translatedDate}</span>
 
           <Button onClick={handleClick} text={jsxConfig.btnText} color="info" className={jsxConfig.btnClass} variant="outlined" />
         </div>

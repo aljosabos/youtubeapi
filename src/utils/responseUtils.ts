@@ -45,7 +45,7 @@ export const formatResponseToVideoDetails = (
   channelId: response?.snippet?.channelId,
   channelTitle: response?.snippet?.channelTitle,
   description: response?.snippet?.description,
-  publishedAt: moment(response?.snippet?.publishedAt).fromNow(),
+  publishedAt: response?.snippet?.publishedAt,
   tags: response?.snippet?.tags,
   image: response?.snippet?.thumbnails?.high?.url,
   viewCount: formatToThousandsWithOneDecimal(
