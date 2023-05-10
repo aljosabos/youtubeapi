@@ -2,7 +2,7 @@ import VideoPlayer from "./VideoPlayer/VideoPlayer";
 import "./VideoPlayback.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import VideoDetails from "./VideoDetails/VideoDetails";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { videosDetailsSelector } from "../../redux/slices/videoDetailsSlice";
 import { getVideoDetailsThunk } from "../../redux/thunks/videoDetailsThunk";
@@ -24,11 +24,14 @@ export default function VideoPlayback() {
   const relatedVideos = useAppSelector(relatedVideosSelector);
   const { recommendedVideos } = useAppSelector(recommendedVideosSelector);
 
+  const [expandVideoDetails, setExpandVideoDetails] = useState<boolean>(false);
+
   useEffect(() => {
     if (videoId) {
       dispatch(getVideoDetailsThunk(videoId));
       // dispatch(getRelatedVideosThunk(videoId));
       scrollPageToTop();
+      setExpandVideoDetails(false);
     }
   }, [videoId]);
 
@@ -40,7 +43,7 @@ export default function VideoPlayback() {
     <div className="VideoPlayback">
       <div className="VideoPlayback__player">
         {videoId && <VideoPlayer videoId={videoId} />}
-        {videoDetails && <VideoDetails {...videoDetails} />}
+        {videoDetails && <VideoDetails {...videoDetails} expandVideoDetails={expandVideoDetails} setExpandVideoDetails={setExpandVideoDetails} />}
       </div>
       {videoId && <RelatedVideos videos={recommendedVideos} onClick={handleClick} />}
     </div>
