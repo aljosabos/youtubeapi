@@ -5,7 +5,7 @@ import { IVideo } from "../../types/types";
 import "./VideoSearch.scss";
 import { searchedVideosSelector } from "../../redux/slices/searchVideosSlice";
 import { useWindowResize } from "../../hooks/useWindowResize";
-import { LARGE_WIDTH, MEDIUM_WIDTH } from "../../constants/constants";
+import { MEDIUM_WIDTH } from "../../constants/constants";
 
 export default function VideoSearch() {
   const navigate = useNavigate();
@@ -22,13 +22,12 @@ export default function VideoSearch() {
       <div className="VideoSearch__card-list">
         {searchedVideos?.map((video: IVideo, index) => (
           <VideoCard
+            {...video}
+            onClick={() => openVideoURL(video.id)}
+            hideDescription
             layout={layout}
             wrapperClassName="VideoSearch__card"
-            ariaLabel="video-card"
-            {...video}
             key={index}
-            showDescriptionPreview
-            onClick={() => openVideoURL(video.id)}
           />
         ))}
       </div>

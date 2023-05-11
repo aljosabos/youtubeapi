@@ -35,8 +35,17 @@
       padding-left: 20px;
     }
 
-    .VideoCard__media--horizontal {
-      width: 40%;
+    .VideoCard__media {
+      &--horizontal {
+        width: 40%;
+        margin-right: 0px;
+      }
+
+      &-image {
+        &.MuiCardMedia-root {
+          height: 250px;
+        }
+      }
     }
 
     .VideoCard__content--horizontal {

@@ -22,6 +22,7 @@ interface IVideoCardProps {
   wrapperClassName?: string;
   description: string;
   showDescriptionPreview?: boolean;
+  hideDescription?: boolean;
 }
 
 export default function VideoCard({
@@ -38,7 +39,7 @@ export default function VideoCard({
   className,
   wrapperClassName,
   description,
-  showDescriptionPreview = false,
+  hideDescription = false,
 }: IVideoCardProps) {
   const { t } = useTranslation();
 
@@ -55,7 +56,7 @@ export default function VideoCard({
           <CardContent className={addBEMClasses("VideoCard", "content", layout)}>
             <Typography gutterBottom variant="h5" component="div">
               <span className="VideoCard__content-title">{title}</span>
-              {showDescriptionPreview && <p className="VideoCard__content-description">{cutDescriptionForPreview(description)}</p>}
+              {!hideDescription && <p className="VideoCard__content-description">{cutDescriptionForPreview(description)}</p>}
             </Typography>
 
             <h5 className="Video__content-channel">{channel}</h5>
