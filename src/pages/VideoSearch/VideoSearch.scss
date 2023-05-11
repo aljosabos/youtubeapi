@@ -18,7 +18,8 @@
     margin-left: 80px;
 
     @include xl {
-      width: 90%;
+      width: 100%;
+      margin-left: 0;
     }
   }
 
