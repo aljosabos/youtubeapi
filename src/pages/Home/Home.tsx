@@ -41,7 +41,7 @@ export default function Home() {
         }
       >
         {recommendedVideos?.map((video: IVideo, index) => (
-          <VideoCard ariaLabel="video-card" {...video} key={index} onClick={() => openVideoURL(video.id)} />
+          <VideoCard ariaLabel="video-card" {...video} key={index} onClick={() => openVideoURL(video.id)} hideDescription />
         ))}
       </InfiniteScroll>
     </div>

@@ -4,8 +4,12 @@
   width: 400px;
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 10px;
+  row-gap: 15px;
   padding: 0 15px;
+
+  .VideoCard {
+    height: 105px;
+  }
 
   @include xl {
     width: 100%;
