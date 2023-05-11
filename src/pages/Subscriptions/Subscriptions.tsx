@@ -8,7 +8,7 @@ import { ACCESS_TOKEN } from "../../constants/constants";
 import { getSubscriptionsThunk } from "../../redux/thunks/subscriptionsThunk";
 
 export default function Subscriptions() {
-  const { subscriptions, nextPageToken } = useAppSelector(subscriptionsSelector);
+  const { subscriptions } = useAppSelector(subscriptionsSelector);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
