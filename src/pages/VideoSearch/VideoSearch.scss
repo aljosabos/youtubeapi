@@ -28,7 +28,7 @@
     margin: 20px 0;
 
     @include md {
-      height: 150px;
+      height: auto;
     }
 
     .MuiCardContent-root {
