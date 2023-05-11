@@ -28,14 +28,16 @@ export default function Subscriptions() {
   }, [accessToken]);
 
   return (
-    <div className="Subscriptions">
+    <>
       {noSubscriptions ? (
         <DialogBox icon={VideoLibraryIcon} title={t("dialogBox.noSubscriptions.title")} text={t("dialogBox.noSubscriptions.text")} />
       ) : (
-        subscriptions?.map((subscription, index) => (
-          <SubscriptionItem largeView {...subscription} key={index} onClick={() => openChannel(subscription.channelId)} />
-        ))
+        <div className="Subscriptions">
+          {subscriptions?.map((subscription, index) => (
+            <SubscriptionItem largeView {...subscription} key={index} onClick={() => openChannel(subscription.channelId)} />
+          ))}
+        </div>
       )}
-    </div>
+    </>
   );
 }
