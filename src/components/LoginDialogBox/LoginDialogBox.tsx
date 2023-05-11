@@ -12,11 +12,11 @@ export default function LoginDialogBox() {
   return (
     <DialogBox
       icon={VideoLibraryIcon}
-      title={t("loginDialogBox.title")}
-      text={t("loginDialogBox.text")}
+      title={t("dialogBox.login.large.title")}
+      text={t("dialogBox.login.large.text")}
       btn={
         <Button
-          text={t("loginDialogBox.btn")}
+          text={t("dialogBox.login.large.btn")}
           startIcon={AccountCircleIcon}
           onClick={login}
           variant="outlined"

@@ -6,15 +6,22 @@
     }
   },
 
-  "loginDialogBox": {
-    "title": "Don’t miss new videos",
-    "text": "Sign in to see updates from your favorite YouTube channels.",
-    "btn": "Sign in"
-  },
-
   "dialogBox": {
-    "text": "Sign in to like videos, comment, and subscribe.",
-    "btn": "Sign in"
+    "login": {
+      "large": {
+        "title": "Don’t miss new videos",
+        "text": "Sign in to see updates from your favorite YouTube channels.",
+        "btn": "Sign in"
+      },
+      "small": {
+        "text": "Sign in to like videos, comment, and subscribe.",
+        "btn": "Sign in"
+      }
+    },
+    "noSubscriptions": {
+      "title": "No subscriptions",
+      "text": "You currently don't have any subscription"
+    }
   },
 
   "drawer": {

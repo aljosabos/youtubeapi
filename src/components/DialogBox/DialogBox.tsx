@@ -6,7 +6,7 @@ interface IDialogBoxProps {
   icon?: MaterialIcon | "string";
   title?: string;
   text: string;
-  btn: JSX.Element;
+  btn?: JSX.Element;
   wrapperClassName?: string;
 }
 

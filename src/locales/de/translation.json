@@ -6,15 +6,22 @@
     }
   },
 
-  "loginDialogBox": {
-    "title": "„Verpassen Sie keine neuen Videos“",
-    "text": "Melden Sie sich an, um Updates von Ihren bevorzugten YouTube-Kanälen zu sehen",
-    "btn": "Anmelden"
-  },
-
   "dialogBox": {
-    "text": "Melden Sie sich an, um Videos zu liken, zu kommentieren und zu abonnieren.",
-    "btn": "Anmelden"
+    "login": {
+      "large": {
+        "title": "Verpassen Sie keine neuen Videos",
+        "text": "Melden Sie sich an, um Updates von Ihren bevorzugten YouTube-Kanälen zu sehen",
+        "btn": "Anmelden"
+      },
+      "small": {
+        "text": "Melden Sie sich an, um Videos zu liken, zu kommentieren und zu abonnieren.",
+        "btn": "Anmelden"
+      }
+    },
+    "noSubscriptions": {
+      "title": "Keine Abonnements",
+      "text": "Sie haven derzeit kein Abonnement"
+    }
   },
 
   "drawer": {

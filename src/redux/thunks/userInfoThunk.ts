@@ -12,6 +12,8 @@ export const getUserInfoThunk = createAsyncThunk(
       },
     });
 
+    console.log(response.data);
+
     return {
       name: response.data.items[0].snippet.title,
       avatar: response.data.items[0].snippet.thumbnails.default.url,

@@ -88,8 +88,8 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
         )}
         {!isLoggedIn && shouldExpandDrawer && (
           <DialogBox
-            text={t("dialogBox.text")}
-            btn={<Button text={t("dialogBox.btn")} startIcon={AccountCircleIcon} onClick={login} variant="outlined" />}
+            text={t("dialogBox.login.small.text")}
+            btn={<Button text={t("dialogBox.login.small.btn")} startIcon={AccountCircleIcon} onClick={login} variant="outlined" />}
             wrapperClassName="Drawer__dialogBox"
           />
         )}
