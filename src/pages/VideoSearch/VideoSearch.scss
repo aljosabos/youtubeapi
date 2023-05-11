@@ -16,11 +16,19 @@
   &__card-list {
     width: 65%;
     margin-left: 80px;
+
+    @include xl {
+      width: 90%;
+    }
   }
 
   &__card {
     height: 200px;
     margin: 20px 0;
+
+    @include md {
+      height: 150px;
+    }
 
     .MuiCardContent-root {
       padding-left: 20px;
@@ -32,6 +40,10 @@
 
     .VideoCard__content--horizontal {
       width: 60%;
+
+      &.MuiCardContent-root:last-child {
+        padding-bottom: 0;
+      }
     }
 
     .VideoCard__content-title {
