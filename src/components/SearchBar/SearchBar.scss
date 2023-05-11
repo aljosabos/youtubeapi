@@ -1,9 +1,8 @@
 @import "../../scss/breakpoints";
 
 .Searchbar {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  align-items: center;
+  display: flex;
+  justify-content: center;
 
   &__textfield {
     &.MuiTextField-root {
@@ -11,6 +10,19 @@
       border-top-left-radius: 40px;
       border-right: none;
       cursor: pointer;
+      width: 70%;
+
+      @include xl {
+        width: 60%;
+      }
+
+      @include md {
+        width: 80%;
+      }
+
+      @include sm {
+        width: 90%;
+      }
 
       .MuiOutlinedInput-root {
         border-bottom-left-radius: 40px;

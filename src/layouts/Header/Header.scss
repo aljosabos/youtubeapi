@@ -6,6 +6,7 @@
   width: 100%;
   grid-template-columns: 120px 1fr 500px 1fr 50px;
   align-items: center;
+  justify-content: center;
   padding: 0 60px 0 40px;
   position: fixed;
   left: 0;
@@ -15,7 +16,7 @@
   height: 70px;
 
   @include xl {
-    grid-template-columns: 1fr 2fr 50px;
+    grid-template-columns: 100px 1fr 50px;
     padding: 0 30px;
   }
 
