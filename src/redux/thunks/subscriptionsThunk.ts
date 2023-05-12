@@ -15,7 +15,7 @@ export const getSubscriptionsThunk = createAsyncThunk(
 
     return {
       items: response.data.items,
-      nextPageToken: response.data.nextPageToken,
+      nextPageToken: response?.data?.nextPageToken,
       totalCount: response.data.pageInfo.totalResults,
     };
   }
@@ -37,7 +37,7 @@ export const getMoreSubscriptionsThunk = createAsyncThunk(
     });
 
     return {
-      items: response.data.items,
+      items: response?.data?.items,
       nextPageToken: response.data.nextPageToken,
     };
   }
