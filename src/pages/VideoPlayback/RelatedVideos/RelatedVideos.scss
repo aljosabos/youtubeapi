@@ -7,8 +7,13 @@
   row-gap: 15px;
   padding: 0 15px;
 
+  @include xl {
+    padding: 20px !important;
+    margin-bottom: 80px;
+  }
+
   .VideoCard {
-    height: 105px;
+    // height: 105px;
 
     @include md {
       height: min-content;

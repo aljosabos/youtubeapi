@@ -41,14 +41,14 @@ export default function VideoCard({
   wrapperClassName,
   description,
   hideDescription = false,
-  disableTextTruncate,
+  disableTextTruncate = false,
 }: IVideoCardProps) {
   const { t } = useTranslation();
 
   const modifier = layout ? "--horizontal" : "";
 
   const translatedDate = translateDateToCurrentLanguage(publishDate);
-  const formattedTitle = layout === "horizontal" && !disableTextTruncate ? truncateText(title, 20) : title;
+  const formattedTitle = layout === "horizontal" && disableTextTruncate ? truncateText(title, 20) : title;
 
   return (
     <div className={wrapperClassName}>

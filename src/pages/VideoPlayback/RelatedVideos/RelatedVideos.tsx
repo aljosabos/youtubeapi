@@ -23,7 +23,7 @@ export default function RelatedVideos({ onClick, videos }: IRelatedVideosProps) 
           layout={layout}
           className="RelatedVideos__card"
           hideDescription
-          disableTextTruncate={!isResized}
+          disableTextTruncate
         />
       ))}
     </div>
