@@ -62,3 +62,11 @@ export const cutDescriptionForPreview = (desc: string, descLength?: number) => {
 
   return slicedDescWithPunctuation ? slicedDescWithPunctuation : `${slicedDesc}...`;
 };
+
+export const truncateText = (text: string, length?: number) => {
+  const size = length || 50;
+
+  if (text.length < size) return;
+
+  return text.substring(0, size) + "...";
+};

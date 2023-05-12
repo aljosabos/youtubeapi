@@ -3,7 +3,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import "./VideoCard.scss";
-import { addBEMClasses, cutDescriptionForPreview } from "../../utils/utils";
+import { cutDescriptionForPreview, truncateText } from "../../utils/utils";
 import { translateDateToCurrentLanguage } from "../../utils/date-utils";
 import { useTranslation } from "react-i18next";
 
@@ -23,6 +23,7 @@ interface IVideoCardProps {
   description: string;
   showDescriptionPreview?: boolean;
   hideDescription?: boolean;
+  disableTextTruncate?: boolean;
 }
 
 export default function VideoCard({
@@ -40,22 +41,26 @@ export default function VideoCard({
   wrapperClassName,
   description,
   hideDescription = false,
+  disableTextTruncate,
 }: IVideoCardProps) {
   const { t } = useTranslation();
 
+  const modifier = layout ? "--horizontal" : "";
+
   const translatedDate = translateDateToCurrentLanguage(publishDate);
+  const formattedTitle = layout === "horizontal" && !disableTextTruncate ? truncateText(title, 20) : title;
 
   return (
     <div className={wrapperClassName}>
-      <div className={addBEMClasses("VideoCard")} aria-label={ariaLabel}>
-        <Card onClick={() => onClick(id)} className={`${addBEMClasses("VideoCard", "wrapper", layout)} ${className}`}>
-          <div className={addBEMClasses("VideoCard", "media", layout)}>
-            <CardMedia sx={{ height: 100 }} image={image} title={title} className={addBEMClasses("VideoCard", "media-image", layout)} />
-            <span className={addBEMClasses("VideoCard", "media-duration", layout)}>{duration}</span>
+      <div className="VideoCard" aria-label={ariaLabel}>
+        <Card onClick={() => onClick(id)} className={`VideoCard__wrapper${modifier} ${className}`}>
+          <div className={`VideoCard__media${modifier}`}>
+            <CardMedia sx={{ height: 100 }} image={image} title={title} className={`VideoCard__media-image${modifier}`} />
+            <span className={`VideoCard__media-duration${modifier}`}>{duration}</span>
           </div>
-          <CardContent className={addBEMClasses("VideoCard", "content", layout)}>
+          <CardContent className={`VideoCard__content${modifier}`}>
             <Typography gutterBottom variant="h5" component="div">
-              <span className="VideoCard__content-title">{title}</span>
+              <span className="VideoCard__content-title">{formattedTitle}</span>
               {!hideDescription && <p className="VideoCard__content-description">{cutDescriptionForPreview(description)}</p>}
             </Typography>
 

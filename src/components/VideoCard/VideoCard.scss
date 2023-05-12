@@ -64,6 +64,10 @@
       &.MuiCardContent-root {
         padding: 5px;
         width: 49%;
+
+        &:last-child {
+          padding-bottom: 0;
+        }
       }
     }
     &.MuiCardContent-root:last-child {
@@ -74,7 +78,6 @@
       font-size: 13px;
       line-height: 15px;
       height: 30px;
-      overflow: hidden;
       font-weight: bold;
     }
 

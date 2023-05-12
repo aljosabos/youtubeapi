@@ -9,6 +9,10 @@
 
   .VideoCard {
     height: 105px;
+
+    @include md {
+      height: min-content;
+    }
   }
 
   @include xl {
