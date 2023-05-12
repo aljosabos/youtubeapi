@@ -3,7 +3,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import "./VideoCard.scss";
-import { cutDescriptionForPreview, truncateText } from "../../utils/utils";
+import { cutDescriptionForPreview } from "../../utils/utils";
 import { translateDateToCurrentLanguage } from "../../utils/date-utils";
 import { useTranslation } from "react-i18next";
 
@@ -48,7 +48,6 @@ export default function VideoCard({
   const modifier = layout ? "--horizontal" : "";
 
   const translatedDate = translateDateToCurrentLanguage(publishDate);
-  const formattedTitle = layout === "horizontal" && disableTextTruncate ? truncateText(title, 20) : title;
 
   return (
     <div className={wrapperClassName}>
@@ -60,7 +59,7 @@ export default function VideoCard({
           </div>
           <CardContent className={`VideoCard__content${modifier}`}>
             <Typography gutterBottom variant="h5" component="div">
-              <span className="VideoCard__content-title">{formattedTitle}</span>
+              <span className="VideoCard__content-title">{title}</span>
               {!hideDescription && <p className="VideoCard__content-description">{cutDescriptionForPreview(description)}</p>}
             </Typography>
 
