@@ -1,21 +1,41 @@
+@import "../../scss/breakpoints";
+
 .ChannelInfo {
   display: flex;
-  padding: 20px 60px;
+  padding: 0 60px;
   align-items: center;
+
+  @include md {
+    padding: 10px;
+  }
 
   &__image {
     width: 128px;
     height: 128px;
     margin-right: 10px;
     border-radius: 50%;
+
+    @include md {
+      width: 100px;
+      height: 100px;
+    }
   }
 
   &__text {
     display: flex;
     flex-direction: column;
+    margin-top: 10px;
+
+    @include md {
+      font-size: 13px;
+    }
 
     &-title {
       padding-left: 5px;
+
+      @include md {
+        font-size: 18px;
+      }
     }
 
     &-details {
