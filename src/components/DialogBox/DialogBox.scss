@@ -17,6 +17,11 @@
       height: 100px;
       color: #f00b0b;
 
+      @include lg {
+        width: 90px;
+        height: 90px;
+      }
+
       @include sm {
         width: 70px;
         height: 70px;
@@ -28,6 +33,10 @@
     margin: 10px 0;
     font-size: 36px;
     font-weight: 400;
+
+    @include lg {
+      font-size: 32px;
+    }
 
     @include sm {
       font-size: 28px;
