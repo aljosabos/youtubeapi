@@ -25,7 +25,6 @@ import { useLogin } from "../../hooks/useLogin";
 import Button from "../../components/Button/Button";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useTranslation } from "react-i18next";
-import { MaterialIcon } from "../../types/types";
 
 interface IDrawerProps {
   shouldExpandDrawer: boolean;

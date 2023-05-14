@@ -82,6 +82,12 @@
       line-height: 15px;
       height: 30px;
       font-weight: bold;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
     }
 
     &-description {

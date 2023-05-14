@@ -16,15 +16,7 @@ export default function RelatedVideos({ onClick, videos }: IRelatedVideosProps) 
   return (
     <div className="RelatedVideos">
       {videos?.map((relatedVideo: IVideo, index) => (
-        <VideoCard
-          {...relatedVideo}
-          onClick={onClick}
-          key={index}
-          layout={layout}
-          className="RelatedVideos__card"
-          hideDescription
-          disableTextTruncate
-        />
+        <VideoCard {...relatedVideo} onClick={onClick} key={index} layout={layout} className="RelatedVideos__card" hideDescription />
       ))}
     </div>
   );

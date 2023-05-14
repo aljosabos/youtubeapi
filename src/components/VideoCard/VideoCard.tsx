@@ -23,7 +23,6 @@ interface IVideoCardProps {
   description: string;
   showDescriptionPreview?: boolean;
   hideDescription?: boolean;
-  disableTextTruncate?: boolean;
 }
 
 export default function VideoCard({
@@ -41,7 +40,6 @@ export default function VideoCard({
   wrapperClassName,
   description,
   hideDescription = false,
-  disableTextTruncate = false,
 }: IVideoCardProps) {
   const { t } = useTranslation();
 

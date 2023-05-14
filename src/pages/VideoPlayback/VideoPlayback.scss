@@ -4,6 +4,7 @@
   display: flex;
   width: 100%;
   margin-top: 80px;
+  cursor: default;
 
   @include xl {
     margin-top: 20px;
