@@ -32,7 +32,7 @@ export default function Channel() {
   useEffect(() => {
     if (channelId) {
       dispatch(getChannelInfoThunk(channelId));
-      // dispatch(getChannelVideosThunk(channelId));
+      dispatch(getChannelVideosThunk(channelId));
     }
   }, [channelId]);
 
@@ -54,7 +54,7 @@ export default function Channel() {
           }
         >
           {channelVideos?.map((video: IVideo, index) => (
-            <VideoCard ariaLabel="video-card" {...video} key={index} onClick={() => openVideoURL(video.id)} />
+            <VideoCard ariaLabel="video-card" {...video} key={index} onClick={() => openVideoURL(video.id)} hideDescription />
           ))}
         </InfiniteScroll>
       </div>

@@ -29,7 +29,7 @@ export default function VideoPlayback() {
   useEffect(() => {
     if (videoId) {
       dispatch(getVideoDetailsThunk(videoId));
-      // dispatch(getRelatedVideosThunk(videoId));
+      dispatch(getRelatedVideosThunk(videoId));
       scrollPageToTop();
       setExpandVideoDetails(false);
     }
@@ -45,7 +45,7 @@ export default function VideoPlayback() {
         {videoId && <VideoPlayer videoId={videoId} />}
         {videoDetails && <VideoDetails {...videoDetails} expandVideoDetails={expandVideoDetails} setExpandVideoDetails={setExpandVideoDetails} />}
       </div>
-      {videoId && <RelatedVideos videos={recommendedVideos} onClick={handleClick} />}
+      {videoId && <RelatedVideos videos={relatedVideos} onClick={handleClick} />}
     </div>
   );
 }
