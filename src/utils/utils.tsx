@@ -28,14 +28,6 @@ export const scrollPageToTop = () => {
   window.scrollTo(0, 0);
 };
 
-export const addBEMClasses = (blockName: string, elementName?: string, modifierName?: string) => {
-  const classList = [blockName];
-  if (elementName) classList.push(`__${elementName}`);
-  if (elementName && modifierName) classList.push(`--${modifierName}`);
-
-  return classList.join("");
-};
-
 export interface IIconStyles {
   [key: string]: string | number;
 }

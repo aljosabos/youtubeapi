@@ -34,14 +34,17 @@
     &-image {
       &.MuiCardMedia-root {
         border-radius: 10px;
-        height: 150px;
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 16 / 9;
       }
 
       &--horizontal {
         &.MuiCardMedia-root {
           border-radius: 10px;
+          width: 100%;
           height: 100%;
-          object-fit: cover;
+          aspect-ratio: 16 / 9;
         }
       }
     }
@@ -64,6 +67,10 @@
       &.MuiCardContent-root {
         padding: 5px;
         width: 49%;
+
+        &:last-child {
+          padding-bottom: 0;
+        }
       }
     }
     &.MuiCardContent-root:last-child {
@@ -74,8 +81,13 @@
       font-size: 13px;
       line-height: 15px;
       height: 30px;
-      overflow: hidden;
       font-weight: bold;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
     }
 
     &-description {

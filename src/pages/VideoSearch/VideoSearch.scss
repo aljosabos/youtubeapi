@@ -7,6 +7,10 @@
   height: min-content;
   padding: 20px;
 
+  @include md {
+    padding: 0;
+  }
+
   @include xl {
     overflow: auto;
     padding-bottom: 70px;
@@ -24,12 +28,7 @@
   }
 
   &__card {
-    height: 200px;
     margin: 20px 0;
-
-    @include md {
-      height: auto;
-    }
 
     .MuiCardContent-root {
       padding-left: 20px;
@@ -39,12 +38,6 @@
       &--horizontal {
         width: 40%;
         margin-right: 0px;
-      }
-
-      &-image {
-        &.MuiCardMedia-root {
-          height: 250px;
-        }
       }
     }
 

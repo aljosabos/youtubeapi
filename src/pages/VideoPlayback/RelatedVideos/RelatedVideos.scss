@@ -7,14 +7,10 @@
   row-gap: 15px;
   padding: 0 15px;
 
-  .VideoCard {
-    height: 105px;
-  }
-
   @include xl {
     width: 100%;
-    padding: 0;
-    margin-top: 10px;
+    padding: 20px;
+    margin-bottom: 80px;
 
     &__card {
       .VideoCard__media--horizontal {
@@ -31,6 +27,14 @@
           padding-left: 10px;
         }
       }
+    }
+  }
+
+  .VideoCard {
+    // height: 105px;
+
+    @include md {
+      height: min-content;
     }
   }
 }

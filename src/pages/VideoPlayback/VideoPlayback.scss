@@ -3,8 +3,12 @@
 .VideoPlayback {
   display: flex;
   width: 100%;
-  padding: 20px;
-  margin-top: 50px;
+  margin-top: 80px;
+  cursor: default;
+
+  @include xl {
+    margin-top: 20px;
+  }
 
   &__player {
     width: calc(100% - 400px);
