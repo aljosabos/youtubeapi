@@ -16,6 +16,7 @@
     }
 
     &-info {
+      margin-right: 35px;
       &-name {
         letter-spacing: 0.3px;
       }
@@ -24,6 +25,47 @@
 
       &-subscribers {
         font-size: 12px;
+      }
+    }
+
+    &-btn {
+      &.MuiButton-root {
+        text-transform: inherit;
+        border-radius: 30px;
+        background-color: #0f0f0f;
+        font-size: 12px;
+
+        &:hover {
+          background-color: gray;
+        }
+      }
+    }
+
+    &-select {
+      .MuiSelect-select {
+        padding: 4px;
+      }
+
+      .MuiSelect-outlined {
+        // outline: 1px solid red;
+        outline: none;
+      }
+
+      .Select__input {
+        // &.Mui-focused {
+        // }
+        border-radius: 30px;
+        width: 130px;
+
+        .MuiSvgIcon-root.MuiSelect-icon {
+          top: calc(30% - 0.5rem);
+        }
+      }
+
+      &-icon {
+        &.MuiSvgIcon-root {
+          // margin-top: 17px;
+        }
       }
     }
   }
@@ -73,6 +115,19 @@
 
     &-tags {
       font-size: 13px;
+    }
+  }
+
+  &__channel-select-icon-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+
+    p {
+      color: black;
+      font-size: 16px;
+      margin-left: 6px;
+      font-weight: bold;
     }
   }
 }

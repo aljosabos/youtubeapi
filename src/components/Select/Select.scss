@@ -1,6 +1,4 @@
 .Select {
- 
-
   &__group {
     &.MuiFormControl-root {
       margin: 15px 0;
@@ -9,8 +7,15 @@
   &__input {
     .MuiSelect-select.MuiInputBase-input.MuiInput-input {
       font-size: 14px;
+
       &:focus {
         background-color: white;
+      }
+    }
+
+    &.Mui-focused {
+      &:focus {
+        outline: none;
       }
     }
   }
@@ -25,5 +30,9 @@
     &.MuiMenuItem-root {
       font-size: 14px;
     }
+  }
+
+  legend {
+    display: none;
   }
 }
