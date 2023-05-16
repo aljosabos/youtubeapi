@@ -1,4 +1,3 @@
-import { MouseEventHandler, useState } from "react";
 import { MaterialIcon } from "../../types/types";
 import Button from "../Button/Button";
 import "./SelectButton.scss";
@@ -15,10 +14,6 @@ interface ISelectButtonProps {
 }
 
 export default function SelectButton({ endIcon, startIcon, text, value, onClick, items, expandOptions = false, onChange }: ISelectButtonProps) {
-  const [currentValue, setCurrentValue] = useState<string>("");
-
-  console.log(currentValue);
-
   return (
     <div className="SelectButton">
       <Button onClick={onClick} text={text} className="SelectButton__btn" startIcon={startIcon} endIcon={endIcon} />
