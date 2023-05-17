@@ -39,6 +39,7 @@ export default function VideoDetails({
 
   const [showSubscriptionBtnOptions, setShowSubscriptionBtnOptions] = useState<boolean>(false);
   const [subscriptionBtnEndIcon, setSubscriptionBtnEndIcon] = useState<MaterialIcon>();
+  const [subscriptionBtnValue, setSubscriptionBtnValue] = useState<string>();
 
   useEffect(() => {
     if (showSubscriptionBtnOptions) {
@@ -48,6 +49,18 @@ export default function VideoDetails({
     }
   }, [showSubscriptionBtnOptions]);
 
+  const hideSubscriptionBtnOptions = () => {
+    setShowSubscriptionBtnOptions(false);
+  };
+
+  useOutsideClick(selectButtonRef, hideSubscriptionBtnOptions);
+
+  const selectItems = [
+    { name: "item 1", value: "item 1" },
+    { name: "item 2", value: "item 2" },
+    { name: "item 3", value: "item 3" },
+  ];
+
   const translatedDate = translateDateToCurrentLanguage(publishedAt);
   const BASE_CLASS = "VideoDetails__description";
 
@@ -55,11 +68,6 @@ export default function VideoDetails({
     expandBtnText: expandVideoDetails ? t("videoDetails.btn.showLess") : t("videoDetails.btn.showMore"),
     expandBtnClass: expandVideoDetails ? `${BASE_CLASS}-btn--bottom` : `${BASE_CLASS}-btn`,
     descriptionClass: expandVideoDetails ? `${BASE_CLASS}-text--expanded` : `${BASE_CLASS}-text`,
-  };
-
-  const handleOutsideClick = () => {
-    setShowSubscriptionBtnOptions(false);
-    console.log("hello");
   };
 
   const toggleShowMore = () => {
@@ -71,21 +79,14 @@ export default function VideoDetails({
     setShowSubscriptionBtnOptions((previousState) => !previousState);
   };
 
-  useOutsideClick(selectButtonRef, handleOutsideClick);
-
   const handleSubscriptionBtnOnChange = (e: React.MouseEvent<HTMLLIElement>) => {
-    console.log((e.target as HTMLElement).getAttribute("data-value"));
+    const value = (e.target as HTMLElement).getAttribute("data-value");
+    if (value) setSubscriptionBtnValue(value);
   };
 
   const openChannel = (channelId: string) => {
     navigate(`/channel/${channelId}`);
   };
-
-  const selectItems = [
-    { name: "item 1", value: "item 1" },
-    { name: "item 2", value: "item 2" },
-    { name: "item 3", value: "item 3" },
-  ];
 
   return (
     <div className="VideoDetails">
