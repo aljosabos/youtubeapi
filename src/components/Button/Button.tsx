@@ -16,13 +16,24 @@ interface IButtonProps {
   onClick?: () => void;
 }
 
-export default function Button({ endIcon, startIcon, text, className, wrapperClassName, disabled, color, size, variant, onClick }: IButtonProps) {
+export default function Button({
+  endIcon,
+  startIcon,
+  text,
+  className,
+  wrapperClassName,
+  disabled,
+  color,
+  size,
+  variant = "contained",
+  onClick,
+}: IButtonProps) {
   const centerIconClass = !text ? "centerIcon" : null;
 
   return (
     <div className={wrapperClassName}>
       <MaterialButton
-        variant={variant ? variant : "contained"}
+        variant={variant}
         endIcon={endIcon && renderIconBasedOnType(endIcon, "Button__icon")}
         startIcon={startIcon && renderIconBasedOnType(startIcon, "Button__icon")}
         className={`Button ${className} ${centerIconClass}`}

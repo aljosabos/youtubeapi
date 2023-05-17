@@ -11,11 +11,22 @@ interface ISelectButtonProps {
   items: Array<{ name: string; value: string }>;
   expandOptions?: boolean;
   onChange?: (e: React.MouseEvent<HTMLLIElement>) => void;
+  elementRef?: React.RefObject<HTMLDivElement>;
 }
 
-export default function SelectButton({ endIcon, startIcon, text, value, onClick, items, expandOptions = false, onChange }: ISelectButtonProps) {
+export default function SelectButton({
+  endIcon,
+  startIcon,
+  text,
+  value,
+  onClick,
+  items,
+  expandOptions = false,
+  onChange,
+  elementRef,
+}: ISelectButtonProps) {
   return (
-    <div className="SelectButton">
+    <div className="SelectButton" ref={elementRef}>
       <Button onClick={onClick} text={text} className="SelectButton__btn" startIcon={startIcon} endIcon={endIcon} />
 
       {expandOptions && (
