@@ -1,17 +1,14 @@
 import { Avatar } from "@mui/material";
 import "./VideoDetails.scss";
 import Button from "../../../components/Button/Button";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
 import LinkifyText from "../../../components/LinkifyText/LinkifyText";
-import { IVideoDetails, MaterialIcon } from "../../../types/types";
+import { IVideoDetails } from "../../../types/types";
 import { scrollPageToTop } from "../../../utils/utils";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { translateDateToCurrentLanguage } from "../../../utils/date-utils";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import SelectButton from "../../../components/SelectButton/SelectButton";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import SubscribeButton from "./SubscribeButton/SubscribeButton";
 import useOutsideClick from "../../../hooks/useOutsideClick";
 
 interface IVideoDetailsProps extends IVideoDetails {
@@ -35,31 +32,15 @@ export default function VideoDetails({
 }: IVideoDetailsProps) {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const selectButtonRef = useRef<HTMLDivElement>(null);
+  const subscribeBtnRef = useRef<HTMLDivElement>(null);
 
   const [showSubscriptionBtnOptions, setShowSubscriptionBtnOptions] = useState<boolean>(false);
-  const [subscriptionBtnEndIcon, setSubscriptionBtnEndIcon] = useState<MaterialIcon>();
-  const [subscriptionBtnValue, setSubscriptionBtnValue] = useState<string>();
-
-  useEffect(() => {
-    if (showSubscriptionBtnOptions) {
-      setSubscriptionBtnEndIcon(ExpandLessIcon);
-    } else {
-      setSubscriptionBtnEndIcon(ExpandMoreIcon);
-    }
-  }, [showSubscriptionBtnOptions]);
 
   const hideSubscriptionBtnOptions = () => {
     setShowSubscriptionBtnOptions(false);
   };
 
-  useOutsideClick(selectButtonRef, hideSubscriptionBtnOptions);
-
-  const selectItems = [
-    { name: "item 1", value: "item 1" },
-    { name: "item 2", value: "item 2" },
-    { name: "item 3", value: "item 3" },
-  ];
+  useOutsideClick(subscribeBtnRef, hideSubscriptionBtnOptions);
 
   const translatedDate = translateDateToCurrentLanguage(publishedAt);
   const BASE_CLASS = "VideoDetails__description";
@@ -73,15 +54,6 @@ export default function VideoDetails({
   const toggleShowMore = () => {
     if (expandVideoDetails) scrollPageToTop();
     setExpandVideoDetails((previousState) => !previousState);
-  };
-
-  const toggleExpandSubscriptionOptions = () => {
-    setShowSubscriptionBtnOptions((previousState) => !previousState);
-  };
-
-  const handleSubscriptionBtnOnChange = (e: React.MouseEvent<HTMLLIElement>) => {
-    const value = (e.target as HTMLElement).getAttribute("data-value");
-    if (value) setSubscriptionBtnValue(value);
   };
 
   const openChannel = (channelId: string) => {
@@ -100,15 +72,10 @@ export default function VideoDetails({
           <span className="VideoDetails__channel-info-subscribers">20K {t("videoDetails.subscribers")}</span>
         </div>
 
-        <SelectButton
-          text="Subscribed"
-          items={selectItems}
-          expandOptions={showSubscriptionBtnOptions}
-          onClick={toggleExpandSubscriptionOptions}
-          onChange={handleSubscriptionBtnOnChange}
-          startIcon={NotificationsNoneIcon}
-          endIcon={subscriptionBtnEndIcon}
-          elementRef={selectButtonRef}
+        <SubscribeButton
+          elementRef={subscribeBtnRef}
+          showSubscriptionBtnOptions={showSubscriptionBtnOptions}
+          setShowSubscriptionBtnOptions={setShowSubscriptionBtnOptions}
         />
       </div>
 
