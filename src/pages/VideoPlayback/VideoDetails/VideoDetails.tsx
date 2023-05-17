@@ -1,7 +1,7 @@
 import { Avatar } from "@mui/material";
 import "./VideoDetails.scss";
 import Button from "../../../components/Button/Button";
-import { Dispatch, SetStateAction, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from "react";
 import LinkifyText from "../../../components/LinkifyText/LinkifyText";
 import { IVideoDetails } from "../../../types/types";
 import { scrollPageToTop } from "../../../utils/utils";
@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import { translateDateToCurrentLanguage } from "../../../utils/date-utils";
 import SubscribeButton from "./SubscribeButton/SubscribeButton";
 import useOutsideClick from "../../../hooks/useOutsideClick";
+import { useIsSubscribed } from "../../../hooks/useIsSubscribed";
 
 interface IVideoDetailsProps extends IVideoDetails {
   expandVideoDetails: boolean;
@@ -76,6 +77,7 @@ export default function VideoDetails({
           elementRef={subscribeBtnRef}
           showSubscriptionBtnOptions={showSubscriptionBtnOptions}
           setShowSubscriptionBtnOptions={setShowSubscriptionBtnOptions}
+          channelId={channelId}
         />
       </div>
 

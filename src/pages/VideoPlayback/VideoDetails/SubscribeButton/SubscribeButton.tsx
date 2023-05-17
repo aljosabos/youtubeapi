@@ -5,49 +5,51 @@ import { MaterialIcon } from "../../../../types/types";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import PersonOffIcon from "@mui/icons-material/PersonOff";
+import { useIsSubscribed } from "../../../../hooks/useIsSubscribed";
 
-const selectOptions = [
-  { name: "item 1", value: "item 1" },
-  { name: "item 2", value: "item 2" },
-  { name: "item 3", value: "item 3" },
-];
+const selectOptions = [{ name: "Unsubscribe", value: "unsubscribe", icon: PersonOffIcon }];
 
 interface ISubscribeButtonProps {
   elementRef?: React.RefObject<HTMLDivElement>;
   showSubscriptionBtnOptions: boolean;
   setShowSubscriptionBtnOptions: Dispatch<SetStateAction<boolean>>;
+  channelId: string;
 }
 
-export default function SubscribeButton({ elementRef, showSubscriptionBtnOptions, setShowSubscriptionBtnOptions }: ISubscribeButtonProps) {
-  const [subscriptionBtnEndIcon, setSubscriptionBtnEndIcon] = useState<MaterialIcon>();
-  const [, setSubscriptionBtnValue] = useState<string>();
+export default function SubscribeButton({ elementRef, showSubscriptionBtnOptions, setShowSubscriptionBtnOptions, channelId }: ISubscribeButtonProps) {
+  const [endIcon, setEndIcon] = useState<MaterialIcon>();
+  const [value, setValue] = useState<string>();
+  const { isSubscribed } = useIsSubscribed(channelId);
+  const btnText = isSubscribed ? "Subscribed" : "Subscribe";
 
-  const toggleExpandSubscriptionOptions = () => {
+  const toggleShowOptions = () => {
+    // if (!isSubscribed) return;
     setShowSubscriptionBtnOptions((previousState) => !previousState);
   };
 
-  const handleSubscriptionBtnOnChange = (e: React.MouseEvent<HTMLLIElement>) => {
+  const handleOnChange = (e: React.MouseEvent<HTMLLIElement>) => {
     const value = (e.target as HTMLElement).getAttribute("data-value");
-    if (value) setSubscriptionBtnValue(value);
+    if (value) setValue(value);
   };
 
   useEffect(() => {
     if (showSubscriptionBtnOptions) {
-      setSubscriptionBtnEndIcon(ExpandLessIcon);
+      setEndIcon(ExpandLessIcon);
     } else {
-      setSubscriptionBtnEndIcon(ExpandMoreIcon);
+      setEndIcon(ExpandMoreIcon);
     }
-  }, [showSubscriptionBtnOptions]);
+  }, [showSubscriptionBtnOptions, isSubscribed]);
 
   return (
     <SelectButton
-      text="Subscribed"
+      text={btnText}
       options={selectOptions}
       expandOptions={showSubscriptionBtnOptions}
-      onClick={toggleExpandSubscriptionOptions}
-      onChange={handleSubscriptionBtnOnChange}
+      onClick={toggleShowOptions}
+      onChange={handleOnChange}
       startIcon={NotificationsNoneIcon}
-      endIcon={subscriptionBtnEndIcon}
+      endIcon={endIcon}
       elementRef={elementRef}
     />
   );
