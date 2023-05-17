@@ -6,7 +6,7 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 
-const selectItems = [
+const selectOptions = [
   { name: "item 1", value: "item 1" },
   { name: "item 2", value: "item 2" },
   { name: "item 3", value: "item 3" },
@@ -42,7 +42,7 @@ export default function SubscribeButton({ elementRef, showSubscriptionBtnOptions
   return (
     <SelectButton
       text="Subscribed"
-      items={selectItems}
+      options={selectOptions}
       expandOptions={showSubscriptionBtnOptions}
       onClick={toggleExpandSubscriptionOptions}
       onChange={handleSubscriptionBtnOnChange}

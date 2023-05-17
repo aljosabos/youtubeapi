@@ -8,7 +8,7 @@ interface ISelectButtonProps {
   text?: string;
   value?: string;
   onClick?: () => void;
-  items: Array<{ name: string; value: string }>;
+  options: Array<{ name: string; value: string }>;
   expandOptions?: boolean;
   onChange?: (e: React.MouseEvent<HTMLLIElement>) => void;
   elementRef?: React.RefObject<HTMLDivElement>;
@@ -20,7 +20,7 @@ export default function SelectButton({
   text,
   value,
   onClick,
-  items,
+  options,
   expandOptions = false,
   onChange,
   elementRef,
@@ -31,7 +31,7 @@ export default function SelectButton({
 
       {expandOptions && (
         <ul className="SelectButton__options">
-          {items.map(({ name, value }, index) => (
+          {options.map(({ name, value }, index) => (
             <li onClick={onChange} key={index} className="SelectButton__option" data-value={value}>
               {name}
             </li>
