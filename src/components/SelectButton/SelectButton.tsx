@@ -33,12 +33,10 @@ export default function SelectButton({
       {expandOptions && (
         <ul className="SelectButton__options">
           {options.map(({ name, value, icon }, index) => (
-            <>
-              <li onClick={onChange} key={index} className="SelectButton__option" data-value={value}>
-                {renderIconBasedOnType(icon, "SelectButton__option-icon")}
-                {name}
-              </li>
-            </>
+            <li onClick={onChange} key={index} className="SelectButton__option" data-value={value}>
+              {renderIconBasedOnType(icon, "SelectButton__option-icon")}
+              {name}
+            </li>
           ))}
         </ul>
       )}

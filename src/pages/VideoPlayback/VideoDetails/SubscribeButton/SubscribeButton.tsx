@@ -15,22 +15,23 @@ interface ISubscribeButtonProps {
   showSubscriptionBtnOptions: boolean;
   setShowSubscriptionBtnOptions: Dispatch<SetStateAction<boolean>>;
   channelId: string;
+  onChange: (e: React.MouseEvent<HTMLLIElement>) => void;
 }
 
-export default function SubscribeButton({ elementRef, showSubscriptionBtnOptions, setShowSubscriptionBtnOptions, channelId }: ISubscribeButtonProps) {
+export default function SubscribeButton({
+  elementRef,
+  showSubscriptionBtnOptions,
+  setShowSubscriptionBtnOptions,
+  channelId,
+  onChange,
+}: ISubscribeButtonProps) {
   const [endIcon, setEndIcon] = useState<MaterialIcon>();
-  const [value, setValue] = useState<string>();
   const { isSubscribed } = useIsSubscribed(channelId);
   const btnText = isSubscribed ? "Subscribed" : "Subscribe";
 
   const toggleShowOptions = () => {
     // if (!isSubscribed) return;
     setShowSubscriptionBtnOptions((previousState) => !previousState);
-  };
-
-  const handleOnChange = (e: React.MouseEvent<HTMLLIElement>) => {
-    const value = (e.target as HTMLElement).getAttribute("data-value");
-    if (value) setValue(value);
   };
 
   useEffect(() => {
@@ -47,7 +48,7 @@ export default function SubscribeButton({ elementRef, showSubscriptionBtnOptions
       options={selectOptions}
       expandOptions={showSubscriptionBtnOptions}
       onClick={toggleShowOptions}
-      onChange={handleOnChange}
+      onChange={onChange}
       startIcon={NotificationsNoneIcon}
       endIcon={endIcon}
       elementRef={elementRef}

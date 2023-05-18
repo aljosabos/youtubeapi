@@ -11,6 +11,8 @@ import { translateDateToCurrentLanguage } from "../../../utils/date-utils";
 import SubscribeButton from "./SubscribeButton/SubscribeButton";
 import useOutsideClick from "../../../hooks/useOutsideClick";
 import { useIsSubscribed } from "../../../hooks/useIsSubscribed";
+import { ModalPortal } from "../../../utils/ModalPortal";
+import ConfirmationModal from "../../../components/ConfirmationModal/ConfirmationModal";
 
 interface IVideoDetailsProps extends IVideoDetails {
   expandVideoDetails: boolean;
@@ -36,6 +38,8 @@ export default function VideoDetails({
   const subscribeBtnRef = useRef<HTMLDivElement>(null);
 
   const [showSubscriptionBtnOptions, setShowSubscriptionBtnOptions] = useState<boolean>(false);
+  const [subscriptionBtnValue, setSubscriptionBtnValue] = useState<string>("");
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   const hideSubscriptionBtnOptions = () => {
     setShowSubscriptionBtnOptions(false);
@@ -61,41 +65,69 @@ export default function VideoDetails({
     navigate(`/channel/${channelId}`);
   };
 
+  const handleOnChange = (e: React.MouseEvent<HTMLLIElement>) => {
+    const value = (e.target as HTMLElement).getAttribute("data-value");
+    if (value) setSubscriptionBtnValue(value);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setSubscriptionBtnValue("");
+  };
+
+  const onConfirm = () => {
+    console.log("confirmed");
+  };
+
+  useEffect(() => {
+    if (subscriptionBtnValue === "unsubscribe") {
+      setOpenModal(true);
+      setShowSubscriptionBtnOptions(false);
+    }
+  }, [subscriptionBtnValue]);
+
   return (
-    <div className="VideoDetails">
-      <h3 className="VideoDetails__title">{title} </h3>
+    <>
+      <div className="VideoDetails">
+        <h3 className="VideoDetails__title">{title} </h3>
 
-      <div className="VideoDetails__channel">
-        {<Avatar src={image} className="VideoDetails__channel-avatar" alt="Subscriptions avatar" />}
+        <div className="VideoDetails__channel">
+          {<Avatar src={image} className="VideoDetails__channel-avatar" alt="Subscriptions avatar" />}
 
-        <div className="VideoDetails__channel-info" onClick={() => openChannel(channelId)}>
-          <h4 className="VideoDetails__channel-info-name">{channelTitle}</h4>
-          <span className="VideoDetails__channel-info-subscribers">20K {t("videoDetails.subscribers")}</span>
+          <div className="VideoDetails__channel-info" onClick={() => openChannel(channelId)}>
+            <h4 className="VideoDetails__channel-info-name">{channelTitle}</h4>
+            <span className="VideoDetails__channel-info-subscribers">20K {t("videoDetails.subscribers")}</span>
+          </div>
+
+          <SubscribeButton
+            elementRef={subscribeBtnRef}
+            showSubscriptionBtnOptions={showSubscriptionBtnOptions}
+            setShowSubscriptionBtnOptions={setShowSubscriptionBtnOptions}
+            channelId={channelId}
+            onChange={handleOnChange}
+          />
         </div>
 
-        <SubscribeButton
-          elementRef={subscribeBtnRef}
-          showSubscriptionBtnOptions={showSubscriptionBtnOptions}
-          setShowSubscriptionBtnOptions={setShowSubscriptionBtnOptions}
-          channelId={channelId}
-        />
-      </div>
+        <div className="VideoDetails__description">
+          <div className="VideoDetails__description-heading">
+            <span className="VideoDetails__description-heading-views">{viewCount}K views</span>
+            <span className="VideoDetails__description-heading-time">{translatedDate}</span>
 
-      <div className="VideoDetails__description">
-        <div className="VideoDetails__description-heading">
-          <span className="VideoDetails__description-heading-views">{viewCount}K views</span>
-          <span className="VideoDetails__description-heading-time">{translatedDate}</span>
+            <Button onClick={toggleShowMore} text={jsxConfig.expandBtnText} color="info" className={jsxConfig.expandBtnClass} variant="outlined" />
+          </div>
 
-          <Button onClick={toggleShowMore} text={jsxConfig.expandBtnText} color="info" className={jsxConfig.expandBtnClass} variant="outlined" />
+          <LinkifyText>
+            <p className={jsxConfig.descriptionClass}>{description}</p>
+          </LinkifyText>
+
+          {/* <span className="VideoDetails__desc-tags">{tags?.map((tag) => `#${tag}`)}</span> */}
         </div>
-
-        <LinkifyText>
-          <p className={jsxConfig.descriptionClass}>{description}</p>
-        </LinkifyText>
-
-        {/* <span className="VideoDetails__desc-tags">{tags?.map((tag) => `#${tag}`)}</span> */}
+        <span>{commentCount} Comments</span>
       </div>
-      <span>{commentCount} Comments</span>
-    </div>
+
+      <ModalPortal>
+        <ConfirmationModal open={openModal} closeModal={handleCloseModal} onConfirm={onConfirm} />
+      </ModalPortal>
+    </>
   );
 }

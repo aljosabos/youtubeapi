@@ -11,7 +11,6 @@ import { languageSelector } from "../../redux/slices/settingsSlice";
 import i18n from "../../i18n";
 import Drawer from "../Drawer/Drawer";
 import { useWindowResize } from "../../hooks/useWindowResize";
-import { ModalContext } from "../../context/ModalContext";
 import Modal from "./Modal/Modal";
 
 function Dashboard() {
@@ -25,7 +24,6 @@ function Dashboard() {
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!tokenExpired);
   const [shouldExpandDrawer, setShouldExpandDrawer] = useState<boolean>(false);
-  const [openModal, setOpenModal] = useState<boolean>(false);
 
   const rootClass = shouldExpandDrawer ? "Dashboard--drawer-expanded" : "Dashboard";
 
@@ -53,19 +51,12 @@ function Dashboard() {
     setShouldExpandDrawer((previousState) => !previousState);
   };
 
-  const closeModal = () => {
-    setOpenModal(false);
-  };
-
   return (
     <div className={rootClass}>
       <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-        <ModalContext.Provider value={{ openModal, setOpenModal }}>
-          <Header handleLogout={handleLogout} toggleExpandDrawer={toggleExpandDrawer} />
-          <Drawer shouldExpandDrawer={shouldExpandDrawer} />
-          <Outlet />
-          <Modal open={openModal} closeModal={closeModal} />
-        </ModalContext.Provider>
+        <Header handleLogout={handleLogout} toggleExpandDrawer={toggleExpandDrawer} />
+        <Drawer shouldExpandDrawer={shouldExpandDrawer} />
+        <Outlet />
       </UserContext.Provider>
     </div>
   );

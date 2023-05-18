@@ -3,6 +3,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import MaterialModal from "@mui/material/Modal";
+import { ReactNode } from "react";
+import { IModal } from "../../../types/types";
 
 const style = {
   position: "absolute",
@@ -16,21 +18,16 @@ const style = {
   p: 4,
 };
 
-interface IModalProps {
-  open: boolean;
-  closeModal: () => void;
-}
-export default function Modal({ open, closeModal }: IModalProps) {
+export default function Modal({ open, closeModal, children }: IModal) {
   return (
     <div>
-      <MaterialModal open={open} onClose={closeModal} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+      <MaterialModal open={open} onClose={closeModal}>
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
+          {/* <Typography component="h2">Text in a modal</Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          </Typography> */}
+          {children}
         </Box>
       </MaterialModal>
     </div>
