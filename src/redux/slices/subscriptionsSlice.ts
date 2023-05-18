@@ -44,11 +44,14 @@ export const subscriptionsSlice = createSlice({
     });
 
     builder.addCase(getMoreSubscriptionsThunk.fulfilled, (state, action) => {
+      const mappedSubscriptions = mapResponseToSubscriptions(
+        action.payload.items
+      );
       state.status = "succeeded";
       state.error = {};
       state.data = {
         ...state.data,
-        items: [...state.data.items, ...action.payload.items],
+        items: [...state.data.items, ...mappedSubscriptions],
         nextPageToken: action.payload.nextPageToken,
       };
     });

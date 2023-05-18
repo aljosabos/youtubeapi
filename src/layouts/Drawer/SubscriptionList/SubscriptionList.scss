@@ -1,13 +1,14 @@
 .SubscriptionList {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 320px;
-  overflow: hidden;
-  color: black;
+  overflow: auto;
 
-  &--expanded {
-    height: auto;
+  &-scroller {
+    height: 320px !important;
+    overflow: hidden !important;
+
+    &--expanded {
+      height: auto !important;
+      overflow-y: auto !important;
+    }
   }
 
   &__btn {
@@ -24,6 +25,7 @@
       width: 100%;
       display: flex;
       justify-content: flex-start;
+      margin-bottom: 50px;
 
       &:hover {
         background-color: #edeaea;

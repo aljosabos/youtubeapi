@@ -36,6 +36,7 @@ export default function VideoDetails({
   const navigate = useNavigate();
   const { t } = useTranslation();
   const subscribeBtnRef = useRef<HTMLDivElement>(null);
+  console.log(channelId);
 
   const [showSubscriptionBtnOptions, setShowSubscriptionBtnOptions] = useState<boolean>(false);
   const [subscriptionBtnValue, setSubscriptionBtnValue] = useState<string>("");
