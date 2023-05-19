@@ -49,14 +49,14 @@ export const subscribeToChannelThunk = createAsyncThunk(
     const accessToken = localStorage.getItem(ACCESS_TOKEN);
 
     const response = await axios.post(
-      `https://youtube.googleapis.com/youtube/v3/subscriptions?part=snippet&fields=id,snippet(title,resourceId(channelId),thumbnails(high(url)))key=${process.env.REACT_APP_API_KEY}`,
+      "https://youtube.googleapis.com/youtube/v3/subscriptions?part=snippet&fields=id,snippet(title,resourceId(channelId),thumbnails(high(url)))",
+      {
+        snippet: { resourceId: { channelId: channelId } },
+      },
       {
         headers: {
-          Authorization: `Bearer ${accessToken} `,
+          Authorization: `Bearer ${accessToken}`,
           Accept: "application/json",
-        },
-        data: {
-          snippet: { resourceId: { channelId: channelId } },
         },
       }
     );
@@ -71,7 +71,7 @@ export const unsubscribeFromChannelThunk = createAsyncThunk(
   async (id: string) => {
     const accessToken = localStorage.getItem(ACCESS_TOKEN);
 
-    const response = await axios.delete(
+    await axios.delete(
       `https://youtube.googleapis.com/youtube/v3/subscriptions?id=${id}&key=${process.env.REACT_APP_API_KEY}`,
       {
         headers: {

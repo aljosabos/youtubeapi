@@ -1,7 +1,7 @@
 import { Avatar } from "@mui/material";
 import "./VideoDetails.scss";
 import Button from "../../../components/Button/Button";
-import { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import LinkifyText from "../../../components/LinkifyText/LinkifyText";
 import { IVideoDetails } from "../../../types/types";
 import { scrollPageToTop } from "../../../utils/utils";
@@ -130,7 +130,7 @@ export default function VideoDetails({
       </div>
 
       <ModalPortal>
-        <ConfirmationModal open={openModal} closeModal={handleCloseModal} onConfirm={onConfirm} />
+        <ConfirmationModal open={openModal} closeModal={handleCloseModal} onConfirm={onConfirm} channel={channelTitle} />
       </ModalPortal>
     </>
   );

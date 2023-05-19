@@ -1,18 +1,24 @@
 import Modal from "../../layouts/Dashboard/Modal/Modal";
 import Button from "../Button/Button";
+import "./ConfirmationModal.scss";
 
 interface IConfirmationModalProps {
   open: boolean;
   closeModal: () => void;
   onConfirm: () => void;
+  channel: string;
 }
 
-export default function ConfirmationModal({ open, closeModal, onConfirm }: IConfirmationModalProps) {
+export default function ConfirmationModal({ open, closeModal, onConfirm, channel }: IConfirmationModalProps) {
   return (
-    <Modal open={open} closeModal={closeModal}>
-      <p>Are u sure u want to unsubscribe?</p>
-      <Button text="Cancel" onClick={closeModal} />
-      <Button text="Unsubscribe" onClick={onConfirm} />
-    </Modal>
+    <div className="ConfirmationModal">
+      <Modal open={open} closeModal={closeModal} >
+        <p>Unsubscribe from {channel}?</p>
+        <div className="ConfirmationModal__buttons">
+          <Button text="Cancel" onClick={closeModal} variant="text" />
+          <Button text="Unsubscribe" onClick={onConfirm} variant="text" />
+        </div>
+      </Modal>
+    </div>
   );
 }
