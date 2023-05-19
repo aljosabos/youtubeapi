@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
 import SelectButton from "../../../../components/SelectButton/SelectButton";
 import "./SubscribeButton.scss";
 import { MaterialIcon } from "../../../../types/types";
@@ -6,7 +6,10 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import PersonOffIcon from "@mui/icons-material/PersonOff";
-import { useIsSubscribed } from "../../../../hooks/useIsSubscribed";
+import { useSubscribe } from "../../../../hooks/useSubscribe";
+import DialogBox from "../../../../components/DialogBox/DialogBox";
+import SubscribeDialogBox from "./SubscribeDialogBox/SubscribeDialogBox";
+import { useLogin } from "../../../../hooks/useLogin";
 
 const selectOptions = [{ name: "Unsubscribe", value: "unsubscribe", icon: PersonOffIcon }];
 
@@ -26,12 +29,28 @@ export default function SubscribeButton({
   onChange,
 }: ISubscribeButtonProps) {
   const [endIcon, setEndIcon] = useState<MaterialIcon>();
-  const { isSubscribed } = useIsSubscribed(channelId);
-  const btnText = isSubscribed ? "Subscribed" : "Subscribe";
+  const [showDialogBox, setShowDialogBox] = useState<boolean>(false);
+  const { isSubscribed } = useSubscribe(channelId);
+  const { isLoggedIn } = useLogin();
+
+  const btnConfig = {
+    text: isSubscribed ? "Subscribed" : "Subscribe",
+    startIcon: isSubscribed ? NotificationsNoneIcon : undefined,
+    endIcon: isSubscribed ? endIcon : undefined,
+  };
 
   const toggleShowOptions = () => {
-    // if (!isSubscribed) return;
+    if (!isSubscribed) return;
     setShowSubscriptionBtnOptions((previousState) => !previousState);
+  };
+
+  const handleOnClick = () => {
+    if (!isLoggedIn) {
+      return setShowDialogBox(true);
+    } else {
+      if (!isSubscribed) return;
+      setShowSubscriptionBtnOptions((previousState) => !previousState);
+    }
   };
 
   useEffect(() => {
@@ -40,18 +59,21 @@ export default function SubscribeButton({
     } else {
       setEndIcon(ExpandMoreIcon);
     }
-  }, [showSubscriptionBtnOptions, isSubscribed]);
+  }, [showSubscriptionBtnOptions]);
 
   return (
-    <SelectButton
-      text={btnText}
-      options={selectOptions}
-      expandOptions={showSubscriptionBtnOptions}
-      onClick={toggleShowOptions}
-      onChange={onChange}
-      startIcon={NotificationsNoneIcon}
-      endIcon={endIcon}
-      elementRef={elementRef}
-    />
+    <div>
+      <SelectButton
+        text={btnConfig.text}
+        options={selectOptions}
+        expandOptions={showSubscriptionBtnOptions}
+        onClick={handleOnClick}
+        onChange={onChange}
+        startIcon={btnConfig.startIcon}
+        endIcon={btnConfig.endIcon}
+        elementRef={elementRef}
+      />
+      {showDialogBox && <SubscribeDialogBox />}
+    </div>
   );
 }

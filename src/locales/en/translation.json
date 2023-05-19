@@ -18,6 +18,11 @@
         "btn": "Sign in"
       }
     },
+    "subscribe": {
+      "title": "Want to subscribe to this channel?",
+      "text": "Sign in to subscribe to this channel",
+      "btn": "Sign in"
+    },
     "noSubscriptions": {
       "title": "No subscriptions",
       "text": "You currently don't have any subscription"

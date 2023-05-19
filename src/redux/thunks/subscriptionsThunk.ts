@@ -42,3 +42,45 @@ export const getMoreSubscriptionsThunk = createAsyncThunk(
     };
   }
 );
+
+export const subscribeToChannelThunk = createAsyncThunk(
+  "subscriptions/subscribe",
+  async (channelId: string) => {
+    const accessToken = localStorage.getItem(ACCESS_TOKEN);
+
+    const response = await axios.post(
+      `https://youtube.googleapis.com/youtube/v3/subscriptions?part=snippet&fields=id,snippet(title,resourceId(channelId),thumbnails(high(url)))key=${process.env.REACT_APP_API_KEY}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken} `,
+          Accept: "application/json",
+        },
+        data: {
+          snippet: { resourceId: { channelId: channelId } },
+        },
+      }
+    );
+
+    console.log(response);
+    return response.data;
+  }
+);
+
+export const unsubscribeFromChannelThunk = createAsyncThunk(
+  "subscriptions/unsubscribe",
+  async (id: string) => {
+    const accessToken = localStorage.getItem(ACCESS_TOKEN);
+
+    const response = await axios.delete(
+      `https://youtube.googleapis.com/youtube/v3/subscriptions?id=${id}&key=${process.env.REACT_APP_API_KEY}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken} `,
+          Accept: "application/json",
+        },
+      }
+    );
+
+    return { id };
+  }
+);

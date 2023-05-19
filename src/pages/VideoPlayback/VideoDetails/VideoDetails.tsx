@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { translateDateToCurrentLanguage } from "../../../utils/date-utils";
 import SubscribeButton from "./SubscribeButton/SubscribeButton";
 import useOutsideClick from "../../../hooks/useOutsideClick";
-import { useIsSubscribed } from "../../../hooks/useIsSubscribed";
+import { useSubscribe } from "../../../hooks/useSubscribe";
 import { ModalPortal } from "../../../utils/ModalPortal";
 import ConfirmationModal from "../../../components/ConfirmationModal/ConfirmationModal";
 
@@ -36,7 +36,7 @@ export default function VideoDetails({
   const navigate = useNavigate();
   const { t } = useTranslation();
   const subscribeBtnRef = useRef<HTMLDivElement>(null);
-  console.log(channelId);
+  const { isSubscribed } = useSubscribe(channelId);
 
   const [showSubscriptionBtnOptions, setShowSubscriptionBtnOptions] = useState<boolean>(false);
   const [subscriptionBtnValue, setSubscriptionBtnValue] = useState<string>("");
@@ -73,7 +73,6 @@ export default function VideoDetails({
 
   const handleCloseModal = () => {
     setOpenModal(false);
-    setSubscriptionBtnValue("");
   };
 
   const onConfirm = () => {
@@ -84,8 +83,12 @@ export default function VideoDetails({
     if (subscriptionBtnValue === "unsubscribe") {
       setOpenModal(true);
       setShowSubscriptionBtnOptions(false);
+      // thunk
+      setSubscriptionBtnValue("");
     }
   }, [subscriptionBtnValue]);
+
+  console.log(isSubscribed);
 
   return (
     <>
