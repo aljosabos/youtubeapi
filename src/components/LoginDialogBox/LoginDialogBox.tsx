@@ -5,9 +5,10 @@ import { useLogin } from "../../hooks/useLogin";
 import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 import "./LoginDialogBox.scss";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 
 export default function LoginDialogBox() {
-  const { login } = useLogin("/subscriptions");
+  const { login } = useLogin();
   const { t } = useTranslation();
   return (
     <DialogBox

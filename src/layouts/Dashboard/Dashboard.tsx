@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import "./Dashboard.scss";
 import { useEffect, useState } from "react";
@@ -15,6 +15,7 @@ import Modal from "./Modal/Modal";
 
 function Dashboard() {
   const location = useLocation();
+  const navigate = useNavigate();
   const currentLanguage = useAppSelector(languageSelector);
   const { isResized } = useWindowResize(X_LARGE_WIDTH);
 

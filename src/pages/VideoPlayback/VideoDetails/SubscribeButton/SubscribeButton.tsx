@@ -11,7 +11,6 @@ import SubscribeDialogBox from "./SubscribeDialogBox/SubscribeDialogBox";
 import { useLogin } from "../../../../hooks/useLogin";
 import useOutsideClick from "../../../../hooks/useOutsideClick";
 import { useAppDispatch } from "../../../../hooks/reduxHooks";
-import { subscribeToChannelThunk } from "../../../../redux/thunks/subscriptionsThunk";
 
 const selectOptions = [{ name: "Unsubscribe", value: "unsubscribe", icon: PersonOffIcon }];
 
@@ -22,6 +21,9 @@ interface ISubscribeButtonProps {
   channelId: string;
   onChange: (e: React.MouseEvent<HTMLLIElement>) => void;
   dialogRef?: RefObject<HTMLDivElement>;
+  shouldShowDialogBox?: boolean;
+  setShouldShowDialogBox: Dispatch<SetStateAction<boolean>>;
+  onClick: () => void;
 }
 
 export default function SubscribeButton({
@@ -30,38 +32,45 @@ export default function SubscribeButton({
   setShowSubscriptionBtnOptions,
   channelId,
   onChange,
+  shouldShowDialogBox,
+  setShouldShowDialogBox,
+  onClick,
 }: ISubscribeButtonProps) {
   const dispatch = useAppDispatch();
   const [endIcon, setEndIcon] = useState<MaterialIcon>();
-  const [showDialogBox, setShowDialogBox] = useState<boolean>(false);
+
   const { isSubscribed } = useSubscribe(channelId);
   const { isLoggedIn } = useLogin();
 
   const subscribeBtnWrapperRef = useRef<HTMLDivElement>(null);
 
+  // const closeDialogBox = () => {
+  //   setShowDialogBox(false);
+  // };
+
   const closeDialogBox = () => {
-    setShowDialogBox(false);
+    setShouldShowDialogBox(false);
   };
 
   useOutsideClick(subscribeBtnWrapperRef, closeDialogBox);
 
   const btnConfig = {
-    text: isSubscribed ? "Subscribed" : "Subscribe",
-    startIcon: isSubscribed ? NotificationsNoneIcon : undefined,
-    endIcon: isSubscribed ? endIcon : undefined,
+    text: isSubscribed && isLoggedIn ? "Subscribed" : "Subscribe",
+    startIcon: isSubscribed && isLoggedIn ? NotificationsNoneIcon : undefined,
+    endIcon: isSubscribed && isLoggedIn ? endIcon : undefined,
   };
 
-  const handleOnClick = () => {
-    if (!isLoggedIn) {
-      return setShowDialogBox((previousState) => !previousState);
-    } else {
-      if (!isSubscribed) {
-        return dispatch(subscribeToChannelThunk(channelId));
-      }
+  // const handleOnClick = () => {
+  //   if (!isLoggedIn) {
+  //     return setShowDialogBox((previousState) => !previousState);
+  //   } else {
+  //     if (!isSubscribed) {
+  //       return dispatch(subscribeToChannelThunk(channelId));
+  //     }
 
-      setShowSubscriptionBtnOptions((previousState) => !previousState);
-    }
-  };
+  //     setShowSubscriptionBtnOptions((previousState) => !previousState);
+  //   }
+  // };
 
   useEffect(() => {
     if (showSubscriptionBtnOptions) {
@@ -77,13 +86,13 @@ export default function SubscribeButton({
         text={btnConfig.text}
         options={selectOptions}
         expandOptions={showSubscriptionBtnOptions}
-        onClick={handleOnClick}
+        onClick={onClick}
         onChange={onChange}
         startIcon={btnConfig.startIcon}
         endIcon={btnConfig.endIcon}
         elementRef={elementRef}
       />
-      {showDialogBox && <SubscribeDialogBox />}
+      {shouldShowDialogBox && <SubscribeDialogBox />}
     </div>
   );
 }

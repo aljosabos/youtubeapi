@@ -13,6 +13,9 @@ import useOutsideClick from "../../../hooks/useOutsideClick";
 import { useSubscribe } from "../../../hooks/useSubscribe";
 import { ModalPortal } from "../../../utils/ModalPortal";
 import ConfirmationModal from "../../../components/ConfirmationModal/ConfirmationModal";
+import { useLogin } from "../../../hooks/useLogin";
+import { useAppDispatch } from "../../../hooks/reduxHooks";
+import { subscribeToChannelThunk } from "../../../redux/thunks/subscriptionsThunk";
 
 interface IVideoDetailsProps extends IVideoDetails {
   expandVideoDetails: boolean;
@@ -34,13 +37,16 @@ export default function VideoDetails({
   setExpandVideoDetails,
 }: IVideoDetailsProps) {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const subscribeBtnRef = useRef<HTMLDivElement>(null);
   const { isSubscribed } = useSubscribe(channelId);
+  const { isLoggedIn } = useLogin();
 
   const [showSubscriptionBtnOptions, setShowSubscriptionBtnOptions] = useState<boolean>(false);
   const [subscriptionBtnValue, setSubscriptionBtnValue] = useState<string>("");
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [shouldShowDialogBox, setShouldShowDialogBox] = useState<boolean>(false);
 
   const hideSubscriptionBtnOptions = () => {
     setShowSubscriptionBtnOptions(false);
@@ -90,6 +96,18 @@ export default function VideoDetails({
 
   console.log(isSubscribed);
 
+  const handleOnClick = () => {
+    if (!isLoggedIn) {
+      return setShouldShowDialogBox((previousState) => !previousState);
+    } else {
+      if (!isSubscribed) {
+        return dispatch(subscribeToChannelThunk(channelId));
+      }
+
+      setShowSubscriptionBtnOptions((previousState) => !previousState);
+    }
+  };
+
   return (
     <>
       <div className="VideoDetails">
@@ -109,6 +127,9 @@ export default function VideoDetails({
             setShowSubscriptionBtnOptions={setShowSubscriptionBtnOptions}
             channelId={channelId}
             onChange={handleOnChange}
+            shouldShowDialogBox={shouldShowDialogBox}
+            setShouldShowDialogBox = {setShouldShowDialogBox}
+            onClick={handleOnClick}
           />
         </div>
 
