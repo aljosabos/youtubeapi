@@ -38,7 +38,7 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
   const modifier = shouldExpandDrawer ? "--expanded" : "";
   const rootClass = shouldExpandDrawer ? "Drawer--expanded" : "Drawer";
   const { isResized } = useWindowResize(X_LARGE_WIDTH);
-  const { login } = useLogin("/");
+  const { login } = useLogin();
 
   interface IListItem {
     text: string;

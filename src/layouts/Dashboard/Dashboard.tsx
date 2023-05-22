@@ -1,4 +1,4 @@
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "../Header/Header";
 import "./Dashboard.scss";
 import { useEffect, useState } from "react";
@@ -11,11 +11,9 @@ import { languageSelector } from "../../redux/slices/settingsSlice";
 import i18n from "../../i18n";
 import Drawer from "../Drawer/Drawer";
 import { useWindowResize } from "../../hooks/useWindowResize";
-import Modal from "./Modal/Modal";
 
 function Dashboard() {
   const location = useLocation();
-  const navigate = useNavigate();
   const currentLanguage = useAppSelector(languageSelector);
   const { isResized } = useWindowResize(X_LARGE_WIDTH);
 
