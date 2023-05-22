@@ -11,8 +11,8 @@ interface ISelectButtonProps {
   onClick?: () => void;
   options: Array<{ name: string; value: string; icon: MaterialIcon }>;
   expandOptions?: boolean;
-  onChange?: (e: React.MouseEvent<HTMLLIElement>) => void;
-  elementRef?: React.RefObject<HTMLDivElement>;
+  onChangeOption?: (e: React.MouseEvent<HTMLLIElement>) => void;
+  btnRef?: React.RefObject<HTMLDivElement>;
 }
 
 export default function SelectButton({
@@ -23,17 +23,17 @@ export default function SelectButton({
   onClick,
   options,
   expandOptions = false,
-  onChange,
-  elementRef,
+  onChangeOption,
+  btnRef,
 }: ISelectButtonProps) {
   return (
-    <div className="SelectButton" ref={elementRef}>
+    <div className="SelectButton" ref={btnRef}>
       <Button onClick={onClick} text={text} className="SelectButton__btn" startIcon={startIcon} endIcon={endIcon} />
 
       {expandOptions && (
         <ul className="SelectButton__options">
           {options.map(({ name, value, icon }, index) => (
-            <li onClick={onChange} key={index} className="SelectButton__option" data-value={value}>
+            <li onClick={onChangeOption} key={index} className="SelectButton__option" data-value={value}>
               {renderIconBasedOnType(icon, "SelectButton__option-icon")}
               {name}
             </li>

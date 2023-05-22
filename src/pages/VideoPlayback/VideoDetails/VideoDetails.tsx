@@ -13,7 +13,6 @@ import useOutsideClick from "../../../hooks/useOutsideClick";
 import { useSubscribe } from "../../../hooks/useSubscribe";
 import { ModalPortal } from "../../../utils/ModalPortal";
 import ConfirmationModal from "../../../components/ConfirmationModal/ConfirmationModal";
-import { useLogin } from "../../../hooks/useLogin";
 import { useAppDispatch } from "../../../hooks/reduxHooks";
 import { unsubscribeFromChannelThunk } from "../../../redux/thunks/subscriptionsThunk";
 
@@ -40,11 +39,11 @@ export default function VideoDetails({
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const subscribeBtnRef = useRef<HTMLDivElement>(null);
-  const { isSubscribed, idToUnsubscribe } = useSubscribe(channelId);
+  const { idToUnsubscribe } = useSubscribe(channelId);
 
   const [showSubscriptionBtnOptions, setShowSubscriptionBtnOptions] = useState<boolean>(false);
   const [subscriptionBtnValue, setSubscriptionBtnValue] = useState<string>("");
-  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [shouldOpenConfirmationModal, setShouldOpenConfirmationModal] = useState<boolean>(false);
 
   const hideSubscriptionBtnOptions = () => {
     setShowSubscriptionBtnOptions(false);
@@ -70,33 +69,29 @@ export default function VideoDetails({
     navigate(`/channel/${channelId}`);
   };
 
-  const handleOnChange = (e: React.MouseEvent<HTMLLIElement>) => {
+  const handleSubscribeBtnOptionChange = (e: React.MouseEvent<HTMLLIElement>) => {
     const value = (e.target as HTMLElement).getAttribute("data-value");
     if (value) setSubscriptionBtnValue(value);
   };
 
-  const handleCloseModal = () => {
-    setOpenModal(false);
+  const closeModal = () => {
+    setShouldOpenConfirmationModal(false);
   };
 
-  const onConfirm = () => {
-    console.log("confirmed");
+  const handleUnsubscribeFromChannel = () => {
     if (idToUnsubscribe) {
       dispatch(unsubscribeFromChannelThunk(idToUnsubscribe));
-      handleCloseModal();
+      closeModal();
     }
   };
 
   useEffect(() => {
     if (subscriptionBtnValue === "unsubscribe") {
-      setOpenModal(true);
+      setShouldOpenConfirmationModal(true);
       setShowSubscriptionBtnOptions(false);
-      // thunk
       setSubscriptionBtnValue("");
     }
   }, [subscriptionBtnValue]);
-
-  console.log(isSubscribed);
 
   return (
     <>
@@ -112,11 +107,11 @@ export default function VideoDetails({
           </div>
 
           <SubscribeButton
-            elementRef={subscribeBtnRef}
+            btnRef={subscribeBtnRef}
             showSubscriptionBtnOptions={showSubscriptionBtnOptions}
             setShowSubscriptionBtnOptions={setShowSubscriptionBtnOptions}
             channelId={channelId}
-            onChange={handleOnChange}
+            onChangeOption={handleSubscribeBtnOptionChange}
           />
         </div>
 
@@ -138,7 +133,12 @@ export default function VideoDetails({
       </div>
 
       <ModalPortal>
-        <ConfirmationModal open={openModal} closeModal={handleCloseModal} onConfirm={onConfirm} channel={channelTitle} />
+        <ConfirmationModal
+          open={shouldOpenConfirmationModal}
+          closeModal={closeModal}
+          onConfirm={handleUnsubscribeFromChannel}
+          channel={channelTitle}
+        />
       </ModalPortal>
     </>
   );
