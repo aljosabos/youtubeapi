@@ -17,8 +17,8 @@ import { useAppDispatch } from "../../../hooks/reduxHooks";
 import { unsubscribeFromChannelThunk } from "../../../redux/thunks/subscriptionsThunk";
 
 interface IVideoDetailsProps extends IVideoDetails {
-  expandVideoDetails: boolean;
-  setExpandVideoDetails: Dispatch<SetStateAction<boolean>>;
+  shouldExpandDescription: boolean;
+  setShouldExpandDescription: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function VideoDetails({
@@ -32,8 +32,8 @@ export default function VideoDetails({
   image,
   viewCount,
   commentCount,
-  expandVideoDetails,
-  setExpandVideoDetails,
+  shouldExpandDescription,
+  setShouldExpandDescription,
 }: IVideoDetailsProps) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -55,14 +55,14 @@ export default function VideoDetails({
   const BASE_CLASS = "VideoDetails__description";
 
   const jsxConfig = {
-    expandBtnText: expandVideoDetails ? t("videoDetails.btn.showLess") : t("videoDetails.btn.showMore"),
-    expandBtnClass: expandVideoDetails ? `${BASE_CLASS}-btn--bottom` : `${BASE_CLASS}-btn`,
-    descriptionClass: expandVideoDetails ? `${BASE_CLASS}-text--expanded` : `${BASE_CLASS}-text`,
+    expandBtnText: shouldExpandDescription ? t("videoDetails.btn.showLess") : t("videoDetails.btn.showMore"),
+    expandBtnClass: shouldExpandDescription ? `${BASE_CLASS}-btn--bottom` : `${BASE_CLASS}-btn`,
+    descriptionClass: shouldExpandDescription ? `${BASE_CLASS}-text--expanded` : `${BASE_CLASS}-text`,
   };
 
-  const toggleShowMore = () => {
-    if (expandVideoDetails) scrollPageToTop();
-    setExpandVideoDetails((previousState) => !previousState);
+  const toggleExpandDescription = () => {
+    if (shouldExpandDescription) scrollPageToTop();
+    setShouldExpandDescription((previousState) => !previousState);
   };
 
   const openChannel = (channelId: string) => {
@@ -120,7 +120,13 @@ export default function VideoDetails({
             <span className="VideoDetails__description-heading-views">{viewCount}K views</span>
             <span className="VideoDetails__description-heading-time">{translatedDate}</span>
 
-            <Button onClick={toggleShowMore} text={jsxConfig.expandBtnText} color="info" className={jsxConfig.expandBtnClass} variant="outlined" />
+            <Button
+              onClick={toggleExpandDescription}
+              text={jsxConfig.expandBtnText}
+              color="info"
+              className={jsxConfig.expandBtnClass}
+              variant="outlined"
+            />
           </div>
 
           <LinkifyText>

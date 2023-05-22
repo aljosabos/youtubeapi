@@ -24,14 +24,14 @@ export default function VideoPlayback() {
   const relatedVideos = useAppSelector(relatedVideosSelector);
   const { recommendedVideos } = useAppSelector(recommendedVideosSelector);
 
-  const [expandVideoDetails, setExpandVideoDetails] = useState<boolean>(false);
+  const [shouldExpandDescription, setShouldExpandDescription] = useState<boolean>(false);
 
   useEffect(() => {
     if (videoId) {
       dispatch(getVideoDetailsThunk(videoId));
       // dispatch(getRelatedVideosThunk(videoId));
       scrollPageToTop();
-      setExpandVideoDetails(false);
+      setShouldExpandDescription(false);
     }
   }, [videoId]);
 
@@ -43,7 +43,7 @@ export default function VideoPlayback() {
     <div className="VideoPlayback">
       <div className="VideoPlayback__player">
         {videoId && <VideoPlayer videoId={videoId} />}
-        {videoDetails && <VideoDetails {...videoDetails} expandVideoDetails={expandVideoDetails} setExpandVideoDetails={setExpandVideoDetails} />}
+        {videoDetails && <VideoDetails {...videoDetails} shouldExpandDescription={shouldExpandDescription} setShouldExpandDescription={setShouldExpandDescription} />}
       </div>
       {videoId && <RelatedVideos videos={recommendedVideos} onClick={handleClick} />}
     </div>
