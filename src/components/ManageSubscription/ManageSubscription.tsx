@@ -22,7 +22,7 @@ interface IManageSubscriptionProps {
 
 export default function ManageSubscription({ channelId, channelTitle }: IManageSubscriptionProps) {
   const dispatch = useAppDispatch();
-  const { login, isLoggedIn } = useLogin();
+  const { isLoggedIn } = useLogin();
   const { t } = useTranslation();
   const { isSubscribed, idToUnsubscribe } = useSubscribe(channelId);
 
@@ -30,7 +30,6 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
 
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [selectBtnValue, setSelectBtnValue] = useState<string>("");
-  const [endIcon, setEndIcon] = useState<MaterialIcon>();
 
   const [showDialogBox, setShowDialogBox] = useState<boolean>(false);
   const [isDialogBoxClicked, setIsDialogBoxClicked] = useState<boolean>(false);
@@ -71,7 +70,6 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
       if (!isSubscribed) {
         return dispatch(subscribeToChannelThunk(channelId));
       }
-
       setShowOptions((previousState) => !previousState);
     }
   };
