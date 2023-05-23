@@ -35,10 +35,15 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
 
   const [openModal, setOpenModal] = useState<boolean>(false);
 
+  const renderEndIcon = () => {
+    if (!isSubscribed || !isLoggedIn) return;
+    return showOptions ? ExpandLessIcon : ExpandMoreIcon;
+  };
+
   const btnConfig = {
     text: isSubscribed && isLoggedIn ? "Subscribed" : "Subscribe",
     startIcon: isSubscribed && isLoggedIn ? NotificationsNoneIcon : undefined,
-    endIcon: isSubscribed && isLoggedIn ? endIcon : undefined,
+    endIcon: renderEndIcon(),
   };
 
   const btnRef = useRef<HTMLDivElement>(null);
@@ -82,13 +87,6 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
     if (selectBtnValue === "unsubscribe") setOpenModal(true);
     setShowOptions(false);
   }, [selectBtnValue]);
-
-  useEffect(() => {
-    if (showOptions) setEndIcon(ExpandLessIcon);
-    else {
-      setEndIcon(ExpandMoreIcon);
-    }
-  }, [showOptions]);
 
   return (
     <div ref={subscribeBtnWrapperRef} className="ManageSubscription">
