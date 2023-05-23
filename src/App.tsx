@@ -8,10 +8,13 @@ import "./axiosInstance/interceptor";
 import Channels from "./pages/Channel/Channel";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Subscriptions from "./pages/Subscriptions/Subscriptions";
+import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 
 import LoginDialogBox from "./components/LoginDialogBox/LoginDialogBox";
+import { useTranslation } from "react-i18next";
 
 function App() {
+  const { t } = useTranslation();
   return (
     <Routes>
       <Route path="/" element={<Dashboard />}>
@@ -24,7 +27,20 @@ function App() {
 
         <Route
           path="subscriptions"
-          element={<ProtectedRoute componentForAuthorizedUser={<Subscriptions />} componentForNonAuthorized={<LoginDialogBox />} />}
+          element={
+            <ProtectedRoute
+              componentForAuthorizedUser={<Subscriptions />}
+              componentForNonAuthorized={
+                <LoginDialogBox
+                  icon={VideoLibraryIcon}
+                  title={t("dialogBox.login.large.title")}
+                  text={t("dialogBox.login.large.text")}
+                  centerDialogBox
+                  disableShadow
+                />
+              }
+            />
+          }
         />
       </Route>
 

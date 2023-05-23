@@ -8,7 +8,6 @@ import { scrollPageToTop } from "../../../utils/utils";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { translateDateToCurrentLanguage } from "../../../utils/date-utils";
-import SubscribeButton from "./SubscribeButton/SubscribeButton";
 import { useAppDispatch } from "../../../hooks/reduxHooks";
 import ManageSubscription from "../../../components/ManageSubscription/ManageSubscription";
 

@@ -89,7 +89,7 @@ export default function Drawer({ shouldExpandDrawer }: IDrawerProps) {
           <DialogBox
             text={t("dialogBox.login.small.text")}
             btn={<Button text={t("dialogBox.login.small.btn")} startIcon={AccountCircleIcon} onClick={login} variant="outlined" />}
-            wrapperClassName="Drawer__dialogBox"
+            className="Drawer__dialogBox"
           />
         )}
       </MaterialDrawer>

@@ -5,4 +5,32 @@
       position: relative;
     }
   }
+
+  &__dialogBox {
+    .DialogBox__title {
+      font-size: 14px;
+    }
+
+    .DialogBox__text {
+      font-size: 12px;
+      color: grey;
+      margin-bottom: 10px;
+    }
+
+    .MuiButton-root {
+      border: none;
+      padding: 0;
+      min-width: inherit;
+      font-size: 12px;
+
+      &:hover {
+        background-color: transparent;
+        border: none;
+      }
+    }
+
+    .MuiButton-startIcon {
+      display: none;
+    }
+  }
 }

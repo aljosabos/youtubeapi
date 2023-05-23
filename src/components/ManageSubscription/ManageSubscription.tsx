@@ -10,9 +10,10 @@ import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import { subscribeToChannelThunk, unsubscribeFromChannelThunk } from "../../redux/thunks/subscriptionsThunk";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import PersonOffIcon from "@mui/icons-material/PersonOff";
-import SubscribeDialogBox from "../../pages/VideoPlayback/VideoDetails/SubscribeButton/SubscribeDialogBox/SubscribeDialogBox";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import LoginDialogBox from "../LoginDialogBox/LoginDialogBox";
+import { useTranslation } from "react-i18next";
 
 interface IManageSubscriptionProps {
   channelId: string;
@@ -22,6 +23,7 @@ interface IManageSubscriptionProps {
 export default function ManageSubscription({ channelId, channelTitle }: IManageSubscriptionProps) {
   const dispatch = useAppDispatch();
   const { login, isLoggedIn } = useLogin();
+  const { t } = useTranslation();
   const { isSubscribed, idToUnsubscribe } = useSubscribe(channelId);
 
   const selectOptions = [{ name: "Unsubscribe", value: "unsubscribe", icon: PersonOffIcon }];
@@ -42,7 +44,7 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
 
   const btnConfig = {
     text: isSubscribed && isLoggedIn ? "Subscribed" : "Subscribe",
-    startIcon: isSubscribed && isLoggedIn ? NotificationsNoneIcon : undefined,
+    startIcon: isSubscribed && isLoggedIn ? NotificationsNoneIcon : "",
     endIcon: renderEndIcon(),
   };
 
@@ -54,17 +56,18 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
     setSelectBtnValue("");
   };
 
-  const handleUnsubscribeFromChannel = () => {
+  const handleOnConfirm = () => {
     if (idToUnsubscribe) {
       dispatch(unsubscribeFromChannelThunk(idToUnsubscribe));
       handleModalClose();
     }
   };
 
-  const handleOnBtnClick = () => {
-    if (!isLoggedIn) {
-      return setShowDialogBox((prevState) => !prevState);
-    } else {
+  const toggleShowDialogBox = () => setShowDialogBox((prevState) => !prevState);
+
+  const handleBtnClick = () => {
+    if (!isLoggedIn) toggleShowDialogBox();
+    else {
       if (!isSubscribed) {
         return dispatch(subscribeToChannelThunk(channelId));
       }
@@ -73,12 +76,7 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
     }
   };
 
-  const onDialogBoxClick = () => {
-    login();
-    setIsDialogBoxClicked(true);
-  };
-
-  const handleSubscribeBtnOptionChange = (e: React.MouseEvent<HTMLLIElement>) => {
+  const handleBtnOptionChange = (e: React.MouseEvent<HTMLElement>) => {
     const value = (e.target as HTMLElement).getAttribute("data-value");
     if (value) setSelectBtnValue(value);
   };
@@ -94,17 +92,24 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
         text={btnConfig.text}
         options={selectOptions}
         showOptions={showOptions}
-        onClick={handleOnBtnClick}
-        onChangeOption={handleSubscribeBtnOptionChange}
+        onClick={handleBtnClick}
+        onChangeOption={handleBtnOptionChange}
         startIcon={btnConfig.startIcon}
         endIcon={btnConfig.endIcon}
         btnRef={btnRef}
         className="ManageSubscription__btn"
       />
-      {showDialogBox && !isLoggedIn && <SubscribeDialogBox onClick={onDialogBoxClick} />}
+      {showDialogBox && !isLoggedIn && (
+        <LoginDialogBox
+          title={t("dialogBox.subscribe.title")}
+          text={t("dialogBox.subscribe.text")}
+          className="ManageSubscription__dialogBox"
+          alignItems="start"
+        />
+      )}
 
       <ModalPortal>
-        <ConfirmationModal open={openModal} closeModal={handleModalClose} onConfirm={handleUnsubscribeFromChannel} title={channelTitle} />
+        <ConfirmationModal open={openModal} closeModal={handleModalClose} onConfirm={handleOnConfirm} title={channelTitle} />
       </ModalPortal>
     </div>
   );
