@@ -12,8 +12,6 @@ interface ISubscriptionItemProps {
 export default function SubscriptionItem({ channelId, image, title, onClick, largeView = false }: ISubscriptionItemProps) {
   const modifier = largeView ? "--large" : "";
 
-  console.log(channelId);
-
   return (
     <div className={`Subscription${modifier}`} onClick={() => onClick(channelId)}>
       <Avatar alt="Subscriptions avatar" src={image} className={`Subscription__avatar${modifier}`} />

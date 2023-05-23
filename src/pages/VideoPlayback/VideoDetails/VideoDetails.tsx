@@ -1,7 +1,7 @@
 import { Avatar } from "@mui/material";
 import "./VideoDetails.scss";
 import Button from "../../../components/Button/Button";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import LinkifyText from "../../../components/LinkifyText/LinkifyText";
 import { IVideoDetails } from "../../../types/types";
 import { scrollPageToTop } from "../../../utils/utils";
@@ -9,12 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { translateDateToCurrentLanguage } from "../../../utils/date-utils";
 import SubscribeButton from "./SubscribeButton/SubscribeButton";
-import useOutsideClick from "../../../hooks/useOutsideClick";
-import { useSubscribe } from "../../../hooks/useSubscribe";
-import { ModalPortal } from "../../../utils/ModalPortal";
-import ConfirmationModal from "../../../components/ConfirmationModal/ConfirmationModal";
 import { useAppDispatch } from "../../../hooks/reduxHooks";
-import { unsubscribeFromChannelThunk } from "../../../redux/thunks/subscriptionsThunk";
+import ManageSubscription from "../../../components/ManageSubscription/ManageSubscription";
 
 interface IVideoDetailsProps extends IVideoDetails {
   shouldExpandDescription: boolean;
@@ -38,18 +34,6 @@ export default function VideoDetails({
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const subscribeBtnRef = useRef<HTMLDivElement>(null);
-  const { idToUnsubscribe } = useSubscribe(channelId);
-
-  const [showSubscriptionBtnOptions, setShowSubscriptionBtnOptions] = useState<boolean>(false);
-  const [subscriptionBtnValue, setSubscriptionBtnValue] = useState<string>("");
-  const [shouldOpenConfirmationModal, setShouldOpenConfirmationModal] = useState<boolean>(false);
-
-  const hideSubscriptionBtnOptions = () => {
-    setShowSubscriptionBtnOptions(false);
-  };
-
-  useOutsideClick(subscribeBtnRef, hideSubscriptionBtnOptions);
 
   const translatedDate = translateDateToCurrentLanguage(publishedAt);
   const BASE_CLASS = "VideoDetails__description";
@@ -69,30 +53,6 @@ export default function VideoDetails({
     navigate(`/channel/${channelId}`);
   };
 
-  const handleSubscribeBtnOptionChange = (e: React.MouseEvent<HTMLLIElement>) => {
-    const value = (e.target as HTMLElement).getAttribute("data-value");
-    if (value) setSubscriptionBtnValue(value);
-  };
-
-  const closeModal = () => {
-    setShouldOpenConfirmationModal(false);
-  };
-
-  const handleUnsubscribeFromChannel = () => {
-    if (idToUnsubscribe) {
-      dispatch(unsubscribeFromChannelThunk(idToUnsubscribe));
-      closeModal();
-    }
-  };
-
-  useEffect(() => {
-    if (subscriptionBtnValue === "unsubscribe") {
-      setShouldOpenConfirmationModal(true);
-      setShowSubscriptionBtnOptions(false);
-      setSubscriptionBtnValue("");
-    }
-  }, [subscriptionBtnValue]);
-
   return (
     <>
       <div className="VideoDetails">
@@ -106,13 +66,8 @@ export default function VideoDetails({
             <span className="VideoDetails__channel-info-subscribers">20K {t("videoDetails.subscribers")}</span>
           </div>
 
-          <SubscribeButton
-            btnRef={subscribeBtnRef}
-            showSubscriptionBtnOptions={showSubscriptionBtnOptions}
-            setShowSubscriptionBtnOptions={setShowSubscriptionBtnOptions}
-            channelId={channelId}
-            onChangeOption={handleSubscribeBtnOptionChange}
-          />
+          {/* <SubscribeButton channelId={channelId} channelTitle={channelTitle} /> */}
+          <ManageSubscription channelId={channelId} channelTitle={channelTitle} />
         </div>
 
         <div className="VideoDetails__description">
@@ -137,15 +92,6 @@ export default function VideoDetails({
         </div>
         <span>{commentCount} Comments</span>
       </div>
-
-      <ModalPortal>
-        <ConfirmationModal
-          open={shouldOpenConfirmationModal}
-          closeModal={closeModal}
-          onConfirm={handleUnsubscribeFromChannel}
-          channel={channelTitle}
-        />
-      </ModalPortal>
     </>
   );
 }

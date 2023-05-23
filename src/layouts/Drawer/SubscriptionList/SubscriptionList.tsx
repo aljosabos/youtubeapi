@@ -8,7 +8,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { ACCESS_TOKEN, COLLAPSED_SUBSCRIPTIONS_NUM } from "../../../constants/constants";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { SCROLLABLE_JSX } from "../../../constants/libraryPropsConstants";
 import { scrollElementToTop } from "../../../utils/utils";
 import { subscriptionsSelector } from "../../../redux/slices/subscriptionsSlice";
 import { useNavigate } from "react-router-dom";
@@ -44,11 +43,8 @@ export default function SubscriptionList() {
   };
 
   const loadMoreSubscriptions = () => {
-    console.log("more");
     dispatch(getMoreSubscriptionsThunk(nextPageToken));
   };
-
-  console.log(subscriptions.length);
 
   return (
     <div className="SubscriptionList">

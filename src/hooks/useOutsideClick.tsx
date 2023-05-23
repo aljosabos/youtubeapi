@@ -1,4 +1,4 @@
-import { useEffect, RefObject, useState } from "react";
+import { useEffect, RefObject } from "react";
 
 const useOutsideClick = <T extends HTMLElement>(ref: RefObject<T>, onOutsideClick: () => void) => {
   useEffect(() => {

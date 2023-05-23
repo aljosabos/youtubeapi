@@ -1,0 +1,8 @@
+.ManageSubscription {
+  &__btn {
+    .MuiButton-root {
+      z-index: 1000;
+      position: relative;
+    }
+  }
+}

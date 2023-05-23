@@ -6,14 +6,14 @@ interface IConfirmationModalProps {
   open: boolean;
   closeModal: () => void;
   onConfirm: () => void;
-  channel: string;
+  title: string;
 }
 
-export default function ConfirmationModal({ open, closeModal, onConfirm, channel }: IConfirmationModalProps) {
+export default function ConfirmationModal({ open, closeModal, onConfirm, title }: IConfirmationModalProps) {
   return (
     <div className="ConfirmationModal">
       <Modal open={open} closeModal={closeModal} >
-        <p>Unsubscribe from {channel}?</p>
+        <p>Unsubscribe from {title}?</p>
         <div className="ConfirmationModal__buttons">
           <Button text="Cancel" onClick={closeModal} variant="text" />
           <Button text="Unsubscribe" onClick={onConfirm} variant="text" />

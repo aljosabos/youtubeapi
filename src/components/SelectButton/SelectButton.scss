@@ -30,9 +30,9 @@
   &__option {
     display: flex;
     align-items: center;
-    padding: 5px;
     transition: all 0.2s;
     font-size: 14px;
+    padding: 5px;
     &:hover {
       background-color: rgb(249, 227, 227);
     }

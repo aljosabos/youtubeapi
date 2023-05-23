@@ -1,6 +1,3 @@
-import { OverridableComponent } from "@mui/types";
-import { SvgIconTypeMap } from "@mui/material";
-
 declare module "*.svg" {
   import React = require("react");
 

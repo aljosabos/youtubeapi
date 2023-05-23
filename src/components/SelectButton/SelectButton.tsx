@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { MaterialIcon } from "../../types/types";
 import { renderIconBasedOnType } from "../../utils/utils";
 import Button from "../Button/Button";
@@ -10,9 +11,10 @@ interface ISelectButtonProps {
   value?: string;
   onClick?: () => void;
   options: Array<{ name: string; value: string; icon: MaterialIcon }>;
-  expandOptions?: boolean;
+  showOptions?: boolean;
   onChangeOption?: (e: React.MouseEvent<HTMLLIElement>) => void;
   btnRef?: React.RefObject<HTMLDivElement>;
+  className?: string;
 }
 
 export default function SelectButton({
@@ -22,15 +24,32 @@ export default function SelectButton({
   value,
   onClick,
   options,
-  expandOptions = false,
+  showOptions = false,
   onChangeOption,
   btnRef,
+  className,
 }: ISelectButtonProps) {
-  return (
-    <div className="SelectButton" ref={btnRef}>
-      <Button onClick={onClick} text={text} className="SelectButton__btn" startIcon={startIcon} endIcon={endIcon} />
+  const rootClass = className ? `SelectButton ${className}` : "SelectButton";
 
-      {expandOptions && (
+  const selectRef = useRef<HTMLSelectElement | null>(null);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleBtnClick = () => {
+    onClick && onClick();
+    setIsOpen(!isOpen);
+    if (!isOpen && selectRef.current) {
+      selectRef.current.classList.add("open");
+    } else {
+      if (selectRef.current) selectRef.current.classList.remove("open");
+    }
+  };
+
+  return (
+    <div className={rootClass} ref={btnRef}>
+      <Button onClick={handleBtnClick} text={text} className="SelectButton__btn" startIcon={startIcon} endIcon={endIcon} />
+
+      {showOptions && (
         <ul className="SelectButton__options">
           {options.map(({ name, value, icon }, index) => (
             <li onClick={onChangeOption} key={index} className="SelectButton__option" data-value={value}>

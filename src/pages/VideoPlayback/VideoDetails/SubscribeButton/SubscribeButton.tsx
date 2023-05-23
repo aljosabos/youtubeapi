@@ -11,29 +11,30 @@ import SubscribeDialogBox from "./SubscribeDialogBox/SubscribeDialogBox";
 import { useLogin } from "../../../../hooks/useLogin";
 import useOutsideClick from "../../../../hooks/useOutsideClick";
 import { useAppDispatch } from "../../../../hooks/reduxHooks";
-import { subscribeToChannelThunk } from "../../../../redux/thunks/subscriptionsThunk";
+import { subscribeToChannelThunk, unsubscribeFromChannelThunk } from "../../../../redux/thunks/subscriptionsThunk";
+import { ModalPortal } from "../../../../utils/ModalPortal";
+import ConfirmationModal from "../../../../components/ConfirmationModal/ConfirmationModal";
 
 const selectOptions = [{ name: "Unsubscribe", value: "unsubscribe", icon: PersonOffIcon }];
 
 interface ISubscribeButtonProps {
-  btnRef?: React.RefObject<HTMLDivElement>;
-  showSubscriptionBtnOptions: boolean;
-  setShowSubscriptionBtnOptions: Dispatch<SetStateAction<boolean>>;
   channelId: string;
-  onChangeOption: (e: React.MouseEvent<HTMLLIElement>) => void;
+  channelTitle: string;
 }
 
-export default function SubscribeButton({
-  btnRef,
-  showSubscriptionBtnOptions,
-  setShowSubscriptionBtnOptions,
-  channelId,
-  onChangeOption,
-}: ISubscribeButtonProps) {
+export default function SubscribeButton({ channelId, channelTitle }: ISubscribeButtonProps) {
   const dispatch = useAppDispatch();
   const [endIcon, setEndIcon] = useState<MaterialIcon>();
   const [showDialogBox, setShowDialogBox] = useState<boolean>(false);
   const [isDialogBoxClicked, setIsDialogBoxClicked] = useState<boolean>(false);
+  const [shouldOpenConfirmationModal, setShouldOpenConfirmationModal] = useState<boolean>(false);
+  const [showSubscriptionBtnOptions, setShowSubscriptionBtnOptions] = useState<boolean>(false);
+
+  const { idToUnsubscribe } = useSubscribe(channelId);
+
+  const btnRef = useRef<HTMLDivElement>(null);
+
+  const [subscriptionBtnValue, setSubscriptionBtnValue] = useState<string>("");
 
   const { login } = useLogin();
 
@@ -46,12 +47,23 @@ export default function SubscribeButton({
     setShowDialogBox(false);
   };
 
+  const hideSubscriptionBtnOptions = () => {
+    setShowSubscriptionBtnOptions(false);
+  };
+
+  useOutsideClick(btnRef, hideSubscriptionBtnOptions);
+
   useOutsideClick(subscribeBtnWrapperRef, closeDialogBox);
 
   const btnConfig = {
     text: isSubscribed && isLoggedIn ? "Subscribed" : "Subscribe",
     startIcon: isSubscribed && isLoggedIn ? NotificationsNoneIcon : undefined,
     endIcon: isSubscribed && isLoggedIn ? endIcon : undefined,
+  };
+
+  const handleSubscribeBtnOptionChange = (e: React.MouseEvent<HTMLLIElement>) => {
+    const value = (e.target as HTMLElement).getAttribute("data-value");
+    if (value) setSubscriptionBtnValue(value);
   };
 
   const handleOnBtnClick = () => {
@@ -71,13 +83,21 @@ export default function SubscribeButton({
     setIsDialogBoxClicked(true);
   };
 
-  useEffect(() => {
+  const handleSubscribeAfterLogin = () => {
     if (isDialogBoxClicked && isLoggedIn && !isSubscribed) {
       dispatch(subscribeToChannelThunk(channelId));
       setIsDialogBoxClicked(false);
       setShowDialogBox(false);
     }
-  }, [isDialogBoxClicked, isLoggedIn]);
+  };
+
+  const closeModal = () => {
+    setShouldOpenConfirmationModal(false);
+  };
+
+  useEffect(() => {
+    handleSubscribeAfterLogin();
+  }, [isDialogBoxClicked, isLoggedIn, isSubscribed]);
 
   useEffect(() => {
     if (showSubscriptionBtnOptions) {
@@ -87,19 +107,38 @@ export default function SubscribeButton({
     }
   }, [showSubscriptionBtnOptions]);
 
+  useEffect(() => {
+    if (subscriptionBtnValue === "unsubscribe") {
+      setShouldOpenConfirmationModal(true);
+      setShowSubscriptionBtnOptions(false);
+      setSubscriptionBtnValue("");
+    }
+  }, [subscriptionBtnValue]);
+
+  const handleUnsubscribeFromChannel = () => {
+    if (idToUnsubscribe) {
+      dispatch(unsubscribeFromChannelThunk(idToUnsubscribe));
+      closeModal();
+    }
+  };
+
   return (
     <div ref={subscribeBtnWrapperRef}>
       <SelectButton
         text={btnConfig.text}
         options={selectOptions}
-        expandOptions={showSubscriptionBtnOptions}
+        showOptions={showSubscriptionBtnOptions}
         onClick={handleOnBtnClick}
-        onChangeOption={onChangeOption}
+        onChangeOption={handleSubscribeBtnOptionChange}
         startIcon={btnConfig.startIcon}
         endIcon={btnConfig.endIcon}
         btnRef={btnRef}
       />
       {showDialogBox && !isLoggedIn && <SubscribeDialogBox onClick={onDialogBoxClick} />}
+
+      <ModalPortal>
+        <ConfirmationModal open={shouldOpenConfirmationModal} closeModal={closeModal} onConfirm={handleUnsubscribeFromChannel} title={channelTitle} />
+      </ModalPortal>
     </div>
   );
 }
