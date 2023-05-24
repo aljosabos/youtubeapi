@@ -1,4 +1,3 @@
-import { useRef, useState } from "react";
 import { MaterialIcon } from "../../types/types";
 import { renderIconBasedOnType } from "../../utils/utils";
 import Button from "../Button/Button";

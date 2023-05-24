@@ -8,7 +8,6 @@ import { scrollPageToTop } from "../../../utils/utils";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { translateDateToCurrentLanguage } from "../../../utils/date-utils";
-import { useAppDispatch } from "../../../hooks/reduxHooks";
 import ManageSubscription from "../../../components/ManageSubscription/ManageSubscription";
 
 interface IVideoDetailsProps extends IVideoDetails {
@@ -31,7 +30,6 @@ export default function VideoDetails({
   setShouldExpandDescription,
 }: IVideoDetailsProps) {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
   const translatedDate = translateDateToCurrentLanguage(publishedAt);
