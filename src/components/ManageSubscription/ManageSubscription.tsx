@@ -13,6 +13,7 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import LoginDialogBox from "../LoginDialogBox/LoginDialogBox";
 import { useTranslation } from "react-i18next";
 import { SELECT_BTN_OPTIONS } from "../../constants/constants";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 interface IManageSubscriptionProps {
   channelId: string;
@@ -26,7 +27,7 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
   const { isSubscribed, idToUnsubscribe } = useSubscribe(channelId);
 
   const btnRef = useRef<HTMLDivElement>(null);
-  const subscribeBtnWrapperRef = useRef<HTMLDivElement>(null);
+  const manageSubscriptionWrapperRef = useRef<HTMLDivElement>(null);
 
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [selectBtnValue, setSelectBtnValue] = useState<string>("");
@@ -37,6 +38,12 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
     if (selectBtnValue === "unsubscribe") setOpenModal(true);
     setShowOptions(false);
   }, [selectBtnValue]);
+
+  const closeDialogBox = () => {
+    setShowDialogBox(false);
+  };
+
+  useOutsideClick(manageSubscriptionWrapperRef, closeDialogBox);
 
   const renderEndIcon = () => {
     if (!isSubscribed || !isLoggedIn) return;
@@ -83,7 +90,7 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
   };
 
   return (
-    <div ref={subscribeBtnWrapperRef} className="ManageSubscription">
+    <div ref={manageSubscriptionWrapperRef} className="ManageSubscription">
       <SelectButton
         text={btnConfig.text}
         options={SELECT_BTN_OPTIONS}

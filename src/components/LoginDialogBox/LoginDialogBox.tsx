@@ -2,10 +2,10 @@ import Button from "../Button/Button";
 import DialogBox from "../DialogBox/DialogBox";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useLogin } from "../../hooks/useLogin";
-import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 import "./LoginDialogBox.scss";
 import { useTranslation } from "react-i18next";
 import { MaterialIcon } from "../../types/types";
+import { RefObject } from "react";
 
 interface ILoginDialogBoxProps {
   title: string;
@@ -16,6 +16,7 @@ interface ILoginDialogBoxProps {
   centerDialogBox?: boolean;
   disableShadow?: boolean;
   callback?: () => void;
+  elementRef?: RefObject<HTMLDivElement>;
 }
 
 export default function LoginDialogBox({
@@ -27,6 +28,7 @@ export default function LoginDialogBox({
   centerDialogBox,
   disableShadow,
   callback,
+  elementRef,
 }: ILoginDialogBoxProps) {
   const { login } = useLogin(undefined, callback);
   const { t } = useTranslation();
@@ -49,6 +51,7 @@ export default function LoginDialogBox({
       alignItems={alignItems}
       centerDialogBox={centerDialogBox}
       disableShadow={disableShadow}
+      elementRef = {elementRef}
     />
   );
 }
