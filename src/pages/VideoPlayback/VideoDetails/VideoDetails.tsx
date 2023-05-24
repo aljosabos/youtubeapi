@@ -63,7 +63,6 @@ export default function VideoDetails({
             <span className="VideoDetails__channel-info-subscribers">20K {t("videoDetails.subscribers")}</span>
           </div>
 
-          {/* <SubscribeButton channelId={channelId} channelTitle={channelTitle} /> */}
           <ManageSubscription channelId={channelId} channelTitle={channelTitle} />
         </div>
 
