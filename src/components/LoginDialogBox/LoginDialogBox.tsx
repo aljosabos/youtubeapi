@@ -15,6 +15,7 @@ interface ILoginDialogBoxProps {
   alignItems?: "center" | "start";
   centerDialogBox?: boolean;
   disableShadow?: boolean;
+  callback?: () => void;
 }
 
 export default function LoginDialogBox({
@@ -25,9 +26,11 @@ export default function LoginDialogBox({
   alignItems = "center",
   centerDialogBox,
   disableShadow,
+  callback,
 }: ILoginDialogBoxProps) {
-  const { login } = useLogin();
+  const { login } = useLogin(undefined, callback);
   const { t } = useTranslation();
+
   return (
     <DialogBox
       icon={icon}

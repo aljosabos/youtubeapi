@@ -62,13 +62,17 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
     }
   };
 
+  const subscribeToChannel = (channelId: string) => {
+    dispatch(subscribeToChannelThunk(channelId));
+  };
+
   const toggleShowDialogBox = () => setShowDialogBox((prevState) => !prevState);
 
   const handleBtnClick = () => {
     if (!isLoggedIn) toggleShowDialogBox();
     else {
       if (!isSubscribed) {
-        return dispatch(subscribeToChannelThunk(channelId));
+        return subscribeToChannel(channelId);
       }
       setShowOptions((previousState) => !previousState);
     }
@@ -103,6 +107,7 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
           text={t("dialogBox.subscribe.text")}
           className="ManageSubscription__dialogBox"
           alignItems="start"
+          callback={() => subscribeToChannel(channelId)}
         />
       )}
 
