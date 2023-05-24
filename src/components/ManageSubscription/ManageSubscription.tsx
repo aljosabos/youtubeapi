@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import "./ManageSubscription.scss";
-import { MaterialIcon } from "../../types/types";
 import { useAppDispatch } from "../../hooks/reduxHooks";
 import { useLogin } from "../../hooks/useLogin";
 import { useSubscribe } from "../../hooks/useSubscribe";
@@ -9,11 +8,11 @@ import { ModalPortal } from "../../utils/ModalPortal";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import { subscribeToChannelThunk, unsubscribeFromChannelThunk } from "../../redux/thunks/subscriptionsThunk";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import PersonOffIcon from "@mui/icons-material/PersonOff";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import LoginDialogBox from "../LoginDialogBox/LoginDialogBox";
 import { useTranslation } from "react-i18next";
+import { SELECT_BTN_OPTIONS } from "../../constants/constants";
 
 interface IManageSubscriptionProps {
   channelId: string;
@@ -26,14 +25,18 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
   const { t } = useTranslation();
   const { isSubscribed, idToUnsubscribe } = useSubscribe(channelId);
 
-  const selectOptions = [{ name: "Unsubscribe", value: "unsubscribe", icon: PersonOffIcon }];
+  const btnRef = useRef<HTMLDivElement>(null);
+  const subscribeBtnWrapperRef = useRef<HTMLDivElement>(null);
 
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [selectBtnValue, setSelectBtnValue] = useState<string>("");
-
   const [showDialogBox, setShowDialogBox] = useState<boolean>(false);
-
   const [openModal, setOpenModal] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (selectBtnValue === "unsubscribe") setOpenModal(true);
+    setShowOptions(false);
+  }, [selectBtnValue]);
 
   const renderEndIcon = () => {
     if (!isSubscribed || !isLoggedIn) return;
@@ -46,15 +49,12 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
     endIcon: renderEndIcon(),
   };
 
-  const btnRef = useRef<HTMLDivElement>(null);
-  const subscribeBtnWrapperRef = useRef<HTMLDivElement>(null);
-
   const handleModalClose = () => {
     setOpenModal(false);
     setSelectBtnValue("");
   };
 
-  const handleOnConfirm = () => {
+  const handleOnModalConfirm = () => {
     if (idToUnsubscribe) {
       dispatch(unsubscribeFromChannelThunk(idToUnsubscribe));
       handleModalClose();
@@ -82,16 +82,11 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
     if (value) setSelectBtnValue(value);
   };
 
-  useEffect(() => {
-    if (selectBtnValue === "unsubscribe") setOpenModal(true);
-    setShowOptions(false);
-  }, [selectBtnValue]);
-
   return (
     <div ref={subscribeBtnWrapperRef} className="ManageSubscription">
       <SelectButton
         text={btnConfig.text}
-        options={selectOptions}
+        options={SELECT_BTN_OPTIONS}
         showOptions={showOptions}
         onClick={handleBtnClick}
         onChangeOption={handleBtnOptionChange}
@@ -111,7 +106,7 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
       )}
 
       <ModalPortal>
-        <ConfirmationModal open={openModal} closeModal={handleModalClose} onConfirm={handleOnConfirm} title={channelTitle} />
+        <ConfirmationModal open={openModal} closeModal={handleModalClose} onConfirm={handleOnModalConfirm} title={channelTitle} />
       </ModalPortal>
     </div>
   );
