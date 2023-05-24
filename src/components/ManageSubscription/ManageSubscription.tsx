@@ -32,7 +32,6 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
   const [selectBtnValue, setSelectBtnValue] = useState<string>("");
 
   const [showDialogBox, setShowDialogBox] = useState<boolean>(false);
-  const [isDialogBoxClicked, setIsDialogBoxClicked] = useState<boolean>(false);
 
   const [openModal, setOpenModal] = useState<boolean>(false);
 
