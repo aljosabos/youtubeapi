@@ -72,10 +72,10 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
     dispatch(subscribeToChannelThunk(channelId));
   };
 
-  const toggleShowDialogBox = () => setShowDialogBox((prevState) => !prevState);
+  const toggleShowLoginDialogBox = () => setShowDialogBox((prevState) => !prevState);
 
   const handleBtnClick = () => {
-    if (!isLoggedIn) toggleShowDialogBox();
+    if (!isLoggedIn) toggleShowLoginDialogBox();
     else {
       if (!isSubscribed) {
         return subscribeToChannel(channelId);
@@ -84,7 +84,7 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
     }
   };
 
-  const handleBtnOptionChange = (e: React.MouseEvent<HTMLElement>) => {
+  const handleOptionChange = (e: React.MouseEvent<HTMLElement>) => {
     const value = (e.target as HTMLElement).getAttribute("data-value");
     if (value) setSelectBtnValue(value);
   };
@@ -96,7 +96,7 @@ export default function ManageSubscription({ channelId, channelTitle }: IManageS
         options={SELECT_BTN_OPTIONS}
         showOptions={showOptions}
         onClick={handleBtnClick}
-        onChangeOption={handleBtnOptionChange}
+        onChange={handleOptionChange}
         startIcon={btnConfig.startIcon}
         endIcon={btnConfig.endIcon}
         btnRef={btnRef}
