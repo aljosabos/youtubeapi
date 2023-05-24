@@ -18,6 +18,11 @@
         "btn": "Anmelden"
       }
     },
+    "subscribe": {
+      "title": "Möchten Sie diesen Kanal abonnieren?",
+      "text:": "Melden Sie sich an, um diesen Kanal zu abonnieren",
+      "btn": "Anmelden"
+    },
     "noSubscriptions": {
       "title": "Keine Abonnements",
       "text": "Sie haben derzeit kein Abonnement"

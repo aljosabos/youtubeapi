@@ -8,7 +8,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { ACCESS_TOKEN, COLLAPSED_SUBSCRIPTIONS_NUM } from "../../../constants/constants";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { SCROLLABLE_JSX } from "../../../constants/libraryPropsConstants";
 import { scrollElementToTop } from "../../../utils/utils";
 import { subscriptionsSelector } from "../../../redux/slices/subscriptionsSlice";
 import { useNavigate } from "react-router-dom";
@@ -31,7 +30,7 @@ export default function SubscriptionList() {
   const jsxConfig = {
     btnText: shouldExpandList ? "Show less" : "Show more",
     btnIcon: shouldExpandList ? ExpandLessIcon : ExpandMoreIcon,
-    rootClass: shouldExpandList ? "SubscriptionList--expanded" : "SubscriptionList",
+    rootClass: shouldExpandList ? "SubscriptionList-scroller--expanded" : "SubscriptionList-scroller",
   };
 
   const handleBtnClick = () => {
@@ -48,13 +47,13 @@ export default function SubscriptionList() {
   };
 
   return (
-    <>
-      <div id={SCROLLABLE_JSX} className={jsxConfig.rootClass} ref={listRef}>
+    <div className="SubscriptionList">
+      <div ref={listRef}>
         <InfiniteScroll
+          className={jsxConfig.rootClass}
           dataLength={subscriptions.length}
           next={loadMoreSubscriptions}
           hasMore={!!nextPageToken}
-          scrollableTarget={SCROLLABLE_JSX}
           loader={<h4>Loading...</h4>}
         >
           {subscriptions?.map((subscription, index) => (
@@ -62,10 +61,9 @@ export default function SubscriptionList() {
           ))}
         </InfiniteScroll>
       </div>
-
       {subscriptions.length > COLLAPSED_SUBSCRIPTIONS_NUM && (
         <Button onClick={handleBtnClick} text={jsxConfig.btnText} startIcon={jsxConfig.btnIcon} className="SubscriptionList__btn" />
       )}
-    </>
+    </div>
   );
 }

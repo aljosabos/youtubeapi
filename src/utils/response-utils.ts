@@ -63,6 +63,15 @@ export const mapResponseToSubscriptions = (
     image: item?.snippet?.thumbnails?.high?.url,
   }));
 
+export const formatResponseToSubscription = (
+  response: ISubscriptionsResponse
+): ISubscription => ({
+  id: response?.id,
+  channelId: response.snippet.resourceId.channelId,
+  title: response?.snippet?.title,
+  image: response?.snippet?.thumbnails?.high?.url,
+});
+
 export const formatResponseToChannelInfo = (
   response: IChannelInfoResponse
 ): IChannelInfo => ({

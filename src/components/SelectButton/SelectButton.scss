@@ -1,0 +1,44 @@
+.SelectButton {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &__btn {
+    &.MuiButton-root {
+      border-radius: 30px;
+      text-transform: inherit;
+      padding: 4px 12px;
+      font-weight: 500;
+      font-size: 13px;
+    }
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    border-radius: 4px;
+    position: absolute;
+    width: 100%;
+    top: 45px;
+    z-index: 100;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 5px;
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    transition: all 0.2s;
+    font-size: 14px;
+    padding: 5px;
+    &:hover {
+      background-color: rgb(249, 227, 227);
+    }
+
+    &-icon {
+      margin-right: 4px;
+    }
+  }
+}

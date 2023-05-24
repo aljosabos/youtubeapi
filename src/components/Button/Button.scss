@@ -19,6 +19,8 @@
   }
 
   &.MuiButton-root {
+    text-transform: inherit;
+
     @include md {
       font-size: 9px;
     }

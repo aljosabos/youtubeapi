@@ -7,7 +7,7 @@ import { useAppDispatch } from "./reduxHooks";
 import { getUserInfoThunk } from "../redux/thunks/userInfoThunk";
 import { useNavigate } from "react-router-dom";
 
-export const useLogin = (redirectPath?: string) => {
+export const useLogin = (redirectPath?: string, callback?: () => void) => {
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -18,6 +18,7 @@ export const useLogin = (redirectPath?: string) => {
       setIsLoggedIn(true);
       dispatch(getUserInfoThunk(access_token));
       redirectPath && navigate(redirectPath);
+      if (callback) callback();
     },
     scope: AUTH_SCOPE,
   });

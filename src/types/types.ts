@@ -1,5 +1,6 @@
 import { SvgIconTypeMap } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
+import { ReactNode } from "react";
 
 export type MaterialIcon = OverridableComponent<
   SvgIconTypeMap<object, "svg">
@@ -47,4 +48,10 @@ export interface IChannelInfo {
   image: string;
   subscriberCount: number;
   videoCount: number;
+}
+
+export interface IModal {
+  open: boolean;
+  closeModal: () => void;
+  children: ReactNode;
 }
