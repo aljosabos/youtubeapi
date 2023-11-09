@@ -1,9 +1,11 @@
+import { IComment } from "./../types/types";
 import {
   formatISOtoHumanReadable,
   formatToThousandsWithOneDecimal,
 } from "./date-utils";
 import {
   IChannelInfoResponse,
+  ICommentResponse,
   IRelatedVideosResponse,
   ISubscriptionsResponse,
   IVideoDetailsResponse,
@@ -85,3 +87,28 @@ export const formatResponseToChannelInfo = (
   ),
   videoCount: Number(response?.statistics?.videoCount),
 });
+
+export const mapResponseToComment = (response: ICommentResponse): IComment => {
+  const {
+    videoId,
+    textDisplay,
+    authorDisplayName,
+    authorProfileImageUrl,
+    likeCount,
+    publishedAt,
+    updatedAt,
+  } = response.snippet.topLevelComment.snippet;
+
+  return {
+    videoId,
+    author: authorDisplayName,
+    authorImageUrl: authorProfileImageUrl,
+    text: textDisplay,
+    likeCount,
+    publishedAt,
+    updatedAt,
+  };
+};
+
+export const mapResponseToComments = (response: ICommentResponse[]) =>
+  response.map((comment) => mapResponseToComment(comment));

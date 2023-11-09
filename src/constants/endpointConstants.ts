@@ -18,3 +18,5 @@ export const SEARCH_VIDEOS_URL = `https://youtube.googleapis.com/youtube/v3/sear
 export const VIDEO_IDS_URL = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&fields=items(id,snippet(title)),nextPageToken&type=video&maxResults=50&key=${process.env.REACT_APP_API_KEY}`;
 
 export const CHANNEL_INFO_URL = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet,statistics&maxResults=50&fields=items(snippet(title,description,customUrl,publishedAt,thumbnails(medium(url))),statistics(subscriberCount,videoCount))&key=${process.env.REACT_APP_API_KEY}`;
+
+export const VIDEO_COMMENTS_URL = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&maxResults=100&videoId=s6xuL9y2zes&fields=nextPageToken,pageInfo(totalResults),items(snippet(topLevelComment(snippet(videoId,textDisplay,authorDisplayName,authorProfileImageUrl,likeCount,publishedAt,updatedAt))))&key=${process.env.REACT_APP_API_KEY}`;

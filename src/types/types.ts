@@ -55,3 +55,13 @@ export interface IModal {
   closeModal: () => void;
   children: ReactNode;
 }
+
+export interface IComment {
+  videoId: string;
+  author: string;
+  authorImageUrl: string;
+  text: string;
+  likeCount: number;
+  publishedAt: string;
+  updatedAt: string;
+}

@@ -11,6 +11,9 @@ import { getRelatedVideosThunk } from "../../redux/thunks/relatedVideosThunk";
 import { scrollPageToTop } from "../../utils/utils";
 import { relatedVideosSelector } from "../../redux/slices/relatedVideosSlice";
 import { recommendedVideosSelector } from "../../redux/slices/recommendedVideosSlice";
+import Comments from "./Comments/Comments";
+import { getCommentsThunk } from "../../redux/thunks/commentsThunk";
+import { commentsSelector } from "../../redux/slices/commentsSlice";
 
 /* getRelatedVideosThunk is commented out since the related videos endpoint uses lot of quota (100 per call out from 10000), instead popular videos are used since they use quota of only 1 unit per call */
 
@@ -24,12 +27,16 @@ export default function VideoPlayback() {
   const relatedVideos = useAppSelector(relatedVideosSelector);
   const { recommendedVideos } = useAppSelector(recommendedVideosSelector);
 
-  const [shouldExpandDescription, setShouldExpandDescription] = useState<boolean>(false);
+  const { comments } = useAppSelector(commentsSelector);
+
+  const [shouldExpandDescription, setShouldExpandDescription] =
+    useState<boolean>(false);
 
   useEffect(() => {
     if (videoId) {
       dispatch(getVideoDetailsThunk(videoId));
       // dispatch(getRelatedVideosThunk(videoId));
+      dispatch(getCommentsThunk(videoId));
       scrollPageToTop();
       setShouldExpandDescription(false);
     }
@@ -39,13 +46,24 @@ export default function VideoPlayback() {
     navigate(`/video/${videoId}`);
   };
 
+  console.log(comments);
+
   return (
     <div className="VideoPlayback">
       <div className="VideoPlayback__player">
         {videoId && <VideoPlayer videoId={videoId} />}
-        {videoDetails && <VideoDetails {...videoDetails} shouldExpandDescription={shouldExpandDescription} setShouldExpandDescription={setShouldExpandDescription} />}
+        {videoDetails && (
+          <VideoDetails
+            {...videoDetails}
+            shouldExpandDescription={shouldExpandDescription}
+            setShouldExpandDescription={setShouldExpandDescription}
+          />
+        )}
+        <Comments />
       </div>
-      {videoId && <RelatedVideos videos={recommendedVideos} onClick={handleClick} />}
+      {videoId && (
+        <RelatedVideos videos={recommendedVideos} onClick={handleClick} />
+      )}
     </div>
   );
 }

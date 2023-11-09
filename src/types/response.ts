@@ -85,3 +85,19 @@ export interface IChannelInfoResponse {
     videoCount: string;
   };
 }
+
+export interface ICommentResponse {
+  snippet: {
+    topLevelComment: {
+      snippet: {
+        videoId: string;
+        textDisplay: string;
+        authorDisplayName: string;
+        authorProfileImageUrl: string;
+        likeCount: number;
+        publishedAt: string;
+        updatedAt: string;
+      };
+    };
+  };
+}
