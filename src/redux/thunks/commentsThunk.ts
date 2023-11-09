@@ -8,6 +8,7 @@ export const getCommentsThunk = createAsyncThunk(
     const response = await axios.get(VIDEO_COMMENTS_URL, {
       params: {
         videoId,
+        textFormat: "plainText",
       },
     });
 

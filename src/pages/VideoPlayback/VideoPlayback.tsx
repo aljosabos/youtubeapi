@@ -11,7 +11,7 @@ import { getRelatedVideosThunk } from "../../redux/thunks/relatedVideosThunk";
 import { scrollPageToTop } from "../../utils/utils";
 import { relatedVideosSelector } from "../../redux/slices/relatedVideosSlice";
 import { recommendedVideosSelector } from "../../redux/slices/recommendedVideosSlice";
-import Comments from "./Comments/Comments";
+import Comment from "./Comments/Comment";
 import { getCommentsThunk } from "../../redux/thunks/commentsThunk";
 import { commentsSelector } from "../../redux/slices/commentsSlice";
 
@@ -59,7 +59,9 @@ export default function VideoPlayback() {
             setShouldExpandDescription={setShouldExpandDescription}
           />
         )}
-        <Comments />
+        {comments?.map((comment, index) => (
+          <Comment {...comment} key={index} />
+        ))}
       </div>
       {videoId && (
         <RelatedVideos videos={recommendedVideos} onClick={handleClick} />
