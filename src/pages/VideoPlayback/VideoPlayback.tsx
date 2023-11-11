@@ -46,8 +46,6 @@ export default function VideoPlayback() {
     navigate(`/video/${videoId}`);
   };
 
-  console.log(comments);
-
   return (
     <div className="VideoPlayback">
       <div className="VideoPlayback__player">
@@ -66,6 +64,10 @@ export default function VideoPlayback() {
       {videoId && (
         <RelatedVideos videos={recommendedVideos} onClick={handleClick} />
       )}
+
+      {/* {comments?.map((comment, index) => (
+        <Comment {...comment} key={index} />
+      ))} */}
     </div>
   );
 }

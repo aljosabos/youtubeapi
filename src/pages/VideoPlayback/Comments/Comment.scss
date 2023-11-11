@@ -2,11 +2,35 @@
   display: flex;
   padding: 10px;
 
-  &__image {
+  &__avatar {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     margin-right: 10px;
+  }
+
+  &__avatarTemplate {
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+    position: relative;
+
+    &-img {
+      background-color: rgb(155, 155, 155);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    &-heading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-weight: bold;
+    }
   }
 
   &__wrapper {
@@ -22,6 +46,7 @@
 
     &-text {
       font-size: 14px;
+      max-width: 600px;
     }
   }
 }

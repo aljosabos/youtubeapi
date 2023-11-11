@@ -1,6 +1,7 @@
 import { IComment } from "../../../types/types";
 import { translateDateToCurrentLanguage } from "../../../utils/date-utils";
 import "./Comment.scss";
+import { useImageRender } from "../../../hooks/useImageRender";
 
 export default function Comment({
   videoId,
@@ -13,15 +14,27 @@ export default function Comment({
 }: IComment) {
   const publishedAtFormatted = translateDateToCurrentLanguage(publishedAt);
 
-  console.log(authorImageUrl);
+  const avatarJSXTemplate = (
+    <div className="Comment__avatarTemplate">
+      <img className="Comment__avatarTemplate-img" />
+      <span className="Comment__avatarTemplate-heading">
+        {author[0].toUpperCase()}
+      </span>
+    </div>
+  );
+
+  const avatarJSX = <img src={authorImageUrl} className="Comment__avatar" />;
+
+  // if the image link is broken, template image will be shown instead
+  const { image: authorImg } = useImageRender(
+    authorImageUrl,
+    avatarJSX,
+    avatarJSXTemplate
+  );
 
   return (
     <div className="Comment">
-      {authorImageUrl ? (
-        <img src={authorImageUrl} className="Comment__image" />
-      ) : (
-        <div className="Comment__image">{author[0]}</div>
-      )}
+      {authorImg}
 
       <div className="Comment__wrapper">
         <span className="Comment__wrapper-author">@{author}</span>
